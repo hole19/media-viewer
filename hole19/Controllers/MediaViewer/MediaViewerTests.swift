@@ -9,7 +9,7 @@ class MediaViewerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = MediaViewer()
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
         let _ = sut.view
     }
     
@@ -35,30 +35,14 @@ class MediaViewerTests: XCTestCase {
         expect(self.sut.sourceImageView) == imageView
     }
     
-    func testThatItHasImageView() {
-        expect(self.sut.imageView) != nil
+    func testThatItHasMediaViewerContentsView() {
+        expect(self.sut.contentsView) != nil
     }
     
-    func testThatItHasBackgroundView() {
-        expect(self.sut.backgroundView) != nil
-    }
-    
-    func testThatItHasCloseButton() {
-        expect(self.sut.closeButton) != nil
-    }
-    
-    func testThatCloseButtonSuperviewIsBackgroundView() {
-        expect(self.sut.closeButton.superview) == sut.backgroundView
-    }
-    
-    func testThatImageViewCoversTheWholeView() {
+    func testThatContentViewCoversTheWholeView() {
         let view = sut.view
         sut.view.layoutIfNeeded()
-        expect(self.sut.imageView.frame.size) == CGSizeMake(view.frame.size.width, view.frame.size.height)
-    }
-    
-    func testThatImageViewHasContentModeAspectFit() {
-        expect(self.sut.imageView.contentMode) == UIViewContentMode.ScaleAspectFit
+        expect(self.sut.contentsView.frame.size) == CGSizeMake(view.frame.size.width, view.frame.size.height)
     }
     
     func testThatItHasTransitionAnimatior() {
@@ -74,24 +58,29 @@ class MediaViewerTests: XCTestCase {
         expect(self.sut.transitionAnimator?.sourceImageView) == imageView
     }
     
-    func testThatItHasTransitionAnimatiorWithCorrectBackgroundView() {
+    func testThatItHasTransitionAnimatiorWithCorrectContentsView() {
         sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
         let _ = sut.view
-        expect(self.sut.transitionAnimator?.backgroundView) == self.sut.backgroundView
+        expect(self.sut.transitionAnimator?.contentsView) == self.sut.contentsView
     }
     
     class MockMediaViewerTransitionAnimator: MediaViewerTransitionAnimator {
         
         var numberOfTimesTransitionWasCalled = 0
+        var numberOfTimesSetupTransitionWasCalled = 0
         
         override func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
             numberOfTimesTransitionWasCalled++
         }
+        
+        override func setupTransitionToDestinationImageView() {
+//            numberOfTimesTransitionWasCalled++
+        }
     }
-    
+        
     func testThatItBeginsTransitionOnViewDidAppear() {
         sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
-        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), destinationImageView: UIImageView(), backgroundView: nil)
+        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
         sut.transitionAnimator = mockTransition
         let _ = sut.view
         sut.viewDidAppear(false)

@@ -8,12 +8,10 @@ class MediaViewer: UIViewController {
     
     var mediaURL = NSURL()
     var sourceImageView: UIImageView?
-    var backgroundView: UIView!
-    var closeButton: UIButton!
     
     var transitionAnimator: MediaViewerTransitionAnimator?
     
-    var imageView: UIImageView!
+    var contentsView: MediaViewerContentsView!
     
     // MARK: init
     
@@ -42,9 +40,9 @@ class MediaViewer: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if transitionAnimator == nil, let sourceImageView = sourceImageView {
-            transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, destinationImageView: imageView, backgroundView: backgroundView)
+            transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView)
         }
-        imageView.sd_setImageWithURL(mediaURL)
+        contentsView.imageView.sd_setImageWithURL(mediaURL)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -61,33 +59,18 @@ class MediaViewer: UIViewController {
     // MARK: private
     
     private func setupView() {
-        setupBackgroundView()
-        setupImageView()
+        setupContentsView()
         setupCloseButton()
         view.backgroundColor = UIColor.clearColor()
     }
     
-    private func setupImageView() {
-        imageView = UIImageView()
-        imageView.contentMode = .ScaleAspectFit
-        addSubviewAndFullScreenConstraints(imageView)
-    }
-    
-    private func setupBackgroundView() {
-        backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.blackColor()
-        addSubviewAndFullScreenConstraints(backgroundView)
+    private func setupContentsView() {
+        contentsView = MediaViewerContentsView(frame: CGRectZero)
+        addSubviewAndFullScreenConstraints(contentsView)
     }
     
     private func setupCloseButton() {
-        closeButton = UIButton(type: UIButtonType.RoundedRect)
-        closeButton.setTitle(NSLocalizedString("Close", comment: ""), forState: UIControlState.Normal)
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.backgroundColor = UIColor.whiteColor()
-        closeButton.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
-        backgroundView.addSubview(closeButton)
-        backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(88)]-20-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
-        backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[closeButton(44)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+        contentsView.closeButton.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     private func addSubviewAndFullScreenConstraints(subview: UIView) {
