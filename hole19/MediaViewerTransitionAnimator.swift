@@ -24,22 +24,25 @@ class MediaViewerTransitionAnimator: NSObject {
         let sourceImageViewFrame = destinationSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
         contentsView.imageView.frame = sourceImageViewFrame
         contentsView.imageView.alpha = 1.0
+        sourceImageView.hidden = true
     }
     
     func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
-        let duration: NSTimeInterval = animated ? 0.5 : 0.00
+        let duration: NSTimeInterval = animated ? 0.28 : 0.00
         setupTransitionToDestinationImageView()
+        let imageSize = sourceImageView.image != nil ? sourceImageView.image!.size : contentsView.bounds.size
+        let aspectRatio = imageSize.height / imageSize.width
+        let actualImageHeight = contentsView.bounds.size.width * aspectRatio
+        let endImageFrameOriginY = (contentsView.bounds.size.height - actualImageHeight) / 2.0
+        let endImageFrame = CGRectMake(contentsView.bounds.origin.x, endImageFrameOriginY, contentsView.bounds.size.width, actualImageHeight)
         UIView.animateWithDuration(duration, delay: duration, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
             self.contentsView.backgroundView?.alpha = 1.0
             self.contentsView.closeButton?.alpha = 1.0
-            }) { (finished) -> Void in
-                UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
-                    self.contentsView.imageView.frame = self.contentsView.bounds
-                    self.contentsView.imageView.contentMode = .ScaleAspectFit
-                    }) { (finished) -> Void in
-                        completition()
-                        print(self.contentsView.imageView)
-                }
+            self.contentsView.imageView.frame = endImageFrame
+        }) { (finished) -> Void in
+            self.sourceImageView.hidden = false
+            self.contentsView.imageView.contentMode = UIViewContentMode.ScaleAspectFit
+            completition()
         }
     }
     

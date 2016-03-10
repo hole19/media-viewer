@@ -29,8 +29,8 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.closeButton) != nil
     }
     
-    func testThatCloseButtonSuperviewIsBackgroundView() {
-        expect(self.sut.closeButton.superview) == sut.backgroundView
+    func testThatCloseButtonSuperviewIsTheView() {
+        expect(self.sut.closeButton.superview) == sut
     }
     
     func testThatImageViewCoversTheWholeView() {
@@ -38,8 +38,8 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.imageView.frame.size) == CGSizeMake(sut.bounds.size.width, sut.bounds.size.height)
     }
     
-//    func testThatImageViewHasContentModeAspectFit() {
-//        expect(self.sut.imageView.contentMode) == UIViewContentMode.ScaleAspectFit
-//    }
+    func testThatImageViewHasContentModeAspectFit() {
+        expect(self.sut.imageView.contentMode) == UIViewContentMode.ScaleAspectFit
+    }
 }
 

@@ -7,7 +7,6 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     
     var sut: MediaViewerTransitionAnimator!
     
-    // property to retain containers between function calls
     var originContainer: UIView?
     var contentsView: MediaViewerContentsView?
     
@@ -58,6 +57,14 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         expect(self.contentsView?.backgroundView.alpha) == 0.0
     }
     
+    func testThatTransitionToDestinationSetupHidesSourceImage() {
+        setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.setupTransitionToDestinationImageView()
+        
+        expect(self.sut.sourceImageView.hidden) == true
+    }
+    
     func testThatTransitionToDestinationInitialValueXIsEqalToSourceImageView() {
         let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
         
@@ -90,37 +97,37 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         expect(imageView2.frame.size.height) == 60
     }
     
-//    func testThatTransitionToDestinationFinalValueXIsEqalToDestinationImageView() {
-//        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
-//        
-//        sut.transitionToDestinationImageView(false)
-//        
-//        expect(imageView2.frame.origin.x) == 0.0
-//    }
-//    
-//    func testThatTransitionToDestinationFinalValueYIsEqalToDestinationImageView() {
-//        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
-//        
-//        sut.transitionToDestinationImageView(false)
-//        
-//        expect(imageView2.frame.origin.y) == 0.0
-//    }
-//    
-//    func testThatTransitionToDestinationFinalWidthIsEqalToDestinationImageView() {
-//        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
-//        
-//        sut.transitionToDestinationImageView(false)
-//        
-//        expect(imageView2.frame.size.width) == 400.0
-//    }
-//    
-//    func testThatTransitionToDestinationFinalHeightIsEqalToDestinationImageView() {
-//        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
-//        
-//        sut.transitionToDestinationImageView(false)
-//        
-//        expect(imageView2.frame.size.height) == 600.0
-//    }
+    func testThatTransitionToDestinationFinalValueXIsEqalToDestinationImageView() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionToDestinationImageView(false)
+        
+        expect(imageView2.frame.origin.x) == 0.0
+    }
+    
+    func testThatTransitionToDestinationFinalValueYIsEqalToDestinationImageView() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionToDestinationImageView(false)
+        
+        expect(imageView2.frame.origin.y) == 0.0
+    }
+    
+    func testThatTransitionToDestinationFinalWidthIsEqalToDestinationImageView() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionToDestinationImageView(false)
+        
+        expect(imageView2.frame.size.width) == 400.0
+    }
+    
+    func testThatTransitionToDestinationFinalHeightIsEqalToDestinationImageView() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionToDestinationImageView(false)
+        
+        expect(imageView2.frame.size.height) == 600.0
+    }
     
     func testThatTransitionToDestinationFinalBackgroundAlphaIs1() {
         setupSUTWithTwoImageViewsInsideContainers()

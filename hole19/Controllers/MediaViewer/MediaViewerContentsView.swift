@@ -35,7 +35,7 @@ class MediaViewerContentsView: UIView {
     
     private func setupImageView() {
         imageView = UIImageView(frame: CGRectMake(0,0,100,100))
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .ScaleAspectFit
         imageView.clipsToBounds = true
         imageView.alpha = 0.0
         addSubviewAndFullScreenConstraints(imageView)
@@ -54,9 +54,9 @@ class MediaViewerContentsView: UIView {
         closeButton.setTitle(NSLocalizedString("Close", comment: ""), forState: UIControlState.Normal)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.backgroundColor = UIColor.whiteColor()
-        backgroundView.addSubview(closeButton)
-        backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(88)]-20-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
-        backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[closeButton(44)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+        addSubview(closeButton)
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(88)]-20-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[closeButton(44)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
     }
     
     private func addSubviewAndFullScreenConstraints(subview: UIView) {
