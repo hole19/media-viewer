@@ -68,16 +68,21 @@ class MediaViewerTests: XCTestCase {
         
         var numberOfTimesTransitionWasCalled = 0
         var numberOfTimesSetupTransitionWasCalled = 0
+        var numberOfTimesTransitionBackWasCalled = 0
         
         override func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
             numberOfTimesTransitionWasCalled++
         }
         
         override func setupTransitionToDestinationImageView() {
-//            numberOfTimesTransitionWasCalled++
+            numberOfTimesTransitionWasCalled++
+        }
+        
+        override func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+            numberOfTimesTransitionBackWasCalled++
         }
     }
-        
+    
     func testThatItBeginsTransitionOnViewDidAppear() {
         sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
         let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
@@ -86,6 +91,16 @@ class MediaViewerTests: XCTestCase {
         sut.viewDidAppear(false)
         
         expect(mockTransition.numberOfTimesTransitionWasCalled) == 1
+    }
+    
+    func testThatCloseTriggersTransitionBack() {
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
+        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
+        sut.transitionAnimator = mockTransition
+        let _ = sut.view
+        sut.close(sut.contentsView.closeButton)
+        
+        expect(mockTransition.numberOfTimesTransitionBackWasCalled) == 1
     }
     
 }

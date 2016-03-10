@@ -53,7 +53,9 @@ class MediaViewer: UIViewController {
     // MARK: public
     
     func close(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil)
+        transitionAnimator?.transitionBackToSourceImageView(true, withCompletition: { [weak self] in
+            self?.dismissViewControllerAnimated(false, completion: nil)
+        })
     }
     
     // MARK: private

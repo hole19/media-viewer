@@ -25,6 +25,7 @@ class MediaViewerTransitionAnimator: NSObject {
         contentsView.imageView.frame = sourceImageViewFrame
         contentsView.imageView.alpha = 1.0
         sourceImageView.hidden = true
+        contentsView.imageView.contentMode = .ScaleAspectFill
     }
     
     func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
@@ -39,10 +40,31 @@ class MediaViewerTransitionAnimator: NSObject {
             self.contentsView.backgroundView?.alpha = 1.0
             self.contentsView.closeButton?.alpha = 1.0
             self.contentsView.imageView.frame = endImageFrame
-        }) { (finished) -> Void in
-            self.sourceImageView.hidden = false
-            self.contentsView.imageView.contentMode = UIViewContentMode.ScaleAspectFit
-            completition()
+            }) { (finished) -> Void in
+                self.sourceImageView.hidden = false
+                self.contentsView.imageView.contentMode = UIViewContentMode.ScaleAspectFit
+                completition()
+        }
+    }
+    
+    func setupTransitionBackToSourceImageView() {
+        sourceImageView.hidden = true
+        contentsView.imageView.contentMode = .ScaleAspectFill
+    }
+
+    func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+        guard let currentSuperview = contentsView.imageView.superview, let sourceSuperview = sourceImageView.superview else { return }
+        let endImageFrame = currentSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
+
+        let duration: NSTimeInterval = animated ? 0.28 : 0.00
+        setupTransitionBackToSourceImageView()
+        UIView.animateWithDuration(duration, delay: duration, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+            self.contentsView.backgroundView?.alpha = 0.0
+            self.contentsView.closeButton?.alpha = 0.0
+            self.contentsView.imageView.frame = endImageFrame
+            }) { (finished) -> Void in
+                self.sourceImageView.hidden = false
+                completition()
         }
     }
     

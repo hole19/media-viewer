@@ -21,6 +21,9 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         contentsView = nil
     }
     
+    
+    // MARK: state and setup
+    
     func testThatItInitsWithSourceImageView() {
         let imageView = UIImageView()
         sut = MediaViewerTransitionAnimator(sourceImageView:imageView, contentsView: MediaViewerContentsView())
@@ -38,7 +41,10 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         sut = MediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: contentsView)
         expect(self.sut.contentsView.backgroundView) == contentsView.backgroundView
     }
+
     
+    // MARK: transition IN
+
     func setupSUTWithTwoImageViewsInsideContainers() -> UIImageView {
         let view1 = UIView(frame: CGRectMake(40, 80, 400, 600))
         let imageView1 = UIImageView(frame: CGRectMake(20, 20, 40, 60))
@@ -47,6 +53,14 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         contentsView = MediaViewerContentsView(frame: CGRectMake(0, 0, 400, 600))
         sut = MediaViewerTransitionAnimator(sourceImageView: imageView1, contentsView: contentsView!)
         return contentsView!.imageView
+    }
+    
+    func testThatTransitionToDestinationSourceImageContentModeIsAspectFill() {
+        setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.setupTransitionToDestinationImageView()
+        
+        expect(self.contentsView?.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
     }
     
     func testThatTransitionToDestinationInitialBackgroundAlphaIs0() {
@@ -135,6 +149,65 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         sut.transitionToDestinationImageView(false)
         
         expect(self.contentsView?.backgroundView.alpha) == 1.0
+    }
+
+    
+    // MARK: transition OUT
+    
+    func testThatTransitionSetupBackToSourceImageViewImageContentModeIsAspectFill() {
+        setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.setupTransitionBackToSourceImageView()
+        
+        expect(self.contentsView?.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
+    }
+    
+    func testThatTransitionSetupBackToSourceSourceImageViewHidden() {
+        setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.setupTransitionBackToSourceImageView()
+        
+        expect(self.sut.sourceImageView.hidden) == true
+    }
+    
+    func testThatTransitionBackFinalValueXIsEqalToSourceImageView() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionBackToSourceImageView(false)
+        
+        expect(imageView2.frame.origin.x) == 60
+    }
+    
+    func testThatTransitionBackFinalValueYIsEqalToSourceImageView() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionBackToSourceImageView(false)
+        
+        expect(imageView2.frame.origin.y) == 100
+    }
+    
+    func testThatTransitionBackFinalWidthIsEqalToSourceImageView() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionBackToSourceImageView(false)
+        
+        expect(imageView2.frame.size.width) == 40.0
+    }
+    
+    func testThatTransitionBackFinalHeightIsEqalToDestinationImageView() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionBackToSourceImageView(false)
+        
+        expect(imageView2.frame.size.height) == 60.0
+    }
+    
+    func testThatTransitionBackFinalBackgroundAlphaIs0() {
+        setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionBackToSourceImageView(false)
+        
+        expect(self.contentsView?.backgroundView.alpha) == 0.0
     }
 
 }
