@@ -43,6 +43,14 @@ class MediaViewerTests: XCTestCase {
         expect(self.sut.backgroundView) != nil
     }
     
+    func testThatItHasCloseButton() {
+        expect(self.sut.closeButton) != nil
+    }
+    
+    func testThatCloseButtonSuperviewIsBackgroundView() {
+        expect(self.sut.closeButton.superview) == sut.backgroundView
+    }
+    
     func testThatImageViewCoversTheWholeView() {
         let view = sut.view
         sut.view.layoutIfNeeded()
@@ -81,11 +89,12 @@ class MediaViewerTests: XCTestCase {
         }
     }
     
-    func testThatItBeginsTransitionOnViewDidLoad() {
+    func testThatItBeginsTransitionOnViewDidAppear() {
         sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
         let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), destinationImageView: UIImageView(), backgroundView: nil)
         sut.transitionAnimator = mockTransition
         let _ = sut.view
+        sut.viewDidAppear(false)
         
         expect(mockTransition.numberOfTimesTransitionWasCalled) == 1
     }
