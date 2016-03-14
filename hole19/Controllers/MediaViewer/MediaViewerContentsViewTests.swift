@@ -17,8 +17,8 @@ class MediaViewerContentsViewTests: XCTestCase {
         sut = nil
     }
     
-    func testThatItHasImageView() {
-        expect(self.sut.imageView) != nil
+    func testThatItHasInteractiveImageView() {
+        expect(self.sut.interactiveImageView) != nil
     }
     
     func testThatItHasBackgroundView() {
@@ -35,11 +35,11 @@ class MediaViewerContentsViewTests: XCTestCase {
     
     func testThatImageViewCoversTheWholeView() {
         sut.layoutIfNeeded()
-        expect(self.sut.imageView.frame.size) == CGSizeMake(sut.bounds.size.width, sut.bounds.size.height)
+        expect(self.sut.interactiveImageView.frame.size) == CGSizeMake(sut.bounds.size.width, sut.bounds.size.height)
     }
     
     func testThatImageViewHasContentModeAspectFit() {
-        expect(self.sut.imageView.contentMode) == UIViewContentMode.ScaleAspectFit
+        expect(self.sut.interactiveImageView.imageView.contentMode) == UIViewContentMode.ScaleAspectFit
     }
     
     func testThatItHasOverlayView() {

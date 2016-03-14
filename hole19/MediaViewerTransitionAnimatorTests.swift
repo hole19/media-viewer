@@ -52,7 +52,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         originContainer = view1
         contentsView = MediaViewerContentsView(frame: CGRectMake(0, 0, 400, 600))
         sut = MediaViewerTransitionAnimator(sourceImageView: imageView1, contentsView: contentsView!)
-        return contentsView!.imageView
+        return contentsView!.interactiveImageView.imageView
     }
     
     func testThatTransitionToDestinationSourceImageContentModeIsAspectFill() {
@@ -60,7 +60,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.setupTransitionToDestinationImageView()
         
-        expect(self.contentsView?.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
+        expect(self.contentsView?.interactiveImageView.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
     }
     
     func testThatTransitionToDestinationInitialBackgroundAlphaIs0() {
@@ -159,7 +159,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.setupTransitionBackToSourceImageView()
         
-        expect(self.contentsView?.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
+        expect(self.contentsView?.interactiveImageView.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
     }
     
     func testThatTransitionSetupBackToSourceSourceImageViewHidden() {

@@ -20,12 +20,12 @@ class MediaViewerTransitionAnimator: NSObject {
     
     func setupTransitionToDestinationImageView() {
         contentsView.backgroundView?.alpha = 0.0
-        guard let destinationSuperview = contentsView.imageView.superview, let sourceSuperview = sourceImageView.superview else { return }
+        guard let destinationSuperview = contentsView.interactiveImageView.imageView.superview, let sourceSuperview = sourceImageView.superview else { return }
         let sourceImageViewFrame = destinationSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
-        contentsView.imageView.frame = sourceImageViewFrame
-        contentsView.imageView.alpha = 1.0
+        contentsView.interactiveImageView.imageView.frame = sourceImageViewFrame
+        contentsView.interactiveImageView.imageView.alpha = 1.0
         sourceImageView.hidden = true
-        contentsView.imageView.contentMode = .ScaleAspectFill
+        contentsView.interactiveImageView.imageView.contentMode = .ScaleAspectFill
     }
     
     func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
@@ -39,21 +39,21 @@ class MediaViewerTransitionAnimator: NSObject {
         UIView.animateWithDuration(duration, delay: duration, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
             self.contentsView.backgroundView?.alpha = 1.0
             self.contentsView.closeButton?.alpha = 1.0
-            self.contentsView.imageView.frame = endImageFrame
+            self.contentsView.interactiveImageView.imageView.frame = endImageFrame
             }) { (finished) -> Void in
                 self.sourceImageView.hidden = false
-                self.contentsView.imageView.contentMode = UIViewContentMode.ScaleAspectFit
+                self.contentsView.interactiveImageView.imageView.contentMode = UIViewContentMode.ScaleAspectFit
                 completition()
         }
     }
     
     func setupTransitionBackToSourceImageView() {
         sourceImageView.hidden = true
-        contentsView.imageView.contentMode = .ScaleAspectFill
+        contentsView.interactiveImageView.imageView.contentMode = .ScaleAspectFill
     }
 
     func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
-        guard let currentSuperview = contentsView.imageView.superview, let sourceSuperview = sourceImageView.superview else { return }
+        guard let currentSuperview = contentsView.interactiveImageView.imageView.superview, let sourceSuperview = sourceImageView.superview else { return }
         let endImageFrame = currentSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
 
         let duration: NSTimeInterval = animated ? 0.28 : 0.00
@@ -61,7 +61,7 @@ class MediaViewerTransitionAnimator: NSObject {
         UIView.animateWithDuration(duration, delay: duration, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
             self.contentsView.backgroundView?.alpha = 0.0
             self.contentsView.closeButton?.alpha = 0.0
-            self.contentsView.imageView.frame = endImageFrame
+            self.contentsView.interactiveImageView.imageView.frame = endImageFrame
             }) { (finished) -> Void in
                 self.sourceImageView.hidden = false
                 completition()

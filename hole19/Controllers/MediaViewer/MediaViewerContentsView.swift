@@ -13,7 +13,7 @@ class MediaViewerContentsView: UIView {
         
     var backgroundView: UIView!
     var closeButton: UIButton!
-    var imageView: UIImageView!
+    var interactiveImageView: MediaViewerInteractiveImageView!
     
     var overlayView: MediaViewerInfoOverlayView?
 
@@ -36,18 +36,16 @@ class MediaViewerContentsView: UIView {
     
     private func setupView() {
         setupBackgroundView()
-        setupImageView()
+        setupInterActiveImageView()
         setupCloseButton()
         setupOverlayView()
         backgroundColor = UIColor.clearColor()
     }
     
-    private func setupImageView() {
-        imageView = UIImageView(frame: CGRectMake(0,0,100,100))
-        imageView.contentMode = .ScaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.alpha = 0.0
-        addSubviewAndFullScreenConstraints(imageView)
+    private func setupInterActiveImageView() {
+        interactiveImageView = MediaViewerInteractiveImageView(frame: CGRectMake(0,0,100,100))
+        interactiveImageView.alpha = 0.0
+        addSubviewAndFullScreenConstraints(interactiveImageView)
     }
     
     private func setupBackgroundView() {
@@ -80,13 +78,4 @@ class MediaViewerContentsView: UIView {
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(66)]-20-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[closeButton(33)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
     }
-    
-    private func addSubviewAndFullScreenConstraints(subview: UIView) {
-        subview.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(subview)
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[subview]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["subview" : subview]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[subview]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["subview" : subview]))
-    }
-
-
 }

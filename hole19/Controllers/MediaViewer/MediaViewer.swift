@@ -42,7 +42,7 @@ class MediaViewer: UIViewController {
         if transitionAnimator == nil, let sourceImageView = sourceImageView {
             transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView)
         }
-        contentsView.imageView.sd_setImageWithURL(mediaURL)
+        contentsView.interactiveImageView.imageView.sd_setImageWithURL(mediaURL)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -68,17 +68,10 @@ class MediaViewer: UIViewController {
     
     private func setupContentsView() {
         contentsView = MediaViewerContentsView(frame: CGRectZero)
-        addSubviewAndFullScreenConstraints(contentsView)
+        view.addSubviewAndFullScreenConstraints(contentsView)
     }
     
     private func setupCloseButton() {
         contentsView.closeButton.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
-    }
-    
-    private func addSubviewAndFullScreenConstraints(subview: UIView) {
-        subview.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(subview)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[subview]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["subview" : subview]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[subview]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["subview" : subview]))
-    }
+    }    
 }
