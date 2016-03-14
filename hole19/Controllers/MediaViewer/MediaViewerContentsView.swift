@@ -1,6 +1,10 @@
 
 import UIKit
 
+protocol MediaViewerInfoOverlayView {
+    
+}
+
 class MediaViewerContentsView: UIView {
     
     // MARK: properties
