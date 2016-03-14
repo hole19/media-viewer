@@ -1,7 +1,7 @@
 
 import Foundation
 
-class MediaViewerAuthorInfoOverlayView: UIView {
+class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     
     // MARK: properties
 
@@ -49,3 +49,9 @@ class MediaViewerAuthorInfoOverlayView: UIView {
 //        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[authorImageView(44)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorImageView" : authorImageView]))
     }
 }
+
+//extension MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
+//    func defaultHeight() -> CGFloat {
+//        return 88.0
+//    }
+//}

@@ -1,17 +1,21 @@
 
 import UIKit
 
-protocol MediaViewerInfoOverlayView {
-    
+class MediaViewerInfoOverlayView: UIView {
+    func defaultHeight() -> CGFloat {
+        return 0.0
+    }
 }
 
 class MediaViewerContentsView: UIView {
     
     // MARK: properties
-    
+        
     var backgroundView: UIView!
     var closeButton: UIButton!
     var imageView: UIImageView!
+    
+    var overlayView: MediaViewerInfoOverlayView?
 
     // MARK: init
     
@@ -34,6 +38,7 @@ class MediaViewerContentsView: UIView {
         setupBackgroundView()
         setupImageView()
         setupCloseButton()
+        setupOverlayView()
         backgroundColor = UIColor.clearColor()
     }
     
@@ -50,6 +55,15 @@ class MediaViewerContentsView: UIView {
         backgroundView.alpha = 0.0
         backgroundView.backgroundColor = UIColor.blackColor()
         addSubviewAndFullScreenConstraints(backgroundView)
+    }
+    
+    private func setupOverlayView() {
+        overlayView = MediaViewerAuthorInfoOverlayView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        overlayView!.alpha = 0.0
+        overlayView!.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(overlayView!)
+//        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(66)]-20-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+//        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[closeButton(33)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
     }
     
     private func setupCloseButton() {

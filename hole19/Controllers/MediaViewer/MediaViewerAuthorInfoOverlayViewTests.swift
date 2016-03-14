@@ -34,6 +34,14 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     func testThatItHasTitleLabel() {
         expect(self.sut.authorTitleLablel) != nil
     }
+    
+    func testThatItConformsToMediaViewerOverlayProtocol() {
+        if let _ = self.sut as? MediaViewerInfoOverlayView {
+            expect(1) == 1
+        } else {
+            expect(0) == 1
+        }
+    }
 
 }
 
