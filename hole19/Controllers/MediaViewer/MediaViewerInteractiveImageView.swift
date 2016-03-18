@@ -6,6 +6,7 @@ class MediaViewerInteractiveImageView: UIView {
     // MARK: properties
     
     var imageView: UIImageView!
+    var scrollView: UIScrollView!
 
     // MARK: init
     

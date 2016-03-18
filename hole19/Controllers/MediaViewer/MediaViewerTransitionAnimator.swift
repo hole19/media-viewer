@@ -36,6 +36,8 @@ class MediaViewerTransitionAnimator: NSObject {
         let actualImageHeight = contentsView.bounds.size.width * aspectRatio
         let endImageFrameOriginY = (contentsView.bounds.size.height - actualImageHeight) / 2.0
         let endImageFrame = CGRectMake(contentsView.bounds.origin.x, endImageFrameOriginY, contentsView.bounds.size.width, actualImageHeight)
+        self.contentsView.interactiveImageView?.alpha = 1.0
+
         UIView.animateWithDuration(duration, delay: duration, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
             self.contentsView.backgroundView?.alpha = 1.0
             self.contentsView.closeButton?.alpha = 1.0

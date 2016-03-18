@@ -150,6 +150,14 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         expect(self.contentsView?.backgroundView.alpha) == 1.0
     }
+    
+    func testThatTransitionToInteractiveImageViewFinalBackgroundAlphaIs1() {
+        setupSUTWithTwoImageViewsInsideContainers()
+        
+        sut.transitionToDestinationImageView(false)
+        
+        expect(self.contentsView?.interactiveImageView.alpha) == 1.0
+    }
 
     
     // MARK: transition OUT
