@@ -35,5 +35,23 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
         expect(self.sut.scrollView) != nil
     }
 
+    func testThatScrollViewHasCorrectWidth() {
+        sut.layoutIfNeeded()
+        expect(self.sut.scrollView.frame.size.width) == 200
+    }
+    
+    func testThatScrollViewHasCorrectHeight() {
+        sut.layoutIfNeeded()
+        expect(self.sut.scrollView.frame.size.height) == 200
+    }
+    
+    func testThatScrollViewHasZoomingEnabled() {
+        expect(self.sut.scrollView.minimumZoomScale) == 0.5
+    }
+    
+    func testThatImageViewIsSubviewOfScrollView() {
+        expect(self.sut.imageView.superview) == sut.scrollView
+    }
+
 }
 

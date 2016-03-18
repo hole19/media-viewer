@@ -27,16 +27,26 @@ class MediaViewerInteractiveImageView: UIView {
     // MARK: private
     
     private func setupView() {
+        setupScrollView()
         setupImageView()
         backgroundColor = UIColor.clearColor()
     }
-
+    
     private func setupImageView() {
         imageView = UIImageView(frame: CGRectMake(0,0,100,100))
         imageView.contentMode = .ScaleAspectFit
         imageView.clipsToBounds = true
         imageView.alpha = 0.0
-        addSubviewAndFullScreenConstraints(imageView)
+        imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        scrollView.addSubview(imageView)
+    }
+    
+    private func setupScrollView() {
+        scrollView = UIScrollView(frame: CGRectMake(0,0,100,100))
+        scrollView.clipsToBounds = true
+        scrollView.backgroundColor = UIColor.clearColor()
+        scrollView.minimumZoomScale = 0.5
+        addSubviewAndFullScreenConstraints(scrollView)
     }
 
 }
