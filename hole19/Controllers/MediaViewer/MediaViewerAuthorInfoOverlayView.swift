@@ -7,6 +7,7 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
 
     var authorImageView: UIImageView!
     var authorTitleLablel: UILabel!
+    var takenByTitle: UILabel!
     
     // MARK: init
 
@@ -20,7 +21,11 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         setupView()
     }
     
-    // MARK: UIView
+    // MARK: MediaViewerInfoOverlayView
+    
+    override func defaultHeight() -> CGFloat {
+        return 80.0
+    }
     
     // MARK: public
     
@@ -29,6 +34,7 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     private func setupView() {
         setupImageView()
         setupAuthorTitleLabel()
+        setupTakenByLabel()
     }
     
     private func setupImageView() {
@@ -37,21 +43,24 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         authorImageView.clipsToBounds = true
         authorImageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(authorImageView)
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-[authorImageView(44)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorImageView" : authorImageView]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[authorImageView(44)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorImageView" : authorImageView]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-8-[authorImageView(26.0)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorImageView" : authorImageView]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-39-[authorImageView(26.0)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorImageView" : authorImageView]))
     }
     
     private func setupAuthorTitleLabel() {
         authorTitleLablel = UILabel(frame: CGRectMake(0,0,100,100))
         authorTitleLablel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(authorTitleLablel)
-//        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-[authorImageView(44)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorImageView" : authorImageView]))
-//        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[authorImageView(44)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorImageView" : authorImageView]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-44-[authorTitleLablel]-8-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorTitleLablel" : authorTitleLablel]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-34-[authorTitleLablel]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorTitleLablel" : authorTitleLablel]))
+    }
+    
+    private func setupTakenByLabel() {
+        takenByTitle = UILabel(frame: CGRectMake(0,0,100,100))
+        takenByTitle.translatesAutoresizingMaskIntoConstraints = false
+        takenByTitle.text = NSLocalizedString("TAKEN BY", comment: "").uppercaseString
+        addSubview(takenByTitle)
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-8-[takenByTitle]-8-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["takenByTitle" : takenByTitle]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-13-[takenByTitle]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["takenByTitle" : takenByTitle]))
     }
 }
-
-//extension MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
-//    func defaultHeight() -> CGFloat {
-//        return 88.0
-//    }
-//}

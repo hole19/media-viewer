@@ -17,22 +17,34 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
         sut = nil
     }
     
+    func testThatItHasCorrectDefaultHeight() {
+        expect(self.sut.defaultHeight()) == 80.0
+    }
+
     func testThatItHasImageView() {
         expect(self.sut.authorImageView) != nil
     }
     
     func testThatImageViewHasCorrectWidth() {
         sut.layoutIfNeeded()
-        expect(self.sut.authorImageView.frame.size.width) == 44
+        expect(self.sut.authorImageView.frame.size.width) == 26.0
     }
     
     func testThatImageViewHasCorrectHeight() {
         sut.layoutIfNeeded()
-        expect(self.sut.authorImageView.frame.size.height) == 44
+        expect(self.sut.authorImageView.frame.size.height) == 26.0
     }
     
-    func testThatItHasTitleLabel() {
+    func testThatItHasAuthorTitleLabel() {
         expect(self.sut.authorTitleLablel) != nil
+    }
+    
+    func testThatItHasTakenByLabel() {
+        expect(self.sut.takenByTitle) != nil
+    }
+    
+    func testThatTakenByLabelHasCorrectText() {
+        expect(self.sut.takenByTitle.text) == "TAKEN BY"
     }
 }
 
