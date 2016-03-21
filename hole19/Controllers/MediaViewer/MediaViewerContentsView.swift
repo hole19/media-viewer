@@ -14,9 +14,15 @@ class MediaViewerContentsView: UIView {
     var interfaceAlpha: CGFloat = 0.0 {
         didSet {
             backgroundView.alpha = interfaceAlpha
-            closeButton.alpha = interfaceAlpha
+            controlsAlpha = interfaceAlpha
+        }
+    }
+    
+    var controlsAlpha: CGFloat = 0.0 {
+        didSet {
+            closeButton.alpha = controlsAlpha
             if let overlayView = overlayView {
-                overlayView.alpha = interfaceAlpha
+                overlayView.alpha = controlsAlpha
             }
         }
     }
@@ -27,6 +33,8 @@ class MediaViewerContentsView: UIView {
     var closeButton: UIButton!
     var overlayView: MediaViewerInfoOverlayView?
 
+    var controlsTapGestureRecognised: UITapGestureRecognizer!
+    
     // MARK: init
     
     override init(frame: CGRect) {
@@ -40,7 +48,12 @@ class MediaViewerContentsView: UIView {
     
     // MARK: UIView
     
-    // MARK: public
+    // MARK: public - selectors
+
+    func viewTapped(sender: UITapGestureRecognizer) {
+        let newAlpha: CGFloat = controlsAlpha == 0.0 ? 1.0 : 0.0
+        setControlsAlpha(newAlpha, animated: true)
+    }
     
     // MARK: private
     
@@ -51,6 +64,12 @@ class MediaViewerContentsView: UIView {
         setupOverlayView()
         backgroundColor = UIColor.clearColor()
         interfaceAlpha = 0.0
+        setupTapGestureRecogniser()
+    }
+    
+    private func setupTapGestureRecogniser() {
+        controlsTapGestureRecognised = UITapGestureRecognizer(target: self, action: "viewTapped:")
+        addGestureRecognizer(controlsTapGestureRecognised)
     }
     
     private func setupInterActiveImageView() {
@@ -86,4 +105,13 @@ class MediaViewerContentsView: UIView {
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[closeButton(36)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
     }
     
+    private func setControlsAlpha(alpha: CGFloat, animated: Bool) {
+        if animated {
+            UIView.animateWithDuration(0.33, animations: { () -> Void in
+                self.controlsAlpha = alpha
+            })
+        } else {
+            controlsAlpha = alpha
+        }
+    }
 }

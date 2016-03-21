@@ -17,6 +17,24 @@ class MediaViewerContentsViewTests: XCTestCase {
         sut = nil
     }
     
+    func testThatInterfaceAlphaChangeWillChangeBackgroundAlpha() {
+        sut.interfaceAlpha = 0.66
+        
+        expect(self.sut.backgroundView.alpha) == 0.66
+    }
+    
+    func testThatInterfaceAlphaChangeWillControlsAlpha() {
+        sut.interfaceAlpha = 0.66
+        
+        expect(self.sut.controlsAlpha) == 0.66
+    }
+    
+    func testThatControlsAlphaChangeWillCloseButtonAlpha() {
+        sut.controlsAlpha = 0.66
+        
+        expect(self.sut.closeButton.alpha) == 0.66
+    }
+    
     func testThatItHasInteractiveImageView() {
         expect(self.sut.interactiveImageView) != nil
     }
@@ -41,9 +59,33 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatImageViewHasContentModeAspectFit() {
         expect(self.sut.interactiveImageView.imageView.contentMode) == UIViewContentMode.ScaleAspectFit
     }
-        
+    
     func testThatItHasOverlayView() {
         expect(self.sut.overlayView) != nil
+    }
+    
+    func testThatItHasSingleTapGestureRecogniser() {
+        expect(self.sut.controlsTapGestureRecognised) != nil
+    }
+    
+    func testThatSingleTapGestureRecogniserIsConnectedToSUT() {
+        expect(self.sut.controlsTapGestureRecognised.view) == sut
+    }
+    
+    func testThatViewTappedWillToggleAlphaFrom0() {
+        sut.controlsAlpha = 0.0
+        
+        sut.viewTapped(sut.controlsTapGestureRecognised)
+        
+        expect(self.sut.controlsAlpha) == 1.0
+    }
+    
+    func testThatViewTappedWillToggleAlphaFrom1() {
+        sut.controlsAlpha = 1.0
+        
+        sut.viewTapped(sut.controlsTapGestureRecognised)
+        
+        expect(self.sut.controlsAlpha) == 0.0
     }
 
 }
