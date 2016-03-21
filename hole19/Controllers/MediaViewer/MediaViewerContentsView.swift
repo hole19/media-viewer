@@ -75,16 +75,15 @@ class MediaViewerContentsView: UIView {
     
     private func setupCloseButton() {
         closeButton = UIButton(type: UIButtonType.RoundedRect)
-        closeButton.alpha = 0.0
-        closeButton.setTitle(NSLocalizedString("Done", comment: ""), forState: UIControlState.Normal)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.backgroundColor = UIColor.blackColor()
+        closeButton.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
         closeButton.layer.borderColor = UIColor.whiteColor().CGColor
-        closeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        closeButton.layer.cornerRadius = 2.0
-        closeButton.layer.borderWidth = 1.0
+        closeButton.layer.cornerRadius = 6.0
+        closeButton.tintColor = UIColor.whiteColor()
+        closeButton.setImage(UIImage(named: "button-close-white"), forState: .Normal)
         addSubview(closeButton)
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(66)]-20-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[closeButton(33)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(36)]-9-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[closeButton(36)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
     }
+    
 }

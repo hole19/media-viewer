@@ -50,7 +50,7 @@ class MediaViewer: UIViewController {
         super.viewDidAppear(animated)
         transitionAnimator?.transitionToDestinationImageView(true)
     }
-    
+        
     // MARK: public
     
     func close(sender: UIButton) {
