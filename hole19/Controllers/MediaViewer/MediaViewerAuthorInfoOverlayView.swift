@@ -58,7 +58,7 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     private func setupTakenByLabel() {
         takenByTitle = UILabel(frame: CGRectMake(0,0,100,100))
         takenByTitle.translatesAutoresizingMaskIntoConstraints = false
-        takenByTitle.text = NSLocalizedString("TAKEN BY", comment: "").uppercaseString
+        takenByTitle.text = NSLocalizedString("klMediaViewer_TakenBy", comment: "")
         addSubview(takenByTitle)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-8-[takenByTitle]-8-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["takenByTitle" : takenByTitle]))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-13-[takenByTitle]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["takenByTitle" : takenByTitle]))

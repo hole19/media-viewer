@@ -44,7 +44,7 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     }
     
     func testThatTakenByLabelHasCorrectText() {
-        expect(self.sut.takenByTitle.text) == "TAKEN BY"
+        expect(self.sut.takenByTitle.text) == NSLocalizedString("klMediaViewer_TakenBy", comment: "")
     }
 }
 

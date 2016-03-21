@@ -21,7 +21,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         contentsView = nil
     }
     
-    
+
     // MARK: state and setup
     
     func testThatItInitsWithSourceImageView() {
