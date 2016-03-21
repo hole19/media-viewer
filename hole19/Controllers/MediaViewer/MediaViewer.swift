@@ -1,6 +1,6 @@
 
 import UIKit
-import SDWebImage
+//import SDWebImage
 
 class MediaViewer: UIViewController {
     
@@ -43,7 +43,7 @@ class MediaViewer: UIViewController {
             transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView)
             contentsView.interactiveImageView.imageView.image = sourceImageView.image
         }
-        contentsView.interactiveImageView.imageView.sd_setImageWithURL(mediaURL)
+//        contentsView.interactiveImageView.imageView.sd_setImageWithURL(mediaURL)
     }
     
     override func viewDidAppear(animated: Bool) {

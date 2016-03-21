@@ -10,11 +10,21 @@ class MediaViewerInfoOverlayView: UIView {
 class MediaViewerContentsView: UIView {
     
     // MARK: properties
-        
+    
+    var interfaceAlpha: CGFloat = 0.0 {
+        didSet {
+            backgroundView.alpha = interfaceAlpha
+            closeButton.alpha = interfaceAlpha
+            if let overlayView = overlayView {
+                overlayView.alpha = interfaceAlpha
+            }
+        }
+    }
+
+    var interactiveImageView: MediaViewerInteractiveImageView!
+
     var backgroundView: UIView!
     var closeButton: UIButton!
-    var interactiveImageView: MediaViewerInteractiveImageView!
-    
     var overlayView: MediaViewerInfoOverlayView?
 
     // MARK: init
@@ -40,6 +50,7 @@ class MediaViewerContentsView: UIView {
         setupCloseButton()
         setupOverlayView()
         backgroundColor = UIColor.clearColor()
+        interfaceAlpha = 0.0
     }
     
     private func setupInterActiveImageView() {
@@ -50,18 +61,16 @@ class MediaViewerContentsView: UIView {
     
     private func setupBackgroundView() {
         backgroundView = UIView()
-        backgroundView.alpha = 0.0
         backgroundView.backgroundColor = UIColor.blackColor()
         addSubviewAndFullScreenConstraints(backgroundView)
     }
     
     private func setupOverlayView() {
         overlayView = MediaViewerAuthorInfoOverlayView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        overlayView!.alpha = 0.0
         overlayView!.translatesAutoresizingMaskIntoConstraints = false
         addSubview(overlayView!)
-//        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(66)]-20-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
-//        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[closeButton(33)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[overlayView]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["overlayView" : overlayView!]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[overlayView(height)]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: ["height": overlayView!.defaultHeight()], views: ["overlayView" : overlayView!]))
     }
     
     private func setupCloseButton() {

@@ -41,7 +41,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatImageViewHasContentModeAspectFit() {
         expect(self.sut.interactiveImageView.imageView.contentMode) == UIViewContentMode.ScaleAspectFit
     }
-    
+        
     func testThatItHasOverlayView() {
         expect(self.sut.overlayView) != nil
     }

@@ -9,7 +9,7 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = MediaViewerAuthorInfoOverlayView(frame: CGRectZero)
+        sut = MediaViewerAuthorInfoOverlayView(frame: CGRectMake(0,0,300,80))
     }
     
     override func tearDown() {
@@ -46,5 +46,18 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     func testThatTakenByLabelHasCorrectText() {
         expect(self.sut.takenByTitle.text) == NSLocalizedString("klMediaViewer_TakenBy", comment: "")
     }
+    
+    func testThatItHasBlurBackgroundView() {
+        expect(self.sut.blurBackground) != nil
+    }
+    
+    func testThatBlurBackgroundViewHasVisualEffectBlur() {
+        expect(self.sut.blurBackground.effect as? UIBlurEffect) != nil
+    }
+
+    func testThatImageViewHasCorrectCornerRadius() {
+        expect(self.sut.authorImageView.layer.cornerRadius) == 3.0
+    }
+
 }
 

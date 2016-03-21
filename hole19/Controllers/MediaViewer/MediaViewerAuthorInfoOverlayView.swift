@@ -8,6 +8,7 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     var authorImageView: UIImageView!
     var authorTitleLablel: UILabel!
     var takenByTitle: UILabel!
+    var blurBackground: UIVisualEffectView!
     
     // MARK: init
 
@@ -32,6 +33,7 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     // MARK: private
     
     private func setupView() {
+        setupBlurView()
         setupImageView()
         setupAuthorTitleLabel()
         setupTakenByLabel()
@@ -42,9 +44,19 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         authorImageView.contentMode = .ScaleAspectFit
         authorImageView.clipsToBounds = true
         authorImageView.translatesAutoresizingMaskIntoConstraints = false
+        authorImageView.layer.cornerRadius = 3.0
         addSubview(authorImageView)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-8-[authorImageView(26.0)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorImageView" : authorImageView]))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-39-[authorImageView(26.0)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorImageView" : authorImageView]))
+    }
+    
+    private func setupBlurView() {
+        blurBackground = UIVisualEffectView(frame: CGRectMake(0,0,100,100))
+        blurBackground.translatesAutoresizingMaskIntoConstraints = false
+        blurBackground.effect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        addSubview(blurBackground)
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[blurBackground]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["blurBackground" : blurBackground]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[blurBackground]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["blurBackground" : blurBackground]))
     }
     
     private func setupAuthorTitleLabel() {
@@ -63,4 +75,5 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-8-[takenByTitle]-8-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["takenByTitle" : takenByTitle]))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-13-[takenByTitle]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["takenByTitle" : takenByTitle]))
     }
+    
 }
