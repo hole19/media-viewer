@@ -39,14 +39,25 @@ class MediaViewerInteractiveImageView: UIView {
         imageView.alpha = 0.0
         imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         scrollView.addSubview(imageView)
+        scrollView.contentSize = imageView.bounds.size
     }
     
     private func setupScrollView() {
         scrollView = UIScrollView(frame: CGRectMake(0,0,100,100))
         scrollView.clipsToBounds = true
+        scrollView.userInteractionEnabled = true
         scrollView.backgroundColor = UIColor.clearColor()
-        scrollView.minimumZoomScale = 0.5
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 2.0
+        scrollView.zoomScale = 1.0
+        scrollView.delegate = self
         addSubviewAndFullScreenConstraints(scrollView)
     }
 
+}
+
+extension MediaViewerInteractiveImageView: UIScrollViewDelegate {
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
 }
