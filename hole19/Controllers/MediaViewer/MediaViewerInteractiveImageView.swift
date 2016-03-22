@@ -1,11 +1,17 @@
 
 import UIKit
 
+protocol MediaViewerInteractiveImageViewDelegate: class {
+    func hideControls()
+}
+
 class MediaViewerInteractiveImageView: UIView {
 
     // MARK: properties
     
-    var maximumZoomScale: CGFloat = 2.0 {
+    weak var delegate: MediaViewerInteractiveImageViewDelegate?
+    
+    var maximumZoomScale: CGFloat = 4.0 {
         didSet {
             scrollView.maximumZoomScale = maximumZoomScale
         }
@@ -82,5 +88,9 @@ class MediaViewerInteractiveImageView: UIView {
 extension MediaViewerInteractiveImageView: UIScrollViewDelegate {
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
+    }
+    
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        delegate?.hideControls()
     }
 }

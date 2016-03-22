@@ -76,6 +76,7 @@ class MediaViewerContentsView: UIView {
     private func setupInterActiveImageView() {
         interactiveImageView = MediaViewerInteractiveImageView(frame: CGRectMake(0,0,100,100))
         interactiveImageView.alpha = 0.0
+        interactiveImageView.delegate = self
         addSubviewAndFullScreenConstraints(interactiveImageView)
     }
     
@@ -107,12 +108,21 @@ class MediaViewerContentsView: UIView {
     }
     
     private func setControlsAlpha(alpha: CGFloat, animated: Bool) {
-        if animated {
-            UIView.animateWithDuration(0.33, animations: { () -> Void in
-                self.controlsAlpha = alpha
-            })
-        } else {
-            controlsAlpha = alpha
+        if alpha != controlsAlpha {
+            if animated {
+                UIView.animateWithDuration(0.33, animations: { () -> Void in
+                    self.controlsAlpha = alpha
+                })
+            } else {
+                controlsAlpha = alpha
+            }
         }
+    }
+}
+
+extension MediaViewerContentsView: MediaViewerInteractiveImageViewDelegate {
+    
+    func hideControls() {
+        setControlsAlpha(0.0, animated: true)
     }
 }

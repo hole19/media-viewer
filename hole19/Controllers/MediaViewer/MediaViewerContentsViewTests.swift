@@ -87,5 +87,17 @@ class MediaViewerContentsViewTests: XCTestCase {
         
         expect(self.sut.controlsAlpha) == 0.0
     }
+    
+    func testThatHideControlsWillHideThem() {
+        sut.controlsAlpha = 1.0
+        
+        sut.hideControls()
+        
+        expect(self.sut.controlsAlpha) == 0.0
+    }
+    
+    func testThatInteractiveImageViewDelegateIsSet() {
+        expect(self.sut.interactiveImageView.delegate === self.sut) == true
+    }
 }
 

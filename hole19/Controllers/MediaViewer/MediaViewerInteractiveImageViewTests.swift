@@ -22,7 +22,7 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     }
     
     func testThatItHasMaximumZoomScaleWithCorrectDefaultValue() {
-        expect(self.sut.maximumZoomScale) == 2.0
+        expect(self.sut.maximumZoomScale) == 4.0
     }
     
     func testThatImageViewHasCorrectWidth() {
@@ -109,6 +109,23 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
         
         expect(mockScroll.numberOfTimesSetZoomScaleWasCalled) == 1
         expect(mockScroll.animatedValueOfSetZoomScale) == true
+    }
+    
+    class MockMediaViewerInteractiveImageViewDelegate: MediaViewerInteractiveImageViewDelegate {
+    
+        var numberOfTimesDismissControlsWasCalled = 0
+        
+        func hideControls() {
+            numberOfTimesDismissControlsWasCalled += 1
+        }
+    }
+    
+    func testThatZoomingInWillSendDelegateMethodToDismissControls() {
+        let delegate = MockMediaViewerInteractiveImageViewDelegate()
+        sut.delegate = delegate
+        sut.scrollViewDidZoom(sut.scrollView)
+        
+        expect(delegate.numberOfTimesDismissControlsWasCalled) == 1
     }
 }
 
