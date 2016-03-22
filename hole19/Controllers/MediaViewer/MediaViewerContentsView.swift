@@ -27,6 +27,8 @@ class MediaViewerContentsView: UIView {
         }
     }
 
+    var pannedViewModel: MediaViewerPanningViewModel!
+
     var interactiveImageView: MediaViewerInteractiveImageView!
 
     var backgroundView: UIView!
@@ -34,12 +36,14 @@ class MediaViewerContentsView: UIView {
     var overlayView: MediaViewerInfoOverlayView?
 
     var controlsTapGestureRecogniser: UITapGestureRecognizer!
+    var panGestureRecogniser: UIPanGestureRecognizer!
     
     // MARK: init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        setupGestureRecognisers()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +53,7 @@ class MediaViewerContentsView: UIView {
     // MARK: UIView
     
     // MARK: public - selectors
-
+    
     func viewTapped(sender: UITapGestureRecognizer) {
         let newAlpha: CGFloat = controlsAlpha == 0.0 ? 1.0 : 0.0
         setControlsAlpha(newAlpha, animated: true)
@@ -58,20 +62,35 @@ class MediaViewerContentsView: UIView {
     
     // MARK: private
     
+    private func setupGestureRecognisers() {
+        setupTapGestureRecogniser()
+        setupPanGestureRecogniser()
+    }
+    
     private func setupView() {
         setupBackgroundView()
         setupInterActiveImageView()
-        setupTapGestureRecogniser()
         setupCloseButton()
         setupOverlayView()
         backgroundColor = UIColor.clearColor()
         interfaceAlpha = 0.0
     }
     
+    private func setupPanningModel() {
+        pannedViewModel = MediaViewerPanningViewModel(pannedView: interactiveImageView, backgroundView: backgroundView, containerView: self)
+    }
+    
     private func setupTapGestureRecogniser() {
         controlsTapGestureRecogniser = UITapGestureRecognizer(target: self, action: "viewTapped:")
         controlsTapGestureRecogniser.requireGestureRecognizerToFail(interactiveImageView.zoomDoubleTapGestureRecogniser)
         addGestureRecognizer(controlsTapGestureRecogniser)
+    }
+    
+    private func setupPanGestureRecogniser() {
+        setupPanningModel()
+
+        panGestureRecogniser = UIPanGestureRecognizer(target: pannedViewModel, action: "viewPanned:")
+        interactiveImageView.addGestureRecognizer(panGestureRecogniser)
     }
     
     private func setupInterActiveImageView() {
@@ -118,7 +137,7 @@ class MediaViewerContentsView: UIView {
                 controlsAlpha = alpha
             }
         }
-    }
+    }    
 }
 
 extension MediaViewerContentsView: MediaViewerInteractiveImageViewDelegate {

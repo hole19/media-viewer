@@ -17,6 +17,18 @@ class MediaViewerContentsViewTests: XCTestCase {
         sut = nil
     }
     
+    func testThatItHasPannigViewModelWithCorrectPanningView() {
+        expect(self.sut.pannedViewModel.pannedView) == sut.interactiveImageView
+    }
+    
+    func testThatItHasPannigViewModelWithCorrectBackgroundView() {
+        expect(self.sut.pannedViewModel.backgroundView) == sut.backgroundView
+    }
+    
+    func testThatItHasPannigViewModelWithCorrectContainerView() {
+        expect(self.sut.pannedViewModel.containerView) == sut
+    }
+    
     func testThatInterfaceAlphaChangeWillChangeBackgroundAlpha() {
         sut.interfaceAlpha = 0.66
         
@@ -117,5 +129,14 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatInteractiveImageViewDelegateIsSet() {
         expect(self.sut.interactiveImageView.delegate === self.sut) == true
     }
+    
+    func testThatItHasPanGestureRecogniser() {
+        expect(self.sut.panGestureRecogniser) != nil
+    }
+    
+    func testThatPanGestureRecogniserIsConnectedToImageView() {
+        expect(self.sut.panGestureRecogniser.view) == sut.interactiveImageView
+    }
+
 }
 

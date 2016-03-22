@@ -22,7 +22,11 @@ class MediaViewerInteractiveImageView: UIView {
 
     var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer!
     
+    
+    // MARK: private properties
+
     private var previousZoomScale: CGFloat = 1.0
+    
     
     // MARK: init
     
@@ -36,6 +40,7 @@ class MediaViewerInteractiveImageView: UIView {
         setupView()
     }
     
+    
     // MARK: public
     
     func zoomOut() {
@@ -43,6 +48,7 @@ class MediaViewerInteractiveImageView: UIView {
             scrollView.setZoomScale(1.0, animated: true)
         }
     }
+    
     
     // MARK: public - selectors
     
@@ -53,6 +59,7 @@ class MediaViewerInteractiveImageView: UIView {
         }
         scrollView.setZoomScale(newZoomScale, animated: true)
     }
+    
     
     // MARK: private
     
