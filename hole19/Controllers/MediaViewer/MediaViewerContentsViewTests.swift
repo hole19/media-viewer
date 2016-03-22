@@ -72,7 +72,7 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.controlsTapGestureRecogniser.view) == sut
     }
     
-    func testThatViewTappedWillToggleAlphaFrom0() {
+    func testThatViewTappedWillToggleControlsAlphaFrom0() {
         sut.controlsAlpha = 0.0
         
         sut.viewTapped(sut.controlsTapGestureRecogniser)
@@ -80,12 +80,30 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.controlsAlpha) == 1.0
     }
     
-    func testThatViewTappedWillToggleAlphaFrom1() {
+    func testThatViewTappedWillToggleControlsAlphaFrom1() {
         sut.controlsAlpha = 1.0
         
         sut.viewTapped(sut.controlsTapGestureRecogniser)
         
         expect(self.sut.controlsAlpha) == 0.0
+    }
+    
+    class MockInteractiveImageView: MediaViewerInteractiveImageView {
+        
+        var numerOfTimesZoomOutWasCalled = 0
+        
+        override func zoomOut() {
+            numerOfTimesZoomOutWasCalled += 1
+        }
+    }
+    
+    func testThatViewTappedWillZoomOutIfTheViewIfZoomedIn() {
+        let mockImageView = MockInteractiveImageView()
+        sut.interactiveImageView = mockImageView
+        
+        sut.viewTapped(sut.controlsTapGestureRecogniser)
+        
+        expect(mockImageView.numerOfTimesZoomOutWasCalled) == 1
     }
     
     func testThatHideControlsWillHideThem() {

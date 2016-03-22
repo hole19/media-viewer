@@ -53,6 +53,7 @@ class MediaViewerContentsView: UIView {
     func viewTapped(sender: UITapGestureRecognizer) {
         let newAlpha: CGFloat = controlsAlpha == 0.0 ? 1.0 : 0.0
         setControlsAlpha(newAlpha, animated: true)
+        interactiveImageView.zoomOut()
     }
     
     // MARK: private

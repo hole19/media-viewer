@@ -22,6 +22,8 @@ class MediaViewerInteractiveImageView: UIView {
 
     var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer!
     
+    private var previousZoomScale: CGFloat = 1.0
+    
     // MARK: init
     
     override init(frame: CGRect) {
@@ -34,7 +36,13 @@ class MediaViewerInteractiveImageView: UIView {
         setupView()
     }
     
-    // MARK: UIView
+    // MARK: public
+    
+    func zoomOut() {
+        if scrollView.zoomScale > 1.0 {
+            scrollView.setZoomScale(1.0, animated: true)
+        }
+    }
     
     // MARK: public - selectors
     
@@ -91,6 +99,9 @@ extension MediaViewerInteractiveImageView: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        delegate?.hideControls()
+        if scrollView.zoomScale > previousZoomScale {
+            delegate?.hideControls()
+        }
+        previousZoomScale = scrollView.zoomScale
     }
 }

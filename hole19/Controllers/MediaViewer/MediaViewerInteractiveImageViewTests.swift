@@ -123,9 +123,33 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     func testThatZoomingInWillSendDelegateMethodToDismissControls() {
         let delegate = MockMediaViewerInteractiveImageViewDelegate()
         sut.delegate = delegate
+        sut.scrollView.zoomScale = 2.0
+
         sut.scrollViewDidZoom(sut.scrollView)
         
         expect(delegate.numberOfTimesDismissControlsWasCalled) == 1
     }
+    
+    func testThatZoomingOutWillNotSendDelegateMethodToDismissControls() {
+        sut.scrollView.zoomScale = 4.0
+        sut.scrollViewDidZoom(sut.scrollView)
+        
+        let delegate = MockMediaViewerInteractiveImageViewDelegate()
+        sut.delegate = delegate
+
+        sut.scrollView.zoomScale = 2.0
+        sut.scrollViewDidZoom(sut.scrollView)
+
+        expect(delegate.numberOfTimesDismissControlsWasCalled) == 0
+    }
+    
+    func testThatZoomingOutWillSetZoomScaleToOne() {
+        sut.scrollView.zoomScale = 2.0
+        
+        sut.zoomOut()
+        
+        expect(self.sut.scrollView.zoomScale) == 1.0
+    }
+    
 }
 
