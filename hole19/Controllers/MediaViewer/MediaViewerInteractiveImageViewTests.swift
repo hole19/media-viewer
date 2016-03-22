@@ -21,6 +21,10 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
         expect(self.sut.imageView) != nil
     }
     
+    func testThatItHasMaximumZoomScaleWithCorrectDefaultValue() {
+        expect(self.sut.maximumZoomScale) == 2.0
+    }
+    
     func testThatImageViewHasCorrectWidth() {
         sut.layoutIfNeeded()
         expect(self.sut.imageView.frame.size.width) == 200
@@ -50,7 +54,9 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     }
     
     func testThatScrollViewHasCorrectMaximumZoomScale() {
-        expect(self.sut.scrollView.maximumZoomScale) == 2.0
+        sut.maximumZoomScale = 4.5
+        
+        expect(self.sut.scrollView.maximumZoomScale) == 4.5
     }
     
     func testThatScrollViewHasCorrectCurrentZoomScale() {
@@ -65,5 +71,44 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
         expect(self.sut.viewForZoomingInScrollView(self.sut.scrollView)) == sut.imageView
     }
     
+    func testThatItHasDoubleTapGestureRecogniser() {
+        expect(self.sut.zoomDoubleTapGestureRecogniser) != nil
+    }
+    
+    func testThatItHasDoubleTapGestureRecogniserRequresTwoTaps() {
+        expect(self.sut.zoomDoubleTapGestureRecogniser.numberOfTapsRequired) == 2
+    }
+    
+    func testThatDoubleTapGestureRecogniserIsConnectedToSUT() {
+        expect(self.sut.zoomDoubleTapGestureRecogniser.view) == sut
+    }
+    
+    func testThatViewDoubleTappedWillToggleZoomFromMin() {
+        sut.maximumZoomScale = 3.0
+        sut.scrollView.zoomScale = 1.0
+        
+        sut.viewDoubleTapped(sut.zoomDoubleTapGestureRecogniser)
+        
+        expect(self.sut.scrollView.zoomScale) == 3.0
+    }
+    
+    func testThatViewDoubleTappedWillToggleZoomFromMax() {
+        sut.maximumZoomScale = 3.0
+        sut.scrollView.zoomScale = 2.0
+        
+        sut.viewDoubleTapped(sut.zoomDoubleTapGestureRecogniser)
+        
+        expect(self.sut.scrollView.zoomScale) == 1.00
+    }
+    
+    func testThatViewDoubleTappedWillToggleZoomAnimated() {
+        let mockScroll = MockScrollView()
+        sut.scrollView = mockScroll
+        
+        sut.viewDoubleTapped(sut.zoomDoubleTapGestureRecogniser)
+        
+        expect(mockScroll.numberOfTimesSetZoomScaleWasCalled) == 1
+        expect(mockScroll.animatedValueOfSetZoomScale) == true
+    }
 }
 

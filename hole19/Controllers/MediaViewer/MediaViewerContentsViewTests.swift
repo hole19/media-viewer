@@ -65,17 +65,17 @@ class MediaViewerContentsViewTests: XCTestCase {
     }
     
     func testThatItHasSingleTapGestureRecogniser() {
-        expect(self.sut.controlsTapGestureRecognised) != nil
+        expect(self.sut.controlsTapGestureRecogniser) != nil
     }
     
     func testThatSingleTapGestureRecogniserIsConnectedToSUT() {
-        expect(self.sut.controlsTapGestureRecognised.view) == sut
+        expect(self.sut.controlsTapGestureRecogniser.view) == sut
     }
     
     func testThatViewTappedWillToggleAlphaFrom0() {
         sut.controlsAlpha = 0.0
         
-        sut.viewTapped(sut.controlsTapGestureRecognised)
+        sut.viewTapped(sut.controlsTapGestureRecogniser)
         
         expect(self.sut.controlsAlpha) == 1.0
     }
@@ -83,10 +83,9 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatViewTappedWillToggleAlphaFrom1() {
         sut.controlsAlpha = 1.0
         
-        sut.viewTapped(sut.controlsTapGestureRecognised)
+        sut.viewTapped(sut.controlsTapGestureRecogniser)
         
         expect(self.sut.controlsAlpha) == 0.0
     }
-
 }
 

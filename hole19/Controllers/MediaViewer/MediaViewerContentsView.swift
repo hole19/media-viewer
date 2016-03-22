@@ -33,7 +33,7 @@ class MediaViewerContentsView: UIView {
     var closeButton: UIButton!
     var overlayView: MediaViewerInfoOverlayView?
 
-    var controlsTapGestureRecognised: UITapGestureRecognizer!
+    var controlsTapGestureRecogniser: UITapGestureRecognizer!
     
     // MARK: init
     
@@ -60,16 +60,17 @@ class MediaViewerContentsView: UIView {
     private func setupView() {
         setupBackgroundView()
         setupInterActiveImageView()
+        setupTapGestureRecogniser()
         setupCloseButton()
         setupOverlayView()
         backgroundColor = UIColor.clearColor()
         interfaceAlpha = 0.0
-        setupTapGestureRecogniser()
     }
     
     private func setupTapGestureRecogniser() {
-        controlsTapGestureRecognised = UITapGestureRecognizer(target: self, action: "viewTapped:")
-        addGestureRecognizer(controlsTapGestureRecognised)
+        controlsTapGestureRecogniser = UITapGestureRecognizer(target: self, action: "viewTapped:")
+        controlsTapGestureRecogniser.requireGestureRecognizerToFail(interactiveImageView.zoomDoubleTapGestureRecogniser)
+        addGestureRecognizer(controlsTapGestureRecogniser)
     }
     
     private func setupInterActiveImageView() {
