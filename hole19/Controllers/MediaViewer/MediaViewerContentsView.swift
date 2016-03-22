@@ -97,12 +97,13 @@ class MediaViewerContentsView: UIView {
         interactiveImageView = MediaViewerInteractiveImageView(frame: CGRectMake(0,0,100,100))
         interactiveImageView.alpha = 0.0
         interactiveImageView.delegate = self
+        interactiveImageView.clipsToBounds = false
         addSubviewAndFullScreenConstraints(interactiveImageView)
     }
     
     private func setupBackgroundView() {
         backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.blackColor()
+        backgroundView.backgroundColor = UIColor(red:0.19, green:0.19, blue:0.19, alpha:1.00)
         addSubviewAndFullScreenConstraints(backgroundView)
     }
     

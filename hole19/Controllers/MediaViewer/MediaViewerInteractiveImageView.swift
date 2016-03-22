@@ -74,6 +74,7 @@ class MediaViewerInteractiveImageView: UIView {
         imageView = UIImageView(frame: CGRectMake(0,0,100,100))
         imageView.contentMode = .ScaleAspectFit
         imageView.clipsToBounds = true
+        imageView.backgroundColor = UIColor.redColor()
         imageView.alpha = 0.0
         imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         scrollView.addSubview(imageView)
@@ -82,7 +83,7 @@ class MediaViewerInteractiveImageView: UIView {
     
     private func setupScrollView() {
         scrollView = UIScrollView(frame: CGRectMake(0,0,100,100))
-        scrollView.clipsToBounds = true
+        scrollView.clipsToBounds = false
         scrollView.userInteractionEnabled = true
         scrollView.backgroundColor = UIColor.clearColor()
         scrollView.minimumZoomScale = 1.0

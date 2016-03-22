@@ -103,5 +103,25 @@ class MediaViewerTests: XCTestCase {
         expect(mockTransition.numberOfTimesTransitionBackWasCalled) == 1
     }
     
+    func testThatItSetsPanningModelDelegate() {
+        expect(self.sut.contentsView.pannedViewModel.delegate === self.sut) == true
+    }
+    
+    class MockTransitionAnimator: MediaViewerTransitionAnimator {
+        var numberOfTimesTransitionBackWasCalled = 0
+        
+        func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+            numberOfTimesTransitionBackWasCalled += 1
+        }
+    }
+    
+    func testThatDismissViewWillCallTransitionBack() {
+        let mockTransition = MockTransitionAnimator()
+        sut.transitionAnimator = mockTransition
+        
+        sut.dismissView()
+        
+        expect(mockTransition.numberOfTimesTransitionBackWasCalled) == 1
+    }
 }
 

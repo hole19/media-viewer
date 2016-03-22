@@ -44,6 +44,7 @@ class MediaViewer: UIViewController {
             contentsView.interactiveImageView.imageView.image = sourceImageView.image
         }
 //        contentsView.interactiveImageView.imageView.sd_setImageWithURL(mediaURL)
+        contentsView.pannedViewModel.delegate = self
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -54,9 +55,7 @@ class MediaViewer: UIViewController {
     // MARK: public
     
     func close(sender: UIButton) {
-        transitionAnimator?.transitionBackToSourceImageView(true, withCompletition: { [weak self] in
-            self?.dismissViewControllerAnimated(false, completion: nil)
-        })
+        dismissViewAnimated()
     }
     
     // MARK: private
@@ -74,5 +73,17 @@ class MediaViewer: UIViewController {
     
     private func setupCloseButton() {
         contentsView.closeButton.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
-    }    
+    }
+    
+    private func dismissViewAnimated() {
+        transitionAnimator?.transitionBackToSourceImageView(true, withCompletition: { [weak self] in
+            self?.dismissViewControllerAnimated(false, completion: nil)
+            })
+    }
+}
+
+extension MediaViewer: MediaViewerPanningViewModelDelegate {
+    func dismissView() {
+        dismissViewAnimated()
+    }
 }

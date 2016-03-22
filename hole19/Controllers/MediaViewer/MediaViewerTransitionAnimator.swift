@@ -5,6 +5,8 @@ class MediaViewerTransitionAnimator: NSObject {
    
     // MARK: properties
     
+    var animationTime: NSTimeInterval = 0.25
+    
     var sourceImageView: UIImageView!
     var contentsView: MediaViewerContentsView!
     
@@ -29,7 +31,7 @@ class MediaViewerTransitionAnimator: NSObject {
     }
     
     func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
-        let duration: NSTimeInterval = animated ? 0.28 : 0.00
+        let duration: NSTimeInterval = animated ? animationTime : 0.00
         setupTransitionToDestinationImageView()
         let imageSize = sourceImageView.image != nil ? sourceImageView.image!.size : contentsView.bounds.size
         let aspectRatio = imageSize.height / imageSize.width
@@ -42,7 +44,7 @@ class MediaViewerTransitionAnimator: NSObject {
             self.contentsView.interfaceAlpha = 1.0
             self.contentsView.interactiveImageView.imageView.frame = endImageFrame
             }) { (finished) -> Void in
-                self.sourceImageView.hidden = false
+//                self.sourceImageView.hidden = false
                 self.contentsView.interactiveImageView.imageView.contentMode = UIViewContentMode.ScaleAspectFit
                 completition()
         }
@@ -57,7 +59,7 @@ class MediaViewerTransitionAnimator: NSObject {
         guard let currentSuperview = contentsView.interactiveImageView.imageView.superview, let sourceSuperview = sourceImageView.superview else { return }
         let endImageFrame = currentSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
 
-        let duration: NSTimeInterval = animated ? 0.28 : 0.00
+        let duration: NSTimeInterval = animated ? animationTime : 0.00
         setupTransitionBackToSourceImageView()
         UIView.animateWithDuration(duration, delay: duration, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
             self.contentsView.interfaceAlpha = 0.0
