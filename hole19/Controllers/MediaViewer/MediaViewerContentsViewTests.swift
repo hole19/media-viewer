@@ -98,7 +98,7 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.controlsAlpha) == 0.0
     }
     
-    class MockInteractiveImageView: MediaViewerInteractiveImageView {
+    class MockImageScroll: MediaViewerMultipleImageScrollView {
         
         var numerOfTimesZoomOutWasCalled = 0
         
@@ -106,15 +106,15 @@ class MediaViewerContentsViewTests: XCTestCase {
             numerOfTimesZoomOutWasCalled += 1
         }
     }
-    
-//    func testThatViewTappedWillZoomOutIfTheViewIfZoomedIn() {
-//        let mockImageView = MockInteractiveImageView()
-//        sut.interactiveImageView = mockImageView
-//        
-//        sut.viewTapped(sut.controlsTapGestureRecogniser)
-//        
-//        expect(mockImageView.numerOfTimesZoomOutWasCalled) == 1
-//    }
+
+    func testThatViewTappedWillZoomOutIfTheViewIfZoomedIn() {
+        let mockScroll = MockImageScroll()
+        sut.scrollView = mockScroll
+        
+        sut.viewTapped(sut.controlsTapGestureRecogniser)
+        
+        expect(mockScroll.numerOfTimesZoomOutWasCalled) == 1
+    }
     
     func testThatHideControlsWillHideThem() {
         sut.controlsAlpha = 1.0

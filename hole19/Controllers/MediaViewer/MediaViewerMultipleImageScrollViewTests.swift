@@ -125,6 +125,24 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         expect(self.sut.contentViews[0].delegate!) === delegate
         expect(self.sut.contentViews[1].delegate!) === delegate
     }
+    
+    class MockInteractiveImageView: MediaViewerInteractiveImageView {
+        
+        var numerOfTimesZoomOutWasCalled = 0
+        
+        override func zoomOut() {
+            numerOfTimesZoomOutWasCalled += 1
+        }
+    }
+
+    func testThatZoomOutWillCallZoomOutOnCurrentImage() {
+        let mockImage = MockInteractiveImageView()
+        sut.contentViews = [mockImage]
+        
+        sut.zoomOut()
+        
+        expect(mockImage.numerOfTimesZoomOutWasCalled) == 1
+    }
 
 }
 

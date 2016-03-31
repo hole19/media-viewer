@@ -61,6 +61,12 @@ class MediaViewerMultipleImageScrollView: UIView {
         return nil
     }
     
+    func zoomOut() {
+        if let currentTopView = currentImageView() {
+            currentTopView.zoomOut()
+        }
+    }
+
     // MARK: private
     
     private func setupView() {
