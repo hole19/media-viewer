@@ -45,14 +45,25 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     
     // MARK: transition IN
 
+    class MockMediaViewerMultipleImageScrollView: MediaViewerMultipleImageScrollView {
+        override func currentImageView() -> MediaViewerInteractiveImageView? {
+            if contentViews.count == 0 {
+                self.images = [UIImage()]
+            }
+            return contentViews[0]
+        }
+    }
+    
     func setupSUTWithTwoImageViewsInsideContainers() -> UIImageView {
         let view1 = UIView(frame: CGRectMake(40, 80, 400, 600))
         let imageView1 = UIImageView(frame: CGRectMake(20, 20, 40, 60))
         view1.addSubview(imageView1)
         originContainer = view1
         contentsView = MediaViewerContentsView(frame: CGRectMake(0, 0, 400, 600))
+        contentsView!.scrollView = MockMediaViewerMultipleImageScrollView(frame: contentsView!.bounds)
+
         sut = MediaViewerTransitionAnimator(sourceImageView: imageView1, contentsView: contentsView!)
-        return contentsView!.interactiveImageView.imageView
+        return contentsView!.scrollView.currentImageView()!.imageView
     }
     
     func testThatTransitionToDestinationSourceImageContentModeIsAspectFill() {
@@ -60,7 +71,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.setupTransitionToDestinationImageView()
         
-        expect(self.contentsView?.interactiveImageView.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
+        expect(self.contentsView?.scrollView.currentImageView()!.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
     }
     
     func testThatTransitionToDestinationInitialBackgroundAlphaIs0() {
@@ -156,7 +167,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.transitionToDestinationImageView(false)
         
-        expect(self.contentsView?.interactiveImageView.alpha) == 1.0
+        expect(self.contentsView?.scrollView.alpha) == 1.0
     }
 
     
@@ -167,7 +178,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.setupTransitionBackToSourceImageView()
         
-        expect(self.contentsView?.interactiveImageView.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
+        expect(self.contentsView?.scrollView.currentImageView()!.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
     }
     
     func testThatTransitionSetupBackToSourceSourceImageViewHidden() {

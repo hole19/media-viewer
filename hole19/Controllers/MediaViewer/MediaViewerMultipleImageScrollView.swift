@@ -27,6 +27,24 @@ class MediaViewerMultipleImageScrollView: UIView {
         super.init(coder: aDecoder)
         setupView()
     }
+    
+    // MARK: UIView
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        scrollView.contentSize = CGSize(width: bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
+        var currentViewFrame = scrollView.bounds
+        for image in contentViews {
+            image.frame = currentViewFrame
+            currentViewFrame.origin.x += scrollView.bounds.size.width
+        }
+    }
+
+    // MARK: public
+    
+    func currentImageView() -> MediaViewerInteractiveImageView? {
+        return contentViews.first
+    }
 
     // MARK: private
     
@@ -36,7 +54,7 @@ class MediaViewerMultipleImageScrollView: UIView {
     }
 
     private func setupScrollView() {
-        scrollView = UIScrollView(frame: CGRectMake(0,0,100,100))
+        scrollView = UIScrollView(frame: bounds)
         scrollView.clipsToBounds = false
         scrollView.userInteractionEnabled = true
         scrollView.pagingEnabled = true
@@ -50,6 +68,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         var currentViewFrame = scrollView.bounds
         for image in newImages {
             let contentView = MediaViewerInteractiveImageView(frame: currentViewFrame)
+            contentView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             contentView.imageView.image = image
             contentViews.append(contentView)
             scrollView.addSubview(contentView)

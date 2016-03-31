@@ -9,6 +9,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        
         sut = MediaViewerContentsView(frame: CGRectZero)
     }
     
@@ -18,7 +19,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     }
     
     func testThatItHasPannigViewModelWithCorrectPanningView() {
-        expect(self.sut.pannedViewModel.pannedView) == sut.interactiveImageView
+        expect(self.sut.pannedViewModel.pannedView) == sut.scrollView
     }
     
     func testThatItHasPannigViewModelWithCorrectBackgroundView() {
@@ -47,8 +48,8 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.closeButton.alpha).to(beCloseTo(0.66))
     }
     
-    func testThatItHasInteractiveImageView() {
-        expect(self.sut.interactiveImageView) != nil
+    func testThatItHasScrollView() {
+        expect(self.sut.scrollView) != nil
     }
     
     func testThatItHasBackgroundView() {
@@ -63,14 +64,11 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.closeButton.superview) == sut
     }
     
-    func testThatImageViewCoversTheWholeView() {
+    func testThatScrollViewCoversTheWholeView() {
         sut.layoutIfNeeded()
-        expect(self.sut.interactiveImageView.frame.size) == CGSizeMake(sut.bounds.size.width, sut.bounds.size.height)
+        expect(self.sut.scrollView.frame.size) == CGSizeMake(sut.bounds.size.width, sut.bounds.size.height)
     }
     
-    func testThatImageViewHasContentModeAspectFit() {
-        expect(self.sut.interactiveImageView.imageView.contentMode) == UIViewContentMode.ScaleAspectFit
-    }
     
     func testThatItHasOverlayView() {
         expect(self.sut.overlayView) != nil
@@ -109,14 +107,14 @@ class MediaViewerContentsViewTests: XCTestCase {
         }
     }
     
-    func testThatViewTappedWillZoomOutIfTheViewIfZoomedIn() {
-        let mockImageView = MockInteractiveImageView()
-        sut.interactiveImageView = mockImageView
-        
-        sut.viewTapped(sut.controlsTapGestureRecogniser)
-        
-        expect(mockImageView.numerOfTimesZoomOutWasCalled) == 1
-    }
+//    func testThatViewTappedWillZoomOutIfTheViewIfZoomedIn() {
+//        let mockImageView = MockInteractiveImageView()
+//        sut.interactiveImageView = mockImageView
+//        
+//        sut.viewTapped(sut.controlsTapGestureRecogniser)
+//        
+//        expect(mockImageView.numerOfTimesZoomOutWasCalled) == 1
+//    }
     
     func testThatHideControlsWillHideThem() {
         sut.controlsAlpha = 1.0
@@ -126,16 +124,16 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.controlsAlpha) == 0.0
     }
     
-    func testThatInteractiveImageViewDelegateIsSet() {
-        expect(self.sut.interactiveImageView.delegate === self.sut) == true
-    }
+//    func testThatInteractiveImageViewDelegateIsSet() {
+//        expect(self.sut.interactiveImageView.delegate === self.sut) == true
+//    }
     
     func testThatItHasPanGestureRecogniser() {
         expect(self.sut.panGestureRecogniser) != nil
     }
     
-    func testThatPanGestureRecogniserIsConnectedToImageView() {
-        expect(self.sut.panGestureRecogniser.view) == sut.interactiveImageView
+    func testThatPanGestureRecogniserIsConnectedToScrollView() {
+        expect(self.sut.panGestureRecogniser.view) == sut.scrollView
     }
 
 }

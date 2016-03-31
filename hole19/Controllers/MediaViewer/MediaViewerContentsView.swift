@@ -29,7 +29,7 @@ class MediaViewerContentsView: UIView {
 
     var pannedViewModel: MediaViewerPanningViewModel!
 
-    var interactiveImageView: MediaViewerInteractiveImageView!
+    var scrollView: MediaViewerMultipleImageScrollView!
 
     var backgroundView: UIView!
     var closeButton: UIButton!
@@ -57,7 +57,7 @@ class MediaViewerContentsView: UIView {
     func viewTapped(sender: UITapGestureRecognizer) {
         let newAlpha: CGFloat = controlsAlpha == 0.0 ? 1.0 : 0.0
         setControlsAlpha(newAlpha, animated: true)
-        interactiveImageView.zoomOut()
+//        interactiveImageView.zoomOut()
     }
     
     // MARK: private
@@ -69,7 +69,7 @@ class MediaViewerContentsView: UIView {
     
     private func setupView() {
         setupBackgroundView()
-        setupInterActiveImageView()
+        setupScrollView()
         setupCloseButton()
         setupOverlayView()
         backgroundColor = UIColor.clearColor()
@@ -77,28 +77,28 @@ class MediaViewerContentsView: UIView {
     }
     
     private func setupPanningModel() {
-        pannedViewModel = MediaViewerPanningViewModel(pannedView: interactiveImageView, backgroundView: backgroundView, containerView: self)
+        pannedViewModel = MediaViewerPanningViewModel(pannedView: scrollView, backgroundView: backgroundView, containerView: self)
     }
     
     private func setupTapGestureRecogniser() {
         controlsTapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(MediaViewerContentsView.viewTapped(_:)))
-        controlsTapGestureRecogniser.requireGestureRecognizerToFail(interactiveImageView.zoomDoubleTapGestureRecogniser)
+//        controlsTapGestureRecogniser.requireGestureRecognizerToFail(interactiveImageView.zoomDoubleTapGestureRecogniser)
         addGestureRecognizer(controlsTapGestureRecogniser)
     }
     
     private func setupPanGestureRecogniser() {
         setupPanningModel()
 
-        panGestureRecogniser = UIPanGestureRecognizer(target: pannedViewModel, action: Selector("viewPanned:"))
-        interactiveImageView.addGestureRecognizer(panGestureRecogniser)
+        panGestureRecogniser = UIPanGestureRecognizer(target: pannedViewModel, action: #selector(MediaViewerPanningViewModel.viewPanned(_:)))
+        scrollView.addGestureRecognizer(panGestureRecogniser)
     }
     
-    private func setupInterActiveImageView() {
-        interactiveImageView = MediaViewerInteractiveImageView(frame: CGRectMake(0,0,100,100))
-        interactiveImageView.alpha = 0.0
-        interactiveImageView.delegate = self
-        interactiveImageView.clipsToBounds = false
-        addSubviewAndFullScreenConstraints(interactiveImageView)
+    private func setupScrollView() {
+        scrollView = MediaViewerMultipleImageScrollView(frame: bounds)
+        scrollView.alpha = 0.0
+//        interactiveImageView.delegate = self
+        scrollView.clipsToBounds = false
+        addSubviewAndFullScreenConstraints(scrollView)
     }
     
     private func setupBackgroundView() {

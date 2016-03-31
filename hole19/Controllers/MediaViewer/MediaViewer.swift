@@ -41,7 +41,9 @@ class MediaViewer: UIViewController {
         super.viewDidLoad()
         if transitionAnimator == nil, let sourceImageView = sourceImageView {
             transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView)
-            contentsView.interactiveImageView.imageView.image = sourceImageView.image
+            if let sourceImage = sourceImageView.image {
+                contentsView.scrollView.images = [sourceImage, UIImage(named: "image-1")!]
+            }
         }
 //        contentsView.interactiveImageView.imageView.sd_setImageWithURL(mediaURL)
         contentsView.pannedViewModel.delegate = self

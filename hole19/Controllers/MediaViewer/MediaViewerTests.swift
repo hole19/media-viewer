@@ -71,15 +71,15 @@ class MediaViewerTests: XCTestCase {
         var numberOfTimesTransitionBackWasCalled = 0
         
         override func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
-            numberOfTimesTransitionWasCalled++
+            numberOfTimesTransitionWasCalled += 1
         }
         
         override func setupTransitionToDestinationImageView() {
-            numberOfTimesTransitionWasCalled++
+            numberOfTimesTransitionWasCalled += 1
         }
         
         override func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
-            numberOfTimesTransitionBackWasCalled++
+            numberOfTimesTransitionBackWasCalled += 1
         }
     }
     

@@ -83,7 +83,6 @@ class MediaViewerInteractiveImageView: UIView {
         imageView.contentMode = .ScaleAspectFit
         imageView.clipsToBounds = true
         imageView.backgroundColor = UIColor.redColor()
-        imageView.alpha = 0.0
         imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         scrollView.addSubview(imageView)
         scrollView.contentSize = imageView.bounds.size

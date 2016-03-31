@@ -83,6 +83,12 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         expect(self.sut.contentViews[1].superview) == sut.scrollView
     }
     
+    func testThatItHasCorrectCurrentImageView() {
+        setupSUTWithImages()
+        
+        expect(self.sut.currentImageView()) == sut.contentViews[0]
+    }
+    
 }
 
 
