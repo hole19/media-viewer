@@ -110,13 +110,13 @@ class MediaViewerTests: XCTestCase {
     class MockTransitionAnimator: MediaViewerTransitionAnimator {
         var numberOfTimesTransitionBackWasCalled = 0
         
-        func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+        override func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
             numberOfTimesTransitionBackWasCalled += 1
         }
     }
     
     func testThatDismissViewWillCallTransitionBack() {
-        let mockTransition = MockTransitionAnimator()
+        let mockTransition = MockTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
         sut.transitionAnimator = mockTransition
         
         sut.dismissView()

@@ -33,18 +33,13 @@ class MediaViewerTransitionAnimator: NSObject {
     func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
         let duration: NSTimeInterval = animated ? animationTime : 0.00
         setupTransitionToDestinationImageView()
-        let imageSize = sourceImageView.image != nil ? sourceImageView.image!.size : contentsView.bounds.size
-        let aspectRatio = imageSize.height / imageSize.width
-        let actualImageHeight = contentsView.bounds.size.width * aspectRatio
-        let endImageFrameOriginY = (contentsView.bounds.size.height - actualImageHeight) / 2.0
-        let endImageFrame = CGRectMake(contentsView.bounds.origin.x, endImageFrameOriginY, contentsView.bounds.size.width, actualImageHeight)
+        let endImageFrame = endImageViewFrameForTransitionIn()
         self.contentsView.interactiveImageView?.alpha = 1.0
 
         UIView.animateWithDuration(duration, delay: duration, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
             self.contentsView.interfaceAlpha = 1.0
             self.contentsView.interactiveImageView.imageView.frame = endImageFrame
             }) { (finished) -> Void in
-//                self.sourceImageView.hidden = false
                 self.contentsView.interactiveImageView.imageView.contentMode = UIViewContentMode.ScaleAspectFit
                 completition()
         }
@@ -71,5 +66,12 @@ class MediaViewerTransitionAnimator: NSObject {
     }
     
     // MARK: private
-
+    
+    func endImageViewFrameForTransitionIn() -> CGRect {
+        let imageSize = sourceImageView.image != nil ? sourceImageView.image!.size : contentsView.bounds.size
+        let aspectRatio = imageSize.height / imageSize.width
+        let actualImageHeight = contentsView.bounds.size.width * aspectRatio
+        let endImageFrameOriginY = (contentsView.bounds.size.height - actualImageHeight) / 2.0
+        return CGRectMake(contentsView.bounds.origin.x, endImageFrameOriginY, contentsView.bounds.size.width, actualImageHeight)
+    }
 }

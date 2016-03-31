@@ -111,6 +111,36 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
         expect(mockScroll.animatedValueOfSetZoomScale) == true
     }
     
+    func testThatViewDoubleTappedWillCallZoomIntoRectAnimated() {
+        let mockScroll = MockScrollView()
+        sut.scrollView = mockScroll
+        
+        sut.viewDoubleTapped(sut.zoomDoubleTapGestureRecogniser)
+        
+        expect(mockScroll.numberOfTimesZoomToRectWasCalled) == 1
+        expect(mockScroll.animatedValueOfSetZoomScale) == true        
+    }
+    
+    func testThatViewDoubleTappedWillZoomIntoPoint() {
+        let mockScroll = MockScrollView()
+        sut.scrollView = mockScroll
+        
+        let mockGestureRecogniser = TapGestureRecogniserMock()
+        mockGestureRecogniser.locationInViewToReturn = CGPointMake(60, 60)
+        
+        sut.viewDoubleTapped(mockGestureRecogniser)
+        
+        expect(mockScroll.numberOfTimesZoomToRectWasCalled) == 1
+        expect(mockScroll.animatedValueOfSetZoomScale) == true
+        
+        let rectToReturnWidth: CGFloat = 200.0 / 4.0
+        let rectToReturnHeight: CGFloat = 200.0 / 4.0
+        let rectToReturnX: CGFloat = 60.0 - rectToReturnWidth/2.0
+        let rectToReturnY: CGFloat = 60.0 - rectToReturnHeight/2.0
+        
+        expect(mockScroll.rectValueOfSetZoomToRect) == CGRectMake(rectToReturnX, rectToReturnY, rectToReturnWidth, rectToReturnHeight)
+    }
+    
     class MockMediaViewerInteractiveImageViewDelegate: MediaViewerInteractiveImageViewDelegate {
     
         var numberOfTimesDismissControlsWasCalled = 0
