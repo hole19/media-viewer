@@ -101,16 +101,6 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
         expect(self.sut.scrollView.zoomScale) == 1.00
     }
     
-    func testThatViewDoubleTappedWillToggleZoomAnimated() {
-        let mockScroll = MockScrollView()
-        sut.scrollView = mockScroll
-        
-        sut.viewDoubleTapped(sut.zoomDoubleTapGestureRecogniser)
-        
-        expect(mockScroll.numberOfTimesSetZoomScaleWasCalled) == 1
-        expect(mockScroll.animatedValueOfSetZoomScale) == true
-    }
-    
     func testThatViewDoubleTappedWillCallZoomIntoRectAnimated() {
         let mockScroll = MockScrollView()
         sut.scrollView = mockScroll
@@ -118,27 +108,21 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
         sut.viewDoubleTapped(sut.zoomDoubleTapGestureRecogniser)
         
         expect(mockScroll.numberOfTimesZoomToRectWasCalled) == 1
-        expect(mockScroll.animatedValueOfSetZoomScale) == true        
+        expect(mockScroll.animatedValueOfSetZoomToRect) == true
     }
     
     func testThatViewDoubleTappedWillZoomIntoPoint() {
         let mockScroll = MockScrollView()
         sut.scrollView = mockScroll
+        mockScroll.contentSize = CGSizeMake(400, 400)
+        mockScroll.frame = CGRectMake(0, 0, 400, 400)
         
         let mockGestureRecogniser = TapGestureRecogniserMock()
         mockGestureRecogniser.locationInViewToReturn = CGPointMake(60, 60)
         
         sut.viewDoubleTapped(mockGestureRecogniser)
         
-        expect(mockScroll.numberOfTimesZoomToRectWasCalled) == 1
-        expect(mockScroll.animatedValueOfSetZoomScale) == true
-        
-        let rectToReturnWidth: CGFloat = 200.0 / 4.0
-        let rectToReturnHeight: CGFloat = 200.0 / 4.0
-        let rectToReturnX: CGFloat = 60.0 - rectToReturnWidth/2.0
-        let rectToReturnY: CGFloat = 60.0 - rectToReturnHeight/2.0
-        
-        expect(mockScroll.rectValueOfSetZoomToRect) == CGRectMake(rectToReturnX, rectToReturnY, rectToReturnWidth, rectToReturnHeight)
+        expect(mockScroll.rectValueOfSetZoomToRect) == CGRectMake(10.0, 10.0, 100.0, 100.0)
     }
     
     class MockMediaViewerInteractiveImageViewDelegate: MediaViewerInteractiveImageViewDelegate {

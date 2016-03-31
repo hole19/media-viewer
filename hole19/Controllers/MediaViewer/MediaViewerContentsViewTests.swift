@@ -32,7 +32,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatInterfaceAlphaChangeWillChangeBackgroundAlpha() {
         sut.interfaceAlpha = 0.66
         
-        expect(self.sut.backgroundView.alpha) == 0.66
+        expect(self.sut.backgroundView.alpha).to(beCloseTo(0.66))
     }
     
     func testThatInterfaceAlphaChangeWillControlsAlpha() {
@@ -44,7 +44,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatControlsAlphaChangeWillCloseButtonAlpha() {
         sut.controlsAlpha = 0.66
         
-        expect(self.sut.closeButton.alpha) == 0.66
+        expect(self.sut.closeButton.alpha).to(beCloseTo(0.66))
     }
     
     func testThatItHasInteractiveImageView() {

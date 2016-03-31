@@ -53,11 +53,19 @@ class MediaViewerInteractiveImageView: UIView {
     // MARK: public - selectors
     
     func viewDoubleTapped(sender: UITapGestureRecognizer) {
-        var newZoomScale: CGFloat = 1.0
         if scrollView.zoomScale < scrollView.minimumZoomScale + (maximumZoomScale - scrollView.minimumZoomScale) * 0.5 {
-            newZoomScale = maximumZoomScale
+            let zoomPoint = sender.locationInView(scrollView)
+            
+            //derive the size of the region to zoom to
+            let zoomSize = CGSize(width: scrollView.bounds.size.width / maximumZoomScale, height: scrollView.bounds.size.height / maximumZoomScale)
+            
+            //offset the zoom rect so the actual zoom point is in the middle of the rectangle
+            let zoomRect = CGRectMake(zoomPoint.x - zoomSize.width / 2.0, zoomPoint.y - zoomSize.height / 2.0, zoomSize.width, zoomSize.height)
+            
+            scrollView.zoomToRect(zoomRect, animated: true)
+        } else {
+            scrollView.setZoomScale(1.0, animated: true)
         }
-        scrollView.setZoomScale(newZoomScale, animated: true)
     }
     
     
@@ -94,7 +102,7 @@ class MediaViewerInteractiveImageView: UIView {
     }
     
     private func setupTapGestureRecogniser() {
-        zoomDoubleTapGestureRecogniser = UITapGestureRecognizer(target: self, action: "viewDoubleTapped:")
+        zoomDoubleTapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(MediaViewerInteractiveImageView.viewDoubleTapped(_:)))
         zoomDoubleTapGestureRecogniser.numberOfTapsRequired = 2
         addGestureRecognizer(zoomDoubleTapGestureRecogniser)
     }
