@@ -89,6 +89,43 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         expect(self.sut.currentImageView()) == sut.contentViews[0]
     }
     
+    func testThatOnScrollViewDidEndDeceleratingCurrentPageIsUpdated() {
+        setupSUTWithImages()
+        
+        sut.scrollView.contentOffset = CGPoint(x: 200.0, y: 0.0)
+            
+        sut.scrollViewDidEndDecelerating(sut.scrollView)
+        
+        expect(self.sut.currentPage) == 1
+    }
+    
+    func testThatOnScrollViewDidEndDeceleratingItSetsViewRecogniserToFail() {
+        setupSUTWithImages()
+        
+        let mockTap = TapGestureRecogniserMock()
+        sut.singleTapGestureRecogniserThatReqiresFailure = mockTap
+        mockTap.requireGestureRecognizerToFailCallCount = 0
+        
+        sut.scrollViewDidEndDecelerating(sut.scrollView)
+        
+        expect(mockTap.requireGestureRecognizerToFailCallCount) == 1
+        expect(mockTap.requireGestureRecognizerToFailRecogniser) == self.sut.currentImageView()!.zoomDoubleTapGestureRecogniser
+    }
+    
+    class ImageDelegate: MediaViewerInteractiveImageViewDelegate {
+        func hideControls() { }
+    }
+    
+    func testThatItSetsImageViewDelegateOnAllImageViews() {
+        setupSUTWithImages()
+        let delegate = ImageDelegate()
+        
+        sut.imageViewActionsDelgate = delegate
+        
+        expect(self.sut.contentViews[0].delegate!) === delegate
+        expect(self.sut.contentViews[1].delegate!) === delegate
+    }
+
 }
 
 

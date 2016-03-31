@@ -8,13 +8,25 @@ class MediaViewerMultipleImageScrollView: UIView {
     var scrollView: UIScrollView!
 
     var contentViews = [MediaViewerInteractiveImageView]()
-
+    
+    var imageViewActionsDelgate: MediaViewerInteractiveImageViewDelegate? {
+        didSet {
+            setDelegateForAllViews(contentViews)
+        }
+    }
+    var singleTapGestureRecogniserThatReqiresFailure: UITapGestureRecognizer? {
+        didSet {
+            setRecogniserRequiredToFailWithView(currentImageView())
+        }
+    }
+    
     var images: [UIImage]? {
         didSet {
             guard let images = images else { return }
             updateViewWithImages(images)
         }
     }
+    var currentPage: Int = 0
     
     // MARK: init
     
@@ -43,9 +55,12 @@ class MediaViewerMultipleImageScrollView: UIView {
     // MARK: public
     
     func currentImageView() -> MediaViewerInteractiveImageView? {
-        return contentViews.first
+        if currentPage < contentViews.count {
+            return contentViews[currentPage]
+        }
+        return nil
     }
-
+    
     // MARK: private
     
     private func setupView() {
@@ -74,9 +89,35 @@ class MediaViewerMultipleImageScrollView: UIView {
             scrollView.addSubview(contentView)
             currentViewFrame.origin.x += currentViewFrame.size.width
         }
+        setRecogniserRequiredToFailWithView(currentImageView())
+        setDelegateForAllViews(contentViews)
+    }
+    
+    private func updateViewWithCurrentPage(currentPageIndex: Int) {
+        let currentView = contentViews[currentPageIndex]
+        setRecogniserRequiredToFailWithView(currentView)
+    }
+    
+    private func setRecogniserRequiredToFailWithView(imageView: MediaViewerInteractiveImageView?) {
+        guard let imageView = imageView else { return }
+        
+        if let rec = singleTapGestureRecogniserThatReqiresFailure {
+            rec.requireGestureRecognizerToFail(imageView.zoomDoubleTapGestureRecogniser)
+        }
+    }
+    
+    private func setDelegateForAllViews(allViews: [MediaViewerInteractiveImageView]) {
+        if let imageViewActionsDelgate = imageViewActionsDelgate {
+            for view in allViews {
+                view.delegate = imageViewActionsDelgate
+            }
+        }
     }
 }
 
 extension MediaViewerMultipleImageScrollView: UIScrollViewDelegate {
-    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        updateViewWithCurrentPage(currentPage)
+    }
 }

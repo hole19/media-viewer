@@ -22,7 +22,6 @@ class MediaViewerInteractiveImageView: UIView {
 
     var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer!
     
-    
     // MARK: private properties
 
     private var previousZoomScale: CGFloat = 1.0
@@ -82,7 +81,6 @@ class MediaViewerInteractiveImageView: UIView {
         imageView = UIImageView(frame: CGRectMake(0,0,100,100))
         imageView.contentMode = .ScaleAspectFit
         imageView.clipsToBounds = true
-        imageView.backgroundColor = UIColor.redColor()
         imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         scrollView.addSubview(imageView)
         scrollView.contentSize = imageView.bounds.size

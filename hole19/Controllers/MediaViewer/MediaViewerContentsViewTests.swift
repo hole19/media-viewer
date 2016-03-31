@@ -124,9 +124,9 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.controlsAlpha) == 0.0
     }
     
-//    func testThatInteractiveImageViewDelegateIsSet() {
-//        expect(self.sut.interactiveImageView.delegate === self.sut) == true
-//    }
+    func testThatScrollViewDelegateIsSet() {
+        expect(self.sut.scrollView.imageViewActionsDelgate === self.sut) == true
+    }
     
     func testThatItHasPanGestureRecogniser() {
         expect(self.sut.panGestureRecogniser) != nil

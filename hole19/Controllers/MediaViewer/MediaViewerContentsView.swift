@@ -82,7 +82,7 @@ class MediaViewerContentsView: UIView {
     
     private func setupTapGestureRecogniser() {
         controlsTapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(MediaViewerContentsView.viewTapped(_:)))
-//        controlsTapGestureRecogniser.requireGestureRecognizerToFail(interactiveImageView.zoomDoubleTapGestureRecogniser)
+        scrollView.singleTapGestureRecogniserThatReqiresFailure = controlsTapGestureRecogniser
         addGestureRecognizer(controlsTapGestureRecogniser)
     }
     
@@ -96,7 +96,7 @@ class MediaViewerContentsView: UIView {
     private func setupScrollView() {
         scrollView = MediaViewerMultipleImageScrollView(frame: bounds)
         scrollView.alpha = 0.0
-//        interactiveImageView.delegate = self
+        scrollView.imageViewActionsDelgate = self
         scrollView.clipsToBounds = false
         addSubviewAndFullScreenConstraints(scrollView)
     }
