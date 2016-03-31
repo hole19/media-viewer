@@ -72,7 +72,7 @@ class MediaViewer: UIViewController {
     }
     
     private func setupCloseButton() {
-        contentsView.closeButton.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
+        contentsView.closeButton.addTarget(self, action: #selector(MediaViewer.close(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     private func dismissViewAnimated() {

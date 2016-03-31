@@ -81,7 +81,7 @@ class MediaViewerContentsView: UIView {
     }
     
     private func setupTapGestureRecogniser() {
-        controlsTapGestureRecogniser = UITapGestureRecognizer(target: self, action: "viewTapped:")
+        controlsTapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(MediaViewerContentsView.viewTapped(_:)))
         controlsTapGestureRecogniser.requireGestureRecognizerToFail(interactiveImageView.zoomDoubleTapGestureRecogniser)
         addGestureRecognizer(controlsTapGestureRecogniser)
     }
@@ -89,7 +89,7 @@ class MediaViewerContentsView: UIView {
     private func setupPanGestureRecogniser() {
         setupPanningModel()
 
-        panGestureRecogniser = UIPanGestureRecognizer(target: pannedViewModel, action: "viewPanned:")
+        panGestureRecogniser = UIPanGestureRecognizer(target: pannedViewModel, action: Selector("viewPanned:"))
         interactiveImageView.addGestureRecognizer(panGestureRecogniser)
     }
     
