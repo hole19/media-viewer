@@ -2,6 +2,10 @@
 import UIKit
 import SDWebImage
 
+protocol MediaViewerActionsDelegate {
+    func longPressActionForElement(element: UIImageView?)
+}
+
 class MediaViewer: UIViewController {
     
     // MARK: properties
@@ -9,6 +13,7 @@ class MediaViewer: UIViewController {
     var mediaURL = NSURL()
     var sourceImageView: UIImageView?
     
+    var delegate: MediaViewerActionsDelegate?
     var transitionAnimator: MediaViewerTransitionAnimator?
     
     var contentsView: MediaViewerContentsView!
@@ -71,6 +76,7 @@ class MediaViewer: UIViewController {
     private func setupContentsView() {
         contentsView = MediaViewerContentsView(frame: CGRectZero)
         view.addSubviewAndFullScreenConstraints(contentsView)
+        contentsView.delegate = self
     }
     
     private func setupCloseButton() {
@@ -87,5 +93,11 @@ class MediaViewer: UIViewController {
 extension MediaViewer: MediaViewerPanningViewModelDelegate {
     func dismissView() {
         dismissViewAnimated()
+    }
+}
+
+extension MediaViewer: MediaViewerContentsViewActionsDelegate {
+    func longPressActionDetectedInContentView(contentView: MediaViewerContentsView) {
+        delegate?.longPressActionForElement(contentView.scrollView.currentImageView()?.imageView)
     }
 }

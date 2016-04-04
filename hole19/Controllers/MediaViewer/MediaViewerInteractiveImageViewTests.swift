@@ -70,7 +70,7 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     func testThatSutUIScrollViewDelegateMethodViewForZoomingInScrollViewReturnsImageView() {
         expect(self.sut.viewForZoomingInScrollView(self.sut.scrollView)) == sut.imageView
     }
-    
+        
     func testThatItHasDoubleTapGestureRecogniser() {
         expect(self.sut.zoomDoubleTapGestureRecogniser) != nil
     }

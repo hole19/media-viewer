@@ -1,6 +1,10 @@
 
 import UIKit
 
+protocol MediaViewerContentsViewActionsDelegate: class {
+    func longPressActionDetectedInContentView(contentView: MediaViewerContentsView)
+}
+
 class MediaViewerInfoOverlayView: UIView {
     func defaultHeight() -> CGFloat {
         return 0.0
@@ -10,6 +14,8 @@ class MediaViewerInfoOverlayView: UIView {
 class MediaViewerContentsView: UIView {
     
     // MARK: properties
+    
+    weak var delegate: MediaViewerContentsViewActionsDelegate?
     
     var interfaceAlpha: CGFloat = 0.0 {
         didSet {
@@ -37,6 +43,7 @@ class MediaViewerContentsView: UIView {
 
     var controlsTapGestureRecogniser: UITapGestureRecognizer!
     var panGestureRecogniser: UIPanGestureRecognizer!
+    var longPressGesture: UILongPressGestureRecognizer!
     
     // MARK: init
     
@@ -60,11 +67,16 @@ class MediaViewerContentsView: UIView {
         scrollView.zoomOut()
     }
     
+    func viewLongPressed(sender: UILongPressGestureRecognizer) {
+        delegate?.longPressActionDetectedInContentView(self)
+    }
+    
     // MARK: private
     
     private func setupGestureRecognisers() {
         setupTapGestureRecogniser()
         setupPanGestureRecogniser()
+        setupLongPressGestureRecogniser()
     }
     
     private func setupView() {
@@ -84,6 +96,11 @@ class MediaViewerContentsView: UIView {
         controlsTapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(MediaViewerContentsView.viewTapped(_:)))
         scrollView.singleTapGestureRecogniserThatReqiresFailure = controlsTapGestureRecogniser
         addGestureRecognizer(controlsTapGestureRecogniser)
+    }
+    
+    private func setupLongPressGestureRecogniser() {
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(MediaViewerContentsView.viewLongPressed(_:)))
+        addGestureRecognizer(longPressGesture)
     }
     
     private func setupPanGestureRecogniser() {

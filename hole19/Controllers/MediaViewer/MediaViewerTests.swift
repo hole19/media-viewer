@@ -123,5 +123,57 @@ class MediaViewerTests: XCTestCase {
         
         expect(mockTransition.numberOfTimesTransitionBackWasCalled) == 1
     }
+    
+    func testThatItConformsToMediaViewerActionsDelegate() {
+        expect((self.sut as? MediaViewerContentsViewActionsDelegate) != nil) == true
+    }
+    
+    class MockMediaViewerActionsDelegate: MediaViewerActionsDelegate {
+        var numberOfTimesLongPressActionWasCalled = 0
+        var elementForLongPressAction: UIImageView?
+        
+        func longPressActionForElement(element: UIImageView?) {
+            numberOfTimesLongPressActionWasCalled += 1
+            elementForLongPressAction = element
+        }
+    }
+    
+    func testThatItInformsActionsDelegateOnLongPress() {
+        let delegate = MockMediaViewerActionsDelegate()
+        sut.delegate = delegate
+        
+        sut.longPressActionDetectedInContentView(sut.contentsView)
+        
+        expect(delegate.numberOfTimesLongPressActionWasCalled) == 1
+    }
+    
+    class MockScrollView: MediaViewerMultipleImageScrollView {
+        
+        let imageView = UIImageView()
+        let image = UIImage()
+        
+        override func currentImageView() -> MediaViewerInteractiveImageView? {
+            imageView.image = image
+            let interactiveImageView = MediaViewerInteractiveImageView()
+            interactiveImageView.imageView = imageView
+            return interactiveImageView
+        }
+    }
+    
+    func testThatItInformsActionsDelegateOnLongPressWithCorrectElements() {
+        let delegate = MockMediaViewerActionsDelegate()
+        sut.delegate = delegate
+        let contents = MediaViewerContentsView()
+        let mockScroll = MockScrollView()
+        contents.scrollView = mockScroll
+        
+        sut.longPressActionDetectedInContentView(contents)
+        
+        expect(delegate.elementForLongPressAction) == mockScroll.currentImageView()?.imageView
+    }
+    
+    func testThatItIsDelegateOfTheContentsView() {
+        expect(self.sut.contentsView.delegate) === sut
+    }
 }
 

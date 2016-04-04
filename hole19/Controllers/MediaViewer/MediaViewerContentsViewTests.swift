@@ -74,10 +74,34 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.overlayView) != nil
     }
     
+    func testThatItHasLongPressGestureRecogniser() {
+        expect(self.sut.longPressGesture) != nil
+    }
+    
+    func testThatLongPressGestureRecogniserIsConnectedToSUT() {
+        expect(self.sut.longPressGesture.view) == sut
+    }
+    
+    class MockMediaViewerContentsViewDelegate: MediaViewerContentsViewActionsDelegate {
+        var numberOfTimesLongPressWasDetected = 0
+        func longPressActionDetectedInContentView(contentView: MediaViewerContentsView) {
+            numberOfTimesLongPressWasDetected += 1
+        }
+    }
+    
+    func testThatLongPressGestureWillInformDelegate() {
+        let delegate = MockMediaViewerContentsViewDelegate()
+        sut.delegate = delegate
+
+        sut.viewLongPressed(sut.longPressGesture)
+        
+        expect(delegate.numberOfTimesLongPressWasDetected) == 1
+    }
+    
     func testThatItHasSingleTapGestureRecogniser() {
         expect(self.sut.controlsTapGestureRecogniser) != nil
     }
-    
+
     func testThatSingleTapGestureRecogniserIsConnectedToSUT() {
         expect(self.sut.controlsTapGestureRecogniser.view) == sut
     }
