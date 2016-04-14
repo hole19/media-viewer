@@ -2,10 +2,6 @@
 import UIKit
 import SDWebImage
 
-protocol MediaViewerActionsDelegate {
-    func longPressActionForElement(element: UIImageView?)
-}
-
 class MediaViewer: UIViewController {
     
     // MARK: properties
@@ -13,10 +9,10 @@ class MediaViewer: UIViewController {
     var mediaURL = NSURL()
     var sourceImageView: UIImageView?
     
-    var delegate: MediaViewerActionsDelegate?
     var transitionAnimator: MediaViewerTransitionAnimator?
     
     var contentsView: MediaViewerContentsView!
+    var imageTaskHandler = MediaViewerImageActionsHandler()
     
     // MARK: init
     
@@ -98,6 +94,9 @@ extension MediaViewer: MediaViewerPanningViewModelDelegate {
 
 extension MediaViewer: MediaViewerContentsViewActionsDelegate {
     func longPressActionDetectedInContentView(contentView: MediaViewerContentsView) {
-        delegate?.longPressActionForElement(contentView.scrollView.currentImageView()?.imageView)
+        if let image = contentsView.scrollView.currentImageView()?.imageView.image {
+            let alert = imageTaskHandler.actionSheetWithAllTasksForImage(image)
+            presentViewController(alert, animated: true, completion: nil)
+        }
     }
 }

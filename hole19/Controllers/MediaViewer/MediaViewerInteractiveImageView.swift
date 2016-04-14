@@ -26,7 +26,6 @@ class MediaViewerInteractiveImageView: UIView {
 
     private var previousZoomScale: CGFloat = 1.0
     
-    
     // MARK: init
     
     override init(frame: CGRect) {

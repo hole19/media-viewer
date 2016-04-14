@@ -128,25 +128,6 @@ class MediaViewerTests: XCTestCase {
         expect((self.sut as? MediaViewerContentsViewActionsDelegate) != nil) == true
     }
     
-    class MockMediaViewerActionsDelegate: MediaViewerActionsDelegate {
-        var numberOfTimesLongPressActionWasCalled = 0
-        var elementForLongPressAction: UIImageView?
-        
-        func longPressActionForElement(element: UIImageView?) {
-            numberOfTimesLongPressActionWasCalled += 1
-            elementForLongPressAction = element
-        }
-    }
-    
-    func testThatItInformsActionsDelegateOnLongPress() {
-        let delegate = MockMediaViewerActionsDelegate()
-        sut.delegate = delegate
-        
-        sut.longPressActionDetectedInContentView(sut.contentsView)
-        
-        expect(delegate.numberOfTimesLongPressActionWasCalled) == 1
-    }
-    
     class MockScrollView: MediaViewerMultipleImageScrollView {
         
         let imageView = UIImageView()
@@ -160,20 +141,41 @@ class MediaViewerTests: XCTestCase {
         }
     }
     
-    func testThatItInformsActionsDelegateOnLongPressWithCorrectElements() {
-        let delegate = MockMediaViewerActionsDelegate()
-        sut.delegate = delegate
-        let contents = MediaViewerContentsView()
-        let mockScroll = MockScrollView()
-        contents.scrollView = mockScroll
-        
-        sut.longPressActionDetectedInContentView(contents)
-        
-        expect(delegate.elementForLongPressAction) == mockScroll.currentImageView()?.imageView
-    }
-    
     func testThatItIsDelegateOfTheContentsView() {
         expect(self.sut.contentsView.delegate) === sut
+    }
+    
+    func testThatItHasImageTaskHandler() {
+        expect(self.sut.imageTaskHandler).notTo(beNil())
+    }
+    
+    class MockImageTaskHandler: MediaViewerImageActionsHandler {
+        
+        var numberOfTimesActionSheetWasCalled = 0
+        
+        override func actionSheetWithAllTasksForImage(image: UIImage) -> UIAlertController {
+            numberOfTimesActionSheetWasCalled += 1
+            return UIAlertController()
+        }
+        
+    }
+    
+    class StubScroll: MediaViewerMultipleImageScrollView {
+        override func currentImageView() -> MediaViewerInteractiveImageView? {
+            let image = MediaViewerInteractiveImageView(frame: CGRectZero)
+            image.imageView.image = UIImage()
+            return image
+        }
+    }
+    
+    func testThatItWillCreateAlertOnLongPress() {
+        let mock = MockImageTaskHandler()
+        sut.imageTaskHandler = mock
+        sut.contentsView.scrollView = StubScroll()
+        
+        sut.longPressActionDetectedInContentView(sut.contentsView)
+        
+        expect(mock.numberOfTimesActionSheetWasCalled) == 1
     }
 }
 

@@ -56,9 +56,7 @@ class MediaViewerContentsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: UIView
-    
+        
     // MARK: public - selectors
     
     func viewTapped(sender: UITapGestureRecognizer) {
