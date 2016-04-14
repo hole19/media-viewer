@@ -1,0 +1,649 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		457F76E81CAD552A0049B2E1 /* hole19v2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */; };
+		458D331C1C9C7BB700844203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D331B1C9C7BB700844203 /* AppDelegate.swift */; };
+		458D331E1C9C7BB700844203 /* SingleImageViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D331D1C9C7BB700844203 /* SingleImageViewViewController.swift */; };
+		458D33211C9C7BB700844203 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458D331F1C9C7BB700844203 /* Main.storyboard */; };
+		458D33231C9C7BB700844203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 458D33221C9C7BB700844203 /* Assets.xcassets */; };
+		458D33261C9C7BB700844203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458D33241C9C7BB700844203 /* LaunchScreen.storyboard */; };
+		45F89F8B1CBFC87A000D467E /* ImageCollectionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */; };
+		45F89F8D1CBFC8D8000D467E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8C1CBFC8D8000D467E /* ImageCell.swift */; };
+		45F89F8F1CBFF028000D467E /* MockTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8E1CBFF028000D467E /* MockTransitionCoordinator.swift */; };
+		45F89FA31CBFF12A000D467E /* MediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F901CBFF12A000D467E /* MediaViewer.swift */; };
+		45F89FA41CBFF12A000D467E /* MediaViewerAuthorInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F911CBFF12A000D467E /* MediaViewerAuthorInfoOverlayView.swift */; };
+		45F89FA61CBFF12A000D467E /* MediaViewerContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F931CBFF12A000D467E /* MediaViewerContentsView.swift */; };
+		45F89FA81CBFF12A000D467E /* MediaViewerImageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F951CBFF12A000D467E /* MediaViewerImageAction.swift */; };
+		45F89FA91CBFF12A000D467E /* MediaViewerImageActionsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F961CBFF12A000D467E /* MediaViewerImageActionsHandler.swift */; };
+		45F89FAC1CBFF12A000D467E /* MediaViewerInteractiveImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F991CBFF12A000D467E /* MediaViewerInteractiveImageView.swift */; };
+		45F89FAE1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F9B1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift */; };
+		45F89FB01CBFF12A000D467E /* MediaViewerPanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F9D1CBFF12A000D467E /* MediaViewerPanningViewModel.swift */; };
+		45F89FB31CBFF12A000D467E /* MediaViewerTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FA01CBFF12A000D467E /* MediaViewerTransitionAnimator.swift */; };
+		45F89FB51CBFF12A000D467E /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FA21CBFF12A000D467E /* UIView+extensions.swift */; };
+		45F89FB61CBFF151000D467E /* MediaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F9F1CBFF12A000D467E /* MediaViewerTests.swift */; };
+		45F89FB71CBFF151000D467E /* MediaViewerAuthorInfoOverlayViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F921CBFF12A000D467E /* MediaViewerAuthorInfoOverlayViewTests.swift */; };
+		45F89FB81CBFF151000D467E /* MediaViewerContentsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F941CBFF12A000D467E /* MediaViewerContentsViewTests.swift */; };
+		45F89FB91CBFF151000D467E /* MediaViewerImageActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F981CBFF12A000D467E /* MediaViewerImageActionTests.swift */; };
+		45F89FBA1CBFF151000D467E /* MediaViewerImageActionsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F971CBFF12A000D467E /* MediaViewerImageActionsHandlerTests.swift */; };
+		45F89FBB1CBFF151000D467E /* MediaViewerInteractiveImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F9A1CBFF12A000D467E /* MediaViewerInteractiveImageViewTests.swift */; };
+		45F89FBC1CBFF151000D467E /* MediaViewerMultipleImageScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F9C1CBFF12A000D467E /* MediaViewerMultipleImageScrollViewTests.swift */; };
+		45F89FBD1CBFF151000D467E /* MediaViewerPanningViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F9E1CBFF12A000D467E /* MediaViewerPanningViewModelTests.swift */; };
+		45F89FBE1CBFF151000D467E /* MediaViewerTransitionAnimatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FA11CBFF12A000D467E /* MediaViewerTransitionAnimatorTests.swift */; };
+		45F89FC11CBFF1A0000D467E /* ScrollViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FBF1CBFF1A0000D467E /* ScrollViewMock.swift */; };
+		45F89FC21CBFF1A0000D467E /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FC01CBFF1A0000D467E /* TapGestureRecognizerMock.swift */; };
+		DE2857CB41A44B9DA8F0151A /* Pods_hole19v2_hole19v2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194A5388CC3ABC60B9DFB5AA /* Pods_hole19v2_hole19v2Tests.framework */; };
+		FD0AFAAFCC4F2A715089E999 /* Pods_hole19v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52515BBB1C679A27C8770AFB /* Pods_hole19v2.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		457F76EA1CAD552A0049B2E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 458D33101C9C7BB700844203 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 458D33171C9C7BB700844203;
+			remoteInfo = hole19v2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0BA128A488A557AFAD6AA53B /* Pods-hole19v2-hole19v2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hole19v2-hole19v2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hole19v2-hole19v2Tests/Pods-hole19v2-hole19v2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		194A5388CC3ABC60B9DFB5AA /* Pods_hole19v2_hole19v2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hole19v2_hole19v2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3548F5938ECCF1CCD178A5C3 /* Pods-hole19v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hole19v2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hole19v2/Pods-hole19v2.debug.xcconfig"; sourceTree = "<group>"; };
+		457F76E51CAD55290049B2E1 /* hole19v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hole19v2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hole19v2Tests.swift; sourceTree = "<group>"; };
+		457F76E91CAD552A0049B2E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		458D33181C9C7BB700844203 /* hole19v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hole19v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		458D331B1C9C7BB700844203 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		458D331D1C9C7BB700844203 /* SingleImageViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewViewController.swift; sourceTree = "<group>"; };
+		458D33201C9C7BB700844203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		458D33221C9C7BB700844203 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		458D33251C9C7BB700844203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		458D33271C9C7BB700844203 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewViewController.swift; sourceTree = "<group>"; };
+		45F89F8C1CBFC8D8000D467E /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		45F89F8E1CBFF028000D467E /* MockTransitionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionCoordinator.swift; sourceTree = "<group>"; };
+		45F89F901CBFF12A000D467E /* MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewer.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewer.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F911CBFF12A000D467E /* MediaViewerAuthorInfoOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerAuthorInfoOverlayView.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerAuthorInfoOverlayView.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F921CBFF12A000D467E /* MediaViewerAuthorInfoOverlayViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerAuthorInfoOverlayViewTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerAuthorInfoOverlayViewTests.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F931CBFF12A000D467E /* MediaViewerContentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerContentsView.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerContentsView.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F941CBFF12A000D467E /* MediaViewerContentsViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerContentsViewTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerContentsViewTests.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F951CBFF12A000D467E /* MediaViewerImageAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImageAction.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImageAction.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F961CBFF12A000D467E /* MediaViewerImageActionsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImageActionsHandler.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImageActionsHandler.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F971CBFF12A000D467E /* MediaViewerImageActionsHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImageActionsHandlerTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImageActionsHandlerTests.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F981CBFF12A000D467E /* MediaViewerImageActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImageActionTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImageActionTests.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F991CBFF12A000D467E /* MediaViewerInteractiveImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerInteractiveImageView.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerInteractiveImageView.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F9A1CBFF12A000D467E /* MediaViewerInteractiveImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerInteractiveImageViewTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerInteractiveImageViewTests.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F9B1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerMultipleImageScrollView.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerMultipleImageScrollView.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F9C1CBFF12A000D467E /* MediaViewerMultipleImageScrollViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerMultipleImageScrollViewTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerMultipleImageScrollViewTests.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F9D1CBFF12A000D467E /* MediaViewerPanningViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerPanningViewModel.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerPanningViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F9E1CBFF12A000D467E /* MediaViewerPanningViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerPanningViewModelTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerPanningViewModelTests.swift"; sourceTree = SOURCE_ROOT; };
+		45F89F9F1CBFF12A000D467E /* MediaViewerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerTests.swift"; sourceTree = SOURCE_ROOT; };
+		45F89FA01CBFF12A000D467E /* MediaViewerTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerTransitionAnimator.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerTransitionAnimator.swift"; sourceTree = SOURCE_ROOT; };
+		45F89FA11CBFF12A000D467E /* MediaViewerTransitionAnimatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerTransitionAnimatorTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerTransitionAnimatorTests.swift"; sourceTree = SOURCE_ROOT; };
+		45F89FA21CBFF12A000D467E /* UIView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+extensions.swift"; path = "hole19_MediaViewer/Media Viewer/UIView+extensions.swift"; sourceTree = SOURCE_ROOT; };
+		45F89FBF1CBFF1A0000D467E /* ScrollViewMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollViewMock.swift; path = hole19_MediaViewerTests/ScrollViewMock.swift; sourceTree = SOURCE_ROOT; };
+		45F89FC01CBFF1A0000D467E /* TapGestureRecognizerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TapGestureRecognizerMock.swift; path = hole19_MediaViewerTests/TapGestureRecognizerMock.swift; sourceTree = SOURCE_ROOT; };
+		52515BBB1C679A27C8770AFB /* Pods_hole19v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hole19v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB952766503085E0A97CCFB7 /* Pods-hole19v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hole19v2.release.xcconfig"; path = "Pods/Target Support Files/Pods-hole19v2/Pods-hole19v2.release.xcconfig"; sourceTree = "<group>"; };
+		CCACFFBFF2C9DE7248950ACE /* Pods-hole19v2-hole19v2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hole19v2-hole19v2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hole19v2-hole19v2Tests/Pods-hole19v2-hole19v2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		457F76E21CAD55290049B2E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE2857CB41A44B9DA8F0151A /* Pods_hole19v2_hole19v2Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		458D33151C9C7BB700844203 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD0AFAAFCC4F2A715089E999 /* Pods_hole19v2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		158F8A8B02ADC4C0FB2964AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3548F5938ECCF1CCD178A5C3 /* Pods-hole19v2.debug.xcconfig */,
+				AB952766503085E0A97CCFB7 /* Pods-hole19v2.release.xcconfig */,
+				CCACFFBFF2C9DE7248950ACE /* Pods-hole19v2-hole19v2Tests.debug.xcconfig */,
+				0BA128A488A557AFAD6AA53B /* Pods-hole19v2-hole19v2Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		457F76E61CAD552A0049B2E1 /* hole19v2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				45F89FBF1CBFF1A0000D467E /* ScrollViewMock.swift */,
+				45F89FC01CBFF1A0000D467E /* TapGestureRecognizerMock.swift */,
+				457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */,
+				457F76E91CAD552A0049B2E1 /* Info.plist */,
+				45F89F8E1CBFF028000D467E /* MockTransitionCoordinator.swift */,
+			);
+			path = hole19v2Tests;
+			sourceTree = "<group>";
+		};
+		458D330F1C9C7BB700844203 = {
+			isa = PBXGroup;
+			children = (
+				458D331A1C9C7BB700844203 /* hole19_MediaViewer */,
+				457F76E61CAD552A0049B2E1 /* hole19v2Tests */,
+				458D33191C9C7BB700844203 /* Products */,
+				158F8A8B02ADC4C0FB2964AA /* Pods */,
+				B6B5C5425C7D24CD2B259D29 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		458D33191C9C7BB700844203 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				458D33181C9C7BB700844203 /* hole19v2.app */,
+				457F76E51CAD55290049B2E1 /* hole19v2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		458D331A1C9C7BB700844203 /* hole19_MediaViewer */ = {
+			isa = PBXGroup;
+			children = (
+				458D331B1C9C7BB700844203 /* AppDelegate.swift */,
+				458D331D1C9C7BB700844203 /* SingleImageViewViewController.swift */,
+				45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */,
+				45F89F8C1CBFC8D8000D467E /* ImageCell.swift */,
+				458D331F1C9C7BB700844203 /* Main.storyboard */,
+				458D33221C9C7BB700844203 /* Assets.xcassets */,
+				458D33241C9C7BB700844203 /* LaunchScreen.storyboard */,
+				458D33491C9C7C7D00844203 /* MediaViewer */,
+				458D33271C9C7BB700844203 /* Info.plist */,
+			);
+			path = hole19_MediaViewer;
+			sourceTree = "<group>";
+		};
+		458D33491C9C7C7D00844203 /* MediaViewer */ = {
+			isa = PBXGroup;
+			children = (
+				45F89F901CBFF12A000D467E /* MediaViewer.swift */,
+				45F89F9F1CBFF12A000D467E /* MediaViewerTests.swift */,
+				45F89F911CBFF12A000D467E /* MediaViewerAuthorInfoOverlayView.swift */,
+				45F89F921CBFF12A000D467E /* MediaViewerAuthorInfoOverlayViewTests.swift */,
+				45F89F931CBFF12A000D467E /* MediaViewerContentsView.swift */,
+				45F89F941CBFF12A000D467E /* MediaViewerContentsViewTests.swift */,
+				45F89F951CBFF12A000D467E /* MediaViewerImageAction.swift */,
+				45F89F981CBFF12A000D467E /* MediaViewerImageActionTests.swift */,
+				45F89F961CBFF12A000D467E /* MediaViewerImageActionsHandler.swift */,
+				45F89F971CBFF12A000D467E /* MediaViewerImageActionsHandlerTests.swift */,
+				45F89F991CBFF12A000D467E /* MediaViewerInteractiveImageView.swift */,
+				45F89F9A1CBFF12A000D467E /* MediaViewerInteractiveImageViewTests.swift */,
+				45F89F9B1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift */,
+				45F89F9C1CBFF12A000D467E /* MediaViewerMultipleImageScrollViewTests.swift */,
+				45F89F9D1CBFF12A000D467E /* MediaViewerPanningViewModel.swift */,
+				45F89F9E1CBFF12A000D467E /* MediaViewerPanningViewModelTests.swift */,
+				45F89FA01CBFF12A000D467E /* MediaViewerTransitionAnimator.swift */,
+				45F89FA11CBFF12A000D467E /* MediaViewerTransitionAnimatorTests.swift */,
+				45F89FA21CBFF12A000D467E /* UIView+extensions.swift */,
+			);
+			name = MediaViewer;
+			path = "../../h19-iphone-v2/hole19/Controllers/MediaViewer";
+			sourceTree = "<group>";
+		};
+		B6B5C5425C7D24CD2B259D29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52515BBB1C679A27C8770AFB /* Pods_hole19v2.framework */,
+				194A5388CC3ABC60B9DFB5AA /* Pods_hole19v2_hole19v2Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		457F76E41CAD55290049B2E1 /* hole19v2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 457F76EE1CAD552A0049B2E1 /* Build configuration list for PBXNativeTarget "hole19v2Tests" */;
+			buildPhases = (
+				218D16BC3C129074FEAB46D6 /* 📦 Check Pods Manifest.lock */,
+				457F76E11CAD55290049B2E1 /* Sources */,
+				457F76E21CAD55290049B2E1 /* Frameworks */,
+				457F76E31CAD55290049B2E1 /* Resources */,
+				01D906F405236C50C9448B5F /* 📦 Embed Pods Frameworks */,
+				2490C7347936698EB77F0EF9 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				457F76EB1CAD552A0049B2E1 /* PBXTargetDependency */,
+			);
+			name = hole19v2Tests;
+			productName = hole19v2Tests;
+			productReference = 457F76E51CAD55290049B2E1 /* hole19v2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		458D33171C9C7BB700844203 /* hole19v2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 458D33401C9C7BB700844203 /* Build configuration list for PBXNativeTarget "hole19v2" */;
+			buildPhases = (
+				69666D1BDEE781D0E6660FEE /* 📦 Check Pods Manifest.lock */,
+				458D33141C9C7BB700844203 /* Sources */,
+				458D33151C9C7BB700844203 /* Frameworks */,
+				458D33161C9C7BB700844203 /* Resources */,
+				CD011780F3A8E4CBCF80FA15 /* 📦 Embed Pods Frameworks */,
+				02BE054D480647B273A6C8A3 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hole19v2;
+			productName = hole19_MediaViewer;
+			productReference = 458D33181C9C7BB700844203 /* hole19v2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		458D33101C9C7BB700844203 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = h19;
+				TargetAttributes = {
+					457F76E41CAD55290049B2E1 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 458D33171C9C7BB700844203;
+					};
+					458D33171C9C7BB700844203 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 458D33131C9C7BB700844203 /* Build configuration list for PBXProject "hole19_MediaViewer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 458D330F1C9C7BB700844203;
+			productRefGroup = 458D33191C9C7BB700844203 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				458D33171C9C7BB700844203 /* hole19v2 */,
+				457F76E41CAD55290049B2E1 /* hole19v2Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		457F76E31CAD55290049B2E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		458D33161C9C7BB700844203 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				458D33261C9C7BB700844203 /* LaunchScreen.storyboard in Resources */,
+				458D33231C9C7BB700844203 /* Assets.xcassets in Resources */,
+				458D33211C9C7BB700844203 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01D906F405236C50C9448B5F /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hole19v2-hole19v2Tests/Pods-hole19v2-hole19v2Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		02BE054D480647B273A6C8A3 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hole19v2/Pods-hole19v2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		218D16BC3C129074FEAB46D6 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2490C7347936698EB77F0EF9 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hole19v2-hole19v2Tests/Pods-hole19v2-hole19v2Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69666D1BDEE781D0E6660FEE /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CD011780F3A8E4CBCF80FA15 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hole19v2/Pods-hole19v2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		457F76E11CAD55290049B2E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45F89FB71CBFF151000D467E /* MediaViewerAuthorInfoOverlayViewTests.swift in Sources */,
+				45F89FBB1CBFF151000D467E /* MediaViewerInteractiveImageViewTests.swift in Sources */,
+				45F89FBA1CBFF151000D467E /* MediaViewerImageActionsHandlerTests.swift in Sources */,
+				45F89FC11CBFF1A0000D467E /* ScrollViewMock.swift in Sources */,
+				45F89FBE1CBFF151000D467E /* MediaViewerTransitionAnimatorTests.swift in Sources */,
+				45F89FBD1CBFF151000D467E /* MediaViewerPanningViewModelTests.swift in Sources */,
+				45F89FB81CBFF151000D467E /* MediaViewerContentsViewTests.swift in Sources */,
+				457F76E81CAD552A0049B2E1 /* hole19v2Tests.swift in Sources */,
+				45F89FB61CBFF151000D467E /* MediaViewerTests.swift in Sources */,
+				45F89FB91CBFF151000D467E /* MediaViewerImageActionTests.swift in Sources */,
+				45F89FBC1CBFF151000D467E /* MediaViewerMultipleImageScrollViewTests.swift in Sources */,
+				45F89FC21CBFF1A0000D467E /* TapGestureRecognizerMock.swift in Sources */,
+				45F89F8F1CBFF028000D467E /* MockTransitionCoordinator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		458D33141C9C7BB700844203 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45F89FAC1CBFF12A000D467E /* MediaViewerInteractiveImageView.swift in Sources */,
+				45F89F8D1CBFC8D8000D467E /* ImageCell.swift in Sources */,
+				45F89FB31CBFF12A000D467E /* MediaViewerTransitionAnimator.swift in Sources */,
+				45F89FA91CBFF12A000D467E /* MediaViewerImageActionsHandler.swift in Sources */,
+				458D331E1C9C7BB700844203 /* SingleImageViewViewController.swift in Sources */,
+				45F89FA81CBFF12A000D467E /* MediaViewerImageAction.swift in Sources */,
+				45F89FA31CBFF12A000D467E /* MediaViewer.swift in Sources */,
+				45F89FA61CBFF12A000D467E /* MediaViewerContentsView.swift in Sources */,
+				45F89FB01CBFF12A000D467E /* MediaViewerPanningViewModel.swift in Sources */,
+				45F89FA41CBFF12A000D467E /* MediaViewerAuthorInfoOverlayView.swift in Sources */,
+				458D331C1C9C7BB700844203 /* AppDelegate.swift in Sources */,
+				45F89F8B1CBFC87A000D467E /* ImageCollectionViewViewController.swift in Sources */,
+				45F89FAE1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift in Sources */,
+				45F89FB51CBFF12A000D467E /* UIView+extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		457F76EB1CAD552A0049B2E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 458D33171C9C7BB700844203 /* hole19v2 */;
+			targetProxy = 457F76EA1CAD552A0049B2E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		458D331F1C9C7BB700844203 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				458D33201C9C7BB700844203 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		458D33241C9C7BB700844203 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				458D33251C9C7BB700844203 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		457F76EC1CAD552A0049B2E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCACFFBFF2C9DE7248950ACE /* Pods-hole19v2-hole19v2Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = hole19v2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = hole19.hole19v2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hole19v2.app/hole19v2";
+			};
+			name = Debug;
+		};
+		457F76ED1CAD552A0049B2E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BA128A488A557AFAD6AA53B /* Pods-hole19v2-hole19v2Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = hole19v2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = hole19.hole19v2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hole19v2.app/hole19v2";
+			};
+			name = Release;
+		};
+		458D333E1C9C7BB700844203 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		458D333F1C9C7BB700844203 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		458D33411C9C7BB700844203 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3548F5938ECCF1CCD178A5C3 /* Pods-hole19v2.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = hole19_MediaViewer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "hole19.hole19-MediaViewer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		458D33421C9C7BB700844203 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB952766503085E0A97CCFB7 /* Pods-hole19v2.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = hole19_MediaViewer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "hole19.hole19-MediaViewer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		457F76EE1CAD552A0049B2E1 /* Build configuration list for PBXNativeTarget "hole19v2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				457F76EC1CAD552A0049B2E1 /* Debug */,
+				457F76ED1CAD552A0049B2E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		458D33131C9C7BB700844203 /* Build configuration list for PBXProject "hole19_MediaViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				458D333E1C9C7BB700844203 /* Debug */,
+				458D333F1C9C7BB700844203 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		458D33401C9C7BB700844203 /* Build configuration list for PBXNativeTarget "hole19v2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				458D33411C9C7BB700844203 /* Debug */,
+				458D33421C9C7BB700844203 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 458D33101C9C7BB700844203 /* Project object */;
+}
