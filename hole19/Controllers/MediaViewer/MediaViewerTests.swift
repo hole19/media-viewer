@@ -9,7 +9,7 @@ class MediaViewerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView(),allImages: nil)
         let _ = sut.view
     }
     
@@ -19,19 +19,19 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItsModalPresentationStyleIsOverCurrentContext() {
-        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView(),allImages: nil)
         expect(self.sut.modalPresentationStyle) == UIModalPresentationStyle.OverCurrentContext
     }
     
     func testThatItInitsWithMediaURL() {
         let exampleURL = NSURL(string: "myexample.com")!
-        sut = MediaViewer(mediaURL: exampleURL, sourceImageView: UIImageView())
+        sut = MediaViewer(mediaURL: exampleURL, sourceImageView: UIImageView(),allImages: nil)
         expect(self.sut.mediaURL) == exampleURL
     }
     
     func testThatItInitsWithSourceImageView() {
         let imageView = UIImageView()
-        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: imageView)
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: imageView,allImages: nil)
         expect(self.sut.sourceImageView) == imageView
     }
     
@@ -46,20 +46,20 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItHasTransitionAnimatior() {
-        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView(),allImages: nil)
         let _ = sut.view
         expect(self.sut.transitionAnimator) != nil
     }
     
     func testThatItHasTransitionAnimatiorWithCorrectSourceImageView() {
         let imageView = UIImageView()
-        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: imageView)
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: imageView,allImages: nil)
         let _ = sut.view
         expect(self.sut.transitionAnimator?.sourceImageView) == imageView
     }
     
     func testThatItHasTransitionAnimatiorWithCorrectContentsView() {
-        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView(),allImages: nil)
         let _ = sut.view
         expect(self.sut.transitionAnimator?.contentsView) == self.sut.contentsView
     }
@@ -84,7 +84,7 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItBeginsTransitionOnViewDidAppear() {
-        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView(),allImages: nil)
         let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
         sut.transitionAnimator = mockTransition
         let _ = sut.view
@@ -94,7 +94,7 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatCloseTriggersTransitionBack() {
-        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView())
+        sut = MediaViewer(mediaURL: NSURL(), sourceImageView: UIImageView(),allImages: nil)
         let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
         sut.transitionAnimator = mockTransition
         let _ = sut.view

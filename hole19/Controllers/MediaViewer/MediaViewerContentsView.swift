@@ -87,7 +87,7 @@ class MediaViewerContentsView: UIView {
     }
     
     private func setupPanningModel() {
-        pannedViewModel = MediaViewerPanningViewModel(pannedView: scrollView, backgroundView: backgroundView, containerView: self)
+        pannedViewModel = MediaViewerPanningViewModel(backgroundView: backgroundView, containerView: self)
     }
     
     private func setupTapGestureRecogniser() {

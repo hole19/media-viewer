@@ -18,10 +18,6 @@ class MediaViewerContentsViewTests: XCTestCase {
         sut = nil
     }
     
-    func testThatItHasPannigViewModelWithCorrectPanningView() {
-        expect(self.sut.pannedViewModel.pannedView) == sut.scrollView
-    }
-    
     func testThatItHasPannigViewModelWithCorrectBackgroundView() {
         expect(self.sut.pannedViewModel.backgroundView) == sut.backgroundView
     }

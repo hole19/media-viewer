@@ -13,7 +13,8 @@ class MediaViewer: UIViewController {
     
     var contentsView: MediaViewerContentsView!
     var imageTaskHandler = MediaViewerImageActionsHandler()
-    
+    var allImages: [UIImage]?
+        
     // MARK: init
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,10 +25,11 @@ class MediaViewer: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(mediaURL: NSURL, sourceImageView: UIImageView) {
+    convenience init(mediaURL: NSURL, sourceImageView: UIImageView, allImages: [UIImage]?) {
         self.init(nibName: nil, bundle: nil)
         self.mediaURL = mediaURL
         self.sourceImageView = sourceImageView
+        self.allImages = allImages
         modalPresentationStyle = .OverCurrentContext
     }
 
@@ -43,7 +45,13 @@ class MediaViewer: UIViewController {
         if transitionAnimator == nil, let sourceImageView = sourceImageView {
             transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView)
             if let sourceImage = sourceImageView.image {
-                contentsView.scrollView.images = [sourceImage, UIImage(named: "image-1")!]
+                if let moreImages = allImages {
+                    var endArray = [sourceImage]
+                    endArray.appendContentsOf(moreImages)
+                    contentsView.scrollView.images = endArray
+                } else {
+                    contentsView.scrollView.images = [sourceImage]
+                }
             }
         }
 //        contentsView.interactiveImageView.imageView.sd_setImageWithURL(mediaURL)

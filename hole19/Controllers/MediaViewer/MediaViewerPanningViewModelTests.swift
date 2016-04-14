@@ -9,7 +9,7 @@ class MediaViewerPanningViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = MediaViewerPanningViewModel(pannedView: UIView(), backgroundView: UIView(), containerView: UIView())
+        sut = MediaViewerPanningViewModel(backgroundView: UIView(), containerView: MediaViewerContentsView())
     }
     
     override func tearDown() {
@@ -17,26 +17,18 @@ class MediaViewerPanningViewModelTests: XCTestCase {
         sut = nil
     }
     
-    func testThatItInitsWithPannedViewCorrectly() {
-        let view = UIView()
-        
-        sut = MediaViewerPanningViewModel(pannedView: view, backgroundView: UIView(), containerView: UIView())
-        
-        expect(self.sut.pannedView) == view
-    }
-    
     func testThatItInitsWithBackgroundViewCorrectly() {
         let view = UIView()
         
-        sut = MediaViewerPanningViewModel(pannedView: UIView(), backgroundView:view, containerView: UIView())
+        sut = MediaViewerPanningViewModel(backgroundView:view, containerView: MediaViewerContentsView())
         
         expect(self.sut.backgroundView) == view
     }
     
     func testThatItInitsWithContainerViewCorrectly() {
-        let view = UIView()
+        let view = MediaViewerContentsView()
         
-        sut = MediaViewerPanningViewModel(pannedView: UIView(), backgroundView:UIView(), containerView: view)
+        sut = MediaViewerPanningViewModel(backgroundView:UIView(), containerView: view)
         
         expect(self.sut.containerView) == view
     }
