@@ -5,17 +5,20 @@ class MediaViewerTransitionAnimator: NSObject {
    
     // MARK: properties
     
-    var animationTime: NSTimeInterval = 0.25
+    var animationTime: NSTimeInterval = 0.2
     
     var sourceImageView: UIImageView!
     var contentsView: MediaViewerContentsView!
     
+    var transitionDelegate: MediaViewerTransitionDelegate?
+    
     // MARK: init
     
-    init(sourceImageView: UIImageView, contentsView: MediaViewerContentsView) {
+    init(sourceImageView: UIImageView, contentsView: MediaViewerContentsView, transitionDelegate: MediaViewerTransitionDelegate? = nil) {
         super.init()
         self.sourceImageView = sourceImageView
         self.contentsView = contentsView
+        self.transitionDelegate = transitionDelegate
     }
     
     // MARK: public
@@ -46,21 +49,37 @@ class MediaViewerTransitionAnimator: NSObject {
     }
     
     func setupTransitionBackToSourceImageView() {
-        sourceImageView.hidden = true
-        contentsView.scrollView.currentImageView()!.imageView.contentMode = .ScaleAspectFill
+//        sourceImageView.hidden = true
+//        contentsView.scrollView.currentImageView()!.imageView.contentMode = .ScaleAspectFill
     }
 
     func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
         guard let currentSuperview = contentsView.scrollView.currentImageView()!.imageView.superview, let sourceSuperview = sourceImageView.superview else { return }
-        let endImageFrame = currentSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
-
+        
+        
+        var endImageFrame = CGRectZero
+        var sourceImage = sourceImageView
+        if let transitionDelegate = transitionDelegate {
+            let image = contentsView.scrollView.currentImageView()!.imageView.image!
+            
+            if let imageView = transitionDelegate.imageViewForImage(image), let newSourceSuperview = imageView.superview {
+                endImageFrame = currentSuperview.convertRect(imageView.frame, fromView: newSourceSuperview)
+                sourceImage = imageView
+                sourceImageView.hidden = false
+            }
+        } else {
+            endImageFrame = currentSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
+        }
+        
         let duration: NSTimeInterval = animated ? animationTime : 0.00
-        setupTransitionBackToSourceImageView()
+//        setupTransitionBackToSourceImageView()
+        contentsView.scrollView.currentImageView()!.imageView.contentMode = .ScaleAspectFill
+        sourceImage.hidden = true
         UIView.animateWithDuration(duration, delay: duration, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
             self.contentsView.interfaceAlpha = 0.0
             self.contentsView.scrollView.currentImageView()!.imageView.frame = endImageFrame
             }) { (finished) -> Void in
-                self.sourceImageView.hidden = false
+                sourceImage.hidden = false
                 completition()
         }
     }

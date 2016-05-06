@@ -23,7 +23,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     
     func testThatScrollViewHasCorrectWidth() {
         sut.layoutIfNeeded()
-        expect(self.sut.scrollView.frame.size.width) == 200
+        expect(self.sut.scrollView.frame.size.width) == 208
     }
     
     func testThatScrollViewHasCorrectHeight() {
@@ -57,7 +57,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     func testThatSettingTheImagesWillSetupCorrectContentViewSize() {
         setupSUTWithImages()
         
-        expect(self.sut.scrollView.contentSize) == CGSize(width: 200.0 * 2, height: 200.0)
+        expect(self.sut.scrollView.contentSize) == CGSize(width: 208.0 * 2, height: 200.0)
     }
     
     func testThatSettingTheImagesWillSetupCorrectNumberOfInnerContentViews() {
@@ -74,7 +74,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     func testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewOrigin() {
         setupSUTWithImages()
         
-        expect(self.sut.contentViews[1].frame.origin.x) == 200.0
+        expect(self.sut.contentViews[1].frame.origin.x) == 212.0
     }
     
     func testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewSuperview() {
@@ -92,7 +92,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     func testThatOnScrollViewDidEndDeceleratingCurrentPageIsUpdated() {
         setupSUTWithImages()
         
-        sut.scrollView.contentOffset = CGPoint(x: 200.0, y: 0.0)
+        sut.scrollView.contentOffset = CGPoint(x: 208.0, y: 0.0)
             
         sut.scrollViewDidEndDecelerating(sut.scrollView)
         
@@ -165,7 +165,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         let images = [UIImage(), image, UIImage()]
         sut.setImages(images, withSelectedOne: image)
         
-        expect(self.sut.scrollView.contentOffset) == CGPoint(x: 200.0, y: 0.0)
+        expect(self.sut.scrollView.contentOffset) == CGPoint(x: 208.0, y: 0.0)
     }
     
     func testThatItWillSetCorrectCurrentPagesetOnSetImagesWithSelectedOne() {

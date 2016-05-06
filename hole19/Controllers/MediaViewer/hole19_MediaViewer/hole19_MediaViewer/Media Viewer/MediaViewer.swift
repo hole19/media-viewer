@@ -2,6 +2,10 @@
 import UIKit
 import SDWebImage
 
+protocol MediaViewerDelegate {
+    
+}
+
 class MediaViewer: UIViewController {
     
     // MARK: properties
@@ -14,7 +18,8 @@ class MediaViewer: UIViewController {
     var contentsView: MediaViewerContentsView!
     var imageTaskHandler = MediaViewerImageActionsHandler()
     var allImages: [UIImage]?
-        
+    var transitionDelegate: MediaViewerTransitionDelegate?
+    
     // MARK: init
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,11 +30,12 @@ class MediaViewer: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(mediaURL: NSURL, sourceImageView: UIImageView, allImages: [UIImage]?) {
+    convenience init(mediaURL: NSURL, sourceImageView: UIImageView, allImages: [UIImage]?, transitionDelegate:MediaViewerTransitionDelegate? = nil) {
         self.init(nibName: nil, bundle: nil)
         self.mediaURL = mediaURL
         self.sourceImageView = sourceImageView
         self.allImages = allImages
+        self.transitionDelegate = transitionDelegate
         modalPresentationStyle = .OverCurrentContext
     }
 
@@ -43,7 +49,7 @@ class MediaViewer: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if transitionAnimator == nil, let sourceImageView = sourceImageView {
-            transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView)
+            transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView, transitionDelegate: transitionDelegate)
         }
 //        contentsView.interactiveImageView.imageView.sd_setImageWithURL(mediaURL)
         contentsView.pannedViewModel.delegate = self

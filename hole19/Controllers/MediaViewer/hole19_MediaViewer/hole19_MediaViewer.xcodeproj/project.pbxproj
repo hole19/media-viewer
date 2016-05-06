@@ -37,6 +37,8 @@
 		45F89FBE1CBFF151000D467E /* MediaViewerTransitionAnimatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FA11CBFF12A000D467E /* MediaViewerTransitionAnimatorTests.swift */; };
 		45F89FC11CBFF1A0000D467E /* ScrollViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FBF1CBFF1A0000D467E /* ScrollViewMock.swift */; };
 		45F89FC21CBFF1A0000D467E /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FC01CBFF1A0000D467E /* TapGestureRecognizerMock.swift */; };
+		45F89FC41CBFF461000D467E /* UICollectionView+MediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FC31CBFF461000D467E /* UICollectionView+MediaViewer.swift */; };
+		45F89FC61CBFF48B000D467E /* MediaViewerTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FC51CBFF48B000D467E /* MediaViewerTransitionDelegate.swift */; };
 		DE2857CB41A44B9DA8F0151A /* Pods_hole19v2_hole19v2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194A5388CC3ABC60B9DFB5AA /* Pods_hole19v2_hole19v2Tests.framework */; };
 		FD0AFAAFCC4F2A715089E999 /* Pods_hole19v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52515BBB1C679A27C8770AFB /* Pods_hole19v2.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +91,8 @@
 		45F89FA21CBFF12A000D467E /* UIView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+extensions.swift"; path = "hole19_MediaViewer/Media Viewer/UIView+extensions.swift"; sourceTree = SOURCE_ROOT; };
 		45F89FBF1CBFF1A0000D467E /* ScrollViewMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollViewMock.swift; path = hole19_MediaViewerTests/ScrollViewMock.swift; sourceTree = SOURCE_ROOT; };
 		45F89FC01CBFF1A0000D467E /* TapGestureRecognizerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TapGestureRecognizerMock.swift; path = hole19_MediaViewerTests/TapGestureRecognizerMock.swift; sourceTree = SOURCE_ROOT; };
+		45F89FC31CBFF461000D467E /* UICollectionView+MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+MediaViewer.swift"; path = "hole19_MediaViewer/Media Viewer/UICollectionView+MediaViewer.swift"; sourceTree = SOURCE_ROOT; };
+		45F89FC51CBFF48B000D467E /* MediaViewerTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerTransitionDelegate.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerTransitionDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		52515BBB1C679A27C8770AFB /* Pods_hole19v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hole19v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB952766503085E0A97CCFB7 /* Pods-hole19v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hole19v2.release.xcconfig"; path = "Pods/Target Support Files/Pods-hole19v2/Pods-hole19v2.release.xcconfig"; sourceTree = "<group>"; };
 		CCACFFBFF2C9DE7248950ACE /* Pods-hole19v2-hole19v2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hole19v2-hole19v2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hole19v2-hole19v2Tests/Pods-hole19v2-hole19v2Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 		458D33491C9C7C7D00844203 /* MediaViewer */ = {
 			isa = PBXGroup;
 			children = (
+				45F89FC51CBFF48B000D467E /* MediaViewerTransitionDelegate.swift */,
 				45F89F901CBFF12A000D467E /* MediaViewer.swift */,
 				45F89F9F1CBFF12A000D467E /* MediaViewerTests.swift */,
 				45F89F911CBFF12A000D467E /* MediaViewerAuthorInfoOverlayView.swift */,
@@ -195,6 +200,7 @@
 				45F89FA01CBFF12A000D467E /* MediaViewerTransitionAnimator.swift */,
 				45F89FA11CBFF12A000D467E /* MediaViewerTransitionAnimatorTests.swift */,
 				45F89FA21CBFF12A000D467E /* UIView+extensions.swift */,
+				45F89FC31CBFF461000D467E /* UICollectionView+MediaViewer.swift */,
 			);
 			name = MediaViewer;
 			path = "../../h19-iphone-v2/hole19/Controllers/MediaViewer";
@@ -435,6 +441,7 @@
 				45F89FA91CBFF12A000D467E /* MediaViewerImageActionsHandler.swift in Sources */,
 				458D331E1C9C7BB700844203 /* SingleImageViewViewController.swift in Sources */,
 				45F89FA81CBFF12A000D467E /* MediaViewerImageAction.swift in Sources */,
+				45F89FC61CBFF48B000D467E /* MediaViewerTransitionDelegate.swift in Sources */,
 				45F89FA31CBFF12A000D467E /* MediaViewer.swift in Sources */,
 				45F89FA61CBFF12A000D467E /* MediaViewerContentsView.swift in Sources */,
 				45F89FB01CBFF12A000D467E /* MediaViewerPanningViewModel.swift in Sources */,
@@ -443,6 +450,7 @@
 				45F89F8B1CBFC87A000D467E /* ImageCollectionViewViewController.swift in Sources */,
 				45F89FAE1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift in Sources */,
 				45F89FB51CBFF12A000D467E /* UIView+extensions.swift in Sources */,
+				45F89FC41CBFF461000D467E /* UICollectionView+MediaViewer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
