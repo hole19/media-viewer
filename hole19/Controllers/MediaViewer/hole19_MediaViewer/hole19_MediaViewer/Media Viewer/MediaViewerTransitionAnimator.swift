@@ -5,7 +5,7 @@ class MediaViewerTransitionAnimator: NSObject {
    
     // MARK: properties
     
-    var animationTime: NSTimeInterval = 0.2
+    var animationTime: NSTimeInterval = 0.15
     
     var sourceImageView: UIImageView!
     var contentsView: MediaViewerContentsView!
@@ -55,7 +55,6 @@ class MediaViewerTransitionAnimator: NSObject {
 
     func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
         guard let currentSuperview = contentsView.scrollView.currentImageView()!.imageView.superview, let sourceSuperview = sourceImageView.superview else { return }
-        
         
         var endImageFrame = CGRectZero
         var sourceImage = sourceImageView

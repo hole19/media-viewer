@@ -9,6 +9,7 @@ class MediaViewerMultipleImageScrollView: UIView {
 
     var contentViews = [MediaViewerInteractiveImageView]()
     
+    var transitionDelegate: MediaViewerTransitionDelegate?
     var imageViewActionsDelgate: MediaViewerInteractiveImageViewDelegate? {
         didSet {
             setDelegateForAllViews(contentViews)
@@ -141,11 +142,22 @@ class MediaViewerMultipleImageScrollView: UIView {
             }
         }
     }
+ 
+    private func scrollImageViewContainerToCorrespondingImage(index: Int) {
+        if let transitionDelegate = transitionDelegate,
+           let images = images {
+            if let imageView = transitionDelegate.imageViewForImage(images[index]) {
+                let rect = transitionDelegate.scrollImageviewsContainer().convertRect(imageView.frame, fromView: imageView.superview)
+                transitionDelegate.scrollImageviewsContainer().scrollRectToVisible(rect, animated: true)
+            }
+        }
+    }
 }
 
 extension MediaViewerMultipleImageScrollView: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         updateViewWithCurrentPage(currentPage)
+        scrollImageViewContainerToCorrespondingImage(currentPage)
     }
 }

@@ -49,10 +49,19 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
 extension ImageCollectionViewViewController: MediaViewerTransitionDelegate {
     func imageViewForImage(image: UIImage) -> UIImageView? {
         if let index = allImages.indexOf(image), let collectionView = collectionView {
-            if let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as? ImageCell {
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ImageCell {
                 return cell.imageView
+            } else {
+                collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: false)
+                if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ImageCell {
+                    return cell.imageView
+                }
             }
         }
         return nil
+    }
+    func scrollImageviewsContainer() -> UIScrollView {
+        return collectionView!
     }
 }
