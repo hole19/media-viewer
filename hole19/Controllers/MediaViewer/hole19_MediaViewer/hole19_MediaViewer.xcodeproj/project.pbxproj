@@ -13,6 +13,7 @@
 		458D33211C9C7BB700844203 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458D331F1C9C7BB700844203 /* Main.storyboard */; };
 		458D33231C9C7BB700844203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 458D33221C9C7BB700844203 /* Assets.xcassets */; };
 		458D33261C9C7BB700844203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458D33241C9C7BB700844203 /* LaunchScreen.storyboard */; };
+		459798171CE464D700A19ED1 /* minion8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 459798161CE464D700A19ED1 /* minion8.jpg */; };
 		45F89F8B1CBFC87A000D467E /* ImageCollectionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */; };
 		45F89F8D1CBFC8D8000D467E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8C1CBFC8D8000D467E /* ImageCell.swift */; };
 		45F89F8F1CBFF028000D467E /* MockTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8E1CBFF028000D467E /* MockTransitionCoordinator.swift */; };
@@ -67,6 +68,7 @@
 		458D33221C9C7BB700844203 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		458D33251C9C7BB700844203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		458D33271C9C7BB700844203 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		459798161CE464D700A19ED1 /* minion8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = minion8.jpg; path = ../../../../../../../Desktop/minion8.jpg; sourceTree = "<group>"; };
 		45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewViewController.swift; sourceTree = "<group>"; };
 		45F89F8C1CBFC8D8000D467E /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		45F89F8E1CBFF028000D467E /* MockTransitionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionCoordinator.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		457F76E61CAD552A0049B2E1 /* hole19v2Tests */ = {
 			isa = PBXGroup;
 			children = (
+				459798161CE464D700A19ED1 /* minion8.jpg */,
 				45F89FBF1CBFF1A0000D467E /* ScrollViewMock.swift */,
 				45F89FC01CBFF1A0000D467E /* TapGestureRecognizerMock.swift */,
 				457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */,
@@ -302,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459798171CE464D700A19ED1 /* minion8.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

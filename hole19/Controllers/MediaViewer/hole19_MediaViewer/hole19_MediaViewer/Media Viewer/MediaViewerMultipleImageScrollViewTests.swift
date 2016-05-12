@@ -175,6 +175,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         
         expect(self.sut.currentPage) == 1
     }
+    
 }
 
 

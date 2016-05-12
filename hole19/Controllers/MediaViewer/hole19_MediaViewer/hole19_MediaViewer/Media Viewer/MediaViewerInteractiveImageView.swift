@@ -85,6 +85,7 @@ class MediaViewerInteractiveImageView: UIView {
         scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Width, relatedBy: .Equal, toItem: scrollView, attribute: .Width, multiplier: 1.0, constant: 0.0))
         scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: .Equal, toItem: scrollView, attribute: .Height, multiplier: 1.0, constant: 0.0))
         scrollView.contentSize = imageView.bounds.size
+        scrollView.scrollEnabled = false
     }
     
     private func setupScrollView() {
@@ -96,6 +97,8 @@ class MediaViewerInteractiveImageView: UIView {
         scrollView.maximumZoomScale = maximumZoomScale
         scrollView.zoomScale = 1.0
         scrollView.delegate = self
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
         addSubviewAndFullScreenConstraints(scrollView)
     }
     
@@ -104,7 +107,6 @@ class MediaViewerInteractiveImageView: UIView {
         zoomDoubleTapGestureRecogniser.numberOfTapsRequired = 2
         addGestureRecognizer(zoomDoubleTapGestureRecogniser)
     }
-
 }
 
 extension MediaViewerInteractiveImageView: UIScrollViewDelegate {

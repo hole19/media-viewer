@@ -57,6 +57,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     func setupSUTWithTwoImageViewsInsideContainers() -> UIImageView {
         let view1 = UIView(frame: CGRectMake(40, 80, 400, 600))
         let imageView1 = UIImageView(frame: CGRectMake(20, 20, 40, 60))
+        imageView1.image = UIImage(named: "minion8")
         view1.addSubview(imageView1)
         originContainer = view1
         contentsView = MediaViewerContentsView(frame: CGRectMake(0, 0, 400, 600))
@@ -135,7 +136,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.transitionToDestinationImageView(false)
         
-        expect(imageView2.frame.origin.y) == 0.0
+        expect(imageView2.frame.origin.y).to(beCloseTo(117.7, within: 0.5))
     }
     
     func testThatTransitionToDestinationFinalWidthIsEqalToDestinationImageView() {
@@ -151,7 +152,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.transitionToDestinationImageView(false)
         
-        expect(imageView2.frame.size.height) == 600.0
+        expect(imageView2.frame.size.height).to(beCloseTo(364.5, within: 0.5))
     }
     
     func testThatTransitionToDestinationFinalBackgroundAlphaIs1() {
@@ -173,18 +174,10 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     
     // MARK: transition OUT
     
-    func testThatTransitionSetupBackToSourceImageViewImageContentModeIsAspectFill() {
-        setupSUTWithTwoImageViewsInsideContainers()
-        
-        sut.setupTransitionBackToSourceImageView()
-        
-        expect(self.contentsView?.scrollView.currentImageView()!.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
-    }
-    
     func testThatTransitionSetupBackToSourceSourceImageViewHidden() {
         setupSUTWithTwoImageViewsInsideContainers()
         
-        sut.setupTransitionBackToSourceImageView()
+        sut.setupTransitionBackToSourceImageView(sut.sourceImageView)
         
         expect(self.sut.sourceImageView.hidden) == true
     }

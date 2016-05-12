@@ -35,6 +35,8 @@ class MediaViewerMultipleImageScrollView: UIView {
     var currentPage: Int = 0
     let inbetweenImagesMargin: CGFloat = 4.0
     
+    private var hiddenImageView = UIImageView()
+    
     // MARK: init
     
     override init(frame: CGRect) {
@@ -109,7 +111,6 @@ class MediaViewerMultipleImageScrollView: UIView {
             let contentView = MediaViewerInteractiveImageView(frame: currentViewFrame)
             contentView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             contentView.imageView.image = image
-//            contentView.clipsToBounds = true
             contentViews.append(contentView)
             scrollView.addSubview(contentView)
             currentViewFrame.origin.x += scrollView.bounds.size.width
@@ -119,6 +120,9 @@ class MediaViewerMultipleImageScrollView: UIView {
         if let index = newImages.indexOf(selectedImage) {
             scrollView.contentOffset = CGPoint(x:CGFloat(index)*scrollView.bounds.size.width, y:0.0)
             currentPage = index
+            if let hiddentImageView = transitionDelegate?.imageViewForImage(newImages[index]) {
+                self.hiddenImageView = hiddentImageView
+            }
         }
     }
     
@@ -142,13 +146,22 @@ class MediaViewerMultipleImageScrollView: UIView {
             }
         }
     }
- 
+    
     private func scrollImageViewContainerToCorrespondingImage(index: Int) {
+        if let transitionDelegate = transitionDelegate {
+            if let collectionView = transitionDelegate.scrollImageviewsContainer() as? UICollectionView {
+                collectionView.scrollToItemWithIndex(index)
+            }
+        }
+    }
+    
+    private func hideCorrespondingImage(index: Int) {
+        hiddenImageView.hidden = false
         if let transitionDelegate = transitionDelegate,
            let images = images {
-            if let imageView = transitionDelegate.imageViewForImage(images[index]) {
-                let rect = transitionDelegate.scrollImageviewsContainer().convertRect(imageView.frame, fromView: imageView.superview)
-                transitionDelegate.scrollImageviewsContainer().scrollRectToVisible(rect, animated: true)
+            if let hiddentImageView = transitionDelegate.imageViewForImage(images[index]) {
+                self.hiddenImageView = hiddentImageView
+                hiddentImageView.hidden = true
             }
         }
     }
@@ -159,5 +172,6 @@ extension MediaViewerMultipleImageScrollView: UIScrollViewDelegate {
         currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         updateViewWithCurrentPage(currentPage)
         scrollImageViewContainerToCorrespondingImage(currentPage)
+        hideCorrespondingImage(currentPage)
     }
 }

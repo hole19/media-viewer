@@ -52,11 +52,6 @@ extension ImageCollectionViewViewController: MediaViewerTransitionDelegate {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ImageCell {
                 return cell.imageView
-            } else {
-                collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: false)
-                if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ImageCell {
-                    return cell.imageView
-                }
             }
         }
         return nil
