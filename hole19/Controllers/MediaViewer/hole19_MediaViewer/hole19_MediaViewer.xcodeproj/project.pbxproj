@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4559848D1CE5C4D60095AA1A /* minion8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4559848C1CE5C4D60095AA1A /* minion8.jpg */; };
+		4559848F1CE5C7B60095AA1A /* MediaViewerInfoOverlayViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4559848E1CE5C7B60095AA1A /* MediaViewerInfoOverlayViewTests.swift */; };
+		455984911CE5C7EB0095AA1A /* MediaViewerInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455984901CE5C7EB0095AA1A /* MediaViewerInfoOverlayView.swift */; };
+		455984931CE5C89D0095AA1A /* MediaViewerImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455984921CE5C89D0095AA1A /* MediaViewerImageTests.swift */; };
+		455984951CE5C8CC0095AA1A /* MediaViewerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455984941CE5C8CC0095AA1A /* MediaViewerImage.swift */; };
 		457F76E81CAD552A0049B2E1 /* hole19v2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */; };
 		458D331C1C9C7BB700844203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D331B1C9C7BB700844203 /* AppDelegate.swift */; };
 		458D331E1C9C7BB700844203 /* SingleImageViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D331D1C9C7BB700844203 /* SingleImageViewViewController.swift */; };
@@ -59,6 +63,10 @@
 		194A5388CC3ABC60B9DFB5AA /* Pods_hole19v2_hole19v2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hole19v2_hole19v2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3548F5938ECCF1CCD178A5C3 /* Pods-hole19v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hole19v2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hole19v2/Pods-hole19v2.debug.xcconfig"; sourceTree = "<group>"; };
 		4559848C1CE5C4D60095AA1A /* minion8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = minion8.jpg; path = hole19_MediaViewer/Assets.xcassets/minion8.imageset/minion8.jpg; sourceTree = SOURCE_ROOT; };
+		4559848E1CE5C7B60095AA1A /* MediaViewerInfoOverlayViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerInfoOverlayViewTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerInfoOverlayViewTests.swift"; sourceTree = SOURCE_ROOT; };
+		455984901CE5C7EB0095AA1A /* MediaViewerInfoOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerInfoOverlayView.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerInfoOverlayView.swift"; sourceTree = SOURCE_ROOT; };
+		455984921CE5C89D0095AA1A /* MediaViewerImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImageTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImageTests.swift"; sourceTree = SOURCE_ROOT; };
+		455984941CE5C8CC0095AA1A /* MediaViewerImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImage.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImage.swift"; sourceTree = SOURCE_ROOT; };
 		457F76E51CAD55290049B2E1 /* hole19v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hole19v2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hole19v2Tests.swift; sourceTree = "<group>"; };
 		457F76E91CAD552A0049B2E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -186,6 +194,10 @@
 				45F89FC51CBFF48B000D467E /* MediaViewerTransitionDelegate.swift */,
 				45F89F901CBFF12A000D467E /* MediaViewer.swift */,
 				45F89F9F1CBFF12A000D467E /* MediaViewerTests.swift */,
+				455984941CE5C8CC0095AA1A /* MediaViewerImage.swift */,
+				455984921CE5C89D0095AA1A /* MediaViewerImageTests.swift */,
+				455984901CE5C7EB0095AA1A /* MediaViewerInfoOverlayView.swift */,
+				4559848E1CE5C7B60095AA1A /* MediaViewerInfoOverlayViewTests.swift */,
 				45F89F911CBFF12A000D467E /* MediaViewerAuthorInfoOverlayView.swift */,
 				45F89F921CBFF12A000D467E /* MediaViewerAuthorInfoOverlayViewTests.swift */,
 				45F89F931CBFF12A000D467E /* MediaViewerContentsView.swift */,
@@ -430,6 +442,8 @@
 				457F76E81CAD552A0049B2E1 /* hole19v2Tests.swift in Sources */,
 				45F89FB61CBFF151000D467E /* MediaViewerTests.swift in Sources */,
 				45F89FB91CBFF151000D467E /* MediaViewerImageActionTests.swift in Sources */,
+				4559848F1CE5C7B60095AA1A /* MediaViewerInfoOverlayViewTests.swift in Sources */,
+				455984931CE5C89D0095AA1A /* MediaViewerImageTests.swift in Sources */,
 				45F89FBC1CBFF151000D467E /* MediaViewerMultipleImageScrollViewTests.swift in Sources */,
 				45F89FC21CBFF1A0000D467E /* TapGestureRecognizerMock.swift in Sources */,
 				45F89F8F1CBFF028000D467E /* MockTransitionCoordinator.swift in Sources */,
@@ -449,6 +463,8 @@
 				45F89FC61CBFF48B000D467E /* MediaViewerTransitionDelegate.swift in Sources */,
 				45F89FA31CBFF12A000D467E /* MediaViewer.swift in Sources */,
 				45F89FA61CBFF12A000D467E /* MediaViewerContentsView.swift in Sources */,
+				455984911CE5C7EB0095AA1A /* MediaViewerInfoOverlayView.swift in Sources */,
+				455984951CE5C8CC0095AA1A /* MediaViewerImage.swift in Sources */,
 				45F89FB01CBFF12A000D467E /* MediaViewerPanningViewModel.swift in Sources */,
 				45F89FA41CBFF12A000D467E /* MediaViewerAuthorInfoOverlayView.swift in Sources */,
 				458D331C1C9C7BB700844203 /* AppDelegate.swift in Sources */,

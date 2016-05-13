@@ -5,12 +5,6 @@ protocol MediaViewerContentsViewActionsDelegate: class {
     func longPressActionDetectedInContentView(contentView: MediaViewerContentsView)
 }
 
-class MediaViewerInfoOverlayView: UIView {
-    func defaultHeight() -> CGFloat {
-        return 0.0
-    }
-}
-
 class MediaViewerContentsView: UIView {
     
     // MARK: properties
