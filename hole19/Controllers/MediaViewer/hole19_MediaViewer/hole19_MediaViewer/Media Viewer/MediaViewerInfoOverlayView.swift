@@ -11,6 +11,16 @@ class MediaViewerInfoOverlayView: UIView {
         }
     }
     
+    // init
+    
+    required override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+    
     // public
 
     func defaultHeight() -> CGFloat {

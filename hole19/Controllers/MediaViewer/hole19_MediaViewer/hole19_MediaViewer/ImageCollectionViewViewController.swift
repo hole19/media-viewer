@@ -13,9 +13,17 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let imageURL1 = NSURL(string: "https://www.hole19golf.com/img/team/anthony.jpg")!
+        let authorInfo1 = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: imageURL1, authorTitle: "Anthony", datePictureWasTaken: NSDate())
+        let imageURL2 = NSURL(string: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAZYAAAAJDc5MzUwZDJiLWUyMzMtNDNkNC1hMjgyLTZlNDBhYmZmZGNlMw.jpg")!
+        let authorInfo2 = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: imageURL2, authorTitle: "Rafa", datePictureWasTaken: NSDate())
+        
+        var useInfoOne = true
         for name in imageNames {
-            let image = MediaViewerImage(image: UIImage(named: name)!, infoOverlayViewClass: MediaViewerInfoOverlayView.self)
+            let image = MediaViewerImage(image: UIImage(named: name)!, infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
+            image.overlayInfoModel = useInfoOne ? authorInfo1 : authorInfo2
             allImages.append(image)
+            useInfoOne = !useInfoOne
         }
     }
     

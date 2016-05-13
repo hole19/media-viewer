@@ -65,7 +65,6 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.scrollView.frame.size) == CGSizeMake(sut.bounds.size.width, sut.bounds.size.height)
     }
     
-    
     func testThatItHasOverlayView() {
         expect(self.sut.overlayView) != nil
     }

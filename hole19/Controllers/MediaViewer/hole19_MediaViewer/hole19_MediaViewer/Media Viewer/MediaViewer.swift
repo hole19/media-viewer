@@ -93,6 +93,9 @@ class MediaViewer: UIViewController {
     
     private func setupContentsView() {
         contentsView = MediaViewerContentsView(frame: view.bounds)
+        if let initialImage = initialImage {
+            contentsView.setupOverlayView(initialImage)
+        }
         view.addSubviewAndFullScreenConstraints(contentsView)
         contentsView.delegate = self
         contentsView.scrollView.transitionDelegate = transitionDelegate

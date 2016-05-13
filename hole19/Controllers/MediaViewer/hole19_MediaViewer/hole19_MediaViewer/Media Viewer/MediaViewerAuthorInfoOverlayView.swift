@@ -1,7 +1,19 @@
 
 import UIKit
 
-protocol MediaViewerAuthorInfoOverlayViewModel {
+class MediaViewerAuthorInfoOverlayViewModel: MediaViewerAuthorInfoOverlayViewModelProtocol {
+    var authorImageURL: NSURL
+    var authorTitle: String
+    var datePictureWasTaken: NSDate
+
+    init(authorImageURL: NSURL, authorTitle: String, datePictureWasTaken: NSDate) {
+        self.authorImageURL = authorImageURL
+        self.authorTitle = authorTitle
+        self.datePictureWasTaken = datePictureWasTaken
+    }
+}
+
+protocol MediaViewerAuthorInfoOverlayViewModelProtocol {
     var authorImageURL: NSURL { get }
     var authorTitle: String { get }
     var datePictureWasTaken: NSDate { get }
@@ -18,12 +30,12 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     
     // MARK: init
 
-    override init(frame: CGRect) {
+    required init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
@@ -35,7 +47,7 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     }
     
     override func updateViewWithModel(model: Any?) {
-        if let model = model as? MediaViewerAuthorInfoOverlayViewModel {
+        if let model = model as? MediaViewerAuthorInfoOverlayViewModelProtocol {
             authorTitleLablel.text = model.authorTitle
             authorImageView.sd_setImageWithURL(model.authorImageURL)
         }
@@ -76,14 +88,18 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     private func setupAuthorTitleLabel() {
         authorTitleLablel = UILabel(frame: CGRectMake(0,0,100,100))
         authorTitleLablel.translatesAutoresizingMaskIntoConstraints = false
+        authorTitleLablel.textColor = UIColor.whiteColor()
+        authorTitleLablel.font = UIFont.boldSystemFontOfSize(14.0)
         addSubview(authorTitleLablel)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-44-[authorTitleLablel]-8-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorTitleLablel" : authorTitleLablel]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-34-[authorTitleLablel]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorTitleLablel" : authorTitleLablel]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-38-[authorTitleLablel]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["authorTitleLablel" : authorTitleLablel]))
     }
     
     private func setupTakenByLabel() {
         takenByTitle = UILabel(frame: CGRectMake(0,0,100,100))
         takenByTitle.translatesAutoresizingMaskIntoConstraints = false
+        takenByTitle.textColor = UIColor(red:155.0/255.0, green:155.0/255.0, blue:155.0/255.0, alpha:1.00)
+        takenByTitle.font = UIFont.boldSystemFontOfSize(11.0)
 //        takenByTitle.text = NSLocalizedString("klMediaViewer_TakenBy", comment: "")
         takenByTitle.text = "TAKEN BY"
         addSubview(takenByTitle)

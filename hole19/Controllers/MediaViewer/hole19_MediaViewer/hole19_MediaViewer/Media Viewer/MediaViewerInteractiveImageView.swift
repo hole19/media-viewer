@@ -43,13 +43,12 @@ class MediaViewerInteractiveImageView: UIView {
         setupView()
     }
     
-    // MARK: UIView
     
     // MARK: public
     
-    func zoomOut() {
+    func zoomOut(animated animated: Bool = true) {
         if scrollView.zoomScale > 1.0 {
-            scrollView.setZoomScale(1.0, animated: true)
+            scrollView.setZoomScale(1.0, animated: animated)
         }
     }
     
@@ -90,7 +89,6 @@ class MediaViewerInteractiveImageView: UIView {
         scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Width, relatedBy: .Equal, toItem: scrollView, attribute: .Width, multiplier: 1.0, constant: 0.0))
         scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: .Equal, toItem: scrollView, attribute: .Height, multiplier: 1.0, constant: 0.0))
         scrollView.contentSize = imageView.bounds.size
-        scrollView.scrollEnabled = false
     }
     
     private func setupScrollView() {

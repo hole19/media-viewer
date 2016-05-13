@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol MediaViewerTransitionDelegate {
+@objc protocol MediaViewerTransitionDelegate {
     func imageViewForImage(image: MediaViewerImage) -> UIImageView?
     func scrollImageviewsContainer() -> UIScrollView
 }

@@ -50,8 +50,19 @@ class MediaViewerContentsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
-    // MARK: public - selectors
+    
+    // MARK: public
+
+    func setupOverlayView(imageModel: MediaViewerImage) {
+        overlayView = imageModel.infoOverlayViewClass.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        overlayView!.translatesAutoresizingMaskIntoConstraints = false
+        overlayView?.model = imageModel.overlayInfoModel
+        addSubview(overlayView!)
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[overlayView]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["overlayView" : overlayView!]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[overlayView(height)]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: ["height": overlayView!.defaultHeight()], views: ["overlayView" : overlayView!]))
+    }
+
+    // MARK: selectors
     
     func viewTapped(sender: UITapGestureRecognizer) {
         let newAlpha: CGFloat = controlsAlpha == 0.0 ? 1.0 : 0.0
@@ -62,7 +73,7 @@ class MediaViewerContentsView: UIView {
     func viewLongPressed(sender: UILongPressGestureRecognizer) {
         delegate?.longPressActionDetectedInContentView(self)
     }
-    
+
     // MARK: private
     
     private func setupGestureRecognisers() {
@@ -75,7 +86,6 @@ class MediaViewerContentsView: UIView {
         setupBackgroundView()
         setupScrollView()
         setupCloseButton()
-        setupOverlayView()
         backgroundColor = UIColor.clearColor()
         interfaceAlpha = 0.0
     }
@@ -107,6 +117,7 @@ class MediaViewerContentsView: UIView {
         scrollView.alpha = 0.0
         scrollView.imageViewActionsDelgate = self
         scrollView.clipsToBounds = false
+        scrollView.scrollDelegate = self
         addSubviewAndFullScreenConstraints(scrollView)
     }
     
@@ -114,14 +125,6 @@ class MediaViewerContentsView: UIView {
         backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red:0.19, green:0.19, blue:0.19, alpha:1.00)
         addSubviewAndFullScreenConstraints(backgroundView)
-    }
-    
-    private func setupOverlayView() {
-        overlayView = MediaViewerAuthorInfoOverlayView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        overlayView!.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(overlayView!)
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[overlayView]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["overlayView" : overlayView!]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[overlayView(height)]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: ["height": overlayView!.defaultHeight()], views: ["overlayView" : overlayView!]))
     }
     
     private func setupCloseButton() {
@@ -154,5 +157,11 @@ extension MediaViewerContentsView: MediaViewerInteractiveImageViewDelegate {
     
     func hideControls() {
         setControlsAlpha(0.0, animated: true)
+    }
+}
+
+extension MediaViewerContentsView: MediaViewerMultipleImageScrollViewActionsDelegate {
+    func scrollViewScrolledToImageModel(image: MediaViewerImage) {
+        overlayView?.model = image.overlayInfoModel
     }
 }

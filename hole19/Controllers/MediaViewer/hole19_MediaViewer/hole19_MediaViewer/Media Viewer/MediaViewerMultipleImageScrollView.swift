@@ -1,6 +1,11 @@
 
 import UIKit
 
+
+@objc protocol MediaViewerMultipleImageScrollViewActionsDelegate: class {
+    func scrollViewScrolledToImageModel(image: MediaViewerImage)
+}
+
 class MediaViewerMultipleImageScrollView: UIView {
     
     // MARK: properties
@@ -9,7 +14,9 @@ class MediaViewerMultipleImageScrollView: UIView {
 
     var contentViews = [MediaViewerInteractiveImageView]()
     
-    var transitionDelegate: MediaViewerTransitionDelegate?
+    weak var transitionDelegate: MediaViewerTransitionDelegate?
+    weak var scrollDelegate: MediaViewerMultipleImageScrollViewActionsDelegate?
+
     var imageViewActionsDelgate: MediaViewerInteractiveImageViewDelegate? {
         didSet {
             setDelegateForAllViews(contentViews)
@@ -99,6 +106,8 @@ class MediaViewerMultipleImageScrollView: UIView {
         scrollView.pagingEnabled = true
         scrollView.backgroundColor = UIColor.clearColor()
         scrollView.delegate = self
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
         self.addSubviewAndFullScreenConstraints(scrollView, sideMargins: -inbetweenImagesMargin)
     }
 
@@ -158,10 +167,18 @@ class MediaViewerMultipleImageScrollView: UIView {
     private func hideCorrespondingImage(index: Int) {
         hiddenImageView.hidden = false
         if let transitionDelegate = transitionDelegate,
-           let images = images {
+            let images = images {
             if let hiddentImageView = transitionDelegate.imageViewForImage(images[index]) {
                 self.hiddenImageView = hiddentImageView
                 hiddentImageView.hidden = true
+            }
+        }
+    }
+    
+    private func zoomOutAllViewsButCurrentAtIndex(currentIndex: Int) {
+        for (index, content) in contentViews.enumerate() {
+            if index != currentIndex {
+                content.zoomOut(animated: false)
             }
         }
     }
@@ -173,5 +190,9 @@ extension MediaViewerMultipleImageScrollView: UIScrollViewDelegate {
         updateViewWithCurrentPage(currentPage)
         scrollImageViewContainerToCorrespondingImage(currentPage)
         hideCorrespondingImage(currentPage)
+        if let image = images?[currentPage] {
+            scrollDelegate?.scrollViewScrolledToImageModel(image)
+        }
+        zoomOutAllViewsButCurrentAtIndex(currentPage)
     }
 }
