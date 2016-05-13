@@ -48,7 +48,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     class MockMediaViewerMultipleImageScrollView: MediaViewerMultipleImageScrollView {
         override func currentImageView() -> MediaViewerInteractiveImageView? {
             if contentViews.count == 0 {
-                self.images = [UIImage()]
+                self.images = [UIImage(named: "minion8")!]
             }
             return contentViews[0]
         }
@@ -124,11 +124,11 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     }
     
     func testThatTransitionToDestinationFinalValueXIsEqalToDestinationImageView() {
-        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        let imageView = setupSUTWithTwoImageViewsInsideContainers()
         
         sut.transitionToDestinationImageView(false)
         
-        expect(imageView2.frame.origin.x) == 0.0
+        expect(imageView.frame.origin.x) == 0.0
     }
     
     func testThatTransitionToDestinationFinalValueYIsEqalToDestinationImageView() {

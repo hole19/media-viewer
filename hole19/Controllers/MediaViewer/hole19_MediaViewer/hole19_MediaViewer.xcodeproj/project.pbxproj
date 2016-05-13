@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4559848D1CE5C4D60095AA1A /* minion8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4559848C1CE5C4D60095AA1A /* minion8.jpg */; };
 		457F76E81CAD552A0049B2E1 /* hole19v2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */; };
 		458D331C1C9C7BB700844203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D331B1C9C7BB700844203 /* AppDelegate.swift */; };
 		458D331E1C9C7BB700844203 /* SingleImageViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D331D1C9C7BB700844203 /* SingleImageViewViewController.swift */; };
 		458D33211C9C7BB700844203 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458D331F1C9C7BB700844203 /* Main.storyboard */; };
 		458D33231C9C7BB700844203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 458D33221C9C7BB700844203 /* Assets.xcassets */; };
 		458D33261C9C7BB700844203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458D33241C9C7BB700844203 /* LaunchScreen.storyboard */; };
-		459798171CE464D700A19ED1 /* minion8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 459798161CE464D700A19ED1 /* minion8.jpg */; };
 		45F89F8B1CBFC87A000D467E /* ImageCollectionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */; };
 		45F89F8D1CBFC8D8000D467E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8C1CBFC8D8000D467E /* ImageCell.swift */; };
 		45F89F8F1CBFF028000D467E /* MockTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8E1CBFF028000D467E /* MockTransitionCoordinator.swift */; };
@@ -26,7 +26,7 @@
 		45F89FAE1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F9B1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift */; };
 		45F89FB01CBFF12A000D467E /* MediaViewerPanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F9D1CBFF12A000D467E /* MediaViewerPanningViewModel.swift */; };
 		45F89FB31CBFF12A000D467E /* MediaViewerTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FA01CBFF12A000D467E /* MediaViewerTransitionAnimator.swift */; };
-		45F89FB51CBFF12A000D467E /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FA21CBFF12A000D467E /* UIView+extensions.swift */; };
+		45F89FB51CBFF12A000D467E /* UIView+MediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89FA21CBFF12A000D467E /* UIView+MediaViewer.swift */; };
 		45F89FB61CBFF151000D467E /* MediaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F9F1CBFF12A000D467E /* MediaViewerTests.swift */; };
 		45F89FB71CBFF151000D467E /* MediaViewerAuthorInfoOverlayViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F921CBFF12A000D467E /* MediaViewerAuthorInfoOverlayViewTests.swift */; };
 		45F89FB81CBFF151000D467E /* MediaViewerContentsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F941CBFF12A000D467E /* MediaViewerContentsViewTests.swift */; };
@@ -58,17 +58,17 @@
 		0BA128A488A557AFAD6AA53B /* Pods-hole19v2-hole19v2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hole19v2-hole19v2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hole19v2-hole19v2Tests/Pods-hole19v2-hole19v2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		194A5388CC3ABC60B9DFB5AA /* Pods_hole19v2_hole19v2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hole19v2_hole19v2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3548F5938ECCF1CCD178A5C3 /* Pods-hole19v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hole19v2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hole19v2/Pods-hole19v2.debug.xcconfig"; sourceTree = "<group>"; };
+		4559848C1CE5C4D60095AA1A /* minion8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = minion8.jpg; path = hole19_MediaViewer/Assets.xcassets/minion8.imageset/minion8.jpg; sourceTree = SOURCE_ROOT; };
 		457F76E51CAD55290049B2E1 /* hole19v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hole19v2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hole19v2Tests.swift; sourceTree = "<group>"; };
 		457F76E91CAD552A0049B2E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		458D33181C9C7BB700844203 /* Media Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Media Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		458D33181C9C7BB700844203 /* hole19v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hole19v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		458D331B1C9C7BB700844203 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		458D331D1C9C7BB700844203 /* SingleImageViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewViewController.swift; sourceTree = "<group>"; };
 		458D33201C9C7BB700844203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		458D33221C9C7BB700844203 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		458D33251C9C7BB700844203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		458D33271C9C7BB700844203 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		459798161CE464D700A19ED1 /* minion8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = minion8.jpg; path = ../../../../../../../Desktop/minion8.jpg; sourceTree = "<group>"; };
 		45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewViewController.swift; sourceTree = "<group>"; };
 		45F89F8C1CBFC8D8000D467E /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		45F89F8E1CBFF028000D467E /* MockTransitionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionCoordinator.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		45F89F9F1CBFF12A000D467E /* MediaViewerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerTests.swift"; sourceTree = SOURCE_ROOT; };
 		45F89FA01CBFF12A000D467E /* MediaViewerTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerTransitionAnimator.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerTransitionAnimator.swift"; sourceTree = SOURCE_ROOT; };
 		45F89FA11CBFF12A000D467E /* MediaViewerTransitionAnimatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerTransitionAnimatorTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerTransitionAnimatorTests.swift"; sourceTree = SOURCE_ROOT; };
-		45F89FA21CBFF12A000D467E /* UIView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+extensions.swift"; path = "hole19_MediaViewer/Media Viewer/UIView+extensions.swift"; sourceTree = SOURCE_ROOT; };
+		45F89FA21CBFF12A000D467E /* UIView+MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+MediaViewer.swift"; path = "hole19_MediaViewer/Media Viewer/UIView+MediaViewer.swift"; sourceTree = SOURCE_ROOT; };
 		45F89FBF1CBFF1A0000D467E /* ScrollViewMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollViewMock.swift; path = hole19_MediaViewerTests/ScrollViewMock.swift; sourceTree = SOURCE_ROOT; };
 		45F89FC01CBFF1A0000D467E /* TapGestureRecognizerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TapGestureRecognizerMock.swift; path = hole19_MediaViewerTests/TapGestureRecognizerMock.swift; sourceTree = SOURCE_ROOT; };
 		45F89FC31CBFF461000D467E /* UICollectionView+MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+MediaViewer.swift"; path = "hole19_MediaViewer/Media Viewer/UICollectionView+MediaViewer.swift"; sourceTree = SOURCE_ROOT; };
@@ -134,7 +134,7 @@
 		457F76E61CAD552A0049B2E1 /* hole19v2Tests */ = {
 			isa = PBXGroup;
 			children = (
-				459798161CE464D700A19ED1 /* minion8.jpg */,
+				4559848C1CE5C4D60095AA1A /* minion8.jpg */,
 				45F89FBF1CBFF1A0000D467E /* ScrollViewMock.swift */,
 				45F89FC01CBFF1A0000D467E /* TapGestureRecognizerMock.swift */,
 				457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */,
@@ -158,7 +158,7 @@
 		458D33191C9C7BB700844203 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				458D33181C9C7BB700844203 /* Media Viewer.app */,
+				458D33181C9C7BB700844203 /* hole19v2.app */,
 				457F76E51CAD55290049B2E1 /* hole19v2Tests.xctest */,
 			);
 			name = Products;
@@ -202,7 +202,7 @@
 				45F89F9E1CBFF12A000D467E /* MediaViewerPanningViewModelTests.swift */,
 				45F89FA01CBFF12A000D467E /* MediaViewerTransitionAnimator.swift */,
 				45F89FA11CBFF12A000D467E /* MediaViewerTransitionAnimatorTests.swift */,
-				45F89FA21CBFF12A000D467E /* UIView+extensions.swift */,
+				45F89FA21CBFF12A000D467E /* UIView+MediaViewer.swift */,
 				45F89FC31CBFF461000D467E /* UICollectionView+MediaViewer.swift */,
 			);
 			name = MediaViewer;
@@ -259,7 +259,7 @@
 			);
 			name = hole19v2;
 			productName = hole19_MediaViewer;
-			productReference = 458D33181C9C7BB700844203 /* Media Viewer.app */;
+			productReference = 458D33181C9C7BB700844203 /* hole19v2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -306,7 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				459798171CE464D700A19ED1 /* minion8.jpg in Resources */,
+				4559848D1CE5C4D60095AA1A /* minion8.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +454,7 @@
 				458D331C1C9C7BB700844203 /* AppDelegate.swift in Sources */,
 				45F89F8B1CBFC87A000D467E /* ImageCollectionViewViewController.swift in Sources */,
 				45F89FAE1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift in Sources */,
-				45F89FB51CBFF12A000D467E /* UIView+extensions.swift in Sources */,
+				45F89FB51CBFF12A000D467E /* UIView+MediaViewer.swift in Sources */,
 				45F89FC41CBFF461000D467E /* UICollectionView+MediaViewer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,7 +613,7 @@
 				INFOPLIST_FILE = hole19_MediaViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hole19.hole19-MediaViewer";
-				PRODUCT_NAME = "Media Viewer";
+				PRODUCT_NAME = hole19v2;
 			};
 			name = Debug;
 		};
@@ -626,7 +626,7 @@
 				INFOPLIST_FILE = hole19_MediaViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hole19.hole19-MediaViewer";
-				PRODUCT_NAME = "Media Viewer";
+				PRODUCT_NAME = hole19v2;
 				PROVISIONING_PROFILE = "204df6c3-ea4e-495d-ae7e-165d19067ca7";
 			};
 			name = Release;
