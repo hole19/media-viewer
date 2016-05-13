@@ -43,13 +43,13 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         expect(self.sut.scrollView.pagingEnabled) == true
     }
     
-    func setupSUTWithImages() -> [UIImage] {
+    func setupSUTWithImages() -> [MediaViewerImage] {
         sut.layoutIfNeeded()
 
         let image1 = UIImage()
         let image2 = UIImage()
         
-        let images = [image1, image2]
+        let images = [MediaViewerImage(image: image1), MediaViewerImage(image: image2)]
         sut.images = images
         return images
     }
@@ -68,7 +68,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     func testThatSettingTheImagesWillSetupCorrectFirstInnerContentViewImage() {
         let images = setupSUTWithImages()
         
-        expect(self.sut.contentViews[0].imageView.image) == images[0]
+        expect(self.sut.contentViews[0].imageView.image) == images[0].image
     }
     
     func testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewOrigin() {
@@ -145,32 +145,32 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     }
     
     func testThatSetImagesWithSelectedOneSetsImagesCorrectly() {
-        let image = UIImage()
-        let images = [UIImage(), image, UIImage()]
+        let image = MediaViewerImage(image: UIImage())
+        let images = [MediaViewerImage(image: UIImage()), image, MediaViewerImage(image: UIImage())]
         sut.setImages(images, withSelectedOne: image)
         
-        expect(self.sut.images) == images
+        expect(self.sut.images?.count) == images.count
     }
     
     func testThatSetImagesWithSelectedOneSetsSelectedImageCorrectly() {
-        let image = UIImage()
-        let images = [UIImage(), image, UIImage()]
+        let image = MediaViewerImage(image: UIImage())
+        let images = [MediaViewerImage(image: UIImage()), image, MediaViewerImage(image: UIImage())]
         sut.setImages(images, withSelectedOne: image)
         
-        expect(self.sut.selectedImage) == image
+        expect(self.sut.selectedImage) === image
     }
     
     func testThatItWillSetCorrectContentOffsetOnSetImagesWithSelectedOne() {
-        let image = UIImage()
-        let images = [UIImage(), image, UIImage()]
+        let image = MediaViewerImage(image: UIImage())
+        let images = [MediaViewerImage(image: UIImage()), image, MediaViewerImage(image: UIImage())]
         sut.setImages(images, withSelectedOne: image)
         
         expect(self.sut.scrollView.contentOffset) == CGPoint(x: 208.0, y: 0.0)
     }
     
     func testThatItWillSetCorrectCurrentPagesetOnSetImagesWithSelectedOne() {
-        let image = UIImage()
-        let images = [UIImage(), image, UIImage()]
+        let image = MediaViewerImage(image: UIImage())
+        let images = [MediaViewerImage(image: UIImage()), image, MediaViewerImage(image: UIImage())]
         sut.setImages(images, withSelectedOne: image)
         
         expect(self.sut.currentPage) == 1

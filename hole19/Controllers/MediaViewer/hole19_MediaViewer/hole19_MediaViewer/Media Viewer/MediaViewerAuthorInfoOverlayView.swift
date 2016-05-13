@@ -1,6 +1,12 @@
 
 import UIKit
 
+protocol MediaViewerAuthorInfoOverlayViewModel {
+    var authorImageURL: NSURL { get }
+    var authorTitle: String { get }
+    var datePictureWasTaken: NSDate { get }
+}
+
 class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     
     // MARK: properties
@@ -28,6 +34,13 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         return 80.0
     }
     
+    override func updateViewWithModel(model: Any?) {
+        if let model = model as? MediaViewerAuthorInfoOverlayViewModel {
+            authorTitleLablel.text = model.authorTitle
+            authorImageView.sd_setImageWithURL(model.authorImageURL)
+        }
+    }
+    
     // MARK: public
     
     // MARK: private
@@ -37,6 +50,7 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         setupImageView()
         setupAuthorTitleLabel()
         setupTakenByLabel()
+        updateViewWithModel(model)
     }
     
     private func setupImageView() {
@@ -70,7 +84,8 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     private func setupTakenByLabel() {
         takenByTitle = UILabel(frame: CGRectMake(0,0,100,100))
         takenByTitle.translatesAutoresizingMaskIntoConstraints = false
-        takenByTitle.text = NSLocalizedString("klMediaViewer_TakenBy", comment: "")
+//        takenByTitle.text = NSLocalizedString("klMediaViewer_TakenBy", comment: "")
+        takenByTitle.text = "TAKEN BY"
         addSubview(takenByTitle)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-8-[takenByTitle]-8-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["takenByTitle" : takenByTitle]))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-13-[takenByTitle]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["takenByTitle" : takenByTitle]))

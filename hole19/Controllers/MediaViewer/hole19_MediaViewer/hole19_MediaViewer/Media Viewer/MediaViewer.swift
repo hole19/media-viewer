@@ -10,14 +10,14 @@ class MediaViewer: UIViewController {
     
     // MARK: properties
     
-    var mediaURL = NSURL()
     var sourceImageView: UIImageView?
+    var initialImage: MediaViewerImage?
     
     var transitionAnimator: MediaViewerTransitionAnimator?
     
     var contentsView: MediaViewerContentsView!
     var imageTaskHandler = MediaViewerImageActionsHandler()
-    var allImages: [UIImage]?
+    var allImages: [MediaViewerImage]?
     var transitionDelegate: MediaViewerTransitionDelegate?
     
     // MARK: init
@@ -30,12 +30,12 @@ class MediaViewer: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(mediaURL: NSURL, sourceImageView: UIImageView, allImages: [UIImage]?, transitionDelegate:MediaViewerTransitionDelegate? = nil) {
+    convenience init(image: MediaViewerImage, sourceImageView: UIImageView, allImages: [MediaViewerImage]?, transitionDelegate:MediaViewerTransitionDelegate? = nil) {
         self.init(nibName: nil, bundle: nil)
-        self.mediaURL = mediaURL
         self.sourceImageView = sourceImageView
         self.allImages = allImages
         self.transitionDelegate = transitionDelegate
+        self.initialImage = image
         modalPresentationStyle = .OverCurrentContext
     }
 
@@ -51,14 +51,13 @@ class MediaViewer: UIViewController {
         if transitionAnimator == nil, let sourceImageView = sourceImageView {
             transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView, transitionDelegate: transitionDelegate)
         }
-//        contentsView.interactiveImageView.imageView.sd_setImageWithURL(mediaURL)
         contentsView.pannedViewModel.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if contentsView.scrollView.images == nil {
-            if let sourceImage = sourceImageView?.image {
+            if let sourceImage = initialImage {
                 if let moreImages = allImages {
                     contentsView.scrollView.setImages(moreImages, withSelectedOne: sourceImage)
                 } else {

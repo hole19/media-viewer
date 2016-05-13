@@ -21,7 +21,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         }
     }
     
-    var images: [UIImage]? {
+    var images: [MediaViewerImage]? {
         didSet {
             guard let images = images else { return }
             var selected = selectedImage
@@ -31,7 +31,7 @@ class MediaViewerMultipleImageScrollView: UIView {
             updateViewWithImages(images, selectedImage: selected!)
         }
     }
-    var selectedImage: UIImage?
+    var selectedImage: MediaViewerImage?
     var currentPage: Int = 0
     let inbetweenImagesMargin: CGFloat = 4.0
     
@@ -77,7 +77,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         }
     }
 
-    func setImages(images: [UIImage], withSelectedOne selImage: UIImage) {
+    func setImages(images: [MediaViewerImage], withSelectedOne selImage: MediaViewerImage) {
         self.selectedImage = selImage
         self.images = images
     }
@@ -102,7 +102,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         self.addSubviewAndFullScreenConstraints(scrollView, sideMargins: -inbetweenImagesMargin)
     }
 
-    private func updateViewWithImages(newImages: [UIImage], selectedImage: UIImage) {
+    private func updateViewWithImages(newImages: [MediaViewerImage], selectedImage: MediaViewerImage) {
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(newImages.count), height: bounds.size.height)
         var currentViewFrame = scrollView.bounds
         currentViewFrame.origin.x = inbetweenImagesMargin
@@ -110,7 +110,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         for image in newImages {
             let contentView = MediaViewerInteractiveImageView(frame: currentViewFrame)
             contentView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            contentView.imageView.image = image
+            contentView.imageModel = image
             contentViews.append(contentView)
             scrollView.addSubview(contentView)
             currentViewFrame.origin.x += scrollView.bounds.size.width

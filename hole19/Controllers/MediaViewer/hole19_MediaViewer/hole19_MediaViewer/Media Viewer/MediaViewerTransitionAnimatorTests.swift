@@ -48,7 +48,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     class MockMediaViewerMultipleImageScrollView: MediaViewerMultipleImageScrollView {
         override func currentImageView() -> MediaViewerInteractiveImageView? {
             if contentViews.count == 0 {
-                self.images = [UIImage(named: "minion8")!]
+                self.images = [MediaViewerImage(image: UIImage(named: "minion8")!)]
             }
             return contentViews[0]
         }

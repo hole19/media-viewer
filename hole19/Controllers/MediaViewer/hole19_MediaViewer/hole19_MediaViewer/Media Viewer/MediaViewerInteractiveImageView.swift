@@ -10,6 +10,11 @@ class MediaViewerInteractiveImageView: UIView {
     // MARK: properties
     
     weak var delegate: MediaViewerInteractiveImageViewDelegate?
+    var imageModel: MediaViewerImage? {
+        didSet {
+            updateViewWithModel(imageModel)
+        }
+    }
     
     var maximumZoomScale: CGFloat = 4.0 {
         didSet {
@@ -107,6 +112,14 @@ class MediaViewerInteractiveImageView: UIView {
         zoomDoubleTapGestureRecogniser.numberOfTapsRequired = 2
         addGestureRecognizer(zoomDoubleTapGestureRecogniser)
     }
+    
+    private func updateViewWithModel(imageModel: MediaViewerImage?) {
+        imageView.image = imageModel?.image
+        if let url = imageModel?.imageURL {
+            imageView.sd_setImageWithURL(url)
+        }
+    }
+
 }
 
 extension MediaViewerInteractiveImageView: UIScrollViewDelegate {

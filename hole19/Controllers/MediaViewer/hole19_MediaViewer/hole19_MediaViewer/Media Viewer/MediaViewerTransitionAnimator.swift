@@ -64,7 +64,7 @@ class MediaViewerTransitionAnimator: NSObject {
         var endImageFrame = CGRectZero
         var sourceImage = sourceImageView
         if let transitionDelegate = transitionDelegate {
-            let image = currentImageView.imageView.image!
+            let image = currentImageView.imageModel!
             
             if let imageView = transitionDelegate.imageViewForImage(image), let newSourceSuperview = imageView.superview {
                 endImageFrame = currentSuperview.convertRect(imageView.frame, fromView: newSourceSuperview)

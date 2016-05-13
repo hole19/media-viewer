@@ -1,7 +1,7 @@
 
 import UIKit
 
-class MediaViewerImage {
+class MediaViewerImage: NSObject {
     
     // MARK: properties
     
@@ -9,9 +9,11 @@ class MediaViewerImage {
     var image: UIImage?
     var imageURL: NSURL?
     
+    var overlayInfoModel: Any?
+    
     // MARK: init
     
-    init() {
+    override init() {
         self.infoOverlayViewClass = MediaViewerInfoOverlayView.self
     }
     
