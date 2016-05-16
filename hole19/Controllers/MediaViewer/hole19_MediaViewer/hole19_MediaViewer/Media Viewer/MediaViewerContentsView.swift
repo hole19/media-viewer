@@ -41,9 +41,9 @@ class MediaViewerContentsView: UIView {
     
     // MARK: init
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, mediaViewerDelegate: MediaViewerDelegate? = nil) {
         super.init(frame: frame)
-        setupView()
+        setupView(mediaViewerDelegate)
         setupGestureRecognisers()
     }
 
@@ -82,9 +82,9 @@ class MediaViewerContentsView: UIView {
         setupLongPressGestureRecogniser()
     }
     
-    private func setupView() {
+    private func setupView(mediaViewerDelegate: MediaViewerDelegate? = nil) {
         setupBackgroundView()
-        setupScrollView()
+        setupScrollView(mediaViewerDelegate)
         setupCloseButton()
         backgroundColor = UIColor.clearColor()
         interfaceAlpha = 0.0
@@ -112,12 +112,13 @@ class MediaViewerContentsView: UIView {
         scrollView.addGestureRecognizer(panGestureRecogniser)
     }
     
-    private func setupScrollView() {
+    private func setupScrollView(mediaViewerDelegate: MediaViewerDelegate? = nil) {
         scrollView = MediaViewerMultipleImageScrollView(frame: bounds)
         scrollView.alpha = 0.0
         scrollView.imageViewActionsDelgate = self
         scrollView.clipsToBounds = false
         scrollView.scrollDelegate = self
+        scrollView.mediaViewerDelegate = mediaViewerDelegate
         addSubviewAndFullScreenConstraints(scrollView)
     }
     

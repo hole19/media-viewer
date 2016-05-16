@@ -24,6 +24,7 @@ class MediaViewerInteractiveImageView: UIView {
     
     var imageView: UIImageView!
     var scrollView: UIScrollView!
+    var activityIndicator: UIActivityIndicatorView!
 
     var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer!
     
@@ -52,7 +53,6 @@ class MediaViewerInteractiveImageView: UIView {
         }
     }
     
-    
     // MARK: public - selectors
     
     func viewDoubleTapped(sender: UITapGestureRecognizer) {
@@ -78,6 +78,7 @@ class MediaViewerInteractiveImageView: UIView {
         setupScrollView()
         setupImageView()
         setupTapGestureRecogniser()
+        setupActivityIndicatorView()
         backgroundColor = UIColor.clearColor()
     }
     
@@ -103,6 +104,14 @@ class MediaViewerInteractiveImageView: UIView {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         addSubviewAndFullScreenConstraints(scrollView)
+    }
+    
+    private func setupActivityIndicatorView() {
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicator.hidden = true
+        addSubview(activityIndicator)
+        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
     }
     
     private func setupTapGestureRecogniser() {

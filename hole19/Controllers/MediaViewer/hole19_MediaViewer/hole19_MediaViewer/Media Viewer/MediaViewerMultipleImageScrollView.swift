@@ -14,7 +14,7 @@ class MediaViewerMultipleImageScrollView: UIView {
 
     var contentViews = [MediaViewerInteractiveImageView]()
     
-    weak var transitionDelegate: MediaViewerDelegate?
+    weak var mediaViewerDelegate: MediaViewerDelegate?
     weak var scrollDelegate: MediaViewerMultipleImageScrollViewActionsDelegate?
 
     var imageViewActionsDelgate: MediaViewerInteractiveImageViewDelegate? {
@@ -129,7 +129,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         if let index = newImages.indexOf(selectedImage) {
             scrollView.contentOffset = CGPoint(x:CGFloat(index)*scrollView.bounds.size.width, y:0.0)
             currentPage = index
-            if let hiddentImageView = transitionDelegate?.imageViewForImage(newImages[index]) {
+            if let hiddentImageView = mediaViewerDelegate?.imageViewForImage(newImages[index]) {
                 self.hiddenImageView = hiddentImageView
             }
         }
@@ -157,8 +157,8 @@ class MediaViewerMultipleImageScrollView: UIView {
     }
     
     private func scrollImageViewContainerToCorrespondingImage(index: Int) {
-        if let transitionDelegate = transitionDelegate {
-            if let collectionView = transitionDelegate.scrollImageviewsContainer() as? UICollectionView {
+        if let mediaViewerDelegate = mediaViewerDelegate {
+            if let collectionView = mediaViewerDelegate.scrollImageviewsContainer() as? UICollectionView {
                 collectionView.scrollToItemWithIndex(index)
             }
         }
@@ -166,9 +166,9 @@ class MediaViewerMultipleImageScrollView: UIView {
     
     private func hideCorrespondingImage(index: Int) {
         hiddenImageView.hidden = false
-        if let transitionDelegate = transitionDelegate,
+        if let mediaViewerDelegate = mediaViewerDelegate,
             let images = images {
-            if let hiddentImageView = transitionDelegate.imageViewForImage(images[index]) {
+            if let hiddentImageView = mediaViewerDelegate.imageViewForImage(images[index]) {
                 self.hiddenImageView = hiddentImageView
                 hiddentImageView.hidden = true
             }

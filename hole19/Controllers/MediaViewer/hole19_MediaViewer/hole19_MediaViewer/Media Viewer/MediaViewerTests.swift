@@ -82,7 +82,7 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItBeginsTransitionOnViewDidAppear() {
-        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
+        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRectZero))
         sut.transitionAnimator = mockTransition
         let _ = sut.view
         sut.viewDidAppear(false)
@@ -91,7 +91,7 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatCloseTriggersTransitionBack() {
-        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
+        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRectZero))
         sut.transitionAnimator = mockTransition
         let _ = sut.view
         sut.close(sut.contentsView.closeButton)
@@ -112,7 +112,7 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatDismissViewWillCallTransitionBack() {
-        let mockTransition = MockTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
+        let mockTransition = MockTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRectZero))
         sut.transitionAnimator = mockTransition
         
         sut.dismissView()

@@ -88,13 +88,12 @@ class MediaViewer: UIViewController {
     }
     
     private func setupContentsView() {
-        contentsView = MediaViewerContentsView(frame: view.bounds)
+        contentsView = MediaViewerContentsView(frame: view.bounds, mediaViewerDelegate: transitionDelegate)
         if let initialImage = initialImage {
             contentsView.setupOverlayView(initialImage)
         }
         view.addSubviewAndFullScreenConstraints(contentsView)
         contentsView.delegate = self
-        contentsView.scrollView.transitionDelegate = transitionDelegate
     }
     
     private func setupCloseButton() {

@@ -26,12 +26,12 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     
     func testThatItInitsWithSourceImageView() {
         let imageView = UIImageView()
-        sut = MediaViewerTransitionAnimator(sourceImageView:imageView, contentsView: MediaViewerContentsView())
+        sut = MediaViewerTransitionAnimator(sourceImageView:imageView, contentsView: MediaViewerContentsView(frame: CGRectZero))
         expect(self.sut.sourceImageView) == imageView
     }
     
     func testThatItInitsWithContentsView() {
-        let contentsView = MediaViewerContentsView()
+        let contentsView = MediaViewerContentsView(frame: CGRectZero)
         sut = MediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: contentsView)
         expect(self.sut.contentsView) == contentsView
     }

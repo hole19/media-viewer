@@ -8,6 +8,8 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
     var imageNames = ["minion1", "minion2", "minion3", "minion4", "minion5", "minion6", "minion7", "minion8", "minion9"]
     var allImages = [MediaViewerImage]()
     
+    var hasMoreImagesToLoad = true
+    
     // MARK: UIViewController
     
     override func viewDidLoad() {
@@ -25,6 +27,22 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
             allImages.append(image)
             useInfoOne = !useInfoOne
         }
+    }
+    
+    // MARK: private
+    
+    private func moreImages() -> [MediaViewerImage] {
+        var newImages = [MediaViewerImage]()
+        let imageURL1 = NSURL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS9iDRjjy2UraGtLdE9DHLkBQjussZvqXXhYjtXbR4a6VSgzLr")!
+        let authorInfo1 = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: imageURL1, authorTitle: "Tiger", datePictureWasTaken: NSDate())
+
+        let imagePaths = ["http://www.soncaliu.com/images/golf3/a1ccesorios-de-golf.jpg", "http://www.lacianella.com/wp-content/uploads/2012/04/golf.png", "http://golfcentralbne.com.au/wp-content/uploads/2014/03/Lady-Golf-2.jpg", "http://classic.als.net/images/pictures/charityclassic-golf-960x410.jpg", "http://pop.h-cdn.co/assets/16/02/980x490/landscape-1452785573-callaway-lede.jpg"]
+        for path in imagePaths {
+            let image = MediaViewerImage(imageURL: NSURL(string: path)!, infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
+            image.overlayInfoModel = authorInfo1
+            newImages.append(image)
+        }
+        return newImages
     }
     
     // MARK: collection view
@@ -66,5 +84,13 @@ extension ImageCollectionViewViewController: MediaViewerDelegate {
     }
     func scrollImageviewsContainer() -> UIScrollView {
         return collectionView!
+    }
+    func hasMoreImagesToLoad(withImages: [MediaViewerImage]) -> Bool {
+        return hasMoreImagesToLoad
+    }
+    func loadMoreImages(withImages images: [MediaViewerImage], completition: (newImages: [MediaViewerImage], error: NSError?) -> Void) -> NSOperation? {
+        hasMoreImagesToLoad = false
+        completition(newImages: moreImages(), error: nil)
+        return NSOperation()
     }
 }
