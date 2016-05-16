@@ -63,8 +63,8 @@ class MediaViewerTransitionAnimator: NSObject {
         
         var endImageFrame = CGRectZero
         var sourceImage = sourceImageView
-        if let transitionDelegate = transitionDelegate {
-            let image = currentImageView.imageModel!
+        if let transitionDelegate = transitionDelegate,
+            let image = currentImageView.imageModel {
             
             if let imageView = transitionDelegate.imageViewForImage(image), let newSourceSuperview = imageView.superview {
                 endImageFrame = currentSuperview.convertRect(imageView.frame, fromView: newSourceSuperview)
@@ -120,9 +120,9 @@ class MediaViewerTransitionAnimator: NSObject {
     }
     
     private func frameToScaleAspectFit(img: UIImageView) -> CGRect {
-        guard img.image!.size.width > 0 && img.image!.size.height > 0 else { return CGRectZero }
+        guard let image = img.image where image.size.width > 0 && image.size.height > 0 else { return CGRectZero }
         
-        let ratioImg = (img.image!.size.width) / (img.image!.size.height)
+        let ratioImg = (image.size.width) / (image.size.height)
         let ratioSelf = (img.frame.size.width) / (img.frame.size.height);
         
         if ratioSelf < 1 {
@@ -133,9 +133,9 @@ class MediaViewerTransitionAnimator: NSObject {
     }
     
     private func frameToScaleAspectFitBoundToFrame(newFrame: CGRect, img: UIImageView) -> CGRect {
-        guard img.image!.size.width > 0 && img.image!.size.height > 0 else { return CGRectZero }
+        guard let image = img.image where image.size.width > 0 && image.size.height > 0 else { return CGRectZero }
         
-        let ratioImg = (img.image!.size.width) / (img.image!.size.height)
+        let ratioImg = (image.size.width) / (image.size.height)
         let ratioSelf = (newFrame.size.width) / (newFrame.size.height);
         
         if ratioSelf < 1 {

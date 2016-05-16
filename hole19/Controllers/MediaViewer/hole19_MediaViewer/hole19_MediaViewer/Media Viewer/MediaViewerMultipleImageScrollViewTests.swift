@@ -176,6 +176,43 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         expect(self.sut.currentPage) == 1
     }
     
+    class MockMediaViewerDelegate: NSObject, MediaViewerDelegate {
+        var hasMoreImages = true
+        
+        func scrollImageviewsContainer() -> UIScrollView {
+            return UIScrollView()
+        }
+        func imageViewForImage(image: MediaViewerImage) -> UIImageView? {
+            return UIImageView()
+        }
+        func hasMoreImagesToLoad(withImages: [MediaViewerImage]) -> Bool {
+            return hasMoreImages
+        }
+    }
+    
+    func testThatItWillAddOneMorePageIfDelegateNeedsLazyLoading() {
+        let image = MediaViewerImage(image: UIImage())
+        let images = [MediaViewerImage(image: UIImage()), image, MediaViewerImage(image: UIImage())]
+        let mockDelegate = MockMediaViewerDelegate()
+        sut.mediaViewerDelegate = mockDelegate
+        
+        sut.setImages(images, withSelectedOne: image)
+        
+        expect(self.sut.contentViews.count) == 4
+    }
+    
+    func testThatItWillNotAddOneMorePageIfDelegateDoesntNeedLazyLoading() {
+        let image = MediaViewerImage(image: UIImage())
+        let images = [MediaViewerImage(image: UIImage()), image, MediaViewerImage(image: UIImage())]
+        let mockDelegate = MockMediaViewerDelegate()
+        mockDelegate.hasMoreImages = false
+        sut.mediaViewerDelegate = mockDelegate
+        
+        sut.setImages(images, withSelectedOne: image)
+        
+        expect(self.sut.contentViews.count) == 3
+    }
+
 }
 
 

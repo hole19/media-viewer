@@ -126,7 +126,6 @@ class MediaViewerInteractiveImageView: UIView {
             imageView.sd_setImageWithURL(url)
         }
     }
-
 }
 
 extension MediaViewerInteractiveImageView: UIScrollViewDelegate {

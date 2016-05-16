@@ -36,7 +36,7 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
         let imageURL1 = NSURL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS9iDRjjy2UraGtLdE9DHLkBQjussZvqXXhYjtXbR4a6VSgzLr")!
         let authorInfo1 = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: imageURL1, authorTitle: "Tiger", datePictureWasTaken: NSDate())
 
-        let imagePaths = ["http://www.soncaliu.com/images/golf3/a1ccesorios-de-golf.jpg", "http://www.lacianella.com/wp-content/uploads/2012/04/golf.png", "http://golfcentralbne.com.au/wp-content/uploads/2014/03/Lady-Golf-2.jpg", "http://classic.als.net/images/pictures/charityclassic-golf-960x410.jpg", "http://pop.h-cdn.co/assets/16/02/980x490/landscape-1452785573-callaway-lede.jpg"]
+        let imagePaths = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtTXKI9HG6ug0oWlkGaqyyXXAf0ekz4kJa9NWwx7T6rLusbUCV", "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQcHhEtanyjYWOeera7kmRg0RsHDg7g7Yzew8kTLtJgSzoL__adNA", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT3M6ix9FP-l2YMDNqcS3U_Tp-R57E93qPzSFJRee1yleY9mX0s"]
         for path in imagePaths {
             let image = MediaViewerImage(imageURL: NSURL(string: path)!, infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
             image.overlayInfoModel = authorInfo1
@@ -48,12 +48,16 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
     // MARK: collection view
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageNames.count
+        return allImages.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! ImageCell
-        cell.imageView.image = UIImage(named: imageNames[indexPath.row])
+        let imageModel = allImages[indexPath.row]
+        cell.imageView.image = imageModel.image
+        if let imageURL = imageModel.imageURL {
+            cell.imageView.sd_setImageWithURL(imageURL)
+        }
         return cell
     }
 
@@ -90,7 +94,12 @@ extension ImageCollectionViewViewController: MediaViewerDelegate {
     }
     func loadMoreImages(withImages images: [MediaViewerImage], completition: (newImages: [MediaViewerImage], error: NSError?) -> Void) -> NSOperation? {
         hasMoreImagesToLoad = false
-        completition(newImages: moreImages(), error: nil)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(1.0) * NSEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
+            let new = self.moreImages()
+            completition(newImages: new, error: nil)
+            self.allImages.appendContentsOf(new)
+            self.collectionView?.reloadData()
+        }
         return NSOperation()
     }
 }

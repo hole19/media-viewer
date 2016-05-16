@@ -50,6 +50,9 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         if let model = model as? MediaViewerAuthorInfoOverlayViewModelProtocol {
             authorTitleLablel.text = model.authorTitle
             authorImageView.sd_setImageWithURL(model.authorImageURL)
+        } else {
+            authorTitleLablel.text = ""
+            authorImageView.image = nil
         }
     }
     

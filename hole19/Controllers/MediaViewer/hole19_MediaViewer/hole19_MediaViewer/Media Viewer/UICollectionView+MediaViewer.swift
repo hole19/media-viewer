@@ -3,7 +3,10 @@ import UIKit
 
 extension UICollectionView {
     func scrollToItemWithIndex(index: Int) {
-        let numberOfItemsInCollectionView = numberOfSections() * numberOfItemsInSection(0)
+        var numberOfItemsInCollectionView = 0
+        for var i = 0; i < numberOfSections(); i++ {
+            numberOfItemsInCollectionView += numberOfItemsInSection(i)
+        }
         if index < numberOfItemsInCollectionView {
             var currentSection = 0
             var currentIndex = 0

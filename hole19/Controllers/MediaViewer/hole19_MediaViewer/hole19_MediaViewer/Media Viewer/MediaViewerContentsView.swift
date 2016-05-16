@@ -162,7 +162,7 @@ extension MediaViewerContentsView: MediaViewerInteractiveImageViewDelegate {
 }
 
 extension MediaViewerContentsView: MediaViewerMultipleImageScrollViewActionsDelegate {
-    func scrollViewScrolledToImageModel(image: MediaViewerImage) {
-        overlayView?.model = image.overlayInfoModel
+    func scrollViewScrolledToImageModel(image: MediaViewerImage?) {
+        overlayView?.model = image?.overlayInfoModel
     }
 }
