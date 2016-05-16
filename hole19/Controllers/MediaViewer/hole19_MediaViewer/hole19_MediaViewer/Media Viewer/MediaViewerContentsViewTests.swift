@@ -66,6 +66,8 @@ class MediaViewerContentsViewTests: XCTestCase {
     }
     
     func testThatItHasOverlayView() {
+        sut.setupOverlayView(MediaViewerImage(image: UIImage(), infoOverlayViewClass: MediaViewerInfoOverlayView.self))
+        
         expect(self.sut.overlayView) != nil
     }
     

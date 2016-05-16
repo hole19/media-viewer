@@ -27,8 +27,6 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
         }
     }
     
-    // MARK: private 
-    
     // MARK: collection view
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -49,9 +47,9 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
     }
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let imageView = (collectionView.cellForItemAtIndexPath(indexPath) as! ImageCell).imageView
         let selectedImage = allImages[indexPath.row]
-        let mediaViewer = MediaViewer(image: selectedImage, sourceImageView: imageView, allImages: allImages, transitionDelegate: self)
+        selectedImage.sourceImageView = (collectionView.cellForItemAtIndexPath(indexPath) as! ImageCell).imageView
+        let mediaViewer = MediaViewer(image: selectedImage, allImages: allImages, transitionDelegate: self)
         presentViewController(mediaViewer, animated: false, completion: nil)
     }
 }

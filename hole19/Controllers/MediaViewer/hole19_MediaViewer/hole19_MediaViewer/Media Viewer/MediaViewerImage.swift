@@ -8,6 +8,7 @@ class MediaViewerImage: NSObject {
     let infoOverlayViewClass: MediaViewerInfoOverlayView.Type
     var image: UIImage?
     var imageURL: NSURL?
+    var sourceImageView: UIImageView?
     
     var overlayInfoModel: Any?
     

@@ -130,7 +130,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         
         var numerOfTimesZoomOutWasCalled = 0
         
-        override func zoomOut() {
+        override func zoomOut(animated animated: Bool = true) {
             numerOfTimesZoomOutWasCalled += 1
         }
     }

@@ -9,7 +9,9 @@ class MediaViewerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = MediaViewer(image: MediaViewerImage(image: UIImage(named: "minion8")!), sourceImageView: UIImageView(),allImages: nil)
+        let image = MediaViewerImage(image: UIImage(named: "minion8")!)
+        image.sourceImageView = UIImageView()
+        sut = MediaViewer(image: image, allImages: nil)
         let _ = sut.view
     }
     
@@ -19,13 +21,19 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItsModalPresentationStyleIsOverCurrentContext() {
-        sut = MediaViewer(image: MediaViewerImage(image: UIImage(named: "minion8")!), sourceImageView: UIImageView(),allImages: nil)
         expect(self.sut.modalPresentationStyle) == UIModalPresentationStyle.OverCurrentContext
     }
     
-    func testThatItInitsWithSourceImageView() {
+    func setupSutWithImageView() -> UIImageView {
         let imageView = UIImageView()
-        sut = MediaViewer(image: MediaViewerImage(image: UIImage(named: "minion8")!), sourceImageView: imageView,allImages: nil)
+        let image = MediaViewerImage(image: UIImage(named: "minion8")!)
+        image.sourceImageView = imageView
+        sut = MediaViewer(image: image, allImages: nil)
+        return imageView
+    }
+    
+    func testThatItInitsWithSourceImageView() {
+        let imageView = setupSutWithImageView()
         expect(self.sut.sourceImageView) == imageView
     }
     
@@ -40,20 +48,16 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItHasTransitionAnimatior() {
-        sut = MediaViewer(image: MediaViewerImage(image: UIImage(named: "minion8")!), sourceImageView: UIImageView(),allImages: nil)
-        let _ = sut.view
         expect(self.sut.transitionAnimator) != nil
     }
     
     func testThatItHasTransitionAnimatiorWithCorrectSourceImageView() {
-        let imageView = UIImageView()
-        sut = MediaViewer(image: MediaViewerImage(image: UIImage(named: "minion8")!), sourceImageView: imageView,allImages: nil)
+        let imageView = setupSutWithImageView()
         let _ = sut.view
         expect(self.sut.transitionAnimator?.sourceImageView) == imageView
     }
     
     func testThatItHasTransitionAnimatiorWithCorrectContentsView() {
-        sut = MediaViewer(image: MediaViewerImage(image: UIImage(named: "minion8")!), sourceImageView: UIImageView(),allImages: nil)
         let _ = sut.view
         expect(self.sut.transitionAnimator?.contentsView) == self.sut.contentsView
     }
@@ -78,7 +82,6 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItBeginsTransitionOnViewDidAppear() {
-        sut = MediaViewer(image: MediaViewerImage(image: UIImage(named: "minion8")!), sourceImageView: UIImageView(),allImages: nil)
         let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
         sut.transitionAnimator = mockTransition
         let _ = sut.view
@@ -88,7 +91,6 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatCloseTriggersTransitionBack() {
-        sut = MediaViewer(image: MediaViewerImage(image: UIImage(named: "minion8")!), sourceImageView: UIImageView(),allImages: nil)
         let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView())
         sut.transitionAnimator = mockTransition
         let _ = sut.view

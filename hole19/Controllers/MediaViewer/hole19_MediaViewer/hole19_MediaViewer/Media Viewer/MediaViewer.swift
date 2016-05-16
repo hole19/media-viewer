@@ -30,9 +30,9 @@ class MediaViewer: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(image: MediaViewerImage, sourceImageView: UIImageView, allImages: [MediaViewerImage]?, transitionDelegate:MediaViewerTransitionDelegate? = nil) {
+    convenience init(image: MediaViewerImage, allImages: [MediaViewerImage]?, transitionDelegate:MediaViewerTransitionDelegate? = nil) {
         self.init(nibName: nil, bundle: nil)
-        self.sourceImageView = sourceImageView
+        self.sourceImageView = image.sourceImageView
         self.allImages = allImages
         self.transitionDelegate = transitionDelegate
         self.initialImage = image
