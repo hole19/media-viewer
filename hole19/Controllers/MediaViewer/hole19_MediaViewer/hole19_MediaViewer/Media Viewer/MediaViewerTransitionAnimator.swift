@@ -10,11 +10,11 @@ class MediaViewerTransitionAnimator: NSObject {
     var sourceImageView: UIImageView!
     var contentsView: MediaViewerContentsView!
     
-    var transitionDelegate: MediaViewerTransitionDelegate?
+    var transitionDelegate: MediaViewerDelegate?
     
     // MARK: init
     
-    init(sourceImageView: UIImageView, contentsView: MediaViewerContentsView, transitionDelegate: MediaViewerTransitionDelegate? = nil) {
+    init(sourceImageView: UIImageView, contentsView: MediaViewerContentsView, transitionDelegate: MediaViewerDelegate? = nil) {
         super.init()
         self.sourceImageView = sourceImageView
         self.contentsView = contentsView

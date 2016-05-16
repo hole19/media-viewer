@@ -32,10 +32,4 @@ class MediaViewerImage: NSObject {
         self.init(image: image, infoOverlayViewClass: infoOverlayViewClass)
         self.imageURL = imageURL
     }
-    
-    // MARK: public
-    
-    // MARK: private
-    
-
 }

@@ -14,7 +14,7 @@ class MediaViewerMultipleImageScrollView: UIView {
 
     var contentViews = [MediaViewerInteractiveImageView]()
     
-    weak var transitionDelegate: MediaViewerTransitionDelegate?
+    weak var transitionDelegate: MediaViewerDelegate?
     weak var scrollDelegate: MediaViewerMultipleImageScrollViewActionsDelegate?
 
     var imageViewActionsDelgate: MediaViewerInteractiveImageViewDelegate? {

@@ -54,7 +54,7 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
     }
 }
 
-extension ImageCollectionViewViewController: MediaViewerTransitionDelegate {
+extension ImageCollectionViewViewController: MediaViewerDelegate {
     func imageViewForImage(image: MediaViewerImage) -> UIImageView? {
         if let index = allImages.indexOf(image), let collectionView = collectionView {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)

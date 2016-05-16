@@ -2,10 +2,6 @@
 import UIKit
 import SDWebImage
 
-protocol MediaViewerDelegate {
-    
-}
-
 class MediaViewer: UIViewController {
     
     // MARK: properties
@@ -18,7 +14,7 @@ class MediaViewer: UIViewController {
     var contentsView: MediaViewerContentsView!
     var imageTaskHandler = MediaViewerImageActionsHandler()
     var allImages: [MediaViewerImage]?
-    var transitionDelegate: MediaViewerTransitionDelegate?
+    var transitionDelegate: MediaViewerDelegate?
     
     // MARK: init
     
@@ -30,7 +26,7 @@ class MediaViewer: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(image: MediaViewerImage, allImages: [MediaViewerImage]?, transitionDelegate:MediaViewerTransitionDelegate? = nil) {
+    convenience init(image: MediaViewerImage, allImages: [MediaViewerImage]?, transitionDelegate:MediaViewerDelegate? = nil) {
         self.init(nibName: nil, bundle: nil)
         self.sourceImageView = image.sourceImageView
         self.allImages = allImages

@@ -137,7 +137,7 @@ class MediaViewerContentsView: UIView {
         closeButton.setImage(UIImage(named: "button-close-white"), forState: .Normal)
         addSubview(closeButton)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(36)]-9-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[closeButton(36)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-16-[closeButton(36)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
     }
     
     private func setControlsAlpha(alpha: CGFloat, animated: Bool) {
