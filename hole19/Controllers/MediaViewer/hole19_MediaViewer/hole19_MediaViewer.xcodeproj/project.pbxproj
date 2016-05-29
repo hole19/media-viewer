@@ -18,6 +18,8 @@
 		458D33211C9C7BB700844203 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458D331F1C9C7BB700844203 /* Main.storyboard */; };
 		458D33231C9C7BB700844203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 458D33221C9C7BB700844203 /* Assets.xcassets */; };
 		458D33261C9C7BB700844203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458D33241C9C7BB700844203 /* LaunchScreen.storyboard */; };
+		45D8D11F1CEC5A82006CD30A /* UICollectionView+MediaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8D11E1CEC5A82006CD30A /* UICollectionView+MediaViewerTests.swift */; };
+		45D8D1231CEC6547006CD30A /* minion4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45D8D1221CEC6547006CD30A /* minion4.jpg */; };
 		45F89F8B1CBFC87A000D467E /* ImageCollectionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */; };
 		45F89F8D1CBFC8D8000D467E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8C1CBFC8D8000D467E /* ImageCell.swift */; };
 		45F89F8F1CBFF028000D467E /* MockTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F89F8E1CBFF028000D467E /* MockTransitionCoordinator.swift */; };
@@ -77,6 +79,8 @@
 		458D33221C9C7BB700844203 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		458D33251C9C7BB700844203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		458D33271C9C7BB700844203 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45D8D11E1CEC5A82006CD30A /* UICollectionView+MediaViewerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+MediaViewerTests.swift"; path = "hole19_MediaViewer/Media Viewer/UICollectionView+MediaViewerTests.swift"; sourceTree = SOURCE_ROOT; };
+		45D8D1221CEC6547006CD30A /* minion4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = minion4.jpg; path = hole19_MediaViewer/Assets.xcassets/minion4.imageset/minion4.jpg; sourceTree = SOURCE_ROOT; };
 		45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewViewController.swift; sourceTree = "<group>"; };
 		45F89F8C1CBFC8D8000D467E /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		45F89F8E1CBFF028000D467E /* MockTransitionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionCoordinator.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 		457F76E61CAD552A0049B2E1 /* hole19v2Tests */ = {
 			isa = PBXGroup;
 			children = (
+				45D8D1221CEC6547006CD30A /* minion4.jpg */,
 				4559848C1CE5C4D60095AA1A /* minion8.jpg */,
 				45F89FBF1CBFF1A0000D467E /* ScrollViewMock.swift */,
 				45F89FC01CBFF1A0000D467E /* TapGestureRecognizerMock.swift */,
@@ -216,6 +221,7 @@
 				45F89FA11CBFF12A000D467E /* MediaViewerTransitionAnimatorTests.swift */,
 				45F89FA21CBFF12A000D467E /* UIView+MediaViewer.swift */,
 				45F89FC31CBFF461000D467E /* UICollectionView+MediaViewer.swift */,
+				45D8D11E1CEC5A82006CD30A /* UICollectionView+MediaViewerTests.swift */,
 			);
 			name = MediaViewer;
 			path = "../../h19-iphone-v2/hole19/Controllers/MediaViewer";
@@ -318,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45D8D1231CEC6547006CD30A /* minion4.jpg in Resources */,
 				4559848D1CE5C4D60095AA1A /* minion8.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,6 +446,7 @@
 				45F89FBE1CBFF151000D467E /* MediaViewerTransitionAnimatorTests.swift in Sources */,
 				45F89FBD1CBFF151000D467E /* MediaViewerPanningViewModelTests.swift in Sources */,
 				45F89FB81CBFF151000D467E /* MediaViewerContentsViewTests.swift in Sources */,
+				45D8D11F1CEC5A82006CD30A /* UICollectionView+MediaViewerTests.swift in Sources */,
 				457F76E81CAD552A0049B2E1 /* hole19v2Tests.swift in Sources */,
 				45F89FB61CBFF151000D467E /* MediaViewerTests.swift in Sources */,
 				45F89FB91CBFF151000D467E /* MediaViewerImageActionTests.swift in Sources */,

@@ -46,9 +46,9 @@ class MediaViewerImageAction {
         return task
     }
     
-    private class func saveToLibraryTaskHandler() -> (UIImage) -> Void {
+    class func saveToLibraryTaskHandler(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.sharedPhotoLibrary()) -> (UIImage) -> Void {
         return { image in
-            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
+            photoLibrary.performChanges({
                 PHAssetChangeRequest.creationRequestForAssetFromImage(image)
             }) { (fin, error) in
                 NSLog("Error")

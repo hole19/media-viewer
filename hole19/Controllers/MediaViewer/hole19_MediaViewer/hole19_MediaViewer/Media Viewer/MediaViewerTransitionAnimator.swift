@@ -94,31 +94,6 @@ class MediaViewerTransitionAnimator: NSObject {
     
     // MARK: private
     
-    func endImageViewFrameForTransitionIn() -> CGRect {
-        let imageSize = sourceImageView.image != nil ? sourceImageView.image!.size : contentsView.bounds.size
-        let aspectRatio = imageSize.height / imageSize.width
-        let actualImageHeight = contentsView.bounds.size.width * aspectRatio
-        let endImageFrameOriginY = (contentsView.bounds.size.height - actualImageHeight) / 2.0
-        return CGRectMake(contentsView.bounds.origin.x, endImageFrameOriginY, contentsView.bounds.size.width, actualImageHeight)
-    }
-    
-    private func choiseFunctionWithRationImg(ratioImg: CGFloat, newFrame: CGRect) -> Bool {
-        var resultat = false
-    
-        let ratioSelf = (newFrame.size.width) / (newFrame.size.height);
-    
-        if (ratioImg < 1) {
-            if (ratioImg > ratioSelf ) {
-                resultat = true
-            }
-        } else {
-            if (ratioImg > ratioSelf ) {
-                resultat = true
-            }
-        }
-        return resultat;
-    }
-    
     private func frameToScaleAspectFit(img: UIImageView) -> CGRect {
         guard let image = img.image where image.size.width > 0 && image.size.height > 0 else { return CGRectZero }
         

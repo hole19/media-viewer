@@ -56,7 +56,8 @@ class MediaViewerContentsView: UIView {
     func setupOverlayView(imageModel: MediaViewerImage) {
         overlayView = imageModel.infoOverlayViewClass.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         overlayView!.translatesAutoresizingMaskIntoConstraints = false
-        overlayView?.model = imageModel.overlayInfoModel
+        overlayView!.model = imageModel.overlayInfoModel
+        overlayView!.alpha = 0.0
         addSubview(overlayView!)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[overlayView]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["overlayView" : overlayView!]))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[overlayView(height)]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: ["height": overlayView!.defaultHeight()], views: ["overlayView" : overlayView!]))
@@ -138,7 +139,7 @@ class MediaViewerContentsView: UIView {
         closeButton.setImage(UIImage(named: "button-close-white"), forState: .Normal)
         addSubview(closeButton)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[closeButton(36)]-9-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-16-[closeButton(36)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-22-[closeButton(36)]", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
     }
     
     private func setControlsAlpha(alpha: CGFloat, animated: Bool) {

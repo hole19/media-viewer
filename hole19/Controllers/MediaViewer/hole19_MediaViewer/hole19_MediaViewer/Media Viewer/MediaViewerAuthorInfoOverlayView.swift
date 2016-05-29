@@ -70,7 +70,7 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     
     private func setupImageView() {
         authorImageView = UIImageView(frame: CGRectMake(0,0,100,100))
-        authorImageView.contentMode = .ScaleAspectFit
+        authorImageView.contentMode = .ScaleAspectFill
         authorImageView.clipsToBounds = true
         authorImageView.translatesAutoresizingMaskIntoConstraints = false
         authorImageView.layer.cornerRadius = 3.0

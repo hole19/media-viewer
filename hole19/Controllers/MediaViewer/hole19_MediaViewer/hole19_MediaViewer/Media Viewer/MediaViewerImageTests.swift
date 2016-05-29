@@ -21,7 +21,7 @@ class MediaViewerImageTests: XCTestCase {
         expect(self.sut.infoOverlayViewClass) === MediaViewerInfoOverlayView.self
     }
     
-    func testThatItInitsWithImageView() {
+    func testThatItInitsWithImage() {
         let image = UIImage()
         sut = MediaViewerImage(image: image)
         

@@ -109,6 +109,7 @@ class MediaViewerInteractiveImageView: UIView {
     private func setupActivityIndicatorView() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicator.hidden = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         addSubview(activityIndicator)
         addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
