@@ -18,18 +18,20 @@ class MediaViewerImage: NSObject {
         self.infoOverlayViewClass = MediaViewerInfoOverlayView.self
     }
     
-    init(image: UIImage, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
+    init(image: UIImage, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
         self.image = image
+        self.sourceImageView = sourceImageView
         self.infoOverlayViewClass = infoOverlayViewClass
     }
     
-    init(imageURL: NSURL, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
+    init(imageURL: NSURL, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
         self.imageURL = imageURL
+        self.sourceImageView = sourceImageView
         self.infoOverlayViewClass = infoOverlayViewClass
     }
     
-    convenience init(image: UIImage, imageURL: NSURL, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
-        self.init(image: image, infoOverlayViewClass: infoOverlayViewClass)
+    convenience init(image: UIImage, imageURL: NSURL, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
+        self.init(image: image, sourceImageView: sourceImageView, infoOverlayViewClass: infoOverlayViewClass)
         self.imageURL = imageURL
     }
 }

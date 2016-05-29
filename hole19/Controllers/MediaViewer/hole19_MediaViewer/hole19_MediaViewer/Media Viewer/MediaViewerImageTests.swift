@@ -36,6 +36,13 @@ class MediaViewerImageTests: XCTestCase {
         expect(self.sut.imageURL) == imageURL
     }
     
+    func testThatItInitsWithSourceImageView() {
+        let imageView = UIImageView()
+        sut = MediaViewerImage(image: UIImage(), sourceImageView: imageView)
+        
+        expect(self.sut.sourceImageView) === imageView
+    }
+
     func testThatItInitsWithImageAndImageURL() {
         let imageURL = NSURL(fileURLWithPath: "some")
         let image = UIImage()
