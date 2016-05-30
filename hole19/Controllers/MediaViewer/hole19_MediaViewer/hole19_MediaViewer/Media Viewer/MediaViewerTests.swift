@@ -12,7 +12,6 @@ class MediaViewerTests: XCTestCase {
         let image = MediaViewerImage(image: UIImage(named: "minion8")!)
         image.sourceImageView = UIImageView()
         sut = MediaViewer(image: image, allImages: nil)
-        let _ = sut.view
     }
     
     override func tearDown() {
@@ -38,6 +37,8 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItHasMediaViewerContentsView() {
+        let _ = sut.view
+
         expect(self.sut.contentsView) != nil
     }
     
@@ -48,6 +49,8 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItHasTransitionAnimatior() {
+        let _ = sut.view
+
         expect(self.sut.transitionAnimator) != nil
     }
     
@@ -60,6 +63,17 @@ class MediaViewerTests: XCTestCase {
     func testThatItHasTransitionAnimatiorWithCorrectContentsView() {
         let _ = sut.view
         expect(self.sut.transitionAnimator?.contentsView) == self.sut.contentsView
+    }
+    
+    func testThatItHasAllowLandscapeDismissalProperyDefaultToFalse() {
+        expect(self.sut.allowLandscapeDismissal) == false
+    }
+    
+    func testThatItSetsAllowLandscapeDismissalProperyOnContentsView() {
+        sut.allowLandscapeDismissal = true
+        let _ = sut.view
+       
+        expect(self.sut.contentsView.allowLandscapeDismissal) == true
     }
     
     class MockMediaViewerTransitionAnimator: MediaViewerTransitionAnimator {
@@ -100,6 +114,8 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItSetsPanningModelDelegate() {
+        let _ = sut.view
+
         expect(self.sut.contentsView.pannedViewModel.delegate === self.sut) == true
     }
     
@@ -138,6 +154,8 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItIsDelegateOfTheContentsView() {
+        let _ = sut.view
+
         expect(self.sut.contentsView.delegate) === sut
     }
     
@@ -167,6 +185,8 @@ class MediaViewerTests: XCTestCase {
     func testThatItWillCreateAlertOnLongPress() {
         let mock = MockImageTaskHandler()
         sut.imageTaskHandler = mock
+
+        let _ = sut.view
         sut.contentsView.scrollView = StubScroll()
         
         sut.longPressActionDetectedInContentView(sut.contentsView)
@@ -183,7 +203,7 @@ class MediaViewerTests: XCTestCase {
             numerOfTimesLayoutSubviewsWasCalled += 1
         }
     }
-        
+    
     func testThatOnViewWillTransitionToSizeMediaViewerWillForceScrollViewLayout() {
         let _ = sut.view
         let mockScroll = MockImageScroll()
@@ -192,6 +212,28 @@ class MediaViewerTests: XCTestCase {
         sut.viewWillTransitionToSize(CGSize(width: 0,height: 0), withTransitionCoordinator: MockTransitionCoordinator())
         
         expect(mockScroll.numerOfTimesLayoutSubviewsWasCalled) == 1
+    }
+    
+    class MockContentsView: MediaViewerContentsView {
+        
+        var numerOfTimesUpdateWitLandscapeWasCalled = 0
+        
+        override func updateViewStateWithLandscape(landscape: Bool) {
+            numerOfTimesUpdateWitLandscapeWasCalled += 1
+        }
+    }
+
+    func testThatOnViewWillTransitionToSizeMediaViewerWillUpdateContentsViewWithLandscape() {
+        let _ = sut.view
+        let mockContents = MockContentsView(frame: CGRectZero)
+        sut.contentsView = mockContents
+        
+        let coordin = MockTransitionCoordinator()
+        sut.viewWillTransitionToSize(CGSize(width: 0,height: 0), withTransitionCoordinator:coordin )
+        
+        coordin.animateAlongsideTransitionBlock?(coordin)
+        
+        expect(mockContents.numerOfTimesUpdateWitLandscapeWasCalled) == 1
     }
 }
 

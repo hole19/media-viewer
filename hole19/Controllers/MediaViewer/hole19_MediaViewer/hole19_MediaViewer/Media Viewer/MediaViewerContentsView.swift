@@ -9,8 +9,6 @@ class MediaViewerContentsView: UIView {
     
     // MARK: properties
     
-    weak var delegate: MediaViewerContentsViewActionsDelegate?
-    
     var interfaceAlpha: CGFloat = 0.0 {
         didSet {
             backgroundView.alpha = interfaceAlpha
@@ -20,33 +18,39 @@ class MediaViewerContentsView: UIView {
     
     var controlsAlpha: CGFloat = 0.0 {
         didSet {
-            closeButton.alpha = controlsAlpha
+            let closeButtonAlpha = landscapeAsociatedInteractionsAllowed() ? controlsAlpha : 0.0
+            closeButton.alpha = closeButtonAlpha
             if let overlayView = overlayView {
                 overlayView.alpha = controlsAlpha
             }
         }
     }
 
-    var pannedViewModel: MediaViewerPanningViewModel!
+    internal weak var delegate: MediaViewerContentsViewActionsDelegate?
 
-    var scrollView: MediaViewerMultipleImageScrollView!
+    internal var pannedViewModel: MediaViewerPanningViewModel!
 
-    var backgroundView: UIView!
-    var closeButton: UIButton!
-    var overlayView: MediaViewerInfoOverlayView?
+    internal var scrollView: MediaViewerMultipleImageScrollView!
 
-    var controlsTapGestureRecogniser: UITapGestureRecognizer!
-    var panGestureRecogniser: UIPanGestureRecognizer!
-    var longPressGesture: UILongPressGestureRecognizer!
+    internal var backgroundView: UIView!
+    internal var closeButton: UIButton!
+    internal var overlayView: MediaViewerInfoOverlayView?
+
+    internal var controlsTapGestureRecogniser: UITapGestureRecognizer!
+    internal var panGestureRecogniser: UIPanGestureRecognizer!
+    internal var longPressGesture: UILongPressGestureRecognizer!
+    
+    internal var allowLandscapeDismissal: Bool
     
     // MARK: init
     
-    init(frame: CGRect, mediaViewerDelegate: MediaViewerDelegate? = nil) {
+    init(frame: CGRect, mediaViewerDelegate: MediaViewerDelegate? = nil, allowLandscapeDismissal: Bool = false) {
+        self.allowLandscapeDismissal = allowLandscapeDismissal
         super.init(frame: frame)
         setupView(mediaViewerDelegate)
         setupGestureRecognisers()
     }
-
+   
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -62,7 +66,24 @@ class MediaViewerContentsView: UIView {
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[overlayView]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["overlayView" : overlayView!]))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[overlayView(height)]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: ["height": overlayView!.defaultHeight()], views: ["overlayView" : overlayView!]))
     }
-
+    
+    func updateViewStateWithLandscape(landscape: Bool) {
+        backgroundView.alpha = 1.0
+        if landscape && !allowLandscapeDismissal {
+            controlsAlpha = 0.0
+        } else {
+            controlsAlpha = 1.0
+        }
+    }
+    
+    func landscapeAsociatedInteractionsAllowed() -> Bool {
+        var allowed = true
+        if frame.size.width > frame.size.height && !allowLandscapeDismissal {
+            allowed = false
+        }
+        return allowed
+    }
+    
     // MARK: selectors
     
     func viewTapped(sender: UITapGestureRecognizer) {
@@ -152,7 +173,19 @@ class MediaViewerContentsView: UIView {
                 controlsAlpha = alpha
             }
         }
-    }    
+    }
+    
+    private func setOverlayAlpha(alpha: CGFloat, animated: Bool) {
+        if alpha != overlayView?.alpha {
+            if animated {
+                UIView.animateWithDuration(0.33, animations: { () -> Void in
+                    self.overlayView?.alpha = alpha
+                })
+            } else {
+                overlayView?.alpha = alpha
+            }
+        }
+    }
 }
 
 extension MediaViewerContentsView: MediaViewerInteractiveImageViewDelegate {

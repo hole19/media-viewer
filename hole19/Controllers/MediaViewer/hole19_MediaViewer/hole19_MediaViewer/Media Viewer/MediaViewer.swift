@@ -7,6 +7,9 @@ class MediaViewer: UIViewController {
     
     // MARK: properties
     
+    /// Property to determine if you want the gallery to be dismissable in landscape orientation.
+    var allowLandscapeDismissal = false
+    
     internal var sourceImageView: UIImageView?
     internal var initialImage: MediaViewerImage?
     
@@ -79,10 +82,9 @@ class MediaViewer: UIViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         contentsView.scrollView.layoutSubviews()
-    }
-    
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .All
+        coordinator.animateAlongsideTransition({ (coordinate) in
+            self.contentsView.updateViewStateWithLandscape(size.width > size.height)
+        }) { (coordinate) in }
     }
     
     // MARK: public selectors
@@ -100,7 +102,7 @@ class MediaViewer: UIViewController {
     }
     
     private func setupContentsView() {
-        contentsView = MediaViewerContentsView(frame: view.bounds, mediaViewerDelegate: transitionDelegate)
+        contentsView = MediaViewerContentsView(frame: view.bounds, mediaViewerDelegate: transitionDelegate, allowLandscapeDismissal: allowLandscapeDismissal)
         if let initialImage = initialImage {
             contentsView.setupOverlayView(initialImage)
         }

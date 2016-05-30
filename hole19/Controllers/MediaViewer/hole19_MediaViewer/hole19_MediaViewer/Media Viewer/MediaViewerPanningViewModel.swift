@@ -29,23 +29,25 @@ class MediaViewerPanningViewModel: NSObject {
     // MARK: public - selectors
     
     func viewPanned(recognizer: UIPanGestureRecognizer) {
-        let translation = recognizer.translationInView(containerView)
-        if let view = recognizer.view {
-            view.center = CGPoint(x: view.center.x + translation.x, y:view.center.y + translation.y)
-        }
-        recognizer.setTranslation(CGPointZero, inView: containerView)
-        let distance = distanceFromContainerCenter()
-        if recognizer.state == .Began {
-            self.setScrollViewImagesAlpha(0.0)
-        }
-        if recognizer.state == .Ended || recognizer.state == .Cancelled {
-            if needToDismissView(distance) {
-                delegate?.dismissView()
-            } else {
-                animateImageViewBackToTheCenter()
+        if containerView.landscapeAsociatedInteractionsAllowed() {
+            let translation = recognizer.translationInView(containerView)
+            if let view = recognizer.view {
+                view.center = CGPoint(x: view.center.x + translation.x, y:view.center.y + translation.y)
             }
-        } else {
-            updateBackgroundAlphaWithDistanceFomCenter(distance)
+            recognizer.setTranslation(CGPointZero, inView: containerView)
+            let distance = distanceFromContainerCenter()
+            if recognizer.state == .Began {
+                self.setScrollViewImagesAlpha(0.0)
+            }
+            if recognizer.state == .Ended || recognizer.state == .Cancelled {
+                if needToDismissView(distance) {
+                    delegate?.dismissView()
+                } else {
+                    animateImageViewBackToTheCenter()
+                }
+            } else {
+                updateBackgroundAlphaWithDistanceFomCenter(distance)
+            }
         }
     }
 

@@ -18,6 +18,10 @@ class MediaViewerContentsViewTests: XCTestCase {
         sut = nil
     }
     
+    func testThatItHasAllowLandscapeDismissalProperyDefaultToFalse() {
+        expect(self.sut.allowLandscapeDismissal) == false
+    }
+
     func testThatItHasPannigViewModelWithCorrectBackgroundView() {
         expect(self.sut.pannedViewModel.backgroundView) == sut.backgroundView
     }
@@ -119,6 +123,16 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.controlsAlpha) == 0.0
     }
     
+    func testThatViewTappedWillNotToggleCloseButtonAlphaFrom0IfLandscapeAndControlsDisabledAtLandscape() {
+        sut.controlsAlpha = 0.0
+        sut.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
+        sut.allowLandscapeDismissal = false
+        
+        sut.viewTapped(sut.controlsTapGestureRecogniser)
+        
+        expect(self.sut.closeButton.alpha) == 0.0
+    }
+    
     class MockImageScroll: MediaViewerMultipleImageScrollView {
         
         var numerOfTimesZoomOutWasCalled = 0
@@ -156,6 +170,26 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatPanGestureRecogniserIsConnectedToScrollView() {
         expect(self.sut.panGestureRecogniser.view) == sut.scrollView
     }
-
+    
+    func testThatUpdateViewStateWithLandscapeWillResetBackgroundViewAlphaTo1() {
+        sut.backgroundView.alpha = 0.2
+        sut.updateViewStateWithLandscape(true)
+        
+        expect(self.sut.backgroundView.alpha) == 1.0
+    }
+    
+    func testThatIfAllowLandscapeDismissalIsTrueControlsWillHideInLandscape() {
+        sut.controlsAlpha = 1.0
+        sut.updateViewStateWithLandscape(true)
+        
+        expect(self.sut.closeButton.alpha) == 0.0
+    }
+    
+    func testThatIfAllowLandscapeDismissalIsTrueControlsNotWillHideInPortraint() {
+        sut.controlsAlpha = 0.0
+        sut.updateViewStateWithLandscape(false)
+        
+        expect(self.sut.controlsAlpha) == 1.0
+    }
 }
 

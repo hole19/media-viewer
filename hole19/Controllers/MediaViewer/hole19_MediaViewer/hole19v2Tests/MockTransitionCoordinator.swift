@@ -2,7 +2,11 @@
  import UIKit
  
  class MockTransitionCoordinator: NSObject,  UIViewControllerTransitionCoordinator {
+    
+    var animateAlongsideTransitionBlock: ((UIViewControllerTransitionCoordinatorContext) -> Void)?
+    
         func animateAlongsideTransition(animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)?) -> Bool {
+            animateAlongsideTransitionBlock = animation
             return true
         }
         
