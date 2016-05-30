@@ -32,7 +32,7 @@ class MediaViewerPanningViewModel: NSObject {
         if containerView.landscapeAsociatedInteractionsAllowed() {
             let translation = recognizer.translationInView(containerView)
             if let view = recognizer.view {
-                view.center = CGPoint(x: view.center.x + translation.x, y:view.center.y + translation.y)
+                view.center = CGPoint(x: view.center.x, y:view.center.y + translation.y)
             }
             recognizer.setTranslation(CGPointZero, inView: containerView)
             let distance = distanceFromContainerCenter()
