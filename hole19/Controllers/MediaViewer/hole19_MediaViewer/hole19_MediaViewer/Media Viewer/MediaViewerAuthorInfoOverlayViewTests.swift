@@ -58,6 +58,19 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     func testThatImageViewHasCorrectCornerRadius() {
         expect(self.sut.authorImageView.layer.cornerRadius) == 3.0
     }
+    
+    func testThatItHasDateLabel() {
+        expect(self.sut.dateTakenLabel) != nil
+    }
+    
+    func testThatItSetsCorrectDateLabelText() {
+        let date = NSDate()
+        let model = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: NSURL(), authorTitle: "title", datePictureWasTaken: date)
+        
+        sut.model = model
+        
+        expect(self.sut.dateTakenLabel.text) == date.defaultString()
+    }
 
 }
 

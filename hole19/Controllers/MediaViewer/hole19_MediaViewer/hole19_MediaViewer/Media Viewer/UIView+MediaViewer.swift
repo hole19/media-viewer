@@ -10,4 +10,14 @@ extension UIView {
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[subview]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["subview" : subview]))
     }
     
+    
+    func addLabelSubviewWithFont(font: UIFont, color: UIColor, translateAutoresizingMask: Bool = false) -> UILabel {
+        let label = UILabel(frame: CGRectMake(0,0,100,100))
+        label.translatesAutoresizingMaskIntoConstraints = translateAutoresizingMask
+        label.textColor = color
+        label.font = font
+        addSubview(label)
+        return label
+    }
+
 }

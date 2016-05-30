@@ -13,6 +13,8 @@
 		455984931CE5C89D0095AA1A /* MediaViewerImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455984921CE5C89D0095AA1A /* MediaViewerImageTests.swift */; };
 		455984951CE5C8CC0095AA1A /* MediaViewerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455984941CE5C8CC0095AA1A /* MediaViewerImage.swift */; };
 		4560DE311CFC4C05009CFFC3 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4560DE301CFC4C05009CFFC3 /* Rotation.swift */; };
+		4560DE761CFCD016009CFFC3 /* NSDate+MediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4560DE751CFCD016009CFFC3 /* NSDate+MediaViewer.swift */; };
+		4560DE781CFCD03C009CFFC3 /* NSDate+MediaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4560DE771CFCD03C009CFFC3 /* NSDate+MediaViewerTests.swift */; };
 		457F76E81CAD552A0049B2E1 /* hole19v2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */; };
 		458D331C1C9C7BB700844203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D331B1C9C7BB700844203 /* AppDelegate.swift */; };
 		458D331E1C9C7BB700844203 /* SingleImageViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D331D1C9C7BB700844203 /* SingleImageViewViewController.swift */; };
@@ -71,6 +73,8 @@
 		455984921CE5C89D0095AA1A /* MediaViewerImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImageTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImageTests.swift"; sourceTree = SOURCE_ROOT; };
 		455984941CE5C8CC0095AA1A /* MediaViewerImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImage.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImage.swift"; sourceTree = SOURCE_ROOT; };
 		4560DE301CFC4C05009CFFC3 /* Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
+		4560DE751CFCD016009CFFC3 /* NSDate+MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+MediaViewer.swift"; path = "hole19_MediaViewer/Media Viewer/NSDate+MediaViewer.swift"; sourceTree = SOURCE_ROOT; };
+		4560DE771CFCD03C009CFFC3 /* NSDate+MediaViewerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+MediaViewerTests.swift"; path = "hole19_MediaViewer/Media Viewer/NSDate+MediaViewerTests.swift"; sourceTree = SOURCE_ROOT; };
 		457F76E51CAD55290049B2E1 /* hole19v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hole19v2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hole19v2Tests.swift; sourceTree = "<group>"; };
 		457F76E91CAD552A0049B2E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 				45F89FA01CBFF12A000D467E /* MediaViewerTransitionAnimator.swift */,
 				45F89FA11CBFF12A000D467E /* MediaViewerTransitionAnimatorTests.swift */,
 				45F89FA21CBFF12A000D467E /* UIView+MediaViewer.swift */,
+				4560DE751CFCD016009CFFC3 /* NSDate+MediaViewer.swift */,
+				4560DE771CFCD03C009CFFC3 /* NSDate+MediaViewerTests.swift */,
 				45F89FC31CBFF461000D467E /* UICollectionView+MediaViewer.swift */,
 				45D8D11E1CEC5A82006CD30A /* UICollectionView+MediaViewerTests.swift */,
 			);
@@ -453,6 +459,7 @@
 				457F76E81CAD552A0049B2E1 /* hole19v2Tests.swift in Sources */,
 				45F89FB61CBFF151000D467E /* MediaViewerTests.swift in Sources */,
 				45F89FB91CBFF151000D467E /* MediaViewerImageActionTests.swift in Sources */,
+				4560DE781CFCD03C009CFFC3 /* NSDate+MediaViewerTests.swift in Sources */,
 				4559848F1CE5C7B60095AA1A /* MediaViewerInfoOverlayViewTests.swift in Sources */,
 				455984931CE5C89D0095AA1A /* MediaViewerImageTests.swift in Sources */,
 				45F89FBC1CBFF151000D467E /* MediaViewerMultipleImageScrollViewTests.swift in Sources */,
@@ -468,6 +475,7 @@
 				45F89FAC1CBFF12A000D467E /* MediaViewerInteractiveImageView.swift in Sources */,
 				45F89F8D1CBFC8D8000D467E /* ImageCell.swift in Sources */,
 				45F89FB31CBFF12A000D467E /* MediaViewerTransitionAnimator.swift in Sources */,
+				4560DE761CFCD016009CFFC3 /* NSDate+MediaViewer.swift in Sources */,
 				45F89FA91CBFF12A000D467E /* MediaViewerImageActionsHandler.swift in Sources */,
 				458D331E1C9C7BB700844203 /* SingleImageViewViewController.swift in Sources */,
 				45F89FA81CBFF12A000D467E /* MediaViewerImageAction.swift in Sources */,
