@@ -71,7 +71,7 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedImage = allImages[indexPath.row]
         selectedImage.sourceImageView = (collectionView.cellForItemAtIndexPath(indexPath) as! ImageCell).imageView
-        let mediaViewer = MediaViewer(image: selectedImage, allImages: allImages, transitionDelegate: self)
+        let mediaViewer = MediaViewer(image: selectedImage, allImages: allImages, delegate: self)
         presentViewController(mediaViewer, animated: false, completion: nil)
     }
 }

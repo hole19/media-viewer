@@ -120,13 +120,13 @@ class MediaViewerContentsView: UIView {
         scrollView.clipsToBounds = false
         scrollView.scrollDelegate = self
         scrollView.mediaViewerDelegate = mediaViewerDelegate
-        addSubviewAndFullScreenConstraints(scrollView)
+        addSubviewWithFullScreenConstraints(scrollView)
     }
     
     private func setupBackgroundView() {
         backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red:0.19, green:0.19, blue:0.19, alpha:1.00)
-        addSubviewAndFullScreenConstraints(backgroundView)
+        addSubviewWithFullScreenConstraints(backgroundView)
     }
     
     private func setupCloseButton() {

@@ -109,7 +109,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         scrollView.delegate = self
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        self.addSubviewAndFullScreenConstraints(scrollView, sideMargins: -inbetweenImagesMargin)
+        self.addSubviewWithFullScreenConstraints(scrollView, sideMargins: -inbetweenImagesMargin)
     }
 
     private func updateViewWithImages(newImages: [MediaViewerImage], selectedImage: MediaViewerImage) {

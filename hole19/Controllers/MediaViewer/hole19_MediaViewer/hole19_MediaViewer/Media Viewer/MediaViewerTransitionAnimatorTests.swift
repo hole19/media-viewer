@@ -88,7 +88,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.setupTransitionToDestinationImageView()
         
-        expect(self.sut.sourceImageView.hidden) == true
+        expect(self.sut.sourceImageView!.hidden) == true
     }
     
     func testThatTransitionToDestinationInitialValueXIsEqalToSourceImageView() {
@@ -177,9 +177,9 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     func testThatTransitionSetupBackToSourceSourceImageViewHidden() {
         setupSUTWithTwoImageViewsInsideContainers()
         
-        sut.setupTransitionBackToSourceImageView(sut.sourceImageView)
+        sut.setupTransitionBackToSourceImageView(withImageView: sut.sourceImageView)
         
-        expect(self.sut.sourceImageView.hidden) == true
+        expect(self.sut.sourceImageView!.hidden) == true
     }
     
     func testThatTransitionBackFinalValueXIsEqalToSourceImageView() {

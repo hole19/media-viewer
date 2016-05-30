@@ -86,7 +86,7 @@ class MediaViewerInteractiveImageView: UIView {
         imageView = UIImageView(frame: scrollView.bounds)
         imageView.contentMode = .ScaleAspectFit
         imageView.clipsToBounds = true
-        scrollView.addSubviewAndFullScreenConstraints(imageView)
+        scrollView.addSubviewWithFullScreenConstraints(imageView)
         scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Width, relatedBy: .Equal, toItem: scrollView, attribute: .Width, multiplier: 1.0, constant: 0.0))
         scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: .Equal, toItem: scrollView, attribute: .Height, multiplier: 1.0, constant: 0.0))
         scrollView.contentSize = imageView.bounds.size
@@ -103,7 +103,7 @@ class MediaViewerInteractiveImageView: UIView {
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
-        addSubviewAndFullScreenConstraints(scrollView)
+        addSubviewWithFullScreenConstraints(scrollView)
     }
     
     private func setupActivityIndicatorView() {

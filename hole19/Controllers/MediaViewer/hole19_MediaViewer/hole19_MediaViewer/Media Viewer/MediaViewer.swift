@@ -52,7 +52,7 @@ class MediaViewer: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if transitionAnimator == nil, let sourceImageView = sourceImageView {
+        if transitionAnimator == nil {
             transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView, transitionDelegate: transitionDelegate)
         }
         contentsView.pannedViewModel.delegate = self
@@ -104,7 +104,7 @@ class MediaViewer: UIViewController {
         if let initialImage = initialImage {
             contentsView.setupOverlayView(initialImage)
         }
-        view.addSubviewAndFullScreenConstraints(contentsView)
+        view.addSubviewWithFullScreenConstraints(contentsView)
         contentsView.delegate = self
     }
     

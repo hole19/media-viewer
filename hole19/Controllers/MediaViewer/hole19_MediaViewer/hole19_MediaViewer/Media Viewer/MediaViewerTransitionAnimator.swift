@@ -7,14 +7,14 @@ class MediaViewerTransitionAnimator: NSObject {
     
     var animationTime: NSTimeInterval = 0.2
     
-    var sourceImageView: UIImageView!
+    var sourceImageView: UIImageView?
     var contentsView: MediaViewerContentsView!
     
     var transitionDelegate: MediaViewerDelegate?
     
     // MARK: init
     
-    init(sourceImageView: UIImageView, contentsView: MediaViewerContentsView, transitionDelegate: MediaViewerDelegate? = nil) {
+    init(sourceImageView: UIImageView?, contentsView: MediaViewerContentsView, transitionDelegate: MediaViewerDelegate? = nil) {
         super.init()
         self.sourceImageView = sourceImageView
         self.contentsView = contentsView
@@ -26,11 +26,17 @@ class MediaViewerTransitionAnimator: NSObject {
     func setupTransitionToDestinationImageView() {
         self.contentsView.interfaceAlpha = 0.0
         guard let currentImageView = contentsView.scrollView.currentImageView(),
-              let destinationSuperview = currentImageView.imageView.superview, let sourceSuperview = sourceImageView.superview else { return }
-        let sourceImageViewFrame = destinationSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
+              let destinationSuperview = currentImageView.imageView.superview else { return }
+        var sourceImageViewFrame = CGRectZero
+        if let sourceImageView = sourceImageView, let sourceSuperview = sourceImageView.superview {
+            sourceImageViewFrame = destinationSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
+        } else {
+            sourceImageViewFrame = currentImageView.frame
+            sourceImageViewFrame.origin.y += currentImageView.frame.size.height
+        }
         currentImageView.imageView.frame = sourceImageViewFrame
         currentImageView.imageView.alpha = 1.0
-        sourceImageView.hidden = true
+        sourceImageView?.hidden = true
         currentImageView.imageView.contentMode = .ScaleAspectFill
     }
     
@@ -52,14 +58,13 @@ class MediaViewerTransitionAnimator: NSObject {
         }
     }
     
-    func setupTransitionBackToSourceImageView(withImageView: UIImageView) {
-        withImageView.hidden = true
+    func setupTransitionBackToSourceImageView(withImageView imageView: UIImageView?) {
+        imageView?.hidden = true
     }
 
     func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
         guard let currentImageView = contentsView.scrollView.currentImageView(),
-              let currentSuperview = currentImageView.imageView.superview,
-              let sourceSuperview = sourceImageView.superview else { return }
+              let currentSuperview = currentImageView.imageView.superview else { return }
         
         var endImageFrame = CGRectZero
         var sourceImage = sourceImageView
@@ -69,15 +74,17 @@ class MediaViewerTransitionAnimator: NSObject {
             if let imageView = transitionDelegate.imageViewForImage(image), let newSourceSuperview = imageView.superview {
                 endImageFrame = currentSuperview.convertRect(imageView.frame, fromView: newSourceSuperview)
                 sourceImage = imageView
-                sourceImageView.hidden = false
+                sourceImageView?.hidden = false
             }
-        } else {
+        } else if let sourceImageView = sourceImageView, let sourceSuperview = sourceImageView.superview {
             endImageFrame = currentSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
+        } else {
+            endImageFrame = currentImageView.frame
+            endImageFrame.origin.y += currentImageView.frame.size.height
         }
         
         let duration: NSTimeInterval = animated ? animationTime : 0.00
-        setupTransitionBackToSourceImageView(sourceImage)
-        sourceImage.hidden = true
+        setupTransitionBackToSourceImageView(withImageView: sourceImage)
         let center = currentImageView.imageView.center
         currentImageView.imageView.frame = frameToScaleAspectFit(currentImageView.imageView)
         currentImageView.imageView.center = center
@@ -87,7 +94,7 @@ class MediaViewerTransitionAnimator: NSObject {
             self.contentsView.interfaceAlpha = 0.0
             currentImageView.imageView.frame = endImageFrame
             }) { (finished) -> Void in
-                sourceImage.hidden = false
+                sourceImage?.hidden = false
                 completition()
         }
     }

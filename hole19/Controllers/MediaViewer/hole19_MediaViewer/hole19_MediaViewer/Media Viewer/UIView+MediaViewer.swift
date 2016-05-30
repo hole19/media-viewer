@@ -3,7 +3,7 @@ import UIKit
 
 extension UIView {
     
-    func addSubviewAndFullScreenConstraints(subview: UIView, sideMargins: CGFloat = 0.0) {
+    func addSubviewWithFullScreenConstraints(subview: UIView, sideMargins: CGFloat = 0.0) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         addSubview(subview)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-margin-[subview]-margin-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: ["margin": sideMargins], views: ["subview" : subview]))
