@@ -178,6 +178,13 @@ class MediaViewerContentsViewTests: XCTestCase {
         expect(self.sut.backgroundView.alpha) == 1.0
     }
     
+    func testThatUpdateViewStateWithLandscapeWillChangeCloseButtonTopConstraint() {
+        
+        sut.updateViewStateWithLandscape(true)
+        
+        expect(self.sut.closeButtonTopMarginConstraint?.constant) == 8.0
+    }
+    
     func testThatIfAllowLandscapeDismissalIsTrueControlsWillHideInLandscape() {
         sut.controlsAlpha = 1.0
         sut.updateViewStateWithLandscape(true)
@@ -191,5 +198,10 @@ class MediaViewerContentsViewTests: XCTestCase {
         
         expect(self.sut.controlsAlpha) == 1.0
     }
+    
+    func testThatItHasCloseButtonTopMarginConstraint() {
+        expect(self.sut.closeButtonTopMarginConstraint) != nil
+    }
+
 }
 
