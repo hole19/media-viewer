@@ -3,7 +3,7 @@ import UIKit
 
 
 @objc protocol MediaViewerMultipleImageScrollViewActionsDelegate: class {
-    func scrollViewScrolledToImageModel(image: MediaViewerImage?)
+    func scrollViewScrolledToImageModel(image: MediaViewerImageModel?)
 }
 
 class MediaViewerMultipleImageScrollView: UIView {
@@ -28,7 +28,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         }
     }
     
-    var images: [MediaViewerImage]? {
+    var images: [MediaViewerImageModel]? {
         didSet {
             guard let images = images else { return }
             var selected = selectedImage
@@ -38,11 +38,11 @@ class MediaViewerMultipleImageScrollView: UIView {
             updateViewWithImages(images, selectedImage: selected!)
         }
     }
-    var selectedImage: MediaViewerImage?
+    var selectedImage: MediaViewerImageModel?
     var currentPage: Int = 0
     let inbetweenImagesMargin: CGFloat = 4.0
     
-    private var hiddenImageView = UIImageView()
+    private var hiddenImageView: UIImageView?
     
     // MARK: init
     
@@ -84,7 +84,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         }
     }
 
-    func setImages(images: [MediaViewerImage], withSelectedOne selImage: MediaViewerImage) {
+    func setImages(images: [MediaViewerImageModel], withSelectedOne selImage: MediaViewerImageModel) {
         removeAllCurrentContents()
         self.selectedImage = selImage
         self.images = images
@@ -112,7 +112,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         self.addSubviewWithFullScreenConstraints(scrollView, sideMargins: -inbetweenImagesMargin)
     }
 
-    private func updateViewWithImages(newImages: [MediaViewerImage], selectedImage: MediaViewerImage) {
+    private func updateViewWithImages(newImages: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
         var currentViewFrame = scrollView.bounds
         currentViewFrame.origin.x = inbetweenImagesMargin
         currentViewFrame.size.width = bounds.width
@@ -132,16 +132,16 @@ class MediaViewerMultipleImageScrollView: UIView {
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
         setRecogniserRequiredToFailWithView(currentImageView())
         setDelegateForAllViews(contentViews)
-        if let index = newImages.indexOf(selectedImage) {
+        if let index = newImages.indexOf({ (some) -> Bool in
+            return some === selectedImage
+        }) {
             scrollView.contentOffset = CGPoint(x:CGFloat(index)*scrollView.bounds.size.width, y:0.0)
             currentPage = index
-            if let hiddentImageView = mediaViewerDelegate?.imageViewForImage(newImages[index]) {
-                self.hiddenImageView = hiddentImageView
-            }
-        }
+            hiddenImageView = mediaViewerDelegate?.imageViewForImage(newImages[index])
+         }
     }
     
-    private func contentViewWithImageModel(imageModel: MediaViewerImage?, frame: CGRect) -> MediaViewerInteractiveImageView {
+    private func contentViewWithImageModel(imageModel: MediaViewerImageModel?, frame: CGRect) -> MediaViewerInteractiveImageView {
         let contentView = MediaViewerInteractiveImageView(frame: frame)
         contentView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         contentView.imageModel = imageModel
@@ -180,13 +180,13 @@ class MediaViewerMultipleImageScrollView: UIView {
     }
     
     private func hideCorrespondingImage(index: Int) {
-        hiddenImageView.hidden = false
+        hiddenImageView?.hidden = false
         if let mediaViewerDelegate = mediaViewerDelegate,
             let images = images where images.count > index {
-            if let hiddentImageView = mediaViewerDelegate.imageViewForImage(images[index]) {
-                self.hiddenImageView = hiddentImageView
-                hiddentImageView.hidden = true
-            }
+            hiddenImageView = mediaViewerDelegate.imageViewForImage(images[index])
+            hiddenImageView?.hidden = true
+        } else {
+            hiddenImageView = nil
         }
     }
     

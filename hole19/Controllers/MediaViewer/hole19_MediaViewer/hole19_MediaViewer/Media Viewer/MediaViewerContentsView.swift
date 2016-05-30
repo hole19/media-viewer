@@ -57,7 +57,7 @@ class MediaViewerContentsView: UIView {
     
     // MARK: public
 
-    func setupOverlayView(imageModel: MediaViewerImage) {
+    func setupOverlayView(imageModel: MediaViewerImageModel) {
         overlayView = imageModel.infoOverlayViewClass.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         overlayView!.translatesAutoresizingMaskIntoConstraints = false
         overlayView!.model = imageModel.overlayInfoModel
@@ -196,7 +196,7 @@ extension MediaViewerContentsView: MediaViewerInteractiveImageViewDelegate {
 }
 
 extension MediaViewerContentsView: MediaViewerMultipleImageScrollViewActionsDelegate {
-    func scrollViewScrolledToImageModel(image: MediaViewerImage?) {
+    func scrollViewScrolledToImageModel(image: MediaViewerImageModel?) {
         overlayView?.model = image?.overlayInfoModel
     }
 }

@@ -32,7 +32,7 @@ class MediaViewerPanningViewModel: NSObject {
         if containerView.landscapeAsociatedInteractionsAllowed() {
             let translation = recognizer.translationInView(containerView)
             if let view = recognizer.view {
-                view.center = CGPoint(x: view.center.x, y:view.center.y + translation.y)
+                view.center = CGPoint(x: view.center.x + translation.x, y:view.center.y + translation.y)
             }
             recognizer.setTranslation(CGPointZero, inView: containerView)
             let distance = distanceFromContainerCenter()
@@ -62,9 +62,11 @@ class MediaViewerPanningViewModel: NSObject {
         let center = containerCenter()
         UIView.animateWithDuration(0.33, animations: {
             self.pannedView().center = center
+            self.backgroundView.alpha = 1.0
+            self.containerView.controlsAlpha = 1.0
 
-            }) { (fin) in
-                self.setScrollViewImagesAlpha(1.0)
+        }) { (fin) in
+            self.setScrollViewImagesAlpha(1.0)
         }
     }
     
@@ -81,11 +83,14 @@ class MediaViewerPanningViewModel: NSObject {
         if yDistance > halfHeight {
             yDistance = halfHeight
         }
-        var backgroundAlpha = abs(halfHeight - yDistance)/halfHeight + minBackgroundAlpha
+        var backgroundAlpha = abs(halfHeight - yDistance)/halfHeight
         if backgroundAlpha > 1.0 {
             backgroundAlpha = 1.0
+        } else if backgroundAlpha < minBackgroundAlpha {
+            backgroundAlpha = minBackgroundAlpha
         }
         backgroundView.alpha = backgroundAlpha
+        updateControlsAlphaWithBackgroundAlpha(backgroundAlpha)
     }
     
     private func containerCenter() -> CGPoint {
@@ -103,5 +108,13 @@ class MediaViewerPanningViewModel: NSObject {
                 imageContentView.alpha = alpha
             }
         }
+    }
+    
+    private func updateControlsAlphaWithBackgroundAlpha(backgroundAlpha: CGFloat) {
+        var controlsAlpha: CGFloat = 0.0
+        if backgroundAlpha > 0.9 {
+            controlsAlpha = (backgroundAlpha - 0.9) * 10.0
+        }
+        containerView.controlsAlpha = controlsAlpha
     }
 }

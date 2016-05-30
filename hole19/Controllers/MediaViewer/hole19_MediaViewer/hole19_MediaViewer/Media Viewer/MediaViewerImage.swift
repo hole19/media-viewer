@@ -1,16 +1,25 @@
 
 import UIKit
 
-class MediaViewerImage: NSObject {
+@objc protocol MediaViewerImageModel {
+    var infoOverlayViewClass: MediaViewerInfoOverlayView.Type { get set }
+    var image: UIImage? { get set }
+    var imageURL: NSURL? { get set }
+    var sourceImageView: UIImageView? { get set }
+    
+    var overlayInfoModel: AnyObject? { get set }
+}
+
+class MediaViewerImage: NSObject, MediaViewerImageModel {
     
     // MARK: properties
     
-    let infoOverlayViewClass: MediaViewerInfoOverlayView.Type
+    var infoOverlayViewClass: MediaViewerInfoOverlayView.Type
     var image: UIImage?
     var imageURL: NSURL?
     var sourceImageView: UIImageView?
     
-    var overlayInfoModel: Any?
+    var overlayInfoModel: AnyObject?
     
     // MARK: init
     

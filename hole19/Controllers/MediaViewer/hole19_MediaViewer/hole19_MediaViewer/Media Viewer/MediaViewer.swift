@@ -11,13 +11,13 @@ class MediaViewer: UIViewController {
     var allowLandscapeDismissal = false
     
     internal var sourceImageView: UIImageView?
-    internal var initialImage: MediaViewerImage?
+    internal var initialImage: MediaViewerImageModel?
     
     internal var transitionAnimator: MediaViewerTransitionAnimator?
     
     internal var contentsView: MediaViewerContentsView!
     internal var imageTaskHandler = MediaViewerImageActionsHandler()
-    internal var allImages: [MediaViewerImage]?
+    internal var allImages: [MediaViewerImageModel]?
     internal var transitionDelegate: MediaViewerDelegate?
     
     // MARK: init
@@ -37,7 +37,7 @@ class MediaViewer: UIViewController {
      :param: allImages optional array of MediaViewerImage objects to present in a horizontal scroll view.
      :param: delegate - MediaViewerDelegate - optional delegate to support additional actions such as auto-scrolling underlying collection view.
      */
-    convenience init(image: MediaViewerImage, allImages: [MediaViewerImage]? = nil, delegate:MediaViewerDelegate? = nil) {
+    convenience init(image: MediaViewerImageModel, allImages: [MediaViewerImageModel]? = nil, delegate:MediaViewerDelegate? = nil) {
         self.init(nibName: nil, bundle: nil)
         self.sourceImageView = image.sourceImageView
         self.allImages = allImages

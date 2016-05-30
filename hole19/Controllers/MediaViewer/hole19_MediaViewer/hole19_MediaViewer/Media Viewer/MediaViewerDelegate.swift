@@ -2,8 +2,8 @@
 import UIKit
 
 @objc protocol MediaViewerDelegate {
-    func imageViewForImage(image: MediaViewerImage) -> UIImageView?
+    func imageViewForImage(image: MediaViewerImageModel) -> UIImageView?
     func scrollImageviewsContainer() -> UIScrollView
-    optional func hasMoreImagesToLoad(withImages: [MediaViewerImage]) -> Bool
-    optional func loadMoreImages(withImages images: [MediaViewerImage], completition: (newImages: [MediaViewerImage], error: NSError?) -> Void) -> NSOperation?
+    optional func hasMoreImagesToLoad(withImages: [MediaViewerImageModel]) -> Bool
+    optional func loadMoreImages(withImages images: [MediaViewerImageModel], completition: (newImages: [MediaViewerImageModel], error: NSError?) -> Void) -> NSOperation?
 }

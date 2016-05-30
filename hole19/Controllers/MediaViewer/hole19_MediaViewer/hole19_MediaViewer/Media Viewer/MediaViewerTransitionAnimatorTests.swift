@@ -46,9 +46,12 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     // MARK: transition IN
 
     class MockMediaViewerMultipleImageScrollView: MediaViewerMultipleImageScrollView {
+        
+        var sourceImageView: UIImageView?
+        
         override func currentImageView() -> MediaViewerInteractiveImageView? {
             if contentViews.count == 0 {
-                self.images = [MediaViewerImage(image: UIImage(named: "minion8")!)]
+                self.images = [MediaViewerImage(image: UIImage(named: "minion8")!, sourceImageView: sourceImageView)]
             }
             return contentViews[0]
         }
@@ -61,7 +64,9 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         view1.addSubview(imageView1)
         originContainer = view1
         contentsView = MediaViewerContentsView(frame: CGRectMake(0, 0, 400, 600))
-        contentsView!.scrollView = MockMediaViewerMultipleImageScrollView(frame: contentsView!.bounds)
+        let mockScroll = MockMediaViewerMultipleImageScrollView(frame: contentsView!.bounds)
+        mockScroll.sourceImageView = imageView1
+        contentsView!.scrollView = mockScroll
 
         sut = MediaViewerTransitionAnimator(sourceImageView: imageView1, contentsView: contentsView!)
         return contentsView!.scrollView.currentImageView()!.imageView

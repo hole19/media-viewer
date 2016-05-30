@@ -95,11 +95,13 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
 }
 
 extension ImageCollectionViewViewController: MediaViewerDelegate {
-    func imageViewForImage(image: MediaViewerImage) -> UIImageView? {
-        if let index = allImages.indexOf(image), let collectionView = collectionView {
-            let indexPath = NSIndexPath(forRow: index, inSection: 0)
-            if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ImageCell {
-                return cell.imageView
+    func imageViewForImage(image: MediaViewerImageModel) -> UIImageView? {
+        if let mediaImage = image as? MediaViewerImage {
+            if let index = allImages.indexOf(mediaImage), let collectionView = collectionView {
+                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ImageCell {
+                    return cell.imageView
+                }
             }
         }
         return nil
@@ -107,12 +109,12 @@ extension ImageCollectionViewViewController: MediaViewerDelegate {
     func scrollImageviewsContainer() -> UIScrollView {
         return collectionView!
     }
-    func hasMoreImagesToLoad(withImages: [MediaViewerImage]) -> Bool {
+    func hasMoreImagesToLoad(withImages: [MediaViewerImageModel]) -> Bool {
         return hasMoreImagesToLoad > 0
     }
-    func loadMoreImages(withImages images: [MediaViewerImage], completition: (newImages: [MediaViewerImage], error: NSError?) -> Void) -> NSOperation? {
+    func loadMoreImages(withImages images: [MediaViewerImageModel], completition: (newImages: [MediaViewerImageModel], error: NSError?) -> Void) -> NSOperation? {
         hasMoreImagesToLoad -= 1
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(1.0) * NSEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(10.0) * NSEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
             let new = self.moreImages()
             completition(newImages: new, error: nil)
             self.allImages.appendContentsOf(new)

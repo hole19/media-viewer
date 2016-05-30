@@ -10,7 +10,7 @@ class MediaViewerInteractiveImageView: UIView {
     // MARK: properties
     
     weak var delegate: MediaViewerInteractiveImageViewDelegate?
-    var imageModel: MediaViewerImage? {
+    var imageModel: MediaViewerImageModel? {
         didSet {
             updateViewWithModel(imageModel)
         }
@@ -56,7 +56,7 @@ class MediaViewerInteractiveImageView: UIView {
     // MARK: public - selectors
     
     func viewDoubleTapped(sender: UITapGestureRecognizer) {
-        if scrollView.zoomScale < scrollView.minimumZoomScale + (maximumZoomScale - scrollView.minimumZoomScale) * 0.5 {
+        if scrollView.zoomScale <= 1.01  {
             let zoomPoint = sender.locationInView(scrollView)
             
             //derive the size of the region to zoom to
@@ -121,7 +121,7 @@ class MediaViewerInteractiveImageView: UIView {
         addGestureRecognizer(zoomDoubleTapGestureRecogniser)
     }
     
-    private func updateViewWithModel(imageModel: MediaViewerImage?) {
+    private func updateViewWithModel(imageModel: MediaViewerImageModel?) {
         imageView.image = imageModel?.image
         if let url = imageModel?.imageURL {
             imageView.sd_setImageWithURL(url)
