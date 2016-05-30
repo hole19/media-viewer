@@ -8,7 +8,7 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
     var imageNames = ["minion1", "minion2", "minion3", "minion4", "minion5", "minion6", "minion7", "minion8", "minion9"]
     var allImages = [MediaViewerImage]()
     
-    var hasMoreImagesToLoad = true
+    var hasMoreImagesToLoad = 2
     
     // MARK: UIViewController
     
@@ -32,14 +32,32 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
     // MARK: private
     
     private func moreImages() -> [MediaViewerImage] {
-        var newImages = [MediaViewerImage]()
+        if hasMoreImagesToLoad == 1 {
+            return moreImages1()
+        } else {
+            return moreImages2()
+        }
+    }
+    
+    private func moreImages1() -> [MediaViewerImage] {
         let imageURL1 = NSURL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS9iDRjjy2UraGtLdE9DHLkBQjussZvqXXhYjtXbR4a6VSgzLr")!
         let authorInfo1 = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: imageURL1, authorTitle: "Tiger", datePictureWasTaken: NSDate())
-
         let imagePaths = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtTXKI9HG6ug0oWlkGaqyyXXAf0ekz4kJa9NWwx7T6rLusbUCV", "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQcHhEtanyjYWOeera7kmRg0RsHDg7g7Yzew8kTLtJgSzoL__adNA", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT3M6ix9FP-l2YMDNqcS3U_Tp-R57E93qPzSFJRee1yleY9mX0s"]
+        return createImagesWith(authorInfo1, imagePaths: imagePaths)
+    }
+    
+    private func moreImages2() -> [MediaViewerImage] {
+        let imageURL1 = NSURL(string: "https://naspiddu.files.wordpress.com/2012/05/budha-bali2.jpg")!
+        let authorInfo1 = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: imageURL1, authorTitle: "Budha", datePictureWasTaken: NSDate())
+        let imagePaths = ["https://cdn.shopify.com/s/files/1/0190/8436/files/blog_viceroy-bali.jpg?17304909388870507138", "https://1.bp.blogspot.com/-CH2yEIPkKno/VpP_L-WLOlI/AAAAAAAABtc/slWh6cudyxg/s1600/Bali%2Bw1.jpg"]
+        return createImagesWith(authorInfo1, imagePaths: imagePaths)
+    }
+    
+    private func createImagesWith(author: MediaViewerAuthorInfoOverlayViewModel, imagePaths: [String]) -> [MediaViewerImage] {
+        var newImages = [MediaViewerImage]()
         for path in imagePaths {
             let image = MediaViewerImage(imageURL: NSURL(string: path)!, infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
-            image.overlayInfoModel = authorInfo1
+            image.overlayInfoModel = author
             newImages.append(image)
         }
         return newImages
@@ -90,10 +108,10 @@ extension ImageCollectionViewViewController: MediaViewerDelegate {
         return collectionView!
     }
     func hasMoreImagesToLoad(withImages: [MediaViewerImage]) -> Bool {
-        return hasMoreImagesToLoad
+        return hasMoreImagesToLoad > 0
     }
     func loadMoreImages(withImages images: [MediaViewerImage], completition: (newImages: [MediaViewerImage], error: NSError?) -> Void) -> NSOperation? {
-        hasMoreImagesToLoad = false
+        hasMoreImagesToLoad -= 1
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(1.0) * NSEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
             let new = self.moreImages()
             completition(newImages: new, error: nil)

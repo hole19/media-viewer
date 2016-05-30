@@ -113,7 +113,6 @@ class MediaViewerMultipleImageScrollView: UIView {
     }
 
     private func updateViewWithImages(newImages: [MediaViewerImage], selectedImage: MediaViewerImage) {
-        scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(newImages.count), height: bounds.size.height)
         var currentViewFrame = scrollView.bounds
         currentViewFrame.origin.x = inbetweenImagesMargin
         currentViewFrame.size.width = bounds.width
@@ -130,6 +129,7 @@ class MediaViewerMultipleImageScrollView: UIView {
                 contentViews.append(contentView)
             }
         }
+        scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
         setRecogniserRequiredToFailWithView(currentImageView())
         setDelegateForAllViews(contentViews)
         if let index = newImages.indexOf(selectedImage) {
