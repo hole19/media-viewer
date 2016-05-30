@@ -2,19 +2,20 @@
 import UIKit
 import SDWebImage
 
+/// Swift class to display image gallery
 class MediaViewer: UIViewController {
     
     // MARK: properties
     
-    var sourceImageView: UIImageView?
-    var initialImage: MediaViewerImage?
+    internal var sourceImageView: UIImageView?
+    internal var initialImage: MediaViewerImage?
     
-    var transitionAnimator: MediaViewerTransitionAnimator?
+    internal var transitionAnimator: MediaViewerTransitionAnimator?
     
-    var contentsView: MediaViewerContentsView!
-    var imageTaskHandler = MediaViewerImageActionsHandler()
-    var allImages: [MediaViewerImage]?
-    var transitionDelegate: MediaViewerDelegate?
+    internal var contentsView: MediaViewerContentsView!
+    internal var imageTaskHandler = MediaViewerImageActionsHandler()
+    internal var allImages: [MediaViewerImage]?
+    internal var transitionDelegate: MediaViewerDelegate?
     
     // MARK: init
     
@@ -26,11 +27,18 @@ class MediaViewer: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(image: MediaViewerImage, allImages: [MediaViewerImage]? = nil, transitionDelegate:MediaViewerDelegate? = nil) {
+    /**
+     Designated initialiser.
+     
+     :param: image MediaViewerImage instance with the source image to present.
+     :param: allImages optional array of MediaViewerImage objects to present in a horizontal scroll view.
+     :param: delegate - MediaViewerDelegate - optional delegate to support additional actions such as auto-scrolling underlying collection view.
+     */
+    convenience init(image: MediaViewerImage, allImages: [MediaViewerImage]? = nil, delegate:MediaViewerDelegate? = nil) {
         self.init(nibName: nil, bundle: nil)
         self.sourceImageView = image.sourceImageView
         self.allImages = allImages
-        self.transitionDelegate = transitionDelegate
+        self.transitionDelegate = delegate
         self.initialImage = image
         modalPresentationStyle = .OverCurrentContext
     }
@@ -73,7 +81,11 @@ class MediaViewer: UIViewController {
         contentsView.scrollView.layoutSubviews()
     }
     
-    // MARK: public
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .All
+    }
+    
+    // MARK: public selectors
     
     func close(sender: UIButton) {
         dismissViewAnimated()
