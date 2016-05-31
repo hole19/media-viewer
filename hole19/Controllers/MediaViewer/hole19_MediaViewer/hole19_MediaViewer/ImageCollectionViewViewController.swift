@@ -81,7 +81,8 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let margin: CGFloat = 5.0
-        let width = (collectionView.frame.size.width - 1 * margin)/2.0
+//        let width = (collectionView.frame.size.width - 1 * margin)/2.0
+        let width = collectionView.frame.size.width
         let height = (collectionView.frame.size.height - 2 * margin)/2.33
         return CGSize(width: width, height: height)
     }
@@ -112,9 +113,9 @@ extension ImageCollectionViewViewController: MediaViewerDelegate {
     func hasMoreImagesToLoad(withImages: [MediaViewerImageModel]) -> Bool {
         return hasMoreImagesToLoad > 0
     }
-    func loadMoreImages(withImages images: [MediaViewerImageModel], completition: (newImages: [MediaViewerImageModel], error: NSError?) -> Void) -> NSOperation? {
+    func loadMoreImages(withImages images: [MediaViewerImageModel], completition: (newImages: [MediaViewerImageModel]?, error: NSError?) -> Void) -> NSOperation? {
         hasMoreImagesToLoad -= 1
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(10.0) * NSEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(2.0) * NSEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
             let new = self.moreImages()
             completition(newImages: new, error: nil)
             self.allImages.appendContentsOf(new)

@@ -202,7 +202,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         guard let images = images else { return }
 
         mediaViewerDelegate?.loadMoreImages?(withImages: images, completition: { [weak self] (newImages, error) in
-            guard let weakSelf = self else { return }
+            guard let weakSelf = self, let newImages = newImages else { return }
             var newCurrentImages = newImages
             if let currentImages = weakSelf.images {
                 newCurrentImages = currentImages

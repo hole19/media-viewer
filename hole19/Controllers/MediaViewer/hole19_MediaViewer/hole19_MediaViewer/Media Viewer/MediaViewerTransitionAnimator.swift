@@ -82,7 +82,8 @@ class MediaViewerTransitionAnimator: NSObject {
         } else {
             sourceImage = nil
             endImageFrame = currentImageView.frame
-            endImageFrame.origin.y += currentImageView.frame.size.height
+            endImageFrame.origin.x = 0
+            endImageFrame.origin.y = currentImageView.frame.size.height
         }
         
         let duration: NSTimeInterval = animated ? animationTime : 0.00

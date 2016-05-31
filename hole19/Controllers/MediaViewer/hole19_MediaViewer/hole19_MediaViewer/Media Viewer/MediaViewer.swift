@@ -87,6 +87,10 @@ class MediaViewer: UIViewController {
         }) { (coordinate) in }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+
     // MARK: public selectors
     
     func close(sender: UIButton) {
