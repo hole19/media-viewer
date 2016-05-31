@@ -4,9 +4,9 @@ import UIKit
 class MediaViewerAuthorInfoOverlayViewModel: MediaViewerAuthorInfoOverlayViewModelProtocol {
     var authorImageURL: NSURL
     var authorTitle: String
-    var datePictureWasTaken: NSDate
+    var datePictureWasTaken: NSDate?
 
-    init(authorImageURL: NSURL, authorTitle: String, datePictureWasTaken: NSDate) {
+    init(authorImageURL: NSURL, authorTitle: String, datePictureWasTaken: NSDate? = nil) {
         self.authorImageURL = authorImageURL
         self.authorTitle = authorTitle
         self.datePictureWasTaken = datePictureWasTaken
@@ -16,7 +16,7 @@ class MediaViewerAuthorInfoOverlayViewModel: MediaViewerAuthorInfoOverlayViewMod
 protocol MediaViewerAuthorInfoOverlayViewModelProtocol {
     var authorImageURL: NSURL { get }
     var authorTitle: String { get }
-    var datePictureWasTaken: NSDate { get }
+    var datePictureWasTaken: NSDate? { get }
 }
 
 class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
@@ -51,7 +51,11 @@ class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         if let model = model as? MediaViewerAuthorInfoOverlayViewModelProtocol {
             authorTitleLablel.text = model.authorTitle
             authorImageView.sd_setImageWithURL(model.authorImageURL)
-            dateTakenLabel.text = model.datePictureWasTaken.defaultString()
+            if let date = model.datePictureWasTaken {
+                dateTakenLabel.text = date.defaultString()
+            } else {
+                dateTakenLabel.text = ""
+            }
         } else {
             dateTakenLabel.text = ""
             authorTitleLablel.text = ""
