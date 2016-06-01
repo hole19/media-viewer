@@ -226,6 +226,38 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         expect(self.contentsView?.backgroundView.alpha) == 0.0
     }
+    
+    func testThatTransitionBackWithoutSourceImageViewFrameIsCorrect() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        sut.sourceImageView = nil
+        
+        sut.transitionBackToSourceImageView(false)
+        
+        expect(imageView2.frame) == CGRect(x: 0, y: 600, width: 400, height: 600)
+    }
+    
+    class MockMediaDelegate: MediaViewerDelegate {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 4000, height: 500))
+        @objc func scrollImageviewsContainer() -> UIScrollView {
+            return UIScrollView()
+        }
+        @objc func imageViewForImage(image: MediaViewerImageModel) -> UIImageView? {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 400))
+            view.addSubview(imageView)
+            return imageView
+        }
+    }
+    
+    func testThatTransitionBackWitDelegateImageViewFrameIsCorrect() {
+        let imageView2 = setupSUTWithTwoImageViewsInsideContainers()
+        sut.sourceImageView = nil
+        let mockDelegate = MockMediaDelegate()
+        sut.transitionDelegate = mockDelegate
+        
+        sut.transitionBackToSourceImageView(false)
+        
+        expect(imageView2.frame) == CGRect(x: 0, y: 0, width: 200, height: 400)
+    }
 
 }
 

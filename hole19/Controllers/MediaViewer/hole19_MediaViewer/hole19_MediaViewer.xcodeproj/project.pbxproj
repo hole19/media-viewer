@@ -12,7 +12,6 @@
 		455984911CE5C7EB0095AA1A /* MediaViewerInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455984901CE5C7EB0095AA1A /* MediaViewerInfoOverlayView.swift */; };
 		455984931CE5C89D0095AA1A /* MediaViewerImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455984921CE5C89D0095AA1A /* MediaViewerImageTests.swift */; };
 		455984951CE5C8CC0095AA1A /* MediaViewerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455984941CE5C8CC0095AA1A /* MediaViewerImage.swift */; };
-		4560DE311CFC4C05009CFFC3 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4560DE301CFC4C05009CFFC3 /* Rotation.swift */; };
 		4560DE761CFCD016009CFFC3 /* NSDate+MediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4560DE751CFCD016009CFFC3 /* NSDate+MediaViewer.swift */; };
 		4560DE781CFCD03C009CFFC3 /* NSDate+MediaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4560DE771CFCD03C009CFFC3 /* NSDate+MediaViewerTests.swift */; };
 		457F76E81CAD552A0049B2E1 /* hole19v2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F76E71CAD552A0049B2E1 /* hole19v2Tests.swift */; };
@@ -72,7 +71,6 @@
 		455984901CE5C7EB0095AA1A /* MediaViewerInfoOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerInfoOverlayView.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerInfoOverlayView.swift"; sourceTree = SOURCE_ROOT; };
 		455984921CE5C89D0095AA1A /* MediaViewerImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImageTests.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImageTests.swift"; sourceTree = SOURCE_ROOT; };
 		455984941CE5C8CC0095AA1A /* MediaViewerImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewerImage.swift; path = "hole19_MediaViewer/Media Viewer/MediaViewerImage.swift"; sourceTree = SOURCE_ROOT; };
-		4560DE301CFC4C05009CFFC3 /* Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
 		4560DE751CFCD016009CFFC3 /* NSDate+MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+MediaViewer.swift"; path = "hole19_MediaViewer/Media Viewer/NSDate+MediaViewer.swift"; sourceTree = SOURCE_ROOT; };
 		4560DE771CFCD03C009CFFC3 /* NSDate+MediaViewerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+MediaViewerTests.swift"; path = "hole19_MediaViewer/Media Viewer/NSDate+MediaViewerTests.swift"; sourceTree = SOURCE_ROOT; };
 		457F76E51CAD55290049B2E1 /* hole19v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hole19v2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,7 +188,6 @@
 				458D331D1C9C7BB700844203 /* SingleImageViewViewController.swift */,
 				45F89F8A1CBFC87A000D467E /* ImageCollectionViewViewController.swift */,
 				45F89F8C1CBFC8D8000D467E /* ImageCell.swift */,
-				4560DE301CFC4C05009CFFC3 /* Rotation.swift */,
 				458D331F1C9C7BB700844203 /* Main.storyboard */,
 				458D33221C9C7BB700844203 /* Assets.xcassets */,
 				458D33241C9C7BB700844203 /* LaunchScreen.storyboard */,
@@ -487,7 +484,6 @@
 				45F89FB01CBFF12A000D467E /* MediaViewerPanningViewModel.swift in Sources */,
 				45F89FA41CBFF12A000D467E /* MediaViewerAuthorInfoOverlayView.swift in Sources */,
 				458D331C1C9C7BB700844203 /* AppDelegate.swift in Sources */,
-				4560DE311CFC4C05009CFFC3 /* Rotation.swift in Sources */,
 				45F89F8B1CBFC87A000D467E /* ImageCollectionViewViewController.swift in Sources */,
 				45F89FAE1CBFF12A000D467E /* MediaViewerMultipleImageScrollView.swift in Sources */,
 				45F89FB51CBFF12A000D467E /* UIView+MediaViewer.swift in Sources */,
