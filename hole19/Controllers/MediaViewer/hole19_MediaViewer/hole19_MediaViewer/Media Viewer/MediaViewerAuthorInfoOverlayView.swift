@@ -6,9 +6,9 @@ class MediaViewerAuthorInfoOverlayViewModel: MediaViewerAuthorInfoOverlayViewMod
     var authorTitle: String
     var datePictureWasTaken: NSDate?
 
-    init(authorImageURL: NSURL, authorTitle: String, datePictureWasTaken: NSDate? = nil) {
-        self.authorImageURL = authorImageURL
-        self.authorTitle = authorTitle
+    init(authorImageURL: NSURL?, authorTitle: String?, datePictureWasTaken: NSDate? = nil) {
+        self.authorImageURL = authorImageURL ?? NSURL()
+        self.authorTitle = authorTitle ?? ""
         self.datePictureWasTaken = datePictureWasTaken
     }
 }

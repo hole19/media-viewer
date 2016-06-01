@@ -17,7 +17,7 @@ class MediaViewerImage: NSObject, MediaViewerImageModel {
     var infoOverlayViewClass: MediaViewerInfoOverlayView.Type
     var image: UIImage?
     var imageURL: NSURL?
-    var sourceImageView: UIImageView?
+    weak var sourceImageView: UIImageView?
     
     var overlayInfoModel: AnyObject?
     
@@ -27,7 +27,7 @@ class MediaViewerImage: NSObject, MediaViewerImageModel {
         self.infoOverlayViewClass = MediaViewerInfoOverlayView.self
     }
     
-    init(image: UIImage, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
+    init(image: UIImage?, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
         self.image = image
         self.sourceImageView = sourceImageView
         self.infoOverlayViewClass = infoOverlayViewClass
@@ -39,7 +39,7 @@ class MediaViewerImage: NSObject, MediaViewerImageModel {
         self.infoOverlayViewClass = infoOverlayViewClass
     }
     
-    convenience init(image: UIImage, imageURL: NSURL, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
+    convenience init(image: UIImage?, imageURL: NSURL?, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
         self.init(image: image, sourceImageView: sourceImageView, infoOverlayViewClass: infoOverlayViewClass)
         self.imageURL = imageURL
     }
