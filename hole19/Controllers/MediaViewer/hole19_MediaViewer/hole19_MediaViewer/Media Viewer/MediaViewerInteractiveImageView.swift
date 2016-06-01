@@ -124,7 +124,7 @@ class MediaViewerInteractiveImageView: UIView {
     private func updateViewWithModel(imageModel: MediaViewerImageModel?) {
         imageView.image = imageModel?.image
         if let url = imageModel?.imageURL {
-            imageView.sd_setImageWithURL(url)
+            imageView.sd_setImageWithURL(url, placeholderImage: imageModel?.image)
         }
     }
 }

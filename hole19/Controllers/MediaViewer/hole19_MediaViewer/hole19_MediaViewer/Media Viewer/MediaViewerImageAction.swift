@@ -51,7 +51,9 @@ class MediaViewerImageAction {
             photoLibrary.performChanges({
                 PHAssetChangeRequest.creationRequestForAssetFromImage(image)
             }) { (fin, error) in
-                NSLog("Error")
+                if let error = error {
+                    print("error : \(error)")
+                }
             }
         }
     }
