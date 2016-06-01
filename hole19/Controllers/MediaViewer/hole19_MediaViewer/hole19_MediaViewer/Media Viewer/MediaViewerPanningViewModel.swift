@@ -37,7 +37,7 @@ class MediaViewerPanningViewModel: NSObject {
             recognizer.setTranslation(CGPointZero, inView: containerView)
             let distance = distanceFromContainerCenter()
             if recognizer.state == .Began {
-                self.setScrollViewImagesAlpha(0.0)
+                self.containerView.scrollView.setScrollViewImagesAlpha(0.0)
             }
             if recognizer.state == .Ended || recognizer.state == .Cancelled {
                 if needToDismissView(distance) {
@@ -66,7 +66,7 @@ class MediaViewerPanningViewModel: NSObject {
             self.containerView.controlsAlpha = 1.0
 
         }) { (fin) in
-            self.setScrollViewImagesAlpha(1.0)
+            self.containerView.scrollView.setScrollViewImagesAlpha(1.0)
         }
     }
     
@@ -100,16 +100,7 @@ class MediaViewerPanningViewModel: NSObject {
     private func pannedView() -> UIView {
         return containerView.scrollView
     }
-    
-    private func setScrollViewImagesAlpha(alpha: CGFloat) {
-        let current = containerView.scrollView.currentImageView()
-        for imageContentView in containerView.scrollView.contentViews {
-            if imageContentView != current {
-                imageContentView.alpha = alpha
-            }
-        }
-    }
-    
+        
     private func updateControlsAlphaWithBackgroundAlpha(backgroundAlpha: CGFloat) {
         var controlsAlpha: CGFloat = 0.0
         if backgroundAlpha > 0.9 {

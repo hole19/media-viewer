@@ -67,6 +67,7 @@ class MediaViewerMultipleImageScrollView: UIView {
             currentViewFrame.origin.x += scrollView.bounds.size.width
         }
         scrollView.contentOffset = CGPoint(x:CGFloat(currentPage)*scrollView.bounds.size.width, y:0.0)
+        setScrollViewImagesAlpha(1.0)
 }
 
     // MARK: public
@@ -90,6 +91,15 @@ class MediaViewerMultipleImageScrollView: UIView {
         self.images = images
     }
     
+    func setScrollViewImagesAlpha(alpha: CGFloat) {
+        let current = currentImageView()
+        for imageContentView in contentViews {
+            if imageContentView != current {
+                imageContentView.alpha = alpha
+            }
+        }
+    }
+
     // MARK: private
     
     private func setupView() {
