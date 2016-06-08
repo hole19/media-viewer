@@ -20,6 +20,8 @@ class MediaViewer: UIViewController {
     internal var allImages: [MediaViewerImageModel]?
     internal var transitionDelegate: MediaViewerDelegate?
     
+    internal var foregroundWindow: UIWindow?
+    
     // MARK: init
     
     required init?(coder aDecoder: NSCoder) {
@@ -86,11 +88,20 @@ class MediaViewer: UIViewController {
             self.contentsView.updateViewStateWithLandscape(size.width > size.height)
         }) { (coordinate) in }
     }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
 
+    // MARK: public
+
+    func present() {
+        foregroundWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        guard let foregroundWindow = foregroundWindow else { return }
+
+        foregroundWindow.backgroundColor = UIColor.clearColor()
+        foregroundWindow.rootViewController = self
+        foregroundWindow.windowLevel = UIWindowLevelStatusBar
+        foregroundWindow.hidden = false
+    }
+    
     // MARK: public selectors
     
     func close(sender: UIButton) {
@@ -120,7 +131,9 @@ class MediaViewer: UIViewController {
     
     private func dismissViewAnimated() {
         transitionAnimator?.transitionBackToSourceImageView(true, withCompletition: { [weak self] in
-            self?.dismissViewControllerAnimated(false, completion: nil)
+            self?.foregroundWindow?.hidden = true
+            self?.foregroundWindow?.rootViewController = nil
+            self?.foregroundWindow = nil
             })
     }
 }

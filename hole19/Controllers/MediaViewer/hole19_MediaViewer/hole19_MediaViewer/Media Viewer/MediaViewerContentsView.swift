@@ -43,7 +43,7 @@ class MediaViewerContentsView: UIView {
     
     internal var allowLandscapeDismissal: Bool
 
-    private var closeButtonTopMarginPortrait: CGFloat = 22.0
+    private var closeButtonTopMarginPortrait: CGFloat = 10.0
     private var closeButtonTopMarginLandscape: CGFloat = 8.0
 
     // MARK: init

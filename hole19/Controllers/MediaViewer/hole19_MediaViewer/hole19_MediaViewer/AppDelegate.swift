@@ -6,5 +6,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func applicationDidFinishLaunching(application: UIApplication) {
+        application.setStatusBarStyle(.LightContent, animated: false)
+    }
 }
 

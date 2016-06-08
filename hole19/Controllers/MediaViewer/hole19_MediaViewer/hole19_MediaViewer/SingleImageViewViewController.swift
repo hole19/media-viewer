@@ -9,7 +9,8 @@ class SingleImageViewViewController: UIViewController {
         let image = MediaViewerImage(image: imageView.image!, sourceImageView: imageView)
         let mediaViewer = MediaViewer(image: image)
         mediaViewer.allowLandscapeDismissal = true
-        presentViewController(mediaViewer, animated: false, completion: nil)
+        mediaViewer.present()
     }
+    
 }
 

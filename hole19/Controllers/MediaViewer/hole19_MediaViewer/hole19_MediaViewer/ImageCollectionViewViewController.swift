@@ -29,6 +29,11 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
         }
     }
     
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
+
     // MARK: private
     
     private func moreImages() -> [MediaViewerImage] {
@@ -81,8 +86,8 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let margin: CGFloat = 5.0
-//        let width = (collectionView.frame.size.width - 1 * margin)/2.0
-        let width = collectionView.frame.size.width
+        let width = (collectionView.frame.size.width - 1 * margin)/2.0
+//        let width = collectionView.frame.size.width
         let height = (collectionView.frame.size.height - 2 * margin)/2.33
         return CGSize(width: width, height: height)
     }
@@ -91,7 +96,7 @@ class ImageCollectionViewViewController: UICollectionViewController, UICollectio
         let selectedImage = allImages[indexPath.row]
         selectedImage.sourceImageView = (collectionView.cellForItemAtIndexPath(indexPath) as! ImageCell).imageView
         let mediaViewer = MediaViewer(image: selectedImage, allImages: allImages, delegate: self)
-        presentViewController(mediaViewer, animated: false, completion: nil)
+        mediaViewer.present()
     }
 }
 

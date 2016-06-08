@@ -82,6 +82,8 @@ class MediaViewerTests: XCTestCase {
         var numberOfTimesSetupTransitionWasCalled = 0
         var numberOfTimesTransitionBackWasCalled = 0
         
+        var transitionBackCompletition = {}
+        
         override func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
             numberOfTimesTransitionWasCalled += 1
         }
@@ -92,6 +94,7 @@ class MediaViewerTests: XCTestCase {
         
         override func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
             numberOfTimesTransitionBackWasCalled += 1
+            transitionBackCompletition = completition
         }
     }
     
@@ -222,7 +225,7 @@ class MediaViewerTests: XCTestCase {
             numerOfTimesUpdateWitLandscapeWasCalled += 1
         }
     }
-
+    
     func testThatOnViewWillTransitionToSizeMediaViewerWillUpdateContentsViewWithLandscape() {
         let _ = sut.view
         let mockContents = MockContentsView(frame: CGRectZero)
@@ -234,6 +237,35 @@ class MediaViewerTests: XCTestCase {
         coordin.animateAlongsideTransitionBlock?(coordin)
         
         expect(mockContents.numerOfTimesUpdateWitLandscapeWasCalled) == 1
+    }
+    
+    func testThatPresentWillCreateForegroundWindow() {
+        sut.present()
+        
+        expect(self.sut.foregroundWindow) != nil
+    }
+    
+    func testThatPresentWillCreateForegroundWindowWithStatusBarLevel() {
+        sut.present()
+        
+        expect(self.sut.foregroundWindow!.windowLevel) == UIWindowLevelStatusBar
+    }
+    
+    func testThatPresentWillCreateForegroundWindowWithSUTAsRoot() {
+        sut.present()
+        
+        expect(self.sut.foregroundWindow!.rootViewController) == sut
+    }
+    
+    func testThatOnTransitionBackWindowIsRemoved() {
+        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRectZero))
+        sut.transitionAnimator = mockTransition
+        let _ = sut.view
+        
+        sut.dismissView()
+        mockTransition.transitionBackCompletition()
+        
+        expect(self.sut.foregroundWindow).to(beNil())
     }
 }
 
