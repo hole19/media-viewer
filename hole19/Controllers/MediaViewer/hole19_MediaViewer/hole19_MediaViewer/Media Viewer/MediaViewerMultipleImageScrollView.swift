@@ -67,8 +67,7 @@ class MediaViewerMultipleImageScrollView: UIView {
             currentViewFrame.origin.x += scrollView.bounds.size.width
         }
         scrollView.contentOffset = CGPoint(x:CGFloat(currentPage)*scrollView.bounds.size.width, y:0.0)
-        setScrollViewImagesAlpha(1.0)
-}
+    }
 
     // MARK: public
     
@@ -96,6 +95,15 @@ class MediaViewerMultipleImageScrollView: UIView {
         for imageContentView in contentViews {
             if imageContentView != current {
                 imageContentView.alpha = alpha
+            }
+        }
+    }
+    
+    func setAllImageViewsButCurrentHidden(hidden: Bool) {
+        let current = currentImageView()
+        for imageContentView in contentViews {
+            if imageContentView != current {
+                imageContentView.imageView.hidden = hidden
             }
         }
     }
@@ -142,13 +150,18 @@ class MediaViewerMultipleImageScrollView: UIView {
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
         setRecogniserRequiredToFailWithView(currentImageView())
         setDelegateForAllViews(contentViews)
-        if let index = newImages.indexOf({ (some) -> Bool in
+        setupInitialContentOffsetWithImages(newImages, selectedImage: selectedImage)
+    }
+    
+    private func setupInitialContentOffsetWithImages(images: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
+        if let index = images.indexOf({ (some) -> Bool in
             return some === selectedImage
         }) {
             scrollView.contentOffset = CGPoint(x:CGFloat(index)*scrollView.bounds.size.width, y:0.0)
             currentPage = index
-            hiddenImageView = mediaViewerDelegate?.imageViewForImage(newImages[index])
-         }
+            hiddenImageView = mediaViewerDelegate?.imageViewForImage(images[index])
+            setRecogniserRequiredToFailWithView(contentViews[index])
+        }
     }
     
     private func contentViewWithImageModel(imageModel: MediaViewerImageModel?, frame: CGRect) -> MediaViewerInteractiveImageView {

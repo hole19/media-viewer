@@ -84,9 +84,18 @@ class MediaViewer: UIViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         contentsView.scrollView.layoutSubviews()
+        let current = contentsView.scrollView.currentImageView()
+        for cView in contentsView.scrollView.contentViews {
+            if current != cView {
+                cView.imageView.hidden = true
+            }
+        }
+        contentsView.scrollView.setAllImageViewsButCurrentHidden(true)
         coordinator.animateAlongsideTransition({ (coordinate) in
             self.contentsView.updateViewStateWithLandscape(size.width > size.height)
-        }) { (coordinate) in }
+        }) { (coordinate) in
+            self.contentsView.scrollView.setAllImageViewsButCurrentHidden(false)
+        }
     }
 
     // MARK: public
