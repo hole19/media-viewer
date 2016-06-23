@@ -2,11 +2,11 @@
 import UIKit
 
 @objc protocol MediaViewerImageModel {
-    var infoOverlayViewClass: MediaViewerInfoOverlayView.Type { get }
     var image: UIImage? { get }
     var imageURL: NSURL? { get }
     var sourceImageView: UIImageView? { get }
     
+    var infoOverlayViewClass: MediaViewerInfoOverlayView.Type { get }
     var overlayInfoModel: AnyObject? { get }
 }
 

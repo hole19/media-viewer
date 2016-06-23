@@ -1,6 +1,9 @@
 
 import UIKit
 
+protocol MediaViewerMultipleImageScrollViewDelegate {
+    func scrollToItemWithIndex(index: Int)
+}
 
 @objc protocol MediaViewerMultipleImageScrollViewActionsDelegate: class {
     func scrollViewScrolledToImageModel(image: MediaViewerImageModel?)
@@ -42,7 +45,7 @@ class MediaViewerMultipleImageScrollView: UIView {
     var currentPage: Int = 0
     let inbetweenImagesMargin: CGFloat = 4.0
     
-    private var hiddenImageView: UIImageView?
+    var hiddenImageView: UIImageView?
     
     // MARK: init
     
@@ -159,7 +162,9 @@ class MediaViewerMultipleImageScrollView: UIView {
         }) {
             scrollView.contentOffset = CGPoint(x:CGFloat(index)*scrollView.bounds.size.width, y:0.0)
             currentPage = index
-            hiddenImageView = mediaViewerDelegate?.imageViewForImage(images[index])
+            if let delegate = mediaViewerDelegate {
+                hiddenImageView = delegate.imageViewForImage(images[index])
+            }
             setRecogniserRequiredToFailWithView(contentViews[index])
         }
     }
@@ -196,8 +201,8 @@ class MediaViewerMultipleImageScrollView: UIView {
     
     private func scrollImageViewContainerToCorrespondingImage(index: Int) {
         if let mediaViewerDelegate = mediaViewerDelegate {
-            if let collectionView = mediaViewerDelegate.scrollImageviewsContainer() as? UICollectionView {
-                collectionView.scrollToItemWithIndex(index)
+            if let imagesScrollView = mediaViewerDelegate.scrollImageviewsContainer() as? MediaViewerMultipleImageScrollViewDelegate {
+                imagesScrollView.scrollToItemWithIndex(index)
             }
         }
     }
