@@ -4,7 +4,7 @@ import UIKit
 extension UICollectionView: MediaViewerMultipleImageScrollViewDelegate {
     func scrollToItemWithIndex(index: Int) {
         var numberOfItemsInCollectionView = 0
-        for var i = 0; i < numberOfSections(); i++ {
+        for var i = 0; i < numberOfSections(); i=i+1 {
             numberOfItemsInCollectionView += numberOfItemsInSection(i)
         }
         if index < numberOfItemsInCollectionView {

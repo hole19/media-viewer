@@ -10,6 +10,9 @@ class MediaViewer: UIViewController {
     /// Property to determine if you want the gallery to be dismissable in landscape orientation.
     var allowLandscapeDismissal = false
     
+    /// If you have view controller based status bar appereance, statusBarStyle value will be returned
+    var statusBarStyle = UIStatusBarStyle.LightContent
+    
     internal var sourceImageView: UIImageView?
     internal var initialImage: MediaViewerImageModel?
     
@@ -98,8 +101,15 @@ class MediaViewer: UIViewController {
         }
     }
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return statusBarStyle
+    }
+
     // MARK: public
 
+    /**
+     Use present to show MediaViewer. Do not use presentViewController.
+     */
     func present() {
         foregroundWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
         
@@ -143,7 +153,7 @@ class MediaViewer: UIViewController {
             self?.foregroundWindow?.hidden = true
             self?.foregroundWindow?.rootViewController = nil
             self?.foregroundWindow = nil
-            })
+        })
     }
 }
 

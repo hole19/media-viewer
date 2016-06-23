@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol MediaViewerMultipleImageScrollViewDelegate {
+@objc protocol MediaViewerMultipleImageScrollViewDelegate {
     func scrollToItemWithIndex(index: Int)
 }
 
@@ -201,9 +201,7 @@ class MediaViewerMultipleImageScrollView: UIView {
     
     private func scrollImageViewContainerToCorrespondingImage(index: Int) {
         if let mediaViewerDelegate = mediaViewerDelegate {
-            if let imagesScrollView = mediaViewerDelegate.scrollImageviewsContainer() as? MediaViewerMultipleImageScrollViewDelegate {
-                imagesScrollView.scrollToItemWithIndex(index)
-            }
+            mediaViewerDelegate.scrollImageviewsContainer().scrollToItemWithIndex(index)
         }
     }
     

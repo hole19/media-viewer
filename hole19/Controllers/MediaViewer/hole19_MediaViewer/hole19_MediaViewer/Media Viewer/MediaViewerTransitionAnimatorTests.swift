@@ -238,8 +238,8 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     
     class MockMediaDelegate: MediaViewerDelegate {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 4000, height: 500))
-        @objc func scrollImageviewsContainer() -> UIScrollView {
-            return UIScrollView()
+        @objc func scrollImageviewsContainer() -> MediaViewerMultipleImageScrollViewDelegate {
+            return UICollectionView()
         }
         @objc func imageViewForImage(image: MediaViewerImageModel) -> UIImageView? {
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 400))

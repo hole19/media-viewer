@@ -112,7 +112,7 @@ extension ImageCollectionViewViewController: MediaViewerDelegate {
         }
         return nil
     }
-    func scrollImageviewsContainer() -> UIScrollView {
+    func scrollImageviewsContainer() -> MediaViewerMultipleImageScrollViewDelegate {
         return collectionView!
     }
     func hasMoreImagesToLoad(withImages: [MediaViewerImageModel]) -> Bool {
