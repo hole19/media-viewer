@@ -6,4 +6,4 @@ install:
 script:
 - pod repo update
 - pod install
-- scan
+- scan -s H19MediaViewer
