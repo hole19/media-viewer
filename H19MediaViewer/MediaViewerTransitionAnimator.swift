@@ -1,20 +1,20 @@
 
 import UIKit
 
-class MediaViewerTransitionAnimator: NSObject {
+public class MediaViewerTransitionAnimator: NSObject {
    
     // MARK: properties
     
-    var animationTime: NSTimeInterval = 0.2
+    public var animationTime: NSTimeInterval = 0.2
     
-    var sourceImageView: UIImageView?
-    var contentsView: MediaViewerContentsView!
+    public var sourceImageView: UIImageView?
+    public var contentsView: MediaViewerContentsView!
     
-    var transitionDelegate: MediaViewerDelegate?
+    public var transitionDelegate: MediaViewerDelegate?
     
     // MARK: init
     
-    init(sourceImageView: UIImageView?, contentsView: MediaViewerContentsView, transitionDelegate: MediaViewerDelegate? = nil) {
+    public init(sourceImageView: UIImageView?, contentsView: MediaViewerContentsView, transitionDelegate: MediaViewerDelegate? = nil) {
         super.init()
         self.sourceImageView = sourceImageView
         self.contentsView = contentsView
@@ -23,7 +23,7 @@ class MediaViewerTransitionAnimator: NSObject {
     
     // MARK: public
     
-    func setupTransitionToDestinationImageView() {
+    public func setupTransitionToDestinationImageView() {
         self.contentsView.interfaceAlpha = 0.0
         guard let currentImageView = contentsView.scrollView.currentImageView(),
               let destinationSuperview = currentImageView.imageView.superview else { return }
@@ -40,7 +40,7 @@ class MediaViewerTransitionAnimator: NSObject {
         currentImageView.imageView.contentMode = .ScaleAspectFill
     }
     
-    func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+    public func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
         guard let currentImageView = contentsView.scrollView.currentImageView() else { return }
         let duration: NSTimeInterval = animated ? animationTime : 0.00
         let center = currentImageView.imageView.center
@@ -58,11 +58,11 @@ class MediaViewerTransitionAnimator: NSObject {
         }
     }
     
-    func setupTransitionBackToSourceImageView(withImageView imageView: UIImageView?) {
+    public func setupTransitionBackToSourceImageView(withImageView imageView: UIImageView?) {
         imageView?.hidden = true
     }
 
-    func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+    public func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
         guard let currentImageView = contentsView.scrollView.currentImageView(),
               let currentSuperview = currentImageView.imageView.superview else { return }
         

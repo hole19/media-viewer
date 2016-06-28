@@ -1,21 +1,21 @@
 
 import UIKit
 
-class MediaViewerImageActionsHandler {
+public class MediaViewerImageActionsHandler {
     
     // MARK: properties
     
-    var tasks = [MediaViewerImageAction]()
+    public var tasks = [MediaViewerImageAction]()
     
     // MARK: init
     
-    init() {
+    public init() {
         setupDefaultTasks()
     }
     
     // MARK: public
     
-    func actionSheetWithAllTasksForImage(image: UIImage) -> UIAlertController {
+    public func actionSheetWithAllTasksForImage(image: UIImage) -> UIAlertController {
         let alert = UIAlertController()
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         for task in tasks {

@@ -1,34 +1,34 @@
 
 import UIKit
 
-protocol MediaViewerPanningViewModelDelegate: class {
+public protocol MediaViewerPanningViewModelDelegate: class {
     func dismissView()
 }
 
-class MediaViewerPanningViewModel: NSObject {
+public class MediaViewerPanningViewModel: NSObject {
     
     // MARK: properties
     
-    var delegate: MediaViewerPanningViewModelDelegate?
+    public var delegate: MediaViewerPanningViewModelDelegate?
     
-    var minBackgroundAlpha: CGFloat = 0.3
+    public var minBackgroundAlpha: CGFloat = 0.3
     
     // property to determine how far from view center user needs to pan to dismiss
-    var minYFactorToDismiss: CGFloat = 0.3
+    public var minYFactorToDismiss: CGFloat = 0.3
 
-    var backgroundView: UIView
-    var containerView: MediaViewerContentsView
+    public var backgroundView: UIView
+    public var containerView: MediaViewerContentsView
     
     // MARK: init
     
-    init(backgroundView: UIView, containerView: MediaViewerContentsView) {
+    public init(backgroundView: UIView, containerView: MediaViewerContentsView) {
         self.backgroundView = backgroundView
         self.containerView = containerView
     }
     
     // MARK: public - selectors
     
-    func viewPanned(recognizer: UIPanGestureRecognizer) {
+    public func viewPanned(recognizer: UIPanGestureRecognizer) {
         if containerView.landscapeAsociatedInteractionsAllowed() {
             let translation = recognizer.translationInView(containerView)
             if let view = recognizer.view {

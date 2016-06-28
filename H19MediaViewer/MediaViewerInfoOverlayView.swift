@@ -1,11 +1,11 @@
 
 import UIKit
 
-class MediaViewerInfoOverlayView: UIView {
+public class MediaViewerInfoOverlayView: UIView {
   
     // properties
     
-    var model: Any? {
+    public var model: Any? {
         didSet {
             updateViewWithModel(model)
         }
@@ -13,21 +13,21 @@ class MediaViewerInfoOverlayView: UIView {
     
     // init
     
-    required override init(frame: CGRect) {
+    required public override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
     
     // public
 
-    func defaultHeight() -> CGFloat {
+    public func defaultHeight() -> CGFloat {
         return 0.0
     }
     
-    func updateViewWithModel(model: Any?) {
+    public func updateViewWithModel(model: Any?) {
 
     }
 }

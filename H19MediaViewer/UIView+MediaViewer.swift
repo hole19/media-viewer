@@ -3,7 +3,7 @@ import UIKit
 
 extension UIView {
     
-    func addSubviewWithFullScreenConstraints(subview: UIView, sideMargins: CGFloat = 0.0) {
+    public func addSubviewWithFullScreenConstraints(subview: UIView, sideMargins: CGFloat = 0.0) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         addSubview(subview)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-margin-[subview]-margin-|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: ["margin": sideMargins], views: ["subview" : subview]))
@@ -11,7 +11,7 @@ extension UIView {
     }
     
     
-    func addLabelSubviewWithFont(font: UIFont, color: UIColor, translateAutoresizingMask: Bool = false) -> UILabel {
+    public func addLabelSubviewWithFont(font: UIFont, color: UIColor, translateAutoresizingMask: Bool = false) -> UILabel {
         let label = UILabel(frame: CGRectMake(0,0,100,100))
         label.translatesAutoresizingMaskIntoConstraints = translateAutoresizingMask
         label.textColor = color

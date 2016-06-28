@@ -8,7 +8,7 @@ import Photos
 class MockPhotoLibrary: PHPhotoLibrary {
     var numberOfTimesPerformChangesWasCalled = 0
     
-    public override func performChanges(changeBlock: dispatch_block_t, completionHandler: ((Bool, NSError?) -> Void)?) {
+    override func performChanges(changeBlock: dispatch_block_t, completionHandler: ((Bool, NSError?) -> Void)?) {
         changeBlock()
         numberOfTimesPerformChangesWasCalled += 1
     }

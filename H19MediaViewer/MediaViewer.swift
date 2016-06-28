@@ -3,15 +3,15 @@ import UIKit
 import SDWebImage
 
 /// Swift class to display image gallery
-class MediaViewer: UIViewController {
+public class MediaViewer: UIViewController {
     
     // MARK: properties
     
     /// Property to determine if you want the gallery to be dismissable in landscape orientation.
-    var allowLandscapeDismissal = false
+    public var allowLandscapeDismissal = false
     
     /// If you have view controller based status bar appereance, statusBarStyle value will be returned
-    var statusBarStyle = UIStatusBarStyle.LightContent
+    public var statusBarStyle = UIStatusBarStyle.LightContent
     
     internal var sourceImageView: UIImageView?
     internal var initialImage: MediaViewerImageModel?
@@ -27,11 +27,11 @@ class MediaViewer: UIViewController {
     
     // MARK: init
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,7 +42,7 @@ class MediaViewer: UIViewController {
      :param: allImages optional array of MediaViewerImage objects to present in a horizontal scroll view.
      :param: delegate - MediaViewerDelegate - optional delegate to support additional actions such as auto-scrolling underlying collection view.
      */
-    convenience init(image: MediaViewerImageModel, allImages: [MediaViewerImageModel]? = nil, delegate:MediaViewerDelegate? = nil) {
+    convenience public init(image: MediaViewerImageModel, allImages: [MediaViewerImageModel]? = nil, delegate:MediaViewerDelegate? = nil) {
         self.init(nibName: nil, bundle: nil)
         self.sourceImageView = image.sourceImageView
         self.allImages = allImages
@@ -53,12 +53,12 @@ class MediaViewer: UIViewController {
 
     // MARK: UIViewController
     
-    override func loadView() {
+    override public func loadView() {
         super.loadView()
         setupView()
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         if transitionAnimator == nil {
             transitionAnimator = MediaViewerTransitionAnimator(sourceImageView: sourceImageView, contentsView: contentsView, transitionDelegate: transitionDelegate)
@@ -66,7 +66,7 @@ class MediaViewer: UIViewController {
         contentsView.pannedViewModel.delegate = self
     }
     
-    override func viewDidLayoutSubviews() {
+    override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if contentsView.scrollView.images == nil {
             if let sourceImage = initialImage {
@@ -79,12 +79,12 @@ class MediaViewer: UIViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override public func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         transitionAnimator?.transitionToDestinationImageView(true)
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override public func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         contentsView.scrollView.layoutSubviews()
         let current = contentsView.scrollView.currentImageView()
@@ -101,7 +101,7 @@ class MediaViewer: UIViewController {
         }
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override public func preferredStatusBarStyle() -> UIStatusBarStyle {
         return statusBarStyle
     }
 
@@ -110,7 +110,7 @@ class MediaViewer: UIViewController {
     /**
      Use present to show MediaViewer. Do not use presentViewController.
      */
-    func present() {
+    public func present() {
         foregroundWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         guard let foregroundWindow = foregroundWindow else { return }
@@ -123,7 +123,7 @@ class MediaViewer: UIViewController {
     
     // MARK: public selectors
     
-    func close(sender: UIButton) {
+    public func close(sender: UIButton) {
         dismissViewAnimated()
     }
     
@@ -158,13 +158,13 @@ class MediaViewer: UIViewController {
 }
 
 extension MediaViewer: MediaViewerPanningViewModelDelegate {
-    func dismissView() {
+    public func dismissView() {
         dismissViewAnimated()
     }
 }
 
 extension MediaViewer: MediaViewerContentsViewActionsDelegate {
-    func longPressActionDetectedInContentView(contentView: MediaViewerContentsView) {
+    public func longPressActionDetectedInContentView(contentView: MediaViewerContentsView) {
         if let image = contentsView.scrollView.currentImageView()?.imageView.image {
             let alert = imageTaskHandler.actionSheetWithAllTasksForImage(image)
             presentViewController(alert, animated: true, completion: nil)

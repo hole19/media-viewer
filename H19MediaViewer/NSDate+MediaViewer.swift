@@ -2,13 +2,13 @@
 import Foundation
 
 extension NSDate {
-    func defaultString() -> String {
+    public func defaultString() -> String {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MMM d, y"
         return formatter.stringFromDate(self)
     }
     
-    class func dateWith(day day: Int, month: Int, year: Int) -> NSDate {
+    public class func dateWith(day day: Int, month: Int, year: Int) -> NSDate {
         let components = NSDateComponents()
         components.year = year
         components.month = month

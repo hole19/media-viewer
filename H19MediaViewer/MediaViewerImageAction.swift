@@ -3,29 +3,29 @@ import UIKit
 import AssetsLibrary
 import Photos
 
-enum MediaViewerImageActionType {
+public enum MediaViewerImageActionType {
     case Custom, SaveToLibrary
 }
 
-class MediaViewerImageAction {
+public class MediaViewerImageAction {
    
     // MARK: properties
     
-    var title: String
-    var taskHandler: (UIImage) -> Void
+    public var title: String
+    public var taskHandler: (UIImage) -> Void
     
-    var type = MediaViewerImageActionType.Custom
+    public var type = MediaViewerImageActionType.Custom
 
     // MARK: init
     
-    init(title: String, handler: (UIImage) -> Void) {
+    public init(title: String, handler: (UIImage) -> Void) {
         self.title = title
         self.taskHandler = handler
     }
     
     // MARK: class
     
-    class func taskWithType(actionType: MediaViewerImageActionType) -> MediaViewerImageAction {
+    public class func taskWithType(actionType: MediaViewerImageActionType) -> MediaViewerImageAction {
         switch actionType {
         case .SaveToLibrary:
             return saveToLibraryTask()

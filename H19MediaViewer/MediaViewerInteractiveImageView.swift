@@ -1,32 +1,32 @@
 
 import UIKit
 
-protocol MediaViewerInteractiveImageViewDelegate: class {
+public protocol MediaViewerInteractiveImageViewDelegate: class {
     func hideControls()
 }
 
-class MediaViewerInteractiveImageView: UIView {
+public class MediaViewerInteractiveImageView: UIView {
 
     // MARK: properties
     
-    weak var delegate: MediaViewerInteractiveImageViewDelegate?
-    var imageModel: MediaViewerImageModel? {
+    public weak var delegate: MediaViewerInteractiveImageViewDelegate?
+    public var imageModel: MediaViewerImageModel? {
         didSet {
             updateViewWithModel(imageModel)
         }
     }
     
-    var maximumZoomScale: CGFloat = 4.0 {
+    public var maximumZoomScale: CGFloat = 4.0 {
         didSet {
             scrollView.maximumZoomScale = maximumZoomScale
         }
     }
     
-    var imageView: UIImageView!
-    var scrollView: UIScrollView!
-    var activityIndicator: UIActivityIndicatorView!
+    public var imageView: UIImageView!
+    public var scrollView: UIScrollView!
+    public var activityIndicator: UIActivityIndicatorView!
 
-    var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer!
+    public var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer!
     
     // MARK: private properties
 
@@ -34,12 +34,12 @@ class MediaViewerInteractiveImageView: UIView {
     
     // MARK: init
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
@@ -47,7 +47,7 @@ class MediaViewerInteractiveImageView: UIView {
     
     // MARK: public
     
-    func zoomOut(animated animated: Bool = true) {
+    public func zoomOut(animated animated: Bool = true) {
         if scrollView.zoomScale > 1.0 {
             scrollView.setZoomScale(1.0, animated: animated)
         }
@@ -55,7 +55,7 @@ class MediaViewerInteractiveImageView: UIView {
     
     // MARK: public - selectors
     
-    func viewDoubleTapped(sender: UITapGestureRecognizer) {
+    public func viewDoubleTapped(sender: UITapGestureRecognizer) {
         if scrollView.zoomScale <= 1.01  {
             let zoomPoint = sender.locationInView(scrollView)
             
@@ -130,11 +130,11 @@ class MediaViewerInteractiveImageView: UIView {
 }
 
 extension MediaViewerInteractiveImageView: UIScrollViewDelegate {
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    public func scrollViewDidZoom(scrollView: UIScrollView) {
         if scrollView.zoomScale > previousZoomScale {
             delegate?.hideControls()
         }

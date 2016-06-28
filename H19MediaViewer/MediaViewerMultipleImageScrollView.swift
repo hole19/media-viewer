@@ -1,37 +1,37 @@
 
 import UIKit
 
-@objc protocol MediaViewerMultipleImageScrollViewDelegate {
+@objc public protocol MediaViewerMultipleImageScrollViewDelegate {
     func scrollToItemWithIndex(index: Int)
 }
 
-@objc protocol MediaViewerMultipleImageScrollViewActionsDelegate: class {
+@objc public protocol MediaViewerMultipleImageScrollViewActionsDelegate: class {
     func scrollViewScrolledToImageModel(image: MediaViewerImageModel?)
 }
 
-class MediaViewerMultipleImageScrollView: UIView {
+public class MediaViewerMultipleImageScrollView: UIView {
     
     // MARK: properties
 
-    var scrollView: UIScrollView!
+    public var scrollView: UIScrollView!
 
-    var contentViews = [MediaViewerInteractiveImageView]()
+    public var contentViews = [MediaViewerInteractiveImageView]()
     
-    weak var mediaViewerDelegate: MediaViewerDelegate?
-    weak var scrollDelegate: MediaViewerMultipleImageScrollViewActionsDelegate?
+    public weak var mediaViewerDelegate: MediaViewerDelegate?
+    public weak var scrollDelegate: MediaViewerMultipleImageScrollViewActionsDelegate?
 
-    var imageViewActionsDelgate: MediaViewerInteractiveImageViewDelegate? {
+    public var imageViewActionsDelgate: MediaViewerInteractiveImageViewDelegate? {
         didSet {
             setDelegateForAllViews(contentViews)
         }
     }
-    var singleTapGestureRecogniserThatReqiresFailure: UITapGestureRecognizer? {
+    public var singleTapGestureRecogniserThatReqiresFailure: UITapGestureRecognizer? {
         didSet {
             setRecogniserRequiredToFailWithView(currentImageView())
         }
     }
     
-    var images: [MediaViewerImageModel]? {
+    public var images: [MediaViewerImageModel]? {
         didSet {
             guard let images = images else { return }
             var selected = selectedImage
@@ -41,27 +41,27 @@ class MediaViewerMultipleImageScrollView: UIView {
             updateViewWithImages(images, selectedImage: selected!)
         }
     }
-    var selectedImage: MediaViewerImageModel?
-    var currentPage: Int = 0
+    public var selectedImage: MediaViewerImageModel?
+    public var currentPage: Int = 0
     let inbetweenImagesMargin: CGFloat = 4.0
     
-    var hiddenImageView: UIImageView?
+    public var hiddenImageView: UIImageView?
     
     // MARK: init
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
     
     // MARK: UIView
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
         var currentViewFrame = CGRect(x: inbetweenImagesMargin, y: 0.0, width: bounds.size.width, height: scrollView.bounds.size.height)
@@ -74,26 +74,26 @@ class MediaViewerMultipleImageScrollView: UIView {
 
     // MARK: public
     
-    func currentImageView() -> MediaViewerInteractiveImageView? {
+    public func currentImageView() -> MediaViewerInteractiveImageView? {
         if currentPage < contentViews.count {
             return contentViews[currentPage]
         }
         return nil
     }
     
-    func zoomOut() {
+    public func zoomOut() {
         if let currentTopView = currentImageView() {
             currentTopView.zoomOut()
         }
     }
 
-    func setImages(images: [MediaViewerImageModel], withSelectedOne selImage: MediaViewerImageModel) {
+    public func setImages(images: [MediaViewerImageModel], withSelectedOne selImage: MediaViewerImageModel) {
         removeAllCurrentContents()
         self.selectedImage = selImage
         self.images = images
     }
     
-    func setScrollViewImagesAlpha(alpha: CGFloat) {
+    public func setScrollViewImagesAlpha(alpha: CGFloat) {
         let current = currentImageView()
         for imageContentView in contentViews {
             if imageContentView != current {
@@ -102,7 +102,7 @@ class MediaViewerMultipleImageScrollView: UIView {
         }
     }
     
-    func setAllImageViewsButCurrentHidden(hidden: Bool) {
+    public func setAllImageViewsButCurrentHidden(hidden: Bool) {
         let current = currentImageView()
         for imageContentView in contentViews {
             if imageContentView != current {
@@ -258,7 +258,7 @@ class MediaViewerMultipleImageScrollView: UIView {
 }
 
 extension MediaViewerMultipleImageScrollView: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         updateViewWithCurrentPage(currentPage)
         scrollImageViewContainerToCorrespondingImage(currentPage)

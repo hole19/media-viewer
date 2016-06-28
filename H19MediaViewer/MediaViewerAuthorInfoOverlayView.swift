@@ -1,53 +1,53 @@
 
 import UIKit
 
-class MediaViewerAuthorInfoOverlayViewModel: MediaViewerAuthorInfoOverlayViewModelProtocol {
-    var authorImageURL: NSURL
-    var authorTitle: String
-    var datePictureWasTaken: NSDate?
+public class MediaViewerAuthorInfoOverlayViewModel: MediaViewerAuthorInfoOverlayViewModelProtocol {
+    public var authorImageURL: NSURL
+    public var authorTitle: String
+    public var datePictureWasTaken: NSDate?
 
-    init(authorImageURL: NSURL?, authorTitle: String?, datePictureWasTaken: NSDate? = nil) {
+    public init(authorImageURL: NSURL?, authorTitle: String?, datePictureWasTaken: NSDate? = nil) {
         self.authorImageURL = authorImageURL ?? NSURL()
         self.authorTitle = authorTitle ?? ""
         self.datePictureWasTaken = datePictureWasTaken
     }
 }
 
-protocol MediaViewerAuthorInfoOverlayViewModelProtocol {
+public protocol MediaViewerAuthorInfoOverlayViewModelProtocol {
     var authorImageURL: NSURL { get }
     var authorTitle: String { get }
     var datePictureWasTaken: NSDate? { get }
 }
 
-class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
+public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     
     // MARK: properties
 
-    var authorImageView: UIImageView!
-    var authorTitleLablel: UILabel!
-    var takenByTitle: UILabel!
-    var dateTakenLabel: UILabel!
-    var blurBackground: UIVisualEffectView!
+    public var authorImageView: UIImageView!
+    public var authorTitleLablel: UILabel!
+    public var takenByTitle: UILabel!
+    public var dateTakenLabel: UILabel!
+    public var blurBackground: UIVisualEffectView!
     
     // MARK: init
 
-    required init(frame: CGRect) {
+    required public init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
     
     // MARK: MediaViewerInfoOverlayView
     
-    override func defaultHeight() -> CGFloat {
+    override public func defaultHeight() -> CGFloat {
         return 80.0
     }
     
-    override func updateViewWithModel(model: Any?) {
+    override public func updateViewWithModel(model: Any?) {
         if let model = model as? MediaViewerAuthorInfoOverlayViewModelProtocol {
             authorTitleLablel.text = model.authorTitle
             authorImageView.sd_setImageWithURL(model.authorImageURL)

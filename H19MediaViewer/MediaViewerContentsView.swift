@@ -1,22 +1,22 @@
 
 import UIKit
 
-protocol MediaViewerContentsViewActionsDelegate: class {
+public protocol MediaViewerContentsViewActionsDelegate: class {
     func longPressActionDetectedInContentView(contentView: MediaViewerContentsView)
 }
 
-class MediaViewerContentsView: UIView {
+public class MediaViewerContentsView: UIView {
     
     // MARK: properties
     
-    var interfaceAlpha: CGFloat = 0.0 {
+    public var interfaceAlpha: CGFloat = 0.0 {
         didSet {
             backgroundView.alpha = interfaceAlpha
             controlsAlpha = interfaceAlpha
         }
     }
     
-    var controlsAlpha: CGFloat = 0.0 {
+    public var controlsAlpha: CGFloat = 0.0 {
         didSet {
             let closeButtonAlpha = landscapeAsociatedInteractionsAllowed() ? controlsAlpha : 0.0
             closeButton.alpha = closeButtonAlpha
@@ -48,20 +48,20 @@ class MediaViewerContentsView: UIView {
 
     // MARK: init
     
-    init(frame: CGRect, mediaViewerDelegate: MediaViewerDelegate? = nil, allowLandscapeDismissal: Bool = false) {
+    public init(frame: CGRect, mediaViewerDelegate: MediaViewerDelegate? = nil, allowLandscapeDismissal: Bool = false) {
         self.allowLandscapeDismissal = allowLandscapeDismissal
         super.init(frame: frame)
         setupView(mediaViewerDelegate)
         setupGestureRecognisers()
     }
    
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: public
 
-    func setupOverlayView(imageModel: MediaViewerImageModel) {
+    public func setupOverlayView(imageModel: MediaViewerImageModel) {
         overlayView = imageModel.infoOverlayViewClass.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         overlayView!.translatesAutoresizingMaskIntoConstraints = false
         overlayView!.model = imageModel.overlayInfoModel
@@ -71,7 +71,7 @@ class MediaViewerContentsView: UIView {
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[overlayView(height)]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: ["height": overlayView!.defaultHeight()], views: ["overlayView" : overlayView!]))
     }
     
-    func updateViewStateWithLandscape(landscape: Bool) {
+    public func updateViewStateWithLandscape(landscape: Bool) {
         backgroundView.alpha = 1.0
         if landscape && !allowLandscapeDismissal {
             controlsAlpha = 0.0
@@ -81,7 +81,7 @@ class MediaViewerContentsView: UIView {
         closeButtonTopMarginConstraint?.constant = closeButtonHeight(isLandscape: landscape)
     }
     
-    func landscapeAsociatedInteractionsAllowed() -> Bool {
+    public func landscapeAsociatedInteractionsAllowed() -> Bool {
         var allowed = true
         if frame.size.width > frame.size.height && !allowLandscapeDismissal {
             allowed = false
@@ -91,13 +91,13 @@ class MediaViewerContentsView: UIView {
     
     // MARK: selectors
     
-    func viewTapped(sender: UITapGestureRecognizer) {
+    public func viewTapped(sender: UITapGestureRecognizer) {
         let newAlpha: CGFloat = controlsAlpha == 0.0 ? 1.0 : 0.0
         setControlsAlpha(newAlpha, animated: true)
         scrollView.zoomOut()
     }
     
-    func viewLongPressed(sender: UILongPressGestureRecognizer) {
+    public func viewLongPressed(sender: UILongPressGestureRecognizer) {
         delegate?.longPressActionDetectedInContentView(self)
     }
 
@@ -208,13 +208,13 @@ class MediaViewerContentsView: UIView {
 
 extension MediaViewerContentsView: MediaViewerInteractiveImageViewDelegate {
     
-    func hideControls() {
+    public func hideControls() {
         setControlsAlpha(0.0, animated: true)
     }
 }
 
 extension MediaViewerContentsView: MediaViewerMultipleImageScrollViewActionsDelegate {
-    func scrollViewScrolledToImageModel(image: MediaViewerImageModel?) {
+    public func scrollViewScrolledToImageModel(image: MediaViewerImageModel?) {
         overlayView?.model = image?.overlayInfoModel
     }
 }
