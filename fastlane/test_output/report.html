@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Test Results | xcpretty</title>
+    <style type="text/css">
+      body { font-family:Avenir Next, Helvetica Neue, sans-serif; color: #4A4A4A; background-color: #F0F3FB; margin:0;}
+      h1 { font-weight: normal; font-size: 24px; margin: 10px 0 0 0;}
+      h3 { font-weight: normal; margin: 2px; font-size: 1.1em;}
+      header { position: fixed;width: 100%;background: rgba(249, 254, 255, 0.9);margin: 0;padding: 10px;}
+      header:before, header:after { content:""; display:table;}
+      header:after { clear:both;}
+      a:link { color: #A1D761;}
+      footer { clear: both;position: relative;z-index: 10;height: 40px;margin-top: -10px; margin-left:30px; font-size:12px;}
+      table { width:100%; border-collapse: collapse;}
+      tr td:first-child { width:7%}
+      .left { float: left; margin-left:30px;}
+      .right { float: right; margin-right: 40px; margin-top: 0; margin-bottom:0;}
+      .test-suite { margin: 0 0 30px 0;}
+      .test-suite > .heading { font-family:Menlo, Monaco, monospace; font-weight: bold; border-color: #A1D761; background-color: #B8E986; border-width: 1px;}
+      .test-suite.failing > .heading { border-color: #C84F5E; background-color: #E58591;}
+      .test-suite > .heading > .title { margin-top: 4px; margin-left: 10px;}
+      .tests { overflow: scroll;margin: 0 30px 0 60px;}
+      .test, .test-suite > .heading { height: 30px; overflow: hidden; margin: 0 30px;}
+      .test, .test-suite > .heading { border-width: 1px; border-collapse: collapse; border-style: solid; }
+      .test { margin-left: 30px; border-top:none;}
+      .test.failing { border-color: #C84F5E; background-color: #F4DDE0;}
+      .test.passing { border-color: #A1D761;}
+      .test.failing { background-color: #E7A1AA;}
+      .test.passing { background-color: #CAF59F;}
+      .test.failing.odd { background-color: #EEC7CC;}
+      .test.passing.odd { background-color: #E5FBCF;}
+      .details { background-color: #F4DDE0; border: 1px solid #C84F5E;}
+      .test .test-detail:last-child { padding-bottom: 8px;}
+      .test .title { float: left; font-size: 0.9em; margin-top: 8px; font-family: Menlo, Monaco, monospace;}
+      .test .time { float: left;margin: 4px 10px 0 20px;}
+      .test-detail { font-family:Menlo, Monaco, monospace; font-size: 0.9em; margin: 5px 0 5px 0px;}
+      .screenshots { height: auto; overflow: hidden; padding: 4px 4px 0 4px; background-color: #B8E986; border: #A1D761; border-width: 0 1px; border-style: solid; }
+      .screenshots.failing { border-color: #C84F5E; background-color: #E58591; }
+      .screenshot { max-height: 60px; float: left; transition: max-height 0.2s; margin: 0 4px 4px 0 }
+      .screenshot.selected { max-height: 568px; }
+      #test-suites { display: inline-block; width: 100%;margin-top:100px;}
+      #segment-bar { margin-top: 10px;margin-left: 14px;float:right;}
+      #segment-bar a:first-child { border-radius: 9px 0 0 9px; border-right: none;}
+      #segment-bar a:last-child { border-radius: 0 9px 9px 0; border-left: none;}
+      #segment-bar > a { color: #565656; border: 2px solid  #7B7B7B; width: 80px; font-weight: bold; display:inline-block;text-align:center; font-weight: normal;}
+      #segment-bar > a.selected { background-color: #979797; color: #F0F3FB;}
+      #counters { float: left;margin: 10px;text-align: right;}
+      #counters h2 { font-size: 16px; font-family: Avenir, sans-serif; font-weight: lighter; display:inline;}
+      #counters .number { font-size: 20px;}
+      #fail-count { color: #D0021B; margin-left:10px;}
+      @media (max-width: 640px) {
+        h1, #counters, #segment-bar { margin: 5px auto; text-align:center;}
+        header, #segment-bar { width: 100%; position: relative; background:none;}
+        .left, .right { float:none; margin:0;}
+        #test-suites { margin-top: 0;}
+        #counters { float:none;}
+      }
+    </style>
+    <script type="text/javascript">
+      var hide = function(element) { element.style.display = 'none';}
+      var show = function(element) { element.style.display = '';}
+      var isHidden = function(element) { return element.style.display == 'none';}
+      var isSelected = function(element) { return element.classList.contains("selected");}
+      var deselect = function(element) { return element.classList.remove("selected");}
+      var select = function(element) { return element.classList.add("selected");}
+      var toggle = function(element) { isHidden(element) ? show(element) : hide(element);};
+      var toggleTests = function(heading) { toggle(heading.parentNode.children[1]);};
+      var toggleDetails = function(detailClass) {
+        var details = document.querySelectorAll('.' + detailClass);
+        for (var i = details.length - 1; i >= 0; i--) { toggle(details[i]);};
+      };
+      var hideAll = function(collection) {
+        for (var i = collection.length - 1; i >= 0; i--) { hide(collection[i]); };
+      }
+      var showAll = function(collection) {
+        for (var i = collection.length - 1; i >= 0; i--) { show(collection[i]); };
+      }
+      var selectSegment = function(segment) {
+        if (isSelected(segment)) return;
+        var segments = document.querySelectorAll('#segment-bar > a');
+        for (var i = segments.length - 1; i >= 0; i--) { deselect(segments[i]);};
+        select(segment);
+        if (segment.id == "all-segment") {
+          showAll(document.querySelectorAll('.test-suite'));
+          showAll(document.querySelectorAll('.test'));
+        } else if (segment.id == "failing-segment") {
+          hideAll(document.querySelectorAll('.test.passing'));
+          showAll(document.querySelectorAll('.test.failing'));
+          hideAll(document.querySelectorAll('.test-suite.passing'));
+          showAll(document.querySelectorAll('.test-suite.failing'));
+        } else if (segment.id == "passing-segment") {
+          hideAll(document.querySelectorAll('.test.failing'));
+          showAll(document.querySelectorAll('.test.passing'));
+          hideAll(document.querySelectorAll('.test-suite.failing'));
+          showAll(document.querySelectorAll('.test-suite.passing'));
+        }
+      }
+      var toggleScreenshot = function(suiteName, index) {
+        var screenshot = document.getElementById("screenshot-" + suiteName + "-" + index);
+        isSelected(screenshot) ? deselect(screenshot) : select(screenshot);
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <section class="left">
+        <h1>Test Results</h1>
+      </section>
+      <section class="right">
+        <section id="counters">
+          <h2 id="test-count"><span class="number">159</span> tests</h2>
+          
+        </section>
+        <section id="segment-bar">
+          <a id="all-segment" onclick="selectSegment(this);" class="selected">All</a><a id="failing-segment" onclick="selectSegment(this);">Failing</a><a id="passing-segment" onclick="selectSegment(this);">Passing</a>
+        </section>
+      </section>
+    </header>
+    <section id="test-suites">
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatBlurBackgroundViewHasVisualEffectBlur');">
+                <td>
+                  
+                    <h3 class="time">0.101s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatBlurBackgroundViewHasVisualEffectBlur</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatImageViewHasCorrectCornerRadius');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatImageViewHasCorrectCornerRadius</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatImageViewHasCorrectHeight');">
+                <td>
+                  
+                    <h3 class="time">0.049s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatImageViewHasCorrectHeight</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatImageViewHasCorrectWidth');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatImageViewHasCorrectWidth</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasAuthorTitleLabel');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasAuthorTitleLabel</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasBlurBackgroundView');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasBlurBackgroundView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasCorrectDefaultHeight');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasCorrectDefaultHeight</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasDateLabel');">
+                <td>
+                  
+                    <h3 class="time">0.038s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasDateLabel</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasImageView');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasTakenByLabel');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasTakenByLabel</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItSetsCorrectDateLabelText');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItSetsCorrectDateLabelText</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTakenByLabelHasCorrectText');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTakenByLabelHasCorrectText</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerContentsViewTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerContentsViewTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatCloseButtonSuperviewIsTheView');">
+                <td>
+                  
+                    <h3 class="time">0.038s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatCloseButtonSuperviewIsTheView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatControlsAlphaChangeWillCloseButtonAlpha');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatControlsAlphaChangeWillCloseButtonAlpha</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatHideControlsWillHideThem');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatHideControlsWillHideThem</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatIfAllowLandscapeDismissalIsTrueControlsNotWillHideInPortraint');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatIfAllowLandscapeDismissalIsTrueControlsNotWillHideInPortraint</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatIfAllowLandscapeDismissalIsTrueControlsWillHideInLandscape');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatIfAllowLandscapeDismissalIsTrueControlsWillHideInLandscape</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatInterfaceAlphaChangeWillChangeBackgroundAlpha');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatInterfaceAlphaChangeWillChangeBackgroundAlpha</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatInterfaceAlphaChangeWillControlsAlpha');">
+                <td>
+                  
+                    <h3 class="time">0.035s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatInterfaceAlphaChangeWillControlsAlpha</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasAllowLandscapeDismissalProperyDefaultToFalse');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasAllowLandscapeDismissalProperyDefaultToFalse</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasBackgroundView');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasBackgroundView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasCloseButton');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasCloseButton</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasCloseButtonTopMarginConstraint');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasCloseButtonTopMarginConstraint</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasLongPressGestureRecogniser');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasLongPressGestureRecogniser</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasOverlayView');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasOverlayView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasPanGestureRecogniser');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasPanGestureRecogniser</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasPannigViewModelWithCorrectBackgroundView');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasPannigViewModelWithCorrectBackgroundView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasPannigViewModelWithCorrectContainerView');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasPannigViewModelWithCorrectContainerView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasScrollView');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasScrollView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasSingleTapGestureRecogniser');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasSingleTapGestureRecogniser</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatLongPressGestureRecogniserIsConnectedToSUT');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatLongPressGestureRecogniserIsConnectedToSUT</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatLongPressGestureWillInformDelegate');">
+                <td>
+                  
+                    <h3 class="time">0.043s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatLongPressGestureWillInformDelegate</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatPanGestureRecogniserIsConnectedToScrollView');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatPanGestureRecogniserIsConnectedToScrollView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatScrollViewCoversTheWholeView');">
+                <td>
+                  
+                    <h3 class="time">0.038s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewCoversTheWholeView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatScrollViewDelegateIsSet');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewDelegateIsSet</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatSingleTapGestureRecogniserIsConnectedToSUT');">
+                <td>
+                  
+                    <h3 class="time">0.041s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatSingleTapGestureRecogniserIsConnectedToSUT</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatUpdateViewStateWithLandscapeWillChangeCloseButtonTopConstraint');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatUpdateViewStateWithLandscapeWillChangeCloseButtonTopConstraint</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatUpdateViewStateWithLandscapeWillResetBackgroundViewAlphaTo1');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatUpdateViewStateWithLandscapeWillResetBackgroundViewAlphaTo1</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatViewTappedWillNotToggleCloseButtonAlphaFrom0IfLandscapeAndControlsDisabledAtLandscape');">
+                <td>
+                  
+                    <h3 class="time">0.041s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatViewTappedWillNotToggleCloseButtonAlphaFrom0IfLandscapeAndControlsDisabledAtLandscape</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatViewTappedWillToggleControlsAlphaFrom0');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatViewTappedWillToggleControlsAlphaFrom0</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatViewTappedWillToggleControlsAlphaFrom1');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatViewTappedWillToggleControlsAlphaFrom1</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatViewTappedWillZoomOutIfTheViewIfZoomedIn');">
+                <td>
+                  
+                    <h3 class="time">0.037s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatViewTappedWillZoomOutIfTheViewIfZoomedIn</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerImageActionTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerImageActionTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatCreatesDefaultCustomTask');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatCreatesDefaultCustomTask</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatCreatesDefaultCustomTaskHandler');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatCreatesDefaultCustomTaskHandler</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatCreatesDefaultSaveToLibraryTaskWithCorrectTitle');">
+                <td>
+                  
+                    <h3 class="time">0.000s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatCreatesDefaultSaveToLibraryTaskWithCorrectTitle</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatCreatesDefaultSaveToLibraryTaskWithCorrectType');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatCreatesDefaultSaveToLibraryTaskWithCorrectType</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatDefaultTypeIsCustom');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatDefaultTypeIsCustom</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItInitsWithTitle');">
+                <td>
+                  
+                    <h3 class="time">0.000s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithTitle</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerImageActionsHandlerTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerImageActionsHandlerTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItSetsUpAlertControllerWithCancelAction');">
+                <td>
+                  
+                    <h3 class="time">0.039s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItSetsUpAlertControllerWithCancelAction</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItSetsUpAlertControllerWithCorrectNumberOfActions');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItSetsUpAlertControllerWithCorrectNumberOfActions</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItSetsUpAlertControllerWithTypeActionSheet');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItSetsUpAlertControllerWithTypeActionSheet</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItSetsUpDefaultTasks');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItSetsUpDefaultTasks</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItSetsUpDefaultTasksWithSaveToLibrary');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItSetsUpDefaultTasksWithSaveToLibrary</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerImageTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerImageTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasDefaultInfoOverlayViewClass');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasDefaultInfoOverlayViewClass</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItInitsWithImage');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithImage</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItInitsWithImageAndImageURL');">
+                <td>
+                  
+                    <h3 class="time">0.035s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithImageAndImageURL</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItInitsWithImageAndImageURLAndOverlayViewClass');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithImageAndImageURLAndOverlayViewClass</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItInitsWithImageURL');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithImageURL</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItInitsWithSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithSourceImageView</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerInfoOverlayViewTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerInfoOverlayViewTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasCorrectDefaultHeight');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasCorrectDefaultHeight</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerInteractiveImageViewTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerInteractiveImageViewTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatDoubleTapGestureRecogniserIsConnectedToSUT');">
+                <td>
+                  
+                    <h3 class="time">0.046s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatDoubleTapGestureRecogniserIsConnectedToSUT</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatImageViewHasContentModeAspectFit');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatImageViewHasContentModeAspectFit</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatImageViewHasCorrectHeight');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatImageViewHasCorrectHeight</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatImageViewHasCorrectWidth');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatImageViewHasCorrectWidth</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatImageViewIsSubviewOfScrollView');">
+                <td>
+                  
+                    <h3 class="time">0.044s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatImageViewIsSubviewOfScrollView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasDoubleTapGestureRecogniser');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasDoubleTapGestureRecogniser</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasDoubleTapGestureRecogniserRequresTwoTaps');">
+                <td>
+                  
+                    <h3 class="time">0.036s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasDoubleTapGestureRecogniserRequresTwoTaps</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasImageView');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasMaximumZoomScaleWithCorrectDefaultValue');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasMaximumZoomScaleWithCorrectDefaultValue</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasScrollView');">
+                <td>
+                  
+                    <h3 class="time">0.005s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasScrollView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatScrollViewHasCorrectCurrentZoomScale');">
+                <td>
+                  
+                    <h3 class="time">0.007s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasCorrectCurrentZoomScale</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatScrollViewHasCorrectHeight');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasCorrectHeight</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatScrollViewHasCorrectMaximumZoomScale');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasCorrectMaximumZoomScale</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatScrollViewHasCorrectMinimumZoomScale');">
+                <td>
+                  
+                    <h3 class="time">0.035s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasCorrectMinimumZoomScale</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatScrollViewHasCorrectWidth');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasCorrectWidth</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatSutUIScrollViewDelegateMethodViewForZoomingInScrollViewReturnsImageView');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatSutUIScrollViewDelegateMethodViewForZoomingInScrollViewReturnsImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatViewDoubleTappedWillCallZoomIntoRectAnimated');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatViewDoubleTappedWillCallZoomIntoRectAnimated</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatViewDoubleTappedWillToggleZoomFromMax');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatViewDoubleTappedWillToggleZoomFromMax</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatViewDoubleTappedWillToggleZoomFromMin');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatViewDoubleTappedWillToggleZoomFromMin</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatViewDoubleTappedWillZoomIntoPoint');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatViewDoubleTappedWillZoomIntoPoint</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatZoomingInWillSendDelegateMethodToDismissControls');">
+                <td>
+                  
+                    <h3 class="time">0.036s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatZoomingInWillSendDelegateMethodToDismissControls</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatZoomingOutWillNotSendDelegateMethodToDismissControls');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatZoomingOutWillNotSendDelegateMethodToDismissControls</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatZoomingOutWillSetZoomScaleToOne');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatZoomingOutWillSetZoomScaleToOne</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasCorrectCurrentImageView');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasCorrectCurrentImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasScrollView');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasScrollView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItSetsImageViewDelegateOnAllImageViews');">
+                <td>
+                  
+                    <h3 class="time">0.037s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItSetsImageViewDelegateOnAllImageViews</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItWillAddOneMorePageIfDelegateNeedsLazyLoading');">
+                <td>
+                  
+                    <h3 class="time">0.007s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillAddOneMorePageIfDelegateNeedsLazyLoading</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItWillNotAddOneMorePageIfDelegateDoesntNeedLazyLoading');">
+                <td>
+                  
+                    <h3 class="time">0.005s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillNotAddOneMorePageIfDelegateDoesntNeedLazyLoading</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItWillSetCorrectContentOffsetOnSetImagesWithSelectedOne');">
+                <td>
+                  
+                    <h3 class="time">0.007s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillSetCorrectContentOffsetOnSetImagesWithSelectedOne</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItWillSetCorrectCurrentPagesetOnSetImagesWithSelectedOne');">
+                <td>
+                  
+                    <h3 class="time">0.043s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillSetCorrectCurrentPagesetOnSetImagesWithSelectedOne</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatOnScrollViewDidEndDeceleratingCurrentPageIsUpdated');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatOnScrollViewDidEndDeceleratingCurrentPageIsUpdated</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatOnScrollViewDidEndDeceleratingItSetsViewRecogniserToFail');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatOnScrollViewDidEndDeceleratingItSetsViewRecogniserToFail</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatScrollViewHasCorrectHeight');">
+                <td>
+                  
+                    <h3 class="time">0.036s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasCorrectHeight</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatScrollViewHasCorrectMaximumZoomScale');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasCorrectMaximumZoomScale</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatScrollViewHasCorrectMinimumZoomScale');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasCorrectMinimumZoomScale</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatScrollViewHasCorrectWidth');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasCorrectWidth</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatScrollViewHasPagingEnabled');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatScrollViewHasPagingEnabled</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatSetImagesWithSelectedOneSetsImagesCorrectly');">
+                <td>
+                  
+                    <h3 class="time">0.043s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatSetImagesWithSelectedOneSetsImagesCorrectly</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatSetImagesWithSelectedOneSetsSelectedImageCorrectly');">
+                <td>
+                  
+                    <h3 class="time">0.005s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatSetImagesWithSelectedOneSetsSelectedImageCorrectly</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatSettingTheImagesWillSetupCorrectContentViewSize');">
+                <td>
+                  
+                    <h3 class="time">0.040s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatSettingTheImagesWillSetupCorrectContentViewSize</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatSettingTheImagesWillSetupCorrectFirstInnerContentViewImage');">
+                <td>
+                  
+                    <h3 class="time">0.005s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatSettingTheImagesWillSetupCorrectFirstInnerContentViewImage</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatSettingTheImagesWillSetupCorrectNumberOfInnerContentViews');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatSettingTheImagesWillSetupCorrectNumberOfInnerContentViews</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewOrigin');">
+                <td>
+                  
+                    <h3 class="time">0.039s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewOrigin</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewSuperview');">
+                <td>
+                  
+                    <h3 class="time">0.008s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewSuperview</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatZoomOutWillCallZoomOutOnCurrentImage');">
+                <td>
+                  
+                    <h3 class="time">0.037s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatZoomOutWillCallZoomOutOnCurrentImage</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerPanningViewModelTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerPanningViewModelTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItInitsWithBackgroundViewCorrectly');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithBackgroundViewCorrectly</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItInitsWithContainerViewCorrectly');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithContainerViewCorrectly</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatCloseTriggersTransitionBack');">
+                <td>
+                  
+                    <h3 class="time">0.043s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatCloseTriggersTransitionBack</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatContentViewCoversTheWholeView');">
+                <td>
+                  
+                    <h3 class="time">0.006s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatContentViewCoversTheWholeView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatDismissViewWillCallTransitionBack');">
+                <td>
+                  
+                    <h3 class="time">0.038s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatDismissViewWillCallTransitionBack</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItBeginsTransitionOnViewDidAppear');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItBeginsTransitionOnViewDidAppear</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItConformsToMediaViewerActionsDelegate');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItConformsToMediaViewerActionsDelegate</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasAllowLandscapeDismissalProperyDefaultToFalse');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasAllowLandscapeDismissalProperyDefaultToFalse</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasImageTaskHandler');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasImageTaskHandler</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasMediaViewerContentsView');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasMediaViewerContentsView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasTransitionAnimatior');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasTransitionAnimatior</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItHasTransitionAnimatiorWithCorrectContentsView');">
+                <td>
+                  
+                    <h3 class="time">0.038s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasTransitionAnimatiorWithCorrectContentsView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItHasTransitionAnimatiorWithCorrectSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItHasTransitionAnimatiorWithCorrectSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItInitsWithSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItIsDelegateOfTheContentsView');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItIsDelegateOfTheContentsView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItSetsAllowLandscapeDismissalProperyOnContentsView');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItSetsAllowLandscapeDismissalProperyOnContentsView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItSetsPanningModelDelegate');">
+                <td>
+                  
+                    <h3 class="time">0.036s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItSetsPanningModelDelegate</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItsModalPresentationStyleIsOverCurrentContext');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItsModalPresentationStyleIsOverCurrentContext</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItWillCreateAlertOnLongPress');">
+                <td>
+                  
+                    <h3 class="time">0.005s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillCreateAlertOnLongPress</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatOnTransitionBackWindowIsRemoved');">
+                <td>
+                  
+                    <h3 class="time">0.005s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatOnTransitionBackWindowIsRemoved</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatOnViewWillTransitionToSizeMediaViewerWillForceScrollViewLayout');">
+                <td>
+                  
+                    <h3 class="time">0.042s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatOnViewWillTransitionToSizeMediaViewerWillForceScrollViewLayout</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatOnViewWillTransitionToSizeMediaViewerWillUpdateContentsViewWithLandscape');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatOnViewWillTransitionToSizeMediaViewerWillUpdateContentsViewWithLandscape</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatPresentWillCreateForegroundWindow');">
+                <td>
+                  
+                    <h3 class="time">0.042s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatPresentWillCreateForegroundWindow</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatPresentWillCreateForegroundWindowWithStatusBarLevel');">
+                <td>
+                  
+                    <h3 class="time">0.005s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatPresentWillCreateForegroundWindowWithStatusBarLevel</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatPresentWillCreateForegroundWindowWithSUTAsRoot');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatPresentWillCreateForegroundWindowWithSUTAsRoot</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.MediaViewerTransitionAnimatorTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.MediaViewerTransitionAnimatorTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItInitsWithContentsView');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithContentsView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItInitsWithContentsViewWitBackground');">
+                <td>
+                  
+                    <h3 class="time">0.041s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithContentsViewWitBackground</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItInitsWithSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItInitsWithSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionBackFinalBackgroundAlphaIs0');">
+                <td>
+                  
+                    <h3 class="time">0.038s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionBackFinalBackgroundAlphaIs0</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionBackFinalHeightIsEqalToDestinationImageView');">
+                <td>
+                  
+                    <h3 class="time">0.005s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionBackFinalHeightIsEqalToDestinationImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionBackFinalValueXIsEqalToSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionBackFinalValueXIsEqalToSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionBackFinalValueYIsEqalToSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.042s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionBackFinalValueYIsEqalToSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionBackFinalWidthIsEqalToSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionBackFinalWidthIsEqalToSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionBackWitDelegateImageViewFrameIsCorrect');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionBackWitDelegateImageViewFrameIsCorrect</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionBackWithoutSourceImageViewFrameIsCorrect');">
+                <td>
+                  
+                    <h3 class="time">0.043s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionBackWithoutSourceImageViewFrameIsCorrect</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionSetupBackToSourceSourceImageViewHidden');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionSetupBackToSourceSourceImageViewHidden</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionToDestinationFinalBackgroundAlphaIs1');">
+                <td>
+                  
+                    <h3 class="time">0.041s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationFinalBackgroundAlphaIs1</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionToDestinationFinalHeightIsEqalToDestinationImageView');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationFinalHeightIsEqalToDestinationImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionToDestinationFinalValueXIsEqalToDestinationImageView');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationFinalValueXIsEqalToDestinationImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionToDestinationFinalValueYIsEqalToDestinationImageView');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationFinalValueYIsEqalToDestinationImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionToDestinationFinalWidthIsEqalToDestinationImageView');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationFinalWidthIsEqalToDestinationImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionToDestinationInitialBackgroundAlphaIs0');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationInitialBackgroundAlphaIs0</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionToDestinationInitialHeightIsEqalToSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.006s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationInitialHeightIsEqalToSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionToDestinationInitialValueXIsEqalToSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.006s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationInitialValueXIsEqalToSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionToDestinationInitialValueYIsEqalToSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationInitialValueYIsEqalToSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionToDestinationInitialWidthIsEqalToSourceImageView');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationInitialWidthIsEqalToSourceImageView</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionToDestinationSetupHidesSourceImage');">
+                <td>
+                  
+                    <h3 class="time">0.038s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationSetupHidesSourceImage</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatTransitionToDestinationSourceImageContentModeIsAspectFill');">
+                <td>
+                  
+                    <h3 class="time">0.004s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToDestinationSourceImageContentModeIsAspectFill</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatTransitionToInteractiveImageViewFinalBackgroundAlphaIs1');">
+                <td>
+                  
+                    <h3 class="time">0.003s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatTransitionToInteractiveImageViewFinalBackgroundAlphaIs1</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.NSDate_MediaViewerTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.NSDate_MediaViewerTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItWillReturnCorrectDefaultString');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillReturnCorrectDefaultString</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItWillReturnCorrectDefaultStringForSeptember');">
+                <td>
+                  
+                    <h3 class="time">0.001s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillReturnCorrectDefaultStringForSeptember</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite passing" id="H19MediaViewerTests.UICollectionView_MediaViewerTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">H19MediaViewerTests.UICollectionView_MediaViewerTests</h3>
+          </section>
+          <section class="tests">
+            
+            <table>
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItWillScrollToItem0');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillScrollToItem0</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing odd"  onclick="toggleDetails('testThatItWillScrollToItem12');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillScrollToItem12</h3></td>
+              </tr>
+              
+            
+              
+              <tr class="test passing "  onclick="toggleDetails('testThatItWillScrollToItem2');">
+                <td>
+                  
+                    <h3 class="time">0.002s</h3>
+                  
+                </td>
+                <td><h3 class="title">testThatItWillScrollToItem2</h3></td>
+              </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+    </section>
+    <footer>Report generated with <a href="https://github.com/supermarin/xcpretty">xcpretty</a></footer>
+  </body>
+</html>
