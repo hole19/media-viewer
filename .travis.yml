@@ -7,5 +7,5 @@ install:
 - gem install cocoapods
 - gem install scan
 script:
-- pod install
+- pod update
 - scan -s H19MediaViewer
