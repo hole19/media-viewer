@@ -1,0 +1,644 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E0BCBC762A9C90F5367E32A /* Pods_H19MediaViewer_H19MediaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2B71B7A16FFC45121B452E /* Pods_H19MediaViewer_H19MediaViewerTests.framework */; };
+		4F945EFE2B3997767D5EC9E3 /* Pods_H19MediaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098668B282BBC24DF0CB3FE9 /* Pods_H19MediaViewer.framework */; };
+		A0C8352E1D22A4E200594C2A /* H19MediaViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = A0C8352D1D22A4E200594C2A /* H19MediaViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0C835351D22A4E200594C2A /* H19MediaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C8352A1D22A4E200594C2A /* H19MediaViewer.framework */; };
+		A0C835531D22A57F00594C2A /* MediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835441D22A57F00594C2A /* MediaViewer.swift */; };
+		A0C835541D22A57F00594C2A /* MediaViewerAuthorInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835451D22A57F00594C2A /* MediaViewerAuthorInfoOverlayView.swift */; };
+		A0C835551D22A57F00594C2A /* MediaViewerContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835461D22A57F00594C2A /* MediaViewerContentsView.swift */; };
+		A0C835561D22A57F00594C2A /* MediaViewerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835471D22A57F00594C2A /* MediaViewerDelegate.swift */; };
+		A0C835571D22A57F00594C2A /* MediaViewerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835481D22A57F00594C2A /* MediaViewerImage.swift */; };
+		A0C835581D22A57F00594C2A /* MediaViewerImageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835491D22A57F00594C2A /* MediaViewerImageAction.swift */; };
+		A0C835591D22A57F00594C2A /* MediaViewerImageActionsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8354A1D22A57F00594C2A /* MediaViewerImageActionsHandler.swift */; };
+		A0C8355A1D22A57F00594C2A /* MediaViewerInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8354B1D22A57F00594C2A /* MediaViewerInfoOverlayView.swift */; };
+		A0C8355B1D22A57F00594C2A /* MediaViewerInteractiveImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8354C1D22A57F00594C2A /* MediaViewerInteractiveImageView.swift */; };
+		A0C8355C1D22A57F00594C2A /* MediaViewerMultipleImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8354D1D22A57F00594C2A /* MediaViewerMultipleImageScrollView.swift */; };
+		A0C8355D1D22A57F00594C2A /* MediaViewerPanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8354E1D22A57F00594C2A /* MediaViewerPanningViewModel.swift */; };
+		A0C8355E1D22A57F00594C2A /* MediaViewerTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8354F1D22A57F00594C2A /* MediaViewerTransitionAnimator.swift */; };
+		A0C8355F1D22A57F00594C2A /* NSDate+MediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835501D22A57F00594C2A /* NSDate+MediaViewer.swift */; };
+		A0C835601D22A57F00594C2A /* UICollectionView+MediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835511D22A57F00594C2A /* UICollectionView+MediaViewer.swift */; };
+		A0C835611D22A57F00594C2A /* UIView+MediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835521D22A57F00594C2A /* UIView+MediaViewer.swift */; };
+		A0C8356F1D22A73E00594C2A /* MediaViewerAuthorInfoOverlayViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835621D22A73E00594C2A /* MediaViewerAuthorInfoOverlayViewTests.swift */; };
+		A0C835701D22A73E00594C2A /* MediaViewerContentsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835631D22A73E00594C2A /* MediaViewerContentsViewTests.swift */; };
+		A0C835711D22A73E00594C2A /* MediaViewerImageActionsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835641D22A73E00594C2A /* MediaViewerImageActionsHandlerTests.swift */; };
+		A0C835721D22A73E00594C2A /* MediaViewerImageActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835651D22A73E00594C2A /* MediaViewerImageActionTests.swift */; };
+		A0C835731D22A73E00594C2A /* MediaViewerImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835661D22A73E00594C2A /* MediaViewerImageTests.swift */; };
+		A0C835741D22A73E00594C2A /* MediaViewerInfoOverlayViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835671D22A73E00594C2A /* MediaViewerInfoOverlayViewTests.swift */; };
+		A0C835751D22A73E00594C2A /* MediaViewerInteractiveImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835681D22A73E00594C2A /* MediaViewerInteractiveImageViewTests.swift */; };
+		A0C835761D22A73E00594C2A /* MediaViewerMultipleImageScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835691D22A73E00594C2A /* MediaViewerMultipleImageScrollViewTests.swift */; };
+		A0C835771D22A73E00594C2A /* MediaViewerPanningViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8356A1D22A73E00594C2A /* MediaViewerPanningViewModelTests.swift */; };
+		A0C835781D22A73E00594C2A /* MediaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8356B1D22A73E00594C2A /* MediaViewerTests.swift */; };
+		A0C835791D22A73E00594C2A /* MediaViewerTransitionAnimatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8356C1D22A73E00594C2A /* MediaViewerTransitionAnimatorTests.swift */; };
+		A0C8357A1D22A73E00594C2A /* NSDate+MediaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8356D1D22A73E00594C2A /* NSDate+MediaViewerTests.swift */; };
+		A0C8357B1D22A73E00594C2A /* UICollectionView+MediaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8356E1D22A73E00594C2A /* UICollectionView+MediaViewerTests.swift */; };
+		A0C8357E1D22A7BC00594C2A /* ScrollViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8357C1D22A7BC00594C2A /* ScrollViewMock.swift */; };
+		A0C8357F1D22A7BC00594C2A /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8357D1D22A7BC00594C2A /* TapGestureRecognizerMock.swift */; };
+		A0C835811D22A7EC00594C2A /* MockTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835801D22A7EC00594C2A /* MockTransitionCoordinator.swift */; };
+		A0C835831D22A82D00594C2A /* TestAssetCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A0C835361D22A4E200594C2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0C835211D22A4E200594C2A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0C835291D22A4E200594C2A;
+			remoteInfo = H19MediaViewer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		098668B282BBC24DF0CB3FE9 /* Pods_H19MediaViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H19MediaViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E2B71B7A16FFC45121B452E /* Pods_H19MediaViewer_H19MediaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H19MediaViewer_H19MediaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		517C78A0F3C1EE11FFB25A70 /* Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A0C8352A1D22A4E200594C2A /* H19MediaViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = H19MediaViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0C8352D1D22A4E200594C2A /* H19MediaViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = H19MediaViewer.h; sourceTree = "<group>"; };
+		A0C8352F1D22A4E200594C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0C835341D22A4E200594C2A /* H19MediaViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = H19MediaViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0C8353B1D22A4E200594C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0C835441D22A57F00594C2A /* MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewer.swift; sourceTree = "<group>"; };
+		A0C835451D22A57F00594C2A /* MediaViewerAuthorInfoOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerAuthorInfoOverlayView.swift; sourceTree = "<group>"; };
+		A0C835461D22A57F00594C2A /* MediaViewerContentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerContentsView.swift; sourceTree = "<group>"; };
+		A0C835471D22A57F00594C2A /* MediaViewerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerDelegate.swift; sourceTree = "<group>"; };
+		A0C835481D22A57F00594C2A /* MediaViewerImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerImage.swift; sourceTree = "<group>"; };
+		A0C835491D22A57F00594C2A /* MediaViewerImageAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerImageAction.swift; sourceTree = "<group>"; };
+		A0C8354A1D22A57F00594C2A /* MediaViewerImageActionsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerImageActionsHandler.swift; sourceTree = "<group>"; };
+		A0C8354B1D22A57F00594C2A /* MediaViewerInfoOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerInfoOverlayView.swift; sourceTree = "<group>"; };
+		A0C8354C1D22A57F00594C2A /* MediaViewerInteractiveImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerInteractiveImageView.swift; sourceTree = "<group>"; };
+		A0C8354D1D22A57F00594C2A /* MediaViewerMultipleImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerMultipleImageScrollView.swift; sourceTree = "<group>"; };
+		A0C8354E1D22A57F00594C2A /* MediaViewerPanningViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerPanningViewModel.swift; sourceTree = "<group>"; };
+		A0C8354F1D22A57F00594C2A /* MediaViewerTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerTransitionAnimator.swift; sourceTree = "<group>"; };
+		A0C835501D22A57F00594C2A /* NSDate+MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+MediaViewer.swift"; sourceTree = "<group>"; };
+		A0C835511D22A57F00594C2A /* UICollectionView+MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+MediaViewer.swift"; sourceTree = "<group>"; };
+		A0C835521D22A57F00594C2A /* UIView+MediaViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+MediaViewer.swift"; sourceTree = "<group>"; };
+		A0C835621D22A73E00594C2A /* MediaViewerAuthorInfoOverlayViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerAuthorInfoOverlayViewTests.swift; sourceTree = "<group>"; };
+		A0C835631D22A73E00594C2A /* MediaViewerContentsViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerContentsViewTests.swift; sourceTree = "<group>"; };
+		A0C835641D22A73E00594C2A /* MediaViewerImageActionsHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerImageActionsHandlerTests.swift; sourceTree = "<group>"; };
+		A0C835651D22A73E00594C2A /* MediaViewerImageActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerImageActionTests.swift; sourceTree = "<group>"; };
+		A0C835661D22A73E00594C2A /* MediaViewerImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerImageTests.swift; sourceTree = "<group>"; };
+		A0C835671D22A73E00594C2A /* MediaViewerInfoOverlayViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerInfoOverlayViewTests.swift; sourceTree = "<group>"; };
+		A0C835681D22A73E00594C2A /* MediaViewerInteractiveImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerInteractiveImageViewTests.swift; sourceTree = "<group>"; };
+		A0C835691D22A73E00594C2A /* MediaViewerMultipleImageScrollViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerMultipleImageScrollViewTests.swift; sourceTree = "<group>"; };
+		A0C8356A1D22A73E00594C2A /* MediaViewerPanningViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerPanningViewModelTests.swift; sourceTree = "<group>"; };
+		A0C8356B1D22A73E00594C2A /* MediaViewerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerTests.swift; sourceTree = "<group>"; };
+		A0C8356C1D22A73E00594C2A /* MediaViewerTransitionAnimatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerTransitionAnimatorTests.swift; sourceTree = "<group>"; };
+		A0C8356D1D22A73E00594C2A /* NSDate+MediaViewerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+MediaViewerTests.swift"; sourceTree = "<group>"; };
+		A0C8356E1D22A73E00594C2A /* UICollectionView+MediaViewerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+MediaViewerTests.swift"; sourceTree = "<group>"; };
+		A0C8357C1D22A7BC00594C2A /* ScrollViewMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewMock.swift; sourceTree = "<group>"; };
+		A0C8357D1D22A7BC00594C2A /* TapGestureRecognizerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerMock.swift; sourceTree = "<group>"; };
+		A0C835801D22A7EC00594C2A /* MockTransitionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionCoordinator.swift; sourceTree = "<group>"; };
+		A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TestAssetCatalog.xcassets; sourceTree = "<group>"; };
+		AC509CE6A3613EEEB8BC3151 /* Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig"; sourceTree = "<group>"; };
+		F496C0763511C14DC2A83234 /* Pods-H19MediaViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer/Pods-H19MediaViewer.debug.xcconfig"; sourceTree = "<group>"; };
+		FFA8F6FEDF0BFF7EB33E3D2C /* Pods-H19MediaViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer/Pods-H19MediaViewer.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A0C835261D22A4E200594C2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F945EFE2B3997767D5EC9E3 /* Pods_H19MediaViewer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0C835311D22A4E200594C2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0C835351D22A4E200594C2A /* H19MediaViewer.framework in Frameworks */,
+				2E0BCBC762A9C90F5367E32A /* Pods_H19MediaViewer_H19MediaViewerTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5F7D702E8AF6A0A7C361C5BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				098668B282BBC24DF0CB3FE9 /* Pods_H19MediaViewer.framework */,
+				1E2B71B7A16FFC45121B452E /* Pods_H19MediaViewer_H19MediaViewerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		998BC60FF149D5C1982A597E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F496C0763511C14DC2A83234 /* Pods-H19MediaViewer.debug.xcconfig */,
+				FFA8F6FEDF0BFF7EB33E3D2C /* Pods-H19MediaViewer.release.xcconfig */,
+				517C78A0F3C1EE11FFB25A70 /* Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig */,
+				AC509CE6A3613EEEB8BC3151 /* Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A0C835201D22A4E200594C2A = {
+			isa = PBXGroup;
+			children = (
+				A0C8352C1D22A4E200594C2A /* H19MediaViewer */,
+				A0C835381D22A4E200594C2A /* H19MediaViewerTests */,
+				A0C8352B1D22A4E200594C2A /* Products */,
+				998BC60FF149D5C1982A597E /* Pods */,
+				5F7D702E8AF6A0A7C361C5BE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A0C8352B1D22A4E200594C2A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0C8352A1D22A4E200594C2A /* H19MediaViewer.framework */,
+				A0C835341D22A4E200594C2A /* H19MediaViewerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A0C8352C1D22A4E200594C2A /* H19MediaViewer */ = {
+			isa = PBXGroup;
+			children = (
+				A0C835441D22A57F00594C2A /* MediaViewer.swift */,
+				A0C835451D22A57F00594C2A /* MediaViewerAuthorInfoOverlayView.swift */,
+				A0C835461D22A57F00594C2A /* MediaViewerContentsView.swift */,
+				A0C835471D22A57F00594C2A /* MediaViewerDelegate.swift */,
+				A0C835481D22A57F00594C2A /* MediaViewerImage.swift */,
+				A0C835491D22A57F00594C2A /* MediaViewerImageAction.swift */,
+				A0C8354A1D22A57F00594C2A /* MediaViewerImageActionsHandler.swift */,
+				A0C8354B1D22A57F00594C2A /* MediaViewerInfoOverlayView.swift */,
+				A0C8354C1D22A57F00594C2A /* MediaViewerInteractiveImageView.swift */,
+				A0C8354D1D22A57F00594C2A /* MediaViewerMultipleImageScrollView.swift */,
+				A0C8354E1D22A57F00594C2A /* MediaViewerPanningViewModel.swift */,
+				A0C8354F1D22A57F00594C2A /* MediaViewerTransitionAnimator.swift */,
+				A0C835501D22A57F00594C2A /* NSDate+MediaViewer.swift */,
+				A0C835511D22A57F00594C2A /* UICollectionView+MediaViewer.swift */,
+				A0C835521D22A57F00594C2A /* UIView+MediaViewer.swift */,
+				A0C8352D1D22A4E200594C2A /* H19MediaViewer.h */,
+				A0C8352F1D22A4E200594C2A /* Info.plist */,
+			);
+			path = H19MediaViewer;
+			sourceTree = "<group>";
+		};
+		A0C835381D22A4E200594C2A /* H19MediaViewerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A0C835801D22A7EC00594C2A /* MockTransitionCoordinator.swift */,
+				A0C8357C1D22A7BC00594C2A /* ScrollViewMock.swift */,
+				A0C8357D1D22A7BC00594C2A /* TapGestureRecognizerMock.swift */,
+				A0C835621D22A73E00594C2A /* MediaViewerAuthorInfoOverlayViewTests.swift */,
+				A0C835631D22A73E00594C2A /* MediaViewerContentsViewTests.swift */,
+				A0C835641D22A73E00594C2A /* MediaViewerImageActionsHandlerTests.swift */,
+				A0C835651D22A73E00594C2A /* MediaViewerImageActionTests.swift */,
+				A0C835661D22A73E00594C2A /* MediaViewerImageTests.swift */,
+				A0C835671D22A73E00594C2A /* MediaViewerInfoOverlayViewTests.swift */,
+				A0C835681D22A73E00594C2A /* MediaViewerInteractiveImageViewTests.swift */,
+				A0C835691D22A73E00594C2A /* MediaViewerMultipleImageScrollViewTests.swift */,
+				A0C8356A1D22A73E00594C2A /* MediaViewerPanningViewModelTests.swift */,
+				A0C8356B1D22A73E00594C2A /* MediaViewerTests.swift */,
+				A0C8356C1D22A73E00594C2A /* MediaViewerTransitionAnimatorTests.swift */,
+				A0C8356D1D22A73E00594C2A /* NSDate+MediaViewerTests.swift */,
+				A0C8356E1D22A73E00594C2A /* UICollectionView+MediaViewerTests.swift */,
+				A0C8353B1D22A4E200594C2A /* Info.plist */,
+				A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */,
+			);
+			path = H19MediaViewerTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A0C835271D22A4E200594C2A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0C8352E1D22A4E200594C2A /* H19MediaViewer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A0C835291D22A4E200594C2A /* H19MediaViewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0C8353E1D22A4E200594C2A /* Build configuration list for PBXNativeTarget "H19MediaViewer" */;
+			buildPhases = (
+				6CEF08184E37E1A3C9280ACF /* [CP] Check Pods Manifest.lock */,
+				A0C835251D22A4E200594C2A /* Sources */,
+				A0C835261D22A4E200594C2A /* Frameworks */,
+				A0C835271D22A4E200594C2A /* Headers */,
+				A0C835281D22A4E200594C2A /* Resources */,
+				A8D6846285F9DB08E94C7C75 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = H19MediaViewer;
+			productName = H19MediaViewer;
+			productReference = A0C8352A1D22A4E200594C2A /* H19MediaViewer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A0C835331D22A4E200594C2A /* H19MediaViewerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0C835411D22A4E200594C2A /* Build configuration list for PBXNativeTarget "H19MediaViewerTests" */;
+			buildPhases = (
+				8E550712E3C971189FE77CC5 /* [CP] Check Pods Manifest.lock */,
+				A0C835301D22A4E200594C2A /* Sources */,
+				A0C835311D22A4E200594C2A /* Frameworks */,
+				A0C835321D22A4E200594C2A /* Resources */,
+				BDB6ECB5C7C2122BFAA80700 /* [CP] Embed Pods Frameworks */,
+				9B8E4B1F76E353E8D3A9B5DF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0C835371D22A4E200594C2A /* PBXTargetDependency */,
+			);
+			name = H19MediaViewerTests;
+			productName = H19MediaViewerTests;
+			productReference = A0C835341D22A4E200594C2A /* H19MediaViewerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A0C835211D22A4E200594C2A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Hole19Golf;
+				TargetAttributes = {
+					A0C835291D22A4E200594C2A = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					A0C835331D22A4E200594C2A = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = A0C835241D22A4E200594C2A /* Build configuration list for PBXProject "H19MediaViewer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A0C835201D22A4E200594C2A;
+			productRefGroup = A0C8352B1D22A4E200594C2A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A0C835291D22A4E200594C2A /* H19MediaViewer */,
+				A0C835331D22A4E200594C2A /* H19MediaViewerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A0C835281D22A4E200594C2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0C835321D22A4E200594C2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0C835831D22A82D00594C2A /* TestAssetCatalog.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6CEF08184E37E1A3C9280ACF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8E550712E3C971189FE77CC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9B8E4B1F76E353E8D3A9B5DF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8D6846285F9DB08E94C7C75 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-H19MediaViewer/Pods-H19MediaViewer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDB6ECB5C7C2122BFAA80700 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0C835251D22A4E200594C2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0C8355C1D22A57F00594C2A /* MediaViewerMultipleImageScrollView.swift in Sources */,
+				A0C835531D22A57F00594C2A /* MediaViewer.swift in Sources */,
+				A0C835591D22A57F00594C2A /* MediaViewerImageActionsHandler.swift in Sources */,
+				A0C8355D1D22A57F00594C2A /* MediaViewerPanningViewModel.swift in Sources */,
+				A0C835561D22A57F00594C2A /* MediaViewerDelegate.swift in Sources */,
+				A0C835581D22A57F00594C2A /* MediaViewerImageAction.swift in Sources */,
+				A0C8355E1D22A57F00594C2A /* MediaViewerTransitionAnimator.swift in Sources */,
+				A0C8355A1D22A57F00594C2A /* MediaViewerInfoOverlayView.swift in Sources */,
+				A0C835541D22A57F00594C2A /* MediaViewerAuthorInfoOverlayView.swift in Sources */,
+				A0C835551D22A57F00594C2A /* MediaViewerContentsView.swift in Sources */,
+				A0C835611D22A57F00594C2A /* UIView+MediaViewer.swift in Sources */,
+				A0C8355B1D22A57F00594C2A /* MediaViewerInteractiveImageView.swift in Sources */,
+				A0C835571D22A57F00594C2A /* MediaViewerImage.swift in Sources */,
+				A0C8355F1D22A57F00594C2A /* NSDate+MediaViewer.swift in Sources */,
+				A0C835601D22A57F00594C2A /* UICollectionView+MediaViewer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0C835301D22A4E200594C2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0C835751D22A73E00594C2A /* MediaViewerInteractiveImageViewTests.swift in Sources */,
+				A0C8356F1D22A73E00594C2A /* MediaViewerAuthorInfoOverlayViewTests.swift in Sources */,
+				A0C8357B1D22A73E00594C2A /* UICollectionView+MediaViewerTests.swift in Sources */,
+				A0C835811D22A7EC00594C2A /* MockTransitionCoordinator.swift in Sources */,
+				A0C835731D22A73E00594C2A /* MediaViewerImageTests.swift in Sources */,
+				A0C835791D22A73E00594C2A /* MediaViewerTransitionAnimatorTests.swift in Sources */,
+				A0C835741D22A73E00594C2A /* MediaViewerInfoOverlayViewTests.swift in Sources */,
+				A0C835701D22A73E00594C2A /* MediaViewerContentsViewTests.swift in Sources */,
+				A0C8357F1D22A7BC00594C2A /* TapGestureRecognizerMock.swift in Sources */,
+				A0C8357E1D22A7BC00594C2A /* ScrollViewMock.swift in Sources */,
+				A0C835721D22A73E00594C2A /* MediaViewerImageActionTests.swift in Sources */,
+				A0C835761D22A73E00594C2A /* MediaViewerMultipleImageScrollViewTests.swift in Sources */,
+				A0C835711D22A73E00594C2A /* MediaViewerImageActionsHandlerTests.swift in Sources */,
+				A0C835781D22A73E00594C2A /* MediaViewerTests.swift in Sources */,
+				A0C835771D22A73E00594C2A /* MediaViewerPanningViewModelTests.swift in Sources */,
+				A0C8357A1D22A73E00594C2A /* NSDate+MediaViewerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0C835371D22A4E200594C2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0C835291D22A4E200594C2A /* H19MediaViewer */;
+			targetProxy = A0C835361D22A4E200594C2A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A0C8353C1D22A4E200594C2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A0C8353D1D22A4E200594C2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A0C8353F1D22A4E200594C2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F496C0763511C14DC2A83234 /* Pods-H19MediaViewer.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = H19MediaViewer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hole19golf.H19MediaViewer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A0C835401D22A4E200594C2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFA8F6FEDF0BFF7EB33E3D2C /* Pods-H19MediaViewer.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = H19MediaViewer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hole19golf.H19MediaViewer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A0C835421D22A4E200594C2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 517C78A0F3C1EE11FFB25A70 /* Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = H19MediaViewerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hole19golf.H19MediaViewerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A0C835431D22A4E200594C2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC509CE6A3613EEEB8BC3151 /* Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = H19MediaViewerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hole19golf.H19MediaViewerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A0C835241D22A4E200594C2A /* Build configuration list for PBXProject "H19MediaViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0C8353C1D22A4E200594C2A /* Debug */,
+				A0C8353D1D22A4E200594C2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0C8353E1D22A4E200594C2A /* Build configuration list for PBXNativeTarget "H19MediaViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0C8353F1D22A4E200594C2A /* Debug */,
+				A0C835401D22A4E200594C2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0C835411D22A4E200594C2A /* Build configuration list for PBXNativeTarget "H19MediaViewerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0C835421D22A4E200594C2A /* Debug */,
+				A0C835431D22A4E200594C2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A0C835211D22A4E200594C2A /* Project object */;
+}
