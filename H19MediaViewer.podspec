@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "H19MediaViewer"
-  s.version      = "0.5.1"
+  s.version      = "0.5.2"
   s.summary      = "A simple and customizable media viewer."
   s.description  = <<-DESC
   A simple and customizable media viewer with pagination.

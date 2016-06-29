@@ -90,7 +90,7 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     private func setupBlurView() {
         blurBackground = UIVisualEffectView(frame: CGRectMake(0,0,100,100))
         blurBackground.translatesAutoresizingMaskIntoConstraints = false
-        blurBackground.effect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        blurBackground.effect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         addSubview(blurBackground)
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[blurBackground]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["blurBackground" : blurBackground]))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[blurBackground]|", options: NSLayoutFormatOptions.AlignAllLeft, metrics: nil, views: ["blurBackground" : blurBackground]))

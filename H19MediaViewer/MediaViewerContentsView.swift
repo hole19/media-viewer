@@ -151,7 +151,7 @@ public class MediaViewerContentsView: UIView {
     
     private func setupBackgroundView() {
         backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(red:0.19, green:0.19, blue:0.19, alpha:1.00)
+        backgroundView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:1.00)
         addSubviewWithFullScreenConstraints(backgroundView)
     }
     
