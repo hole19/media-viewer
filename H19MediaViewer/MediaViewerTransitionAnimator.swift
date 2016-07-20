@@ -5,7 +5,7 @@ public class MediaViewerTransitionAnimator: NSObject {
    
     // MARK: properties
     
-    public var animationTime: NSTimeInterval = 0.2
+    public var animationTime: TimeInterval = 0.2
     
     public var sourceImageView: UIImageView?
     public var contentsView: MediaViewerContentsView!
@@ -27,58 +27,58 @@ public class MediaViewerTransitionAnimator: NSObject {
         self.contentsView.interfaceAlpha = 0.0
         guard let currentImageView = contentsView.scrollView.currentImageView(),
               let destinationSuperview = currentImageView.imageView.superview else { return }
-        var sourceImageViewFrame = CGRectZero
+        var sourceImageViewFrame = CGRect.zero
         if let sourceImageView = sourceImageView, let sourceSuperview = sourceImageView.superview {
-            sourceImageViewFrame = destinationSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
+            sourceImageViewFrame = destinationSuperview.convert(sourceImageView.frame, from: sourceSuperview)
         } else {
             sourceImageViewFrame = currentImageView.frame
             sourceImageViewFrame.origin.y += currentImageView.frame.size.height
         }
         currentImageView.imageView.frame = sourceImageViewFrame
         currentImageView.imageView.alpha = 1.0
-        sourceImageView?.hidden = true
-        currentImageView.imageView.contentMode = .ScaleAspectFill
+        sourceImageView?.isHidden = true
+        currentImageView.imageView.contentMode = .scaleAspectFill
     }
     
-    public func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+    public func transitionToDestinationImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
         guard let currentImageView = contentsView.scrollView.currentImageView() else { return }
-        let duration: NSTimeInterval = animated ? animationTime : 0.00
+        let duration: TimeInterval = animated ? animationTime : 0.00
         let center = currentImageView.imageView.center
         setupTransitionToDestinationImageView()
         let endImageFrame = frameToScaleAspectFitBoundToFrame(currentImageView.bounds, img: currentImageView.imageView)
         self.contentsView.scrollView.alpha = 1.0
-        UIView.animateWithDuration(duration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             self.contentsView.interfaceAlpha = 1.0
             currentImageView.imageView.frame = endImageFrame
             currentImageView.imageView.center = center
             }) { (finished) -> Void in
-                currentImageView.imageView.contentMode = UIViewContentMode.ScaleAspectFit
-                currentImageView.imageView.frame = CGRectMake(0.0, 0.0, self.contentsView.bounds.size.width, self.contentsView.bounds.size.height)
+                currentImageView.imageView.contentMode = UIViewContentMode.scaleAspectFit
+                currentImageView.imageView.frame = CGRect(x: 0.0, y: 0.0, width: self.contentsView.bounds.size.width, height: self.contentsView.bounds.size.height)
                 completition()
         }
     }
     
     public func setupTransitionBackToSourceImageView(withImageView imageView: UIImageView?) {
-        imageView?.hidden = true
+        imageView?.isHidden = true
     }
 
-    public func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+    public func transitionBackToSourceImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
         guard let currentImageView = contentsView.scrollView.currentImageView(),
               let currentSuperview = currentImageView.imageView.superview else { return }
         
-        var endImageFrame = CGRectZero
+        var endImageFrame = CGRect.zero
         var sourceImage = sourceImageView
         if let transitionDelegate = transitionDelegate,
            let image = currentImageView.imageModel,
            let imageView = transitionDelegate.imageViewForImage(image),
            let newSourceSuperview = imageView.superview {
 
-            endImageFrame = currentSuperview.convertRect(imageView.frame, fromView: newSourceSuperview)
+            endImageFrame = currentSuperview.convert(imageView.frame, from: newSourceSuperview)
             sourceImage = imageView
-            sourceImageView?.hidden = false
+            sourceImageView?.isHidden = false
             
-        } else if let image = currentImageView.imageModel, let sourceImageView = sourceImageView, let sourceSuperview = sourceImageView.superview where image.sourceImageView === sourceImageView {
-            endImageFrame = currentSuperview.convertRect(sourceImageView.frame, fromView: sourceSuperview)
+        } else if let image = currentImageView.imageModel, let sourceImageView = sourceImageView, let sourceSuperview = sourceImageView.superview , image.sourceImageView === sourceImageView {
+            endImageFrame = currentSuperview.convert(sourceImageView.frame, from: sourceSuperview)
         } else {
             sourceImage = nil
             endImageFrame = currentImageView.frame
@@ -86,19 +86,19 @@ public class MediaViewerTransitionAnimator: NSObject {
             endImageFrame.origin.y = currentImageView.frame.size.height
         }
         
-        let duration: NSTimeInterval = animated ? animationTime : 0.00
+        let duration: TimeInterval = animated ? animationTime : 0.00
         setupTransitionBackToSourceImageView(withImageView: sourceImage)
         let center = currentImageView.imageView.center
         currentImageView.imageView.frame = frameToScaleAspectFit(currentImageView.imageView)
         currentImageView.imageView.center = center
-        currentImageView.imageView.contentMode = .ScaleAspectFill
+        currentImageView.imageView.contentMode = .scaleAspectFill
 
-        UIView.animateWithDuration(duration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             self.contentsView.interfaceAlpha = 0.0
             currentImageView.imageView.frame = endImageFrame
             }) { (finished) -> Void in
-                sourceImage?.hidden = false
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20), dispatch_get_main_queue(), { 
+                sourceImage?.isHidden = false
+                DispatchQueue.main.after(when: DispatchTime.now() + Double(20) / Double(NSEC_PER_SEC), execute: { 
                     completition()
                 })
         }
@@ -106,29 +106,29 @@ public class MediaViewerTransitionAnimator: NSObject {
     
     // MARK: private
     
-    private func frameToScaleAspectFit(img: UIImageView) -> CGRect {
-        guard let image = img.image where image.size.width > 0 && image.size.height > 0 else { return CGRectZero }
+    private func frameToScaleAspectFit(_ img: UIImageView) -> CGRect {
+        guard let image = img.image , image.size.width > 0 && image.size.height > 0 else { return CGRect.zero }
         
         let ratioImg = (image.size.width) / (image.size.height)
         let ratioSelf = (img.frame.size.width) / (img.frame.size.height);
         
         if ratioSelf < 1 {
-            return CGRectMake(0, 0, img.frame.size.width, img.frame.size.width * 1.0/ratioImg)
+            return CGRect(x: 0, y: 0, width: img.frame.size.width, height: img.frame.size.width * 1.0/ratioImg)
         } else {
-            return CGRectMake(0, 0, img.frame.size.height * ratioImg, img.frame.size.height)
+            return CGRect(x: 0, y: 0, width: img.frame.size.height * ratioImg, height: img.frame.size.height)
         }
     }
     
-    private func frameToScaleAspectFitBoundToFrame(newFrame: CGRect, img: UIImageView) -> CGRect {
-        guard let image = img.image where image.size.width > 0 && image.size.height > 0 else { return CGRectZero }
+    private func frameToScaleAspectFitBoundToFrame(_ newFrame: CGRect, img: UIImageView) -> CGRect {
+        guard let image = img.image , image.size.width > 0 && image.size.height > 0 else { return CGRect.zero }
         
         let ratioImg = (image.size.width) / (image.size.height)
         let ratioSelf = (newFrame.size.width) / (newFrame.size.height);
         
         if ratioSelf < 1 {
-            return CGRectMake(0, 0, newFrame.size.width, newFrame.size.width * 1.0/ratioImg)
+            return CGRect(x: 0, y: 0, width: newFrame.size.width, height: newFrame.size.width * 1.0/ratioImg)
         } else {
-            return CGRectMake(0, 0, newFrame.size.height * ratioImg, newFrame.size.height)
+            return CGRect(x: 0, y: 0, width: newFrame.size.height * ratioImg, height: newFrame.size.height)
         }
     }
 

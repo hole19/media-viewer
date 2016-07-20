@@ -47,7 +47,7 @@ public class MediaViewerInteractiveImageView: UIView {
     
     // MARK: public
     
-    public func zoomOut(animated animated: Bool = true) {
+    public func zoomOut(animated: Bool = true) {
         if scrollView.zoomScale > 1.0 {
             scrollView.setZoomScale(1.0, animated: animated)
         }
@@ -55,17 +55,17 @@ public class MediaViewerInteractiveImageView: UIView {
     
     // MARK: public - selectors
     
-    public func viewDoubleTapped(sender: UITapGestureRecognizer) {
+    public func viewDoubleTapped(_ sender: UITapGestureRecognizer) {
         if scrollView.zoomScale <= 1.01  {
-            let zoomPoint = sender.locationInView(scrollView)
+            let zoomPoint = sender.location(in: scrollView)
             
             //derive the size of the region to zoom to
             let zoomSize = CGSize(width: scrollView.bounds.size.width / maximumZoomScale, height: scrollView.bounds.size.height / maximumZoomScale)
             
             //offset the zoom rect so the actual zoom point is in the middle of the rectangle
-            let zoomRect = CGRectMake(zoomPoint.x - zoomSize.width / 2.0, zoomPoint.y - zoomSize.height / 2.0, zoomSize.width, zoomSize.height)
+            let zoomRect = CGRect(x: zoomPoint.x - zoomSize.width / 2.0, y: zoomPoint.y - zoomSize.height / 2.0, width: zoomSize.width, height: zoomSize.height)
             
-            scrollView.zoomToRect(zoomRect, animated: true)
+            scrollView.zoom(to: zoomRect, animated: true)
         } else {
             scrollView.setZoomScale(1.0, animated: true)
         }
@@ -79,24 +79,24 @@ public class MediaViewerInteractiveImageView: UIView {
         setupImageView()
         setupTapGestureRecogniser()
         setupActivityIndicatorView()
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear()
     }
     
     private func setupImageView() {
         imageView = UIImageView(frame: scrollView.bounds)
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         scrollView.addSubviewWithFullScreenConstraints(imageView)
-        scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Width, relatedBy: .Equal, toItem: scrollView, attribute: .Width, multiplier: 1.0, constant: 0.0))
-        scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: .Equal, toItem: scrollView, attribute: .Height, multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.width, relatedBy: .equal, toItem: scrollView, attribute: .width, multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.height, relatedBy: .equal, toItem: scrollView, attribute: .height, multiplier: 1.0, constant: 0.0))
         scrollView.contentSize = imageView.bounds.size
     }
     
     private func setupScrollView() {
         scrollView = UIScrollView(frame: bounds)
         scrollView.clipsToBounds = false
-        scrollView.userInteractionEnabled = true
-        scrollView.backgroundColor = UIColor.clearColor()
+        scrollView.isUserInteractionEnabled = true
+        scrollView.backgroundColor = UIColor.clear()
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = maximumZoomScale
         scrollView.zoomScale = 1.0
@@ -107,12 +107,12 @@ public class MediaViewerInteractiveImageView: UIView {
     }
     
     private func setupActivityIndicatorView() {
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        activityIndicator.hidden = true
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.isHidden = true
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         addSubview(activityIndicator)
-        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0))
     }
     
     private func setupTapGestureRecogniser() {
@@ -121,20 +121,20 @@ public class MediaViewerInteractiveImageView: UIView {
         addGestureRecognizer(zoomDoubleTapGestureRecogniser)
     }
     
-    private func updateViewWithModel(imageModel: MediaViewerImageModel?) {
+    private func updateViewWithModel(_ imageModel: MediaViewerImageModel?) {
         imageView.image = imageModel?.image
         if let url = imageModel?.imageURL {
-            imageView.sd_setImageWithURL(url, placeholderImage: imageModel?.image)
+            imageView.sd_setImage(with: url, placeholderImage: imageModel?.image)
         }
     }
 }
 
 extension MediaViewerInteractiveImageView: UIScrollViewDelegate {
-    public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     
-    public func scrollViewDidZoom(scrollView: UIScrollView) {
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
         if scrollView.zoomScale > previousZoomScale {
             delegate?.hideControls()
         }

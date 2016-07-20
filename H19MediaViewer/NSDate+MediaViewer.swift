@@ -1,19 +1,19 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     public func defaultString() -> String {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "MMM d, y"
-        return formatter.stringFromDate(self)
+        return formatter.string(from: self)
     }
     
-    public class func dateWith(day day: Int, month: Int, year: Int) -> NSDate {
-        let components = NSDateComponents()
+    public static func dateWith(day: Int, month: Int, year: Int) -> Date {
+        var components = DateComponents()
         components.year = year
         components.month = month
         components.day = day
-        return NSCalendar(identifier: NSCalendarIdentifierGregorian)!.dateFromComponents(components)!
+        return Calendar(identifier: Calendar.Identifier.gregorian)!.date(from: components)!
     }
 
 }

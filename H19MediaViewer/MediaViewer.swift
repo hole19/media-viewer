@@ -11,7 +11,7 @@ public class MediaViewer: UIViewController {
     public var allowLandscapeDismissal = false
     
     /// If you have view controller based status bar appereance, statusBarStyle value will be returned
-    public var statusBarStyle = UIStatusBarStyle.LightContent
+    public var statusBarStyle = UIStatusBarStyle.lightContent
     
     internal var sourceImageView: UIImageView?
     internal var initialImage: MediaViewerImageModel?
@@ -31,7 +31,7 @@ public class MediaViewer: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -48,7 +48,7 @@ public class MediaViewer: UIViewController {
         self.allImages = allImages
         self.transitionDelegate = delegate
         self.initialImage = image
-        modalPresentationStyle = .OverCurrentContext
+        modalPresentationStyle = .overCurrentContext
     }
 
     // MARK: UIViewController
@@ -79,22 +79,22 @@ public class MediaViewer: UIViewController {
         }
     }
     
-    override public func viewDidAppear(animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         transitionAnimator?.transitionToDestinationImageView(true)
     }
     
-    override public func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         contentsView.scrollView.layoutSubviews()
         let current = contentsView.scrollView.currentImageView()
         for cView in contentsView.scrollView.contentViews {
             if current != cView {
-                cView.imageView.hidden = true
+                cView.imageView.isHidden = true
             }
         }
         contentsView.scrollView.setAllImageViewsButCurrentHidden(true)
-        coordinator.animateAlongsideTransition({ (coordinate) in
+        coordinator.animate(alongsideTransition: { (coordinate) in
             self.contentsView.updateViewStateWithLandscape(size.width > size.height)
         }) { (coordinate) in
             self.contentsView.scrollView.setAllImageViewsButCurrentHidden(false)
@@ -111,19 +111,19 @@ public class MediaViewer: UIViewController {
      Use present to show MediaViewer. Do not use presentViewController.
      */
     public func present() {
-        foregroundWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
+        foregroundWindow = UIWindow(frame: UIScreen.main().bounds)
         
         guard let foregroundWindow = foregroundWindow else { return }
 
-        foregroundWindow.backgroundColor = UIColor.clearColor()
+        foregroundWindow.backgroundColor = UIColor.clear()
         foregroundWindow.rootViewController = self
         foregroundWindow.windowLevel = UIWindowLevelStatusBar
-        foregroundWindow.hidden = false
+        foregroundWindow.isHidden = false
     }
     
     // MARK: public selectors
     
-    public func close(sender: UIButton) {
+    public func close(_ sender: UIButton) {
         dismissViewAnimated()
     }
     
@@ -132,7 +132,7 @@ public class MediaViewer: UIViewController {
     private func setupView() {
         setupContentsView()
         setupCloseButton()
-        view.backgroundColor = UIColor.clearColor()
+        view.backgroundColor = UIColor.clear()
     }
     
     private func setupContentsView() {
@@ -145,12 +145,12 @@ public class MediaViewer: UIViewController {
     }
     
     private func setupCloseButton() {
-        contentsView.closeButton.addTarget(self, action: #selector(MediaViewer.close(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        contentsView.closeButton.addTarget(self, action: #selector(MediaViewer.close(_:)), for: UIControlEvents.touchUpInside)
     }
     
     private func dismissViewAnimated() {
         transitionAnimator?.transitionBackToSourceImageView(true, withCompletition: { [weak self] in
-            self?.foregroundWindow?.hidden = true
+            self?.foregroundWindow?.isHidden = true
             self?.foregroundWindow?.rootViewController = nil
             self?.foregroundWindow = nil
         })
@@ -164,10 +164,10 @@ extension MediaViewer: MediaViewerPanningViewModelDelegate {
 }
 
 extension MediaViewer: MediaViewerContentsViewActionsDelegate {
-    public func longPressActionDetectedInContentView(contentView: MediaViewerContentsView) {
+    public func longPressActionDetectedInContentView(_ contentView: MediaViewerContentsView) {
         if let image = contentsView.scrollView.currentImageView()?.imageView.image {
             let alert = imageTaskHandler.actionSheetWithAllTasksForImage(image)
-            presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }

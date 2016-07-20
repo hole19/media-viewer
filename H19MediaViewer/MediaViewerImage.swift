@@ -3,7 +3,7 @@ import UIKit
 
 @objc public protocol MediaViewerImageModel {
     var image: UIImage? { get }
-    var imageURL: NSURL? { get }
+    var imageURL: URL? { get }
     var sourceImageView: UIImageView? { get }
     
     var infoOverlayViewClass: MediaViewerInfoOverlayView.Type { get }
@@ -16,7 +16,7 @@ public class MediaViewerImage: NSObject, MediaViewerImageModel {
     
     public var infoOverlayViewClass: MediaViewerInfoOverlayView.Type
     public var image: UIImage?
-    public var imageURL: NSURL?
+    public var imageURL: URL?
     public weak var sourceImageView: UIImageView?
     
     public var overlayInfoModel: AnyObject?
@@ -33,13 +33,13 @@ public class MediaViewerImage: NSObject, MediaViewerImageModel {
         self.infoOverlayViewClass = infoOverlayViewClass
     }
     
-    public init(imageURL: NSURL, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
+    public init(imageURL: URL, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
         self.imageURL = imageURL
         self.sourceImageView = sourceImageView
         self.infoOverlayViewClass = infoOverlayViewClass
     }
     
-    convenience public init(image: UIImage?, imageURL: NSURL?, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
+    convenience public init(image: UIImage?, imageURL: URL?, sourceImageView: UIImageView? = nil, infoOverlayViewClass: MediaViewerInfoOverlayView.Type = MediaViewerInfoOverlayView.self) {
         self.init(image: image, sourceImageView: sourceImageView, infoOverlayViewClass: infoOverlayViewClass)
         self.imageURL = imageURL
     }

@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites tests='159' failures='0'>
   <testsuite name='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' tests='12' failures='0'>
-    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatBlurBackgroundViewHasVisualEffectBlur' time='0.094'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatImageViewHasCorrectCornerRadius' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatImageViewHasCorrectHeight' time='0.041'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatBlurBackgroundViewHasVisualEffectBlur' time='0.335'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatImageViewHasCorrectCornerRadius' time='0.113'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatImageViewHasCorrectHeight' time='0.037'/>
     <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatImageViewHasCorrectWidth' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatItHasAuthorTitleLabel' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatItHasAuthorTitleLabel' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatItHasBlurBackgroundView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatItHasCorrectDefaultHeight' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatItHasDateLabel' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatItHasImageView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatItHasTakenByLabel' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatItSetsCorrectDateLabelText' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatTakenByLabelHasCorrectText' time='0.004'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatItSetsCorrectDateLabelText' time='0.031'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerAuthorInfoOverlayViewTests' name='testThatTakenByLabelHasCorrectText' time='0.019'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.MediaViewerContentsViewTests' tests='30' failures='0'>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatCloseButtonSuperviewIsTheView' time='0.040'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatControlsAlphaChangeWillCloseButtonAlpha' time='0.003'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatCloseButtonSuperviewIsTheView' time='0.050'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatControlsAlphaChangeWillCloseButtonAlpha' time='0.100'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatHideControlsWillHideThem' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatIfAllowLandscapeDismissalIsTrueControlsNotWillHideInPortraint' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatIfAllowLandscapeDismissalIsTrueControlsWillHideInLandscape' time='0.002'/>
@@ -24,40 +24,40 @@
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatInterfaceAlphaChangeWillControlsAlpha' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasAllowLandscapeDismissalProperyDefaultToFalse' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasBackgroundView' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasCloseButton' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasCloseButton' time='0.030'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasCloseButtonTopMarginConstraint' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasLongPressGestureRecogniser' time='0.035'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasLongPressGestureRecogniser' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasOverlayView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasPanGestureRecogniser' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasPannigViewModelWithCorrectBackgroundView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasPannigViewModelWithCorrectContainerView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasScrollView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatItHasSingleTapGestureRecogniser' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatLongPressGestureRecogniserIsConnectedToSUT' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatLongPressGestureRecogniserIsConnectedToSUT' time='0.030'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatLongPressGestureWillInformDelegate' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatPanGestureRecogniserIsConnectedToScrollView' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatScrollViewCoversTheWholeView' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatScrollViewDelegateIsSet' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatSingleTapGestureRecogniserIsConnectedToSUT' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatUpdateViewStateWithLandscapeWillChangeCloseButtonTopConstraint' time='0.035'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatUpdateViewStateWithLandscapeWillResetBackgroundViewAlphaTo1' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatScrollViewCoversTheWholeView' time='0.003'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatScrollViewDelegateIsSet' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatSingleTapGestureRecogniserIsConnectedToSUT' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatUpdateViewStateWithLandscapeWillChangeCloseButtonTopConstraint' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatUpdateViewStateWithLandscapeWillResetBackgroundViewAlphaTo1' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatViewTappedWillNotToggleCloseButtonAlphaFrom0IfLandscapeAndControlsDisabledAtLandscape' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatViewTappedWillToggleControlsAlphaFrom0' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatViewTappedWillToggleControlsAlphaFrom1' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatViewTappedWillToggleControlsAlphaFrom0' time='0.029'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatViewTappedWillToggleControlsAlphaFrom1' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerContentsViewTests' name='testThatViewTappedWillZoomOutIfTheViewIfZoomedIn' time='0.002'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.MediaViewerImageActionTests' tests='6' failures='0'>
-    <testcase classname='H19MediaViewerTests.MediaViewerImageActionTests' name='testThatCreatesDefaultCustomTask' time='0.034'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerImageActionTests' name='testThatCreatesDefaultCustomTask' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerImageActionTests' name='testThatCreatesDefaultCustomTaskHandler' time='0.001'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerImageActionTests' name='testThatCreatesDefaultSaveToLibraryTaskWithCorrectTitle' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerImageActionTests' name='testThatCreatesDefaultSaveToLibraryTaskWithCorrectTitle' time='0.057'/>
     <testcase classname='H19MediaViewerTests.MediaViewerImageActionTests' name='testThatCreatesDefaultSaveToLibraryTaskWithCorrectType' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerImageActionTests' name='testThatDefaultTypeIsCustom' time='0.001'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerImageActionTests' name='testThatItInitsWithTitle' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerImageActionTests' name='testThatItInitsWithTitle' time='0.028'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.MediaViewerImageActionsHandlerTests' tests='5' failures='0'>
-    <testcase classname='H19MediaViewerTests.MediaViewerImageActionsHandlerTests' name='testThatItSetsUpAlertControllerWithCancelAction' time='0.004'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerImageActionsHandlerTests' name='testThatItSetsUpAlertControllerWithCorrectNumberOfActions' time='0.035'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerImageActionsHandlerTests' name='testThatItSetsUpAlertControllerWithTypeActionSheet' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerImageActionsHandlerTests' name='testThatItSetsUpAlertControllerWithCancelAction' time='0.048'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerImageActionsHandlerTests' name='testThatItSetsUpAlertControllerWithCorrectNumberOfActions' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerImageActionsHandlerTests' name='testThatItSetsUpAlertControllerWithTypeActionSheet' time='0.047'/>
     <testcase classname='H19MediaViewerTests.MediaViewerImageActionsHandlerTests' name='testThatItSetsUpDefaultTasks' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerImageActionsHandlerTests' name='testThatItSetsUpDefaultTasksWithSaveToLibrary' time='0.001'/>
   </testsuite>
@@ -67,58 +67,58 @@
     <testcase classname='H19MediaViewerTests.MediaViewerImageTests' name='testThatItInitsWithImageAndImageURL' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerImageTests' name='testThatItInitsWithImageAndImageURLAndOverlayViewClass' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerImageTests' name='testThatItInitsWithImageURL' time='0.001'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerImageTests' name='testThatItInitsWithSourceImageView' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerImageTests' name='testThatItInitsWithSourceImageView' time='0.000'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.MediaViewerInfoOverlayViewTests' tests='1' failures='0'>
     <testcase classname='H19MediaViewerTests.MediaViewerInfoOverlayViewTests' name='testThatItHasCorrectDefaultHeight' time='0.001'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' tests='23' failures='0'>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatDoubleTapGestureRecogniserIsConnectedToSUT' time='0.011'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatImageViewHasContentModeAspectFit' time='0.035'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatDoubleTapGestureRecogniserIsConnectedToSUT' time='0.083'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatImageViewHasContentModeAspectFit' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatImageViewHasCorrectHeight' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatImageViewHasCorrectWidth' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatImageViewIsSubviewOfScrollView' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatImageViewIsSubviewOfScrollView' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatItHasDoubleTapGestureRecogniser' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatItHasDoubleTapGestureRecogniserRequresTwoTaps' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatItHasImageView' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatItHasMaximumZoomScaleWithCorrectDefaultValue' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatItHasDoubleTapGestureRecogniserRequresTwoTaps' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatItHasImageView' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatItHasMaximumZoomScaleWithCorrectDefaultValue' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatItHasScrollView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatScrollViewHasCorrectCurrentZoomScale' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatScrollViewHasCorrectHeight' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatScrollViewHasCorrectMaximumZoomScale' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatScrollViewHasCorrectMinimumZoomScale' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatScrollViewHasCorrectWidth' time='0.036'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatScrollViewHasCorrectMaximumZoomScale' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatScrollViewHasCorrectMinimumZoomScale' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatScrollViewHasCorrectWidth' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatSutUIScrollViewDelegateMethodViewForZoomingInScrollViewReturnsImageView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatViewDoubleTappedWillCallZoomIntoRectAnimated' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatViewDoubleTappedWillToggleZoomFromMax' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatViewDoubleTappedWillToggleZoomFromMax' time='0.035'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatViewDoubleTappedWillToggleZoomFromMin' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatViewDoubleTappedWillZoomIntoPoint' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatZoomingInWillSendDelegateMethodToDismissControls' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatZoomingOutWillNotSendDelegateMethodToDismissControls' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatZoomingOutWillSetZoomScaleToOne' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatZoomingInWillSendDelegateMethodToDismissControls' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatZoomingOutWillNotSendDelegateMethodToDismissControls' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerInteractiveImageViewTests' name='testThatZoomingOutWillSetZoomScaleToOne' time='0.001'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' tests='22' failures='0'>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItHasCorrectCurrentImageView' time='0.005'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItHasScrollView' time='0.001'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItSetsImageViewDelegateOnAllImageViews' time='0.037'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItWillAddOneMorePageIfDelegateNeedsLazyLoading' time='0.004'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItHasCorrectCurrentImageView' time='0.088'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItHasScrollView' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItSetsImageViewDelegateOnAllImageViews' time='0.003'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItWillAddOneMorePageIfDelegateNeedsLazyLoading' time='0.005'/>
     <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItWillNotAddOneMorePageIfDelegateDoesntNeedLazyLoading' time='0.004'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItWillSetCorrectContentOffsetOnSetImagesWithSelectedOne' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItWillSetCorrectCurrentPagesetOnSetImagesWithSelectedOne' time='0.037'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItWillSetCorrectContentOffsetOnSetImagesWithSelectedOne' time='0.032'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatItWillSetCorrectCurrentPagesetOnSetImagesWithSelectedOne' time='0.004'/>
     <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatOnScrollViewDidEndDeceleratingCurrentPageIsUpdated' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatOnScrollViewDidEndDeceleratingItSetsViewRecogniserToFail' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatScrollViewHasCorrectHeight' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatScrollViewHasCorrectMaximumZoomScale' time='0.001'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatScrollViewHasCorrectMinimumZoomScale' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatScrollViewHasCorrectWidth' time='0.035'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatScrollViewHasPagingEnabled' time='0.001'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSetImagesWithSelectedOneSetsImagesCorrectly' time='0.004'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatScrollViewHasCorrectMinimumZoomScale' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatScrollViewHasCorrectWidth' time='0.001'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatScrollViewHasPagingEnabled' time='0.029'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSetImagesWithSelectedOneSetsImagesCorrectly' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSetImagesWithSelectedOneSetsSelectedImageCorrectly' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSettingTheImagesWillSetupCorrectContentViewSize' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSettingTheImagesWillSetupCorrectFirstInnerContentViewImage' time='0.036'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSettingTheImagesWillSetupCorrectFirstInnerContentViewImage' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSettingTheImagesWillSetupCorrectNumberOfInnerContentViews' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewOrigin' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewSuperview' time='0.003'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewOrigin' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewSuperview' time='0.031'/>
     <testcase classname='H19MediaViewerTests.MediaViewerMultipleImageScrollViewTests' name='testThatZoomOutWillCallZoomOutOnCurrentImage' time='0.002'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.MediaViewerPanningViewModelTests' tests='2' failures='0'>
@@ -126,62 +126,62 @@
     <testcase classname='H19MediaViewerTests.MediaViewerPanningViewModelTests' name='testThatItInitsWithContainerViewCorrectly' time='0.002'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.MediaViewerTests' tests='23' failures='0'>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatCloseTriggersTransitionBack' time='0.144'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatContentViewCoversTheWholeView' time='0.004'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatCloseTriggersTransitionBack' time='0.038'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatContentViewCoversTheWholeView' time='0.005'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatDismissViewWillCallTransitionBack' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItBeginsTransitionOnViewDidAppear' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItConformsToMediaViewerActionsDelegate' time='0.001'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItHasAllowLandscapeDismissalProperyDefaultToFalse' time='0.034'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItHasAllowLandscapeDismissalProperyDefaultToFalse' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItHasImageTaskHandler' time='0.001'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItHasMediaViewerContentsView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItHasTransitionAnimatior' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItHasTransitionAnimatiorWithCorrectContentsView' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItHasTransitionAnimatiorWithCorrectContentsView' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItHasTransitionAnimatiorWithCorrectSourceImageView' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItInitsWithSourceImageView' time='0.001'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItIsDelegateOfTheContentsView' time='0.036'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItIsDelegateOfTheContentsView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItSetsAllowLandscapeDismissalProperyOnContentsView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItSetsPanningModelDelegate' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItsModalPresentationStyleIsOverCurrentContext' time='0.001'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItWillCreateAlertOnLongPress' time='0.005'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatOnTransitionBackWindowIsRemoved' time='0.037'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatOnViewWillTransitionToSizeMediaViewerWillForceScrollViewLayout' time='0.003'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatItWillCreateAlertOnLongPress' time='0.034'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatOnTransitionBackWindowIsRemoved' time='0.003'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatOnViewWillTransitionToSizeMediaViewerWillForceScrollViewLayout' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatOnViewWillTransitionToSizeMediaViewerWillUpdateContentsViewWithLandscape' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatPresentWillCreateForegroundWindow' time='0.004'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatPresentWillCreateForegroundWindowWithStatusBarLevel' time='0.037'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatPresentWillCreateForegroundWindowWithSUTAsRoot' time='0.003'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatPresentWillCreateForegroundWindowWithStatusBarLevel' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTests' name='testThatPresentWillCreateForegroundWindowWithSUTAsRoot' time='0.030'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' tests='24' failures='0'>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatItInitsWithContentsView' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatItInitsWithContentsViewWitBackground' time='0.002'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatItInitsWithSourceImageView' time='0.002'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackFinalBackgroundAlphaIs0' time='0.037'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackFinalBackgroundAlphaIs0' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackFinalHeightIsEqalToDestinationImageView' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackFinalValueXIsEqalToSourceImageView' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackFinalValueYIsEqalToSourceImageView' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackFinalWidthIsEqalToSourceImageView' time='0.037'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackFinalValueXIsEqalToSourceImageView' time='0.004'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackFinalValueYIsEqalToSourceImageView' time='0.030'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackFinalWidthIsEqalToSourceImageView' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackWitDelegateImageViewFrameIsCorrect' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionBackWithoutSourceImageViewFrameIsCorrect' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionSetupBackToSourceSourceImageViewHidden' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationFinalBackgroundAlphaIs1' time='0.037'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationFinalHeightIsEqalToDestinationImageView' time='0.003'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationFinalBackgroundAlphaIs1' time='0.003'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationFinalHeightIsEqalToDestinationImageView' time='0.030'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationFinalValueXIsEqalToDestinationImageView' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationFinalValueYIsEqalToDestinationImageView' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationFinalWidthIsEqalToDestinationImageView' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationInitialBackgroundAlphaIs0' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationInitialHeightIsEqalToSourceImageView' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationInitialValueXIsEqalToSourceImageView' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationInitialValueYIsEqalToSourceImageView' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationInitialWidthIsEqalToSourceImageView' time='0.036'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationInitialValueYIsEqalToSourceImageView' time='0.030'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationInitialWidthIsEqalToSourceImageView' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationSetupHidesSourceImage' time='0.003'/>
     <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToDestinationSourceImageContentModeIsAspectFill' time='0.003'/>
-    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToInteractiveImageViewFinalBackgroundAlphaIs1' time='0.004'/>
+    <testcase classname='H19MediaViewerTests.MediaViewerTransitionAnimatorTests' name='testThatTransitionToInteractiveImageViewFinalBackgroundAlphaIs1' time='0.003'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.NSDate_MediaViewerTests' tests='2' failures='0'>
-    <testcase classname='H19MediaViewerTests.NSDate_MediaViewerTests' name='testThatItWillReturnCorrectDefaultString' time='0.035'/>
+    <testcase classname='H19MediaViewerTests.NSDate_MediaViewerTests' name='testThatItWillReturnCorrectDefaultString' time='0.001'/>
     <testcase classname='H19MediaViewerTests.NSDate_MediaViewerTests' name='testThatItWillReturnCorrectDefaultStringForSeptember' time='0.001'/>
   </testsuite>
   <testsuite name='H19MediaViewerTests.UICollectionView_MediaViewerTests' tests='3' failures='0'>
-    <testcase classname='H19MediaViewerTests.UICollectionView_MediaViewerTests' name='testThatItWillScrollToItem0' time='0.002'/>
+    <testcase classname='H19MediaViewerTests.UICollectionView_MediaViewerTests' name='testThatItWillScrollToItem0' time='0.081'/>
     <testcase classname='H19MediaViewerTests.UICollectionView_MediaViewerTests' name='testThatItWillScrollToItem12' time='0.002'/>
     <testcase classname='H19MediaViewerTests.UICollectionView_MediaViewerTests' name='testThatItWillScrollToItem2' time='0.001'/>
   </testsuite>

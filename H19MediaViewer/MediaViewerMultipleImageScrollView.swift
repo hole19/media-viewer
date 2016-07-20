@@ -2,11 +2,11 @@
 import UIKit
 
 @objc public protocol MediaViewerMultipleImageScrollViewDelegate {
-    func scrollToItemWithIndex(index: Int)
+    func scrollToItemWithIndex(_ index: Int)
 }
 
 @objc public protocol MediaViewerMultipleImageScrollViewActionsDelegate: class {
-    func scrollViewScrolledToImageModel(image: MediaViewerImageModel?)
+    func scrollViewScrolledToImageModel(_ image: MediaViewerImageModel?)
 }
 
 public class MediaViewerMultipleImageScrollView: UIView {
@@ -87,13 +87,13 @@ public class MediaViewerMultipleImageScrollView: UIView {
         }
     }
 
-    public func setImages(images: [MediaViewerImageModel], withSelectedOne selImage: MediaViewerImageModel) {
+    public func setImages(_ images: [MediaViewerImageModel], withSelectedOne selImage: MediaViewerImageModel) {
         removeAllCurrentContents()
         self.selectedImage = selImage
         self.images = images
     }
     
-    public func setScrollViewImagesAlpha(alpha: CGFloat) {
+    public func setScrollViewImagesAlpha(_ alpha: CGFloat) {
         let current = currentImageView()
         for imageContentView in contentViews {
             if imageContentView != current {
@@ -102,11 +102,11 @@ public class MediaViewerMultipleImageScrollView: UIView {
         }
     }
     
-    public func setAllImageViewsButCurrentHidden(hidden: Bool) {
+    public func setAllImageViewsButCurrentHidden(_ hidden: Bool) {
         let current = currentImageView()
         for imageContentView in contentViews {
             if imageContentView != current {
-                imageContentView.imageView.hidden = hidden
+                imageContentView.imageView.isHidden = hidden
             }
         }
     }
@@ -115,7 +115,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
     
     private func setupView() {
         setupScrollView()
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear()
     }
 
     private func setupScrollView() {
@@ -124,16 +124,16 @@ public class MediaViewerMultipleImageScrollView: UIView {
         frame.size.width += inbetweenImagesMargin*2.0
         scrollView = UIScrollView(frame: frame)
         scrollView.clipsToBounds = false
-        scrollView.userInteractionEnabled = true
-        scrollView.pagingEnabled = true
-        scrollView.backgroundColor = UIColor.clearColor()
+        scrollView.isUserInteractionEnabled = true
+        scrollView.isPagingEnabled = true
+        scrollView.backgroundColor = UIColor.clear()
         scrollView.delegate = self
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         self.addSubviewWithFullScreenConstraints(scrollView, sideMargins: -inbetweenImagesMargin)
     }
 
-    private func updateViewWithImages(newImages: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
+    private func updateViewWithImages(_ newImages: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
         var currentViewFrame = scrollView.bounds
         currentViewFrame.origin.x = inbetweenImagesMargin
         currentViewFrame.size.width = bounds.width
@@ -146,7 +146,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
             if hasMoreToLoad {
                 let contentView = contentViewWithImageModel(nil, frame: currentViewFrame)
                 contentView.activityIndicator.startAnimating()
-                contentView.activityIndicator.hidden = false
+                contentView.activityIndicator.isHidden = false
                 contentViews.append(contentView)
             }
         }
@@ -156,8 +156,8 @@ public class MediaViewerMultipleImageScrollView: UIView {
         setupInitialContentOffsetWithImages(newImages, selectedImage: selectedImage)
     }
     
-    private func setupInitialContentOffsetWithImages(images: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
-        if let index = images.indexOf({ (some) -> Bool in
+    private func setupInitialContentOffsetWithImages(_ images: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
+        if let index = images.index(where: { (some) -> Bool in
             return some === selectedImage
         }) {
             scrollView.contentOffset = CGPoint(x:CGFloat(index)*scrollView.bounds.size.width, y:0.0)
@@ -169,29 +169,29 @@ public class MediaViewerMultipleImageScrollView: UIView {
         }
     }
     
-    private func contentViewWithImageModel(imageModel: MediaViewerImageModel?, frame: CGRect) -> MediaViewerInteractiveImageView {
+    private func contentViewWithImageModel(_ imageModel: MediaViewerImageModel?, frame: CGRect) -> MediaViewerInteractiveImageView {
         let contentView = MediaViewerInteractiveImageView(frame: frame)
-        contentView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView.imageModel = imageModel
         scrollView.addSubview(contentView)
 
         return contentView
     }
     
-    private func updateViewWithCurrentPage(currentPageIndex: Int) {
+    private func updateViewWithCurrentPage(_ currentPageIndex: Int) {
         let currentView = contentViews[currentPageIndex]
         setRecogniserRequiredToFailWithView(currentView)
     }
     
-    private func setRecogniserRequiredToFailWithView(imageView: MediaViewerInteractiveImageView?) {
+    private func setRecogniserRequiredToFailWithView(_ imageView: MediaViewerInteractiveImageView?) {
         guard let imageView = imageView else { return }
         
         if let rec = singleTapGestureRecogniserThatReqiresFailure {
-            rec.requireGestureRecognizerToFail(imageView.zoomDoubleTapGestureRecogniser)
+            rec.require(toFail: imageView.zoomDoubleTapGestureRecogniser)
         }
     }
     
-    private func setDelegateForAllViews(allViews: [MediaViewerInteractiveImageView]) {
+    private func setDelegateForAllViews(_ allViews: [MediaViewerInteractiveImageView]) {
         if let imageViewActionsDelgate = imageViewActionsDelgate {
             for view in allViews {
                 view.delegate = imageViewActionsDelgate
@@ -199,25 +199,25 @@ public class MediaViewerMultipleImageScrollView: UIView {
         }
     }
     
-    private func scrollImageViewContainerToCorrespondingImage(index: Int) {
+    private func scrollImageViewContainerToCorrespondingImage(_ index: Int) {
         if let mediaViewerDelegate = mediaViewerDelegate {
             mediaViewerDelegate.scrollImageviewsContainer().scrollToItemWithIndex(index)
         }
     }
     
-    private func hideCorrespondingImage(index: Int) {
-        hiddenImageView?.hidden = false
+    private func hideCorrespondingImage(_ index: Int) {
+        hiddenImageView?.isHidden = false
         if let mediaViewerDelegate = mediaViewerDelegate,
-            let images = images where images.count > index {
+            let images = images , images.count > index {
             hiddenImageView = mediaViewerDelegate.imageViewForImage(images[index])
-            hiddenImageView?.hidden = true
+            hiddenImageView?.isHidden = true
         } else {
             hiddenImageView = nil
         }
     }
     
-    private func zoomOutAllViewsButCurrentAtIndex(currentIndex: Int) {
-        for (index, content) in contentViews.enumerate() {
+    private func zoomOutAllViewsButCurrentAtIndex(_ currentIndex: Int) {
+        for (index, content) in contentViews.enumerated() {
             if index != currentIndex {
                 content.zoomOut(animated: false)
             }
@@ -227,17 +227,17 @@ public class MediaViewerMultipleImageScrollView: UIView {
     private func askDelegateForMoreImages() {
         guard let images = images else { return }
 
-        mediaViewerDelegate?.loadMoreImages?(withImages: images, completition: { [weak self] (newImages, error) in
+        _ = mediaViewerDelegate?.loadMoreImages?(withImages: images, completition: { [weak self] (newImages, error) in
             guard let weakSelf = self, let newImages = newImages else { return }
             var newCurrentImages = newImages
             if let currentImages = weakSelf.images {
                 newCurrentImages = currentImages
-                newCurrentImages.appendContentsOf(newImages)
+                newCurrentImages.append(contentsOf: newImages)
             }
             var selectedImage = newCurrentImages.first
             if let currentImage = weakSelf.currentImageView()?.imageModel {
                 selectedImage = currentImage
-            } else if let currentCount = weakSelf.images?.count where newCurrentImages.count > currentCount {
+            } else if let currentCount = weakSelf.images?.count , newCurrentImages.count > currentCount {
                 selectedImage = newCurrentImages[currentCount]
             }
             if let selectedImage = selectedImage {
@@ -252,18 +252,18 @@ public class MediaViewerMultipleImageScrollView: UIView {
             view.removeFromSuperview()
         }
         contentViews = [MediaViewerInteractiveImageView]()
-        scrollView.contentSize = CGSizeZero
-        scrollView.contentOffset = CGPointZero
+        scrollView.contentSize = CGSize.zero
+        scrollView.contentOffset = CGPoint.zero
     }
 }
 
 extension MediaViewerMultipleImageScrollView: UIScrollViewDelegate {
-    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         updateViewWithCurrentPage(currentPage)
         scrollImageViewContainerToCorrespondingImage(currentPage)
         hideCorrespondingImage(currentPage)
-        if let images = images where images.count > currentPage {
+        if let images = images , images.count > currentPage {
             scrollDelegate?.scrollViewScrolledToImageModel(images[currentPage])
         } else {
             scrollDelegate?.scrollViewScrolledToImageModel(nil)

@@ -2,21 +2,21 @@
 import UIKit
 
 extension UICollectionView: MediaViewerMultipleImageScrollViewDelegate {
-    public func scrollToItemWithIndex(index: Int) {
+    public func scrollToItemWithIndex(_ index: Int) {
         var numberOfItemsInCollectionView = 0
         for i in 0..<numberOfSections() {
-            numberOfItemsInCollectionView += numberOfItemsInSection(i)
+            numberOfItemsInCollectionView += numberOfItems(inSection: i)
         }
         if index < numberOfItemsInCollectionView {
             var currentSection = 0
             var currentIndex = 0
-            while currentIndex + numberOfItemsInSection(currentSection) < index  {
-                currentIndex += numberOfItemsInSection(currentSection)
+            while currentIndex + numberOfItems(inSection: currentSection) < index  {
+                currentIndex += numberOfItems(inSection: currentSection)
                 currentSection += 1
             }
             let indexInSection = (index - currentIndex)
-            let indexPath = NSIndexPath(forRow: indexInSection, inSection: currentSection)
-            scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: false)
+            let indexPath = IndexPath(row: indexInSection, section: currentSection)
+            scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredVertically, animated: false)
         }
     }
 }

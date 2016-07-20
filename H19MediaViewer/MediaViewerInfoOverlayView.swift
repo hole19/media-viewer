@@ -27,7 +27,7 @@ public class MediaViewerInfoOverlayView: UIView {
         return 0.0
     }
     
-    public func updateViewWithModel(model: Any?) {
+    public func updateViewWithModel(_ model: Any?) {
 
     }
 }

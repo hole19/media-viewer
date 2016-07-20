@@ -4,7 +4,7 @@ import AssetsLibrary
 import Photos
 
 public enum MediaViewerImageActionType {
-    case Custom, SaveToLibrary
+    case custom, saveToLibrary
 }
 
 public class MediaViewerImageAction {
@@ -14,7 +14,7 @@ public class MediaViewerImageAction {
     public var title: String
     public var taskHandler: (UIImage) -> Void
     
-    public var type = MediaViewerImageActionType.Custom
+    public var type = MediaViewerImageActionType.custom
 
     // MARK: init
     
@@ -25,9 +25,9 @@ public class MediaViewerImageAction {
     
     // MARK: class
     
-    public class func taskWithType(actionType: MediaViewerImageActionType) -> MediaViewerImageAction {
+    public class func taskWithType(_ actionType: MediaViewerImageActionType) -> MediaViewerImageAction {
         switch actionType {
-        case .SaveToLibrary:
+        case .saveToLibrary:
             return saveToLibraryTask()
         default:
             return defaultTask()
@@ -42,14 +42,14 @@ public class MediaViewerImageAction {
     
     private class func saveToLibraryTask() -> MediaViewerImageAction {
         let task = MediaViewerImageAction(title: "Save to Library", handler: saveToLibraryTaskHandler())
-        task.type = .SaveToLibrary
+        task.type = .saveToLibrary
         return task
     }
     
-    class func saveToLibraryTaskHandler(photoLibrary: PHPhotoLibrary = PHPhotoLibrary.sharedPhotoLibrary()) -> (UIImage) -> Void {
+    class func saveToLibraryTaskHandler(_ photoLibrary: PHPhotoLibrary = PHPhotoLibrary.shared()) -> (UIImage) -> Void {
         return { image in
             photoLibrary.performChanges({
-                PHAssetChangeRequest.creationRequestForAssetFromImage(image)
+                PHAssetChangeRequest.creationRequestForAsset(from: image)
             }) { (fin, error) in }
         }
     }
