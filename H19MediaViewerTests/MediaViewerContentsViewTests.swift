@@ -10,7 +10,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        sut = MediaViewerContentsView(frame: CGRectZero)
+        sut = MediaViewerContentsView(frame: CGRect.zero)
     }
     
     override func tearDown() {
@@ -33,7 +33,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatInterfaceAlphaChangeWillChangeBackgroundAlpha() {
         sut.interfaceAlpha = 0.66
         
-        expect(self.sut.backgroundView.alpha).to(beCloseTo(0.66))
+        expect(Double(self.sut.backgroundView.alpha)).to(beCloseTo(0.66))
     }
     
     func testThatInterfaceAlphaChangeWillControlsAlpha() {
@@ -45,7 +45,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatControlsAlphaChangeWillCloseButtonAlpha() {
         sut.controlsAlpha = 0.66
         
-        expect(self.sut.closeButton.alpha).to(beCloseTo(0.66))
+        expect(Double(self.sut.closeButton.alpha)).to(beCloseTo(0.66))
     }
     
     func testThatItHasScrollView() {
@@ -66,7 +66,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     
     func testThatScrollViewCoversTheWholeView() {
         sut.layoutIfNeeded()
-        expect(self.sut.scrollView.frame.size) == CGSizeMake(sut.bounds.size.width, sut.bounds.size.height)
+        expect(self.sut.scrollView.frame.size) == CGSize(width: sut.bounds.size.width, height: sut.bounds.size.height)
     }
     
     func testThatItHasOverlayView() {
@@ -85,7 +85,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     
     class MockMediaViewerContentsViewDelegate: MediaViewerContentsViewActionsDelegate {
         var numberOfTimesLongPressWasDetected = 0
-        func longPressActionDetectedInContentView(contentView: MediaViewerContentsView) {
+        func longPressActionDetectedInContentView(_ contentView: MediaViewerContentsView) {
             numberOfTimesLongPressWasDetected += 1
         }
     }

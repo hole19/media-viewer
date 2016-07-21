@@ -31,7 +31,7 @@ class MediaViewerImageTests: XCTestCase {
     func testThatItInitsWithImageURL() {
         let imageURL = NSURL(fileURLWithPath: "some")
         
-        sut = MediaViewerImage(imageURL: imageURL)
+        sut = MediaViewerImage(imageURL: imageURL as URL)
         
         expect(self.sut.imageURL) == imageURL
     }
@@ -47,7 +47,7 @@ class MediaViewerImageTests: XCTestCase {
         let imageURL = NSURL(fileURLWithPath: "some")
         let image = UIImage()
         
-        sut = MediaViewerImage(image:image, imageURL:imageURL)
+        sut = MediaViewerImage(image:image, imageURL:imageURL as URL)
         
         expect(self.sut.image) == image
         expect(self.sut.imageURL) == imageURL
@@ -57,7 +57,7 @@ class MediaViewerImageTests: XCTestCase {
         let imageURL = NSURL(fileURLWithPath: "some")
         let image = UIImage()
         
-        sut = MediaViewerImage(image:image, imageURL:imageURL, infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
+        sut = MediaViewerImage(image:image, imageURL:imageURL as URL, infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
         
         expect(self.sut.infoOverlayViewClass) === MediaViewerAuthorInfoOverlayView.self
     }

@@ -9,7 +9,7 @@ class MediaViewerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let image = MediaViewerImage(image: UIImage(named: "minion8", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: nil)!)
+        let image = MediaViewerImage(image: UIImage(named: "minion8", in: Bundle(for: self.classForCoder), compatibleWith: nil)!)
         image.sourceImageView = UIImageView()
         sut = MediaViewer(image: image, allImages: nil)
     }
@@ -20,12 +20,12 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatItsModalPresentationStyleIsOverCurrentContext() {
-        expect(self.sut.modalPresentationStyle) == UIModalPresentationStyle.OverCurrentContext
+        expect(self.sut.modalPresentationStyle) == UIModalPresentationStyle.overCurrentContext
     }
     
     func setupSutWithImageView() -> UIImageView {
         let imageView = UIImageView()
-        let image = MediaViewerImage(image: UIImage(named: "minion8", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: nil)!)
+        let image = MediaViewerImage(image: UIImage(named: "minion8", in: Bundle(for: self.classForCoder), compatibleWith: nil)!)
         image.sourceImageView = imageView
         sut = MediaViewer(image: image, allImages: nil)
         return imageView
@@ -43,9 +43,9 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatContentViewCoversTheWholeView() {
-        let view = sut.view
+        let view = sut.view!
         sut.view.layoutIfNeeded()
-        expect(self.sut.contentsView.frame.size) == CGSizeMake(view.frame.size.width, view.frame.size.height)
+        expect(self.sut.contentsView.frame.size) == CGSize(width: view.frame.size.width, height: view.frame.size.height)
     }
     
     func testThatItHasTransitionAnimatior() {
@@ -84,7 +84,7 @@ class MediaViewerTests: XCTestCase {
         
         var transitionBackCompletition = {}
         
-        override func transitionToDestinationImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+        override func transitionToDestinationImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
             numberOfTimesTransitionWasCalled += 1
         }
         
@@ -92,14 +92,14 @@ class MediaViewerTests: XCTestCase {
             numberOfTimesTransitionWasCalled += 1
         }
         
-        override func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+        override func transitionBackToSourceImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
             numberOfTimesTransitionBackWasCalled += 1
             transitionBackCompletition = completition
         }
     }
     
     func testThatItBeginsTransitionOnViewDidAppear() {
-        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRectZero))
+        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRect.zero))
         sut.transitionAnimator = mockTransition
         let _ = sut.view
         sut.viewDidAppear(false)
@@ -108,7 +108,7 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatCloseTriggersTransitionBack() {
-        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRectZero))
+        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRect.zero))
         sut.transitionAnimator = mockTransition
         let _ = sut.view
         sut.close(sut.contentsView.closeButton)
@@ -125,22 +125,18 @@ class MediaViewerTests: XCTestCase {
     class MockTransitionAnimator: MediaViewerTransitionAnimator {
         var numberOfTimesTransitionBackWasCalled = 0
         
-        override func transitionBackToSourceImageView(animated: Bool, withCompletition completition: () -> (Void) = {}) {
+        override func transitionBackToSourceImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
             numberOfTimesTransitionBackWasCalled += 1
         }
     }
     
     func testThatDismissViewWillCallTransitionBack() {
-        let mockTransition = MockTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRectZero))
+        let mockTransition = MockTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRect.zero))
         sut.transitionAnimator = mockTransition
         
         sut.dismissView()
         
         expect(mockTransition.numberOfTimesTransitionBackWasCalled) == 1
-    }
-    
-    func testThatItConformsToMediaViewerActionsDelegate() {
-        expect((self.sut as? MediaViewerContentsViewActionsDelegate) != nil) == true
     }
     
     class MockScrollView: MediaViewerMultipleImageScrollView {
@@ -170,7 +166,7 @@ class MediaViewerTests: XCTestCase {
         
         var numberOfTimesActionSheetWasCalled = 0
         
-        override func actionSheetWithAllTasksForImage(image: UIImage) -> UIAlertController {
+        override func actionSheetWithAllTasksForImage(_ image: UIImage) -> UIAlertController {
             numberOfTimesActionSheetWasCalled += 1
             return UIAlertController()
         }
@@ -179,7 +175,7 @@ class MediaViewerTests: XCTestCase {
     
     class StubScroll: MediaViewerMultipleImageScrollView {
         override func currentImageView() -> MediaViewerInteractiveImageView? {
-            let image = MediaViewerInteractiveImageView(frame: CGRectZero)
+            let image = MediaViewerInteractiveImageView(frame: CGRect.zero)
             image.imageView.image = UIImage()
             return image
         }
@@ -212,7 +208,7 @@ class MediaViewerTests: XCTestCase {
         let mockScroll = MockImageScroll()
         sut.contentsView.scrollView = mockScroll
         
-        sut.viewWillTransitionToSize(CGSize(width: 0,height: 0), withTransitionCoordinator: MockTransitionCoordinator())
+        sut.viewWillTransition(to: CGSize(width: 0,height: 0), with: MockTransitionCoordinator())
         
         expect(mockScroll.numerOfTimesLayoutSubviewsWasCalled) == 1
     }
@@ -221,18 +217,18 @@ class MediaViewerTests: XCTestCase {
         
         var numerOfTimesUpdateWitLandscapeWasCalled = 0
         
-        override func updateViewStateWithLandscape(landscape: Bool) {
+        override func updateViewStateWithLandscape(_ landscape: Bool) {
             numerOfTimesUpdateWitLandscapeWasCalled += 1
         }
     }
     
     func testThatOnViewWillTransitionToSizeMediaViewerWillUpdateContentsViewWithLandscape() {
         let _ = sut.view
-        let mockContents = MockContentsView(frame: CGRectZero)
+        let mockContents = MockContentsView(frame: CGRect.zero)
         sut.contentsView = mockContents
         
         let coordin = MockTransitionCoordinator()
-        sut.viewWillTransitionToSize(CGSize(width: 0,height: 0), withTransitionCoordinator:coordin )
+        sut.viewWillTransition(to: CGSize(width: 0,height: 0), with:coordin )
         
         coordin.animateAlongsideTransitionBlock?(coordin)
         
@@ -258,7 +254,7 @@ class MediaViewerTests: XCTestCase {
     }
     
     func testThatOnTransitionBackWindowIsRemoved() {
-        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRectZero))
+        let mockTransition = MockMediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: MediaViewerContentsView(frame: CGRect.zero))
         sut.transitionAnimator = mockTransition
         let _ = sut.view
         

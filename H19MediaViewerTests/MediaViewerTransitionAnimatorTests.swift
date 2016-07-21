@@ -26,18 +26,18 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     
     func testThatItInitsWithSourceImageView() {
         let imageView = UIImageView()
-        sut = MediaViewerTransitionAnimator(sourceImageView:imageView, contentsView: MediaViewerContentsView(frame: CGRectZero))
+        sut = MediaViewerTransitionAnimator(sourceImageView:imageView, contentsView: MediaViewerContentsView(frame: CGRect.zero))
         expect(self.sut.sourceImageView) == imageView
     }
     
     func testThatItInitsWithContentsView() {
-        let contentsView = MediaViewerContentsView(frame: CGRectZero)
+        let contentsView = MediaViewerContentsView(frame: CGRect.zero)
         sut = MediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: contentsView)
         expect(self.sut.contentsView) == contentsView
     }
     
     func testThatItInitsWithContentsViewWitBackground() {
-        let contentsView = MediaViewerContentsView(frame: CGRectZero)
+        let contentsView = MediaViewerContentsView(frame: CGRect.zero)
         sut = MediaViewerTransitionAnimator(sourceImageView: UIImageView(), contentsView: contentsView)
         expect(self.sut.contentsView.backgroundView) == contentsView.backgroundView
     }
@@ -51,19 +51,19 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         override func currentImageView() -> MediaViewerInteractiveImageView? {
             if contentViews.count == 0 {
-                self.images = [MediaViewerImage(image: UIImage(named: "minion8", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: nil)!, sourceImageView: sourceImageView)]
+                self.images = [MediaViewerImage(image: UIImage(named: "minion8", in: Bundle(for: self.classForCoder), compatibleWith: nil)!, sourceImageView: sourceImageView)]
             }
             return contentViews[0]
         }
     }
     
     func setupSUTWithTwoImageViewsInsideContainers() -> UIImageView {
-        let view1 = UIView(frame: CGRectMake(40, 80, 400, 600))
-        let imageView1 = UIImageView(frame: CGRectMake(20, 20, 40, 60))
+        let view1 = UIView(frame: CGRect(x: 40, y: 80, width: 400, height: 600))
+        let imageView1 = UIImageView(frame: CGRect(x: 20, y: 20, width: 40, height: 60))
         imageView1.image = UIImage(named: "minion8")
         view1.addSubview(imageView1)
         originContainer = view1
-        contentsView = MediaViewerContentsView(frame: CGRectMake(0, 0, 400, 600))
+        contentsView = MediaViewerContentsView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
         let mockScroll = MockMediaViewerMultipleImageScrollView(frame: contentsView!.bounds)
         mockScroll.sourceImageView = imageView1
         contentsView!.scrollView = mockScroll
@@ -73,15 +73,15 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     }
     
     func testThatTransitionToDestinationSourceImageContentModeIsAspectFill() {
-        setupSUTWithTwoImageViewsInsideContainers()
+        _ = setupSUTWithTwoImageViewsInsideContainers()
         
         sut.setupTransitionToDestinationImageView()
         
-        expect(self.contentsView?.scrollView.currentImageView()!.imageView.contentMode) == UIViewContentMode.ScaleAspectFill
+        expect(self.contentsView?.scrollView.currentImageView()!.imageView.contentMode) == UIViewContentMode.scaleAspectFill
     }
     
     func testThatTransitionToDestinationInitialBackgroundAlphaIs0() {
-        setupSUTWithTwoImageViewsInsideContainers()
+        _ = setupSUTWithTwoImageViewsInsideContainers()
         
         sut.setupTransitionToDestinationImageView()
         
@@ -89,11 +89,11 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     }
     
     func testThatTransitionToDestinationSetupHidesSourceImage() {
-        setupSUTWithTwoImageViewsInsideContainers()
+        _ = setupSUTWithTwoImageViewsInsideContainers()
         
         sut.setupTransitionToDestinationImageView()
         
-        expect(self.sut.sourceImageView!.hidden) == true
+        expect(self.sut.sourceImageView!.isHidden) == true
     }
     
     func testThatTransitionToDestinationInitialValueXIsEqalToSourceImageView() {
@@ -141,7 +141,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.transitionToDestinationImageView(false)
         
-        expect(imageView2.frame.origin.y).to(beCloseTo(117.7, within: 0.5))
+        expect(Double(imageView2.frame.origin.y)).to(beCloseTo(117.7, within: 0.5))
     }
     
     func testThatTransitionToDestinationFinalWidthIsEqalToDestinationImageView() {
@@ -157,11 +157,11 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         
         sut.transitionToDestinationImageView(false)
         
-        expect(imageView2.frame.size.height).to(beCloseTo(364.5, within: 0.5))
+        expect(Double(imageView2.frame.size.height)).to(beCloseTo(364.5, within: 0.5))
     }
     
     func testThatTransitionToDestinationFinalBackgroundAlphaIs1() {
-        setupSUTWithTwoImageViewsInsideContainers()
+        _ = setupSUTWithTwoImageViewsInsideContainers()
         
         sut.transitionToDestinationImageView(false)
         
@@ -169,7 +169,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     }
     
     func testThatTransitionToInteractiveImageViewFinalBackgroundAlphaIs1() {
-        setupSUTWithTwoImageViewsInsideContainers()
+        _ = setupSUTWithTwoImageViewsInsideContainers()
         
         sut.transitionToDestinationImageView(false)
         
@@ -180,11 +180,11 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     // MARK: transition OUT
     
     func testThatTransitionSetupBackToSourceSourceImageViewHidden() {
-        setupSUTWithTwoImageViewsInsideContainers()
+        _ = setupSUTWithTwoImageViewsInsideContainers()
         
         sut.setupTransitionBackToSourceImageView(withImageView: sut.sourceImageView)
         
-        expect(self.sut.sourceImageView!.hidden) == true
+        expect(self.sut.sourceImageView!.isHidden) == true
     }
     
     func testThatTransitionBackFinalValueXIsEqalToSourceImageView() {
@@ -220,7 +220,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
     }
     
     func testThatTransitionBackFinalBackgroundAlphaIs0() {
-        setupSUTWithTwoImageViewsInsideContainers()
+        _ = setupSUTWithTwoImageViewsInsideContainers()
         
         sut.transitionBackToSourceImageView(false)
         
@@ -241,7 +241,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
         @objc func scrollImageviewsContainer() -> MediaViewerMultipleImageScrollViewDelegate {
             return UICollectionView()
         }
-        @objc func imageViewForImage(image: MediaViewerImageModel) -> UIImageView? {
+        @objc func imageViewForImage(_ image: MediaViewerImageModel) -> UIImageView? {
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 400))
             view.addSubview(imageView)
             return imageView

@@ -8,7 +8,7 @@ import Photos
 class MockPhotoLibrary: PHPhotoLibrary {
     var numberOfTimesPerformChangesWasCalled = 0
     
-    override func performChanges(changeBlock: dispatch_block_t, completionHandler: ((Bool, NSError?) -> Void)?) {
+    override func performChanges(_ changeBlock: (Void) -> Void, completionHandler: ((Bool, NSError?) -> Void)?) {
         changeBlock()
         numberOfTimesPerformChangesWasCalled += 1
     }
@@ -36,27 +36,27 @@ class MediaViewerImageActionTests: XCTestCase {
     }
     
     func testThatCreatesDefaultCustomTask() {
-        sut = MediaViewerImageAction.taskWithType(.Custom)
+        sut = MediaViewerImageAction.taskWithType(.custom)
         
         expect(self.sut.title) == "Change me"
     }
     
     func testThatCreatesDefaultCustomTaskHandler() {
-        sut = MediaViewerImageAction.taskWithType(.Custom)
+        sut = MediaViewerImageAction.taskWithType(.custom)
         
         expect(self.sut.taskHandler(UIImage())).notTo(raiseException())
     }
     
     func testThatCreatesDefaultSaveToLibraryTaskWithCorrectTitle() {
-        sut = MediaViewerImageAction.taskWithType(.SaveToLibrary)
+        sut = MediaViewerImageAction.taskWithType(.saveToLibrary)
         
         expect(self.sut.title) == "Save to Library"
     }
     
     func testThatCreatesDefaultSaveToLibraryTaskWithCorrectType() {
-        sut = MediaViewerImageAction.taskWithType(.SaveToLibrary)
+        sut = MediaViewerImageAction.taskWithType(.saveToLibrary)
         
-        expect(self.sut.type) == MediaViewerImageActionType.SaveToLibrary
+        expect(self.sut.type) == MediaViewerImageActionType.saveToLibrary
     }
     
 //    func testThatSaveToLibraryTaskHandlerSavesToLibrary() {
@@ -69,7 +69,7 @@ class MediaViewerImageActionTests: XCTestCase {
 //    }
     
     func testThatDefaultTypeIsCustom() {
-        expect(self.sut.type) == MediaViewerImageActionType.Custom
+        expect(self.sut.type) == MediaViewerImageActionType.custom
     }
     
 }

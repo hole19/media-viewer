@@ -22,7 +22,7 @@ class MediaViewerImageActionsHandlerTests: XCTestCase {
     }
     
     func testThatItSetsUpDefaultTasksWithSaveToLibrary() {
-        expect(self.sut.tasks[0].type) == MediaViewerImageActionType.SaveToLibrary
+        expect(self.sut.tasks[0].type) == MediaViewerImageActionType.saveToLibrary
     }
     
     func testThatItSetsUpAlertControllerWithCancelAction() {
@@ -30,7 +30,7 @@ class MediaViewerImageActionsHandlerTests: XCTestCase {
         
         var cancelAction: UIAlertAction? = nil
         for action in alert.actions {
-            if action.style == UIAlertActionStyle.Cancel {
+            if action.style == UIAlertActionStyle.cancel {
                 cancelAction = action
                 break
             }
@@ -48,7 +48,7 @@ class MediaViewerImageActionsHandlerTests: XCTestCase {
     func testThatItSetsUpAlertControllerWithTypeActionSheet() {
         let alert = sut.actionSheetWithAllTasksForImage(UIImage())
         
-        expect(alert.preferredStyle) == UIAlertControllerStyle.ActionSheet
+        expect(alert.preferredStyle) == UIAlertControllerStyle.actionSheet
     }
 
 }

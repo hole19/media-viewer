@@ -40,7 +40,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     }
     
     func testThatScrollViewHasPagingEnabled() {
-        expect(self.sut.scrollView.pagingEnabled) == true
+        expect(self.sut.scrollView.isPagingEnabled) == true
     }
     
     func setupSUTWithImages() -> [MediaViewerImage] {
@@ -130,7 +130,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         
         var numerOfTimesZoomOutWasCalled = 0
         
-        override func zoomOut(animated animated: Bool = true) {
+        override func zoomOut(animated: Bool = true) {
             numerOfTimesZoomOutWasCalled += 1
         }
     }
@@ -182,10 +182,10 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         func scrollImageviewsContainer() -> MediaViewerMultipleImageScrollViewDelegate {
             return UICollectionView()
         }
-        func imageViewForImage(image: MediaViewerImageModel) -> UIImageView? {
+        func imageViewForImage(_ image: MediaViewerImageModel) -> UIImageView? {
             return UIImageView()
         }
-        func hasMoreImagesToLoad(withImages: [MediaViewerImageModel]) -> Bool {
+        func hasMoreImagesToLoad(_ withImages: [MediaViewerImageModel]) -> Bool {
             return hasMoreImages
         }
     }

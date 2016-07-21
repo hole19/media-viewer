@@ -9,16 +9,16 @@ class UICollectionView_MediaViewerTests: XCTestCase {
     var sutDataSource: MockCollectionViewDataSource!
     
     class MockCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-        func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        func numberOfSectionsInCollectionView(in collectionView: UICollectionView) -> Int {
             return 2
         }
-        func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return 10;
         }
-        func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-            return collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath)
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath)
         }
-        func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             return CGSize(width: 30.0, height: 30.0)
         }
     }
@@ -30,7 +30,7 @@ class UICollectionView_MediaViewerTests: XCTestCase {
         sutDataSource = MockCollectionViewDataSource()
         sut.delegate = sutDataSource
         sut.dataSource = sutDataSource
-        sut.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        sut.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         
         sut.reloadData()
         sut.setNeedsLayout()
@@ -44,19 +44,19 @@ class UICollectionView_MediaViewerTests: XCTestCase {
     func testThatItWillScrollToItem0() {
         sut.scrollToItemWithIndex(0)
         
-        expect(self.sut.contentOffset) == CGPointMake(0, 0)
+        expect(self.sut.contentOffset) == CGPoint(x: 0, y: 0)
     }
     
     func testThatItWillScrollToItem2() {
         sut.scrollToItemWithIndex(2)
         
-        expect(self.sut.contentOffset) == CGPointMake(0, 0)
+        expect(self.sut.contentOffset) == CGPoint(x: 0, y: 0)
     }
     
     func testThatItWillScrollToItem12() {
         sut.scrollToItemWithIndex(12)
         
-        expect(self.sut.contentOffset) == CGPointMake(0, 0)
+        expect(self.sut.contentOffset) == CGPoint(x: 0, y: 0)
     }
 }
 

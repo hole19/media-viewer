@@ -43,6 +43,7 @@
 		A0C8357F1D22A7BC00594C2A /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8357D1D22A7BC00594C2A /* TapGestureRecognizerMock.swift */; };
 		A0C835811D22A7EC00594C2A /* MockTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835801D22A7EC00594C2A /* MockTransitionCoordinator.swift */; };
 		A0C835831D22A82D00594C2A /* TestAssetCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */; };
+		A0F61B0F1D41138000266B2B /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F61B0E1D41138000266B2B /* NSDate+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		A0C8357D1D22A7BC00594C2A /* TapGestureRecognizerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerMock.swift; sourceTree = "<group>"; };
 		A0C835801D22A7EC00594C2A /* MockTransitionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionCoordinator.swift; sourceTree = "<group>"; };
 		A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TestAssetCatalog.xcassets; sourceTree = "<group>"; };
+		A0F61B0E1D41138000266B2B /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		AC509CE6A3613EEEB8BC3151 /* Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F496C0763511C14DC2A83234 /* Pods-H19MediaViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer/Pods-H19MediaViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		FFA8F6FEDF0BFF7EB33E3D2C /* Pods-H19MediaViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer/Pods-H19MediaViewer.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				A0C8356E1D22A73E00594C2A /* UICollectionView+MediaViewerTests.swift */,
 				A0C8353B1D22A4E200594C2A /* Info.plist */,
 				A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */,
+				A0F61B0E1D41138000266B2B /* NSDate+Extensions.swift */,
 			);
 			path = H19MediaViewerTests;
 			sourceTree = "<group>";
@@ -273,7 +276,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Hole19Golf;
 				TargetAttributes = {
 					A0C835291D22A4E200594C2A = {
@@ -335,7 +338,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8E550712E3C971189FE77CC5 /* [CP] Check Pods Manifest.lock */ = {
@@ -350,7 +353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9B8E4B1F76E353E8D3A9B5DF /* [CP] Copy Pods Resources */ = {
@@ -442,6 +445,7 @@
 				A0C835711D22A73E00594C2A /* MediaViewerImageActionsHandlerTests.swift in Sources */,
 				A0C835781D22A73E00594C2A /* MediaViewerTests.swift in Sources */,
 				A0C835771D22A73E00594C2A /* MediaViewerPanningViewModelTests.swift in Sources */,
+				A0F61B0F1D41138000266B2B /* NSDate+Extensions.swift in Sources */,
 				A0C8357A1D22A73E00594C2A /* NSDate+MediaViewerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,6 +587,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hole19golf.H19MediaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -591,6 +596,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 517C78A0F3C1EE11FFB25A70 /* Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = H19MediaViewerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -605,11 +611,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AC509CE6A3613EEEB8BC3151 /* Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = H19MediaViewerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hole19golf.H19MediaViewerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

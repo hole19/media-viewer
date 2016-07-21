@@ -5,11 +5,11 @@ import Nimble
 
 class NSDate_MediaViewerTests: XCTestCase {
     
-    var sut: NSDate!
+    var sut: Date!
     
     override func setUp() {
         super.setUp()
-        sut = NSDate.dateWith(day: 16, month: 3, year: 2015)
+        sut = Date.dateWith(day: 16, month: 3, year: 2015)
     }
     
     override func tearDown() {
@@ -23,7 +23,7 @@ class NSDate_MediaViewerTests: XCTestCase {
     }
     
     func testThatItWillReturnCorrectDefaultStringForSeptember() {
-        sut = NSDate.dateWith(day: 15, month: 9, year: 2016)
+        sut = Date.dateWith(day: 15, month: 9, year: 2016)
         expect(self.sut.defaultString()) == "Sep 15, 2016"
     }
 }

@@ -68,7 +68,7 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     }
     
     func testThatSutUIScrollViewDelegateMethodViewForZoomingInScrollViewReturnsImageView() {
-        expect(self.sut.viewForZoomingInScrollView(self.sut.scrollView)) == sut.imageView
+        expect(self.sut.viewForZooming(in: self.sut.scrollView)) == sut.imageView
     }
         
     func testThatItHasDoubleTapGestureRecogniser() {
@@ -114,15 +114,15 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     func testThatViewDoubleTappedWillZoomIntoPoint() {
         let mockScroll = MockScrollView()
         sut.scrollView = mockScroll
-        mockScroll.contentSize = CGSizeMake(400, 400)
-        mockScroll.frame = CGRectMake(0, 0, 400, 400)
+        mockScroll.contentSize = CGSize(width: 400, height: 400)
+        mockScroll.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
         
         let mockGestureRecogniser = TapGestureRecogniserMock()
-        mockGestureRecogniser.locationInViewToReturn = CGPointMake(60, 60)
+        mockGestureRecogniser.locationInViewToReturn = CGPoint(x: 60, y: 60)
         
         sut.viewDoubleTapped(mockGestureRecogniser)
         
-        expect(mockScroll.rectValueOfSetZoomToRect) == CGRectMake(10.0, 10.0, 100.0, 100.0)
+        expect(mockScroll.rectValueOfSetZoomToRect) == CGRect(x: 10.0, y: 10.0, width: 100.0, height: 100.0)
     }
     
     class MockMediaViewerInteractiveImageViewDelegate: MediaViewerInteractiveImageViewDelegate {
@@ -166,7 +166,7 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     }
     
     func testThatImageViewHasContentModeAspectFit() {
-        expect(self.sut.imageView.contentMode) == UIViewContentMode.ScaleAspectFit
+        expect(self.sut.imageView.contentMode) == UIViewContentMode.scaleAspectFit
     }
 }
 

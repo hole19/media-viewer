@@ -8,8 +8,8 @@ target 'H19MediaViewer' do
   pod 'SDWebImage'
 
   target 'H19MediaViewerTests' do
-    pod 'Nimble', '3.2.0'
-    pod 'Quick'
+    pod 'Quick', :git => 'https://github.com/norio-nomura/Quick.git', :branch => 'nn-swift-3-compatibility'
+    pod 'Nimble', :git => 'https://github.com/norio-nomura/Nimble.git', :branch => 'nn-swift-3-compatibility'
   end
 
 end

@@ -9,7 +9,7 @@ class MediaViewerInfoOverlayViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = MediaViewerInfoOverlayView(frame: CGRectMake(0,0,300,80))
+        sut = MediaViewerInfoOverlayView(frame: CGRect(x: 0, y: 0, width: 300, height: 80))
     }
     
     override func tearDown() {

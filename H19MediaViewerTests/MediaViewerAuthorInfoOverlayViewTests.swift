@@ -9,7 +9,7 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = MediaViewerAuthorInfoOverlayView(frame: CGRectMake(0,0,300,80))
+        sut = MediaViewerAuthorInfoOverlayView(frame: CGRect(x: 0, y: 0, width: 300, height: 80))
     }
     
     override func tearDown() {
@@ -64,8 +64,8 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     }
     
     func testThatItSetsCorrectDateLabelText() {
-        let date = NSDate()
-        let model = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: NSURL(), authorTitle: "title", datePictureWasTaken: date)
+        let date = Date()
+        let model = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: URL(string: ""), authorTitle: "title", datePictureWasTaken: date)
         
         sut.model = model
         
