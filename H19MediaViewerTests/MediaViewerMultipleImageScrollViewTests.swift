@@ -185,7 +185,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         func imageViewForImage(_ image: MediaViewerImageModel) -> UIImageView? {
             return UIImageView()
         }
-        func hasMoreImagesToLoad(_ withImages: [MediaViewerImageModel]) -> Bool {
+         func hasMoreImagesToLoad(_ withImages: [MediaViewerImageModel]) -> Bool {
             return hasMoreImages
         }
     }
