@@ -101,7 +101,7 @@ public class MediaViewer: UIViewController {
         }
     }
 
-    override public func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBarStyle
     }
 
@@ -111,11 +111,11 @@ public class MediaViewer: UIViewController {
      Use present to show MediaViewer. Do not use presentViewController.
      */
     public func present() {
-        foregroundWindow = UIWindow(frame: UIScreen.main().bounds)
+        foregroundWindow = UIWindow(frame: UIScreen.main.bounds)
         
         guard let foregroundWindow = foregroundWindow else { return }
 
-        foregroundWindow.backgroundColor = UIColor.clear()
+        foregroundWindow.backgroundColor = UIColor.clear
         foregroundWindow.rootViewController = self
         foregroundWindow.windowLevel = UIWindowLevelStatusBar
         foregroundWindow.isHidden = false
@@ -132,7 +132,7 @@ public class MediaViewer: UIViewController {
     private func setupView() {
         setupContentsView()
         setupCloseButton()
-        view.backgroundColor = UIColor.clear()
+        view.backgroundColor = UIColor.clear
     }
     
     private func setupContentsView() {

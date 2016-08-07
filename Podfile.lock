@@ -6,22 +6,22 @@ PODS:
   - SDWebImage/Core (3.8.1)
 
 DEPENDENCIES:
-  - Nimble (from `https://github.com/norio-nomura/Nimble.git`, branch `nn-swift-3-compatibility`)
+  - Nimble (from `https://github.com/mokagio/Nimble.git`, branch `xcode-8-beta-4`)
   - Quick (from `https://github.com/norio-nomura/Quick.git`, branch `nn-swift-3-compatibility`)
   - SDWebImage
 
 EXTERNAL SOURCES:
   Nimble:
-    :branch: nn-swift-3-compatibility
-    :git: https://github.com/norio-nomura/Nimble.git
+    :branch: xcode-8-beta-4
+    :git: https://github.com/mokagio/Nimble.git
   Quick:
     :branch: nn-swift-3-compatibility
     :git: https://github.com/norio-nomura/Quick.git
 
 CHECKOUT OPTIONS:
   Nimble:
-    :commit: 0dd42e0dac9f37962088e74ee78f0e3c412b227f
-    :git: https://github.com/norio-nomura/Nimble.git
+    :commit: 396b8ebb7bcc5318ec01c2ab8784416f587f6e1f
+    :git: https://github.com/mokagio/Nimble.git
   Quick:
     :commit: eaf60d980d88ffefd8c3a7515f53547453d5938b
     :git: https://github.com/norio-nomura/Quick.git
@@ -31,6 +31,6 @@ SPEC CHECKSUMS:
   Quick: 19b5d0e23c18c06741e4f4b21b00c3101c78eeca
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 16b07a78975f0afd3c3d40d06d4b54d779be2a22
+PODFILE CHECKSUM: 2a0c1a49a4080353a5f88f8bc70d5390a90739dc
 
 COCOAPODS: 1.1.0.beta.1

@@ -13,7 +13,7 @@ extension Date {
         components.year = year
         components.month = month
         components.day = day
-        return Calendar(identifier: Calendar.Identifier.gregorian)!.date(from: components)!
+        return Calendar(identifier: Calendar.Identifier.gregorian).date(from: components)!
     }
 
 }

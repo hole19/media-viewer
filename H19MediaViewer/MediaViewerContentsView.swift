@@ -113,7 +113,7 @@ public class MediaViewerContentsView: UIView {
         setupBackgroundView()
         setupScrollView(mediaViewerDelegate)
         setupCloseButton()
-        backgroundColor = UIColor.clear()
+        backgroundColor = UIColor.clear
         interfaceAlpha = 0.0
     }
     
@@ -159,9 +159,9 @@ public class MediaViewerContentsView: UIView {
         closeButton = UIButton(type: UIButtonType.roundedRect)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
-        closeButton.layer.borderColor = UIColor.white().cgColor
+        closeButton.layer.borderColor = UIColor.white.cgColor
         closeButton.layer.cornerRadius = 6.0
-        closeButton.tintColor = UIColor.white()
+        closeButton.tintColor = UIColor.white
         closeButton.setImage(UIImage(named: "button-close-white"), for: UIControlState())
         addSubview(closeButton)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "[closeButton(36)]-9-|", options: NSLayoutFormatOptions.alignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))

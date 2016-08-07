@@ -97,7 +97,7 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     }
     
     private func setupAuthorTitleLabel() {
-        authorTitleLablel = addLabelSubviewWithFont(UIFont.boldSystemFont(ofSize: 14.0), color: UIColor.white())
+        authorTitleLablel = addLabelSubviewWithFont(UIFont.boldSystemFont(ofSize: 14.0), color: UIColor.white)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-44-[authorTitleLablel]-8-|", options: NSLayoutFormatOptions.alignAllLeft, metrics: nil, views: ["authorTitleLablel" : authorTitleLablel]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-36-[authorTitleLablel]", options: NSLayoutFormatOptions.alignAllLeft, metrics: nil, views: ["authorTitleLablel" : authorTitleLablel]))
     }

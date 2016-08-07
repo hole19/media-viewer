@@ -98,7 +98,7 @@ public class MediaViewerTransitionAnimator: NSObject {
             currentImageView.imageView.frame = endImageFrame
             }) { (finished) -> Void in
                 sourceImage?.isHidden = false
-                DispatchQueue.main.after(when: DispatchTime.now() + Double(20) / Double(NSEC_PER_SEC), execute: { 
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(20) / Double(NSEC_PER_SEC), execute: {
                     completition()
                 })
         }

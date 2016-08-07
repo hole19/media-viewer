@@ -115,7 +115,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
     
     private func setupView() {
         setupScrollView()
-        backgroundColor = UIColor.clear()
+        backgroundColor = UIColor.clear
     }
 
     private func setupScrollView() {
@@ -126,7 +126,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
         scrollView.clipsToBounds = false
         scrollView.isUserInteractionEnabled = true
         scrollView.isPagingEnabled = true
-        scrollView.backgroundColor = UIColor.clear()
+        scrollView.backgroundColor = UIColor.clear
         scrollView.delegate = self
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false

@@ -79,7 +79,7 @@ public class MediaViewerInteractiveImageView: UIView {
         setupImageView()
         setupTapGestureRecogniser()
         setupActivityIndicatorView()
-        backgroundColor = UIColor.clear()
+        backgroundColor = UIColor.clear
     }
     
     private func setupImageView() {
@@ -96,7 +96,7 @@ public class MediaViewerInteractiveImageView: UIView {
         scrollView = UIScrollView(frame: bounds)
         scrollView.clipsToBounds = false
         scrollView.isUserInteractionEnabled = true
-        scrollView.backgroundColor = UIColor.clear()
+        scrollView.backgroundColor = UIColor.clear
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = maximumZoomScale
         scrollView.zoomScale = 1.0
