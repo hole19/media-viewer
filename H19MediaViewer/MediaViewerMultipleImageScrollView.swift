@@ -178,7 +178,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
         return contentView
     }
     
-    private func updateViewWithCurrentPage(_ currentPageIndex: Int) {
+    func updateViewWithCurrentPage(_ currentPageIndex: Int) {
         let currentView = contentViews[currentPageIndex]
         setRecogniserRequiredToFailWithView(currentView)
     }
@@ -199,13 +199,13 @@ public class MediaViewerMultipleImageScrollView: UIView {
         }
     }
     
-    private func scrollImageViewContainerToCorrespondingImage(_ index: Int) {
+    func scrollImageViewContainerToCorrespondingImage(_ index: Int) {
         if let mediaViewerDelegate = mediaViewerDelegate {
             mediaViewerDelegate.scrollImageviewsContainer().scrollToItemWithIndex(index)
         }
     }
     
-    private func hideCorrespondingImage(_ index: Int) {
+    func hideCorrespondingImage(_ index: Int) {
         hiddenImageView?.isHidden = false
         if let mediaViewerDelegate = mediaViewerDelegate,
             let images = images , images.count > index {
@@ -216,7 +216,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
         }
     }
     
-    private func zoomOutAllViewsButCurrentAtIndex(_ currentIndex: Int) {
+    func zoomOutAllViewsButCurrentAtIndex(_ currentIndex: Int) {
         for (index, content) in contentViews.enumerated() {
             if index != currentIndex {
                 content.zoomOut(animated: false)
@@ -224,7 +224,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
         }
     }
     
-    private func askDelegateForMoreImages() {
+    func askDelegateForMoreImages() {
         guard let images = images else { return }
 
         _ = mediaViewerDelegate?.loadMoreImages?(withImages: images, completition: { [weak self] (newImages, error) in

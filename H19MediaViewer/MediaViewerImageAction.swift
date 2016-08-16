@@ -18,7 +18,7 @@ public class MediaViewerImageAction {
 
     // MARK: init
     
-    public init(title: String, handler: (UIImage) -> Void) {
+    public init(title: String, handler: @escaping (UIImage) -> Void) {
         self.title = title
         self.taskHandler = handler
     }

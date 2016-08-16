@@ -40,7 +40,7 @@ public class MediaViewerTransitionAnimator: NSObject {
         currentImageView.imageView.contentMode = .scaleAspectFill
     }
     
-    public func transitionToDestinationImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
+    public func transitionToDestinationImageView(_ animated: Bool, withCompletition completition: @escaping () -> (Void) = {}) {
         guard let currentImageView = contentsView.scrollView.currentImageView() else { return }
         let duration: TimeInterval = animated ? animationTime : 0.00
         let center = currentImageView.imageView.center
@@ -62,7 +62,7 @@ public class MediaViewerTransitionAnimator: NSObject {
         imageView?.isHidden = true
     }
 
-    public func transitionBackToSourceImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
+    public func transitionBackToSourceImageView(_ animated: Bool, withCompletition completition: @escaping () -> (Void) = {}) {
         guard let currentImageView = contentsView.scrollView.currentImageView(),
               let currentSuperview = currentImageView.imageView.superview else { return }
         

@@ -148,7 +148,7 @@ public class MediaViewer: UIViewController {
         contentsView.closeButton.addTarget(self, action: #selector(MediaViewer.close(_:)), for: UIControlEvents.touchUpInside)
     }
     
-    private func dismissViewAnimated() {
+    func dismissViewAnimated() {
         transitionAnimator?.transitionBackToSourceImageView(true, withCompletition: { [weak self] in
             self?.foregroundWindow?.isHidden = true
             self?.foregroundWindow?.rootViewController = nil

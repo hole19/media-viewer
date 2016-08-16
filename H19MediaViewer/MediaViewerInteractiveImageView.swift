@@ -30,7 +30,7 @@ public class MediaViewerInteractiveImageView: UIView {
     
     // MARK: private properties
 
-    private var previousZoomScale: CGFloat = 1.0
+    var previousZoomScale: CGFloat = 1.0
     
     // MARK: init
     

@@ -177,7 +177,7 @@ public class MediaViewerContentsView: UIView {
         addConstraints(constraints)
     }
     
-    private func setControlsAlpha(_ alpha: CGFloat, animated: Bool) {
+    func setControlsAlpha(_ alpha: CGFloat, animated: Bool) {
         if alpha != controlsAlpha {
             if animated {
                 UIView.animate(withDuration: 0.33, animations: { () -> Void in
