@@ -84,7 +84,7 @@ class MediaViewerTests: XCTestCase {
         
         var transitionBackCompletition = {}
         
-        override func transitionToDestinationImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
+        override func transitionToDestinationImageView(_ animated: Bool, withCompletition completition: @escaping () -> (Void) = {}) {
             numberOfTimesTransitionWasCalled += 1
         }
         
@@ -92,7 +92,7 @@ class MediaViewerTests: XCTestCase {
             numberOfTimesTransitionWasCalled += 1
         }
         
-        override func transitionBackToSourceImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
+        override func transitionBackToSourceImageView(_ animated: Bool, withCompletition completition: @escaping () -> (Void) = {}) {
             numberOfTimesTransitionBackWasCalled += 1
             transitionBackCompletition = completition
         }
@@ -125,7 +125,7 @@ class MediaViewerTests: XCTestCase {
     class MockTransitionAnimator: MediaViewerTransitionAnimator {
         var numberOfTimesTransitionBackWasCalled = 0
         
-        override func transitionBackToSourceImageView(_ animated: Bool, withCompletition completition: () -> (Void) = {}) {
+        override func transitionBackToSourceImageView(_ animated: Bool, withCompletition completition: @escaping () -> (Void) = {}) {
             numberOfTimesTransitionBackWasCalled += 1
         }
     }

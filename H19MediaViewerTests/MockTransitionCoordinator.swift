@@ -3,59 +3,40 @@
  
  class MockTransitionCoordinator: NSObject,  UIViewControllerTransitionCoordinator {
     
+    var initiallyInteractive = true
+    var isAnimated = true
+    var presentationStyle = UIModalPresentationStyle.currentContext
+    var isInteractive = true
+    var isCancelled = true
+    var transitionDuration: TimeInterval = 0.0
+    var percentComplete: CGFloat = 0.0
+    var completionVelocity: CGFloat = 0.0
+    var completionCurve = UIViewAnimationCurve.easeIn
+    var targetTransform = CGAffineTransform.identity
+    var containerView = UIView()
+    var isInterruptible = false
+   
+    func notifyWhenInteractionEnds(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void) {
+    }
+
+    func notifyWhenInteractionChanges(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void) {
+    }
+    
     var animateAlongsideTransitionBlock: ((UIViewControllerTransitionCoordinatorContext) -> Void)?
     
-        var isInterruptible = false
-    
-        func animate(alongsideTransition animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)?) -> Bool {
-            animateAlongsideTransitionBlock = animation
-            return true
-        }
-        
-        func animateAlongsideTransition(in view: UIView?, animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)?) -> Bool {
-            return true
-        }
-        func notifyWhenInteractionEnds(_ handler: (UIViewControllerTransitionCoordinatorContext) -> Void) {
-        }
-        func notifyWhenInteractionChanges(_ handler: (UIViewControllerTransitionCoordinatorContext) -> Void) {
-        }
-        func isAnimated() -> Bool {
-            return true
-        }
-        func presentationStyle() -> UIModalPresentationStyle {
-            return .currentContext
-        }
-        func initiallyInteractive() -> Bool {
-            return true
-        }
-        func isInteractive() -> Bool {
-            return true
-        }
-        func isCancelled() -> Bool {
-            return true
-        }
-        func transitionDuration() -> TimeInterval {
-            return 0.0
-        }
-        func percentComplete() -> CGFloat {
-            return 0.0
-        }
-        func completionVelocity() -> CGFloat {
-            return 0.0
-        }
-        func completionCurve() -> UIViewAnimationCurve {
-            return .easeIn
-        }
-        func view(forKey key: String) -> UIView? {
-            return nil
-        }
-        func viewController(forKey key: String) -> UIViewController? {
-            return nil
-        }
-        func containerView() -> UIView {
-            return UIView()
-        }
-        func targetTransform() -> CGAffineTransform {
-            return .identity
-        }
+    func animateAlongsideTransition(in view: UIView?, animation: (@escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void)?, completion: (@escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void)? = nil) -> Bool {
+        return true
     }
+    
+    func animate(alongsideTransition animation: (@escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void)?, completion: (@escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void)? = nil) -> Bool {
+        animateAlongsideTransitionBlock = animation
+        return true
+    }
+    
+    func view(forKey key: UITransitionContextViewKey) -> UIView? {
+        return nil
+    }
+    func viewController(forKey key: UITransitionContextViewControllerKey) -> UIViewController? {
+        return nil
+    }
+ }

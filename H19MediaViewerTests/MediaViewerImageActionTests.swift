@@ -8,10 +8,11 @@ import Photos
 class MockPhotoLibrary: PHPhotoLibrary {
     var numberOfTimesPerformChangesWasCalled = 0
     
-    override func performChanges(_ changeBlock: (Void) -> Void, completionHandler: ((Bool, NSError?) -> Void)?) {
+    override func performChanges(_ changeBlock: @escaping () -> Swift.Void, completionHandler: (@escaping (Bool, Error?) -> Swift.Void)? = nil) {
         changeBlock()
         numberOfTimesPerformChangesWasCalled += 1
     }
+
 }
 
 class MediaViewerImageActionTests: XCTestCase {

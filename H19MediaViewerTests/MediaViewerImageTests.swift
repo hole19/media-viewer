@@ -29,7 +29,7 @@ class MediaViewerImageTests: XCTestCase {
     }
     
     func testThatItInitsWithImageURL() {
-        let imageURL = NSURL(fileURLWithPath: "some")
+        let imageURL = URL(fileURLWithPath: "some")
         
         sut = MediaViewerImage(imageURL: imageURL as URL)
         
@@ -44,7 +44,7 @@ class MediaViewerImageTests: XCTestCase {
     }
 
     func testThatItInitsWithImageAndImageURL() {
-        let imageURL = NSURL(fileURLWithPath: "some")
+        let imageURL = URL(fileURLWithPath: "some")
         let image = UIImage()
         
         sut = MediaViewerImage(image:image, imageURL:imageURL as URL)

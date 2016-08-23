@@ -7,7 +7,7 @@ public class MediaViewerAuthorInfoOverlayViewModel: MediaViewerAuthorInfoOverlay
     public var datePictureWasTaken: Date?
 
     public init(authorImageURL: URL?, authorTitle: String?, datePictureWasTaken: Date? = nil) {
-        self.authorImageURL = authorImageURL!
+        self.authorImageURL = authorImageURL ?? URL(fileURLWithPath: "")
         self.authorTitle = authorTitle ?? ""
         self.datePictureWasTaken = datePictureWasTaken
     }
