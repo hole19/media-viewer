@@ -24,11 +24,11 @@
     
     var animateAlongsideTransitionBlock: ((UIViewControllerTransitionCoordinatorContext) -> Void)?
     
-    func animateAlongsideTransition(in view: UIView?, animation: (@escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void)?, completion: (@escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void)? = nil) -> Bool {
+    func animateAlongsideTransition(in view: UIView?, animation: ((UIViewControllerTransitionCoordinatorContext) -> Swift.Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Swift.Void)? = nil) -> Bool {
         return true
     }
     
-    func animate(alongsideTransition animation: (@escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void)?, completion: (@escaping (UIViewControllerTransitionCoordinatorContext) -> Swift.Void)? = nil) -> Bool {
+    func animate(alongsideTransition animation: ((UIViewControllerTransitionCoordinatorContext) -> Swift.Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Swift.Void)? = nil) -> Bool {
         animateAlongsideTransitionBlock = animation
         return true
     }
