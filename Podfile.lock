@@ -6,13 +6,12 @@ PODS:
   - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
-  - Nimble (from `https://github.com/Quick/Nimble.git`, branch `swift-3.0`)
+  - Nimble (from `https://github.com/Quick/Nimble.git`)
   - Quick (from `https://github.com/Quick/Quick.git`, branch `swift-3.0`)
   - SDWebImage
 
 EXTERNAL SOURCES:
   Nimble:
-    :branch: swift-3.0
     :git: https://github.com/Quick/Nimble.git
   Quick:
     :branch: swift-3.0
@@ -20,10 +19,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Nimble:
-    :commit: 220152be528dcc0537764c179c95b8174028c80c
+    :commit: fcc28b23f57b30382e5f182c238674694d7174cb
     :git: https://github.com/Quick/Nimble.git
   Quick:
-    :commit: 81d2a7bd95ef91e2604ee0431bba6fe59ad662dc
+    :commit: 8f2bc636ecfa2cc20696f62548b38d4ab943e299
     :git: https://github.com/Quick/Quick.git
 
 SPEC CHECKSUMS:
@@ -31,6 +30,6 @@ SPEC CHECKSUMS:
   Quick: 31fb576b6cbb6b028cc5e0016e4366accbb346f5
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 05e6ebb1a762bdbdbc3b19eaf2f5f38e333ad2ba
+PODFILE CHECKSUM: 9ac31e7dc5e65b7afedad1f5cb894c8f2a4e7e0f
 
-COCOAPODS: 1.1.0.beta.1
+COCOAPODS: 1.1.0.rc.2
