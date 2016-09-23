@@ -9,7 +9,7 @@ target 'H19MediaViewer' do
 
   target 'H19MediaViewerTests' do
       pod 'Nimble', :git => 'https://github.com/Quick/Nimble.git'
-      pod 'Quick', :git => 'https://github.com/Quick/Quick.git', :branch => 'swift-3.0'
+      pod 'Quick', :git => 'https://github.com/Quick/Quick.git'
   end
 
 end
