@@ -8,8 +8,8 @@ target 'H19MediaViewer' do
   pod 'SDWebImage'
 
   target 'H19MediaViewerTests' do
-      pod 'Nimble', :git => 'https://github.com/Quick/Nimble.git'
-      pod 'Quick', :git => 'https://github.com/Quick/Quick.git'
+      pod 'Nimble'
+      pod 'Quick'
   end
 
 end
