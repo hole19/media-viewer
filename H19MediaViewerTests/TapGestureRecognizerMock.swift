@@ -1,16 +1,15 @@
-
 import UIKit
 
 class TapGestureRecogniserMock: UITapGestureRecognizer {
-    
+
     // settable properties
-    
+
     var locationInViewToReturn = CGPoint.zero
-    
+
     override func location(in view: UIView?) -> CGPoint {
         return locationInViewToReturn
     }
-    
+
     var requireGestureRecognizerToFailCallCount = 0
     var requireGestureRecognizerToFailRecogniser: UIGestureRecognizer?
 

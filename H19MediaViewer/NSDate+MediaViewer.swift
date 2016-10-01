@@ -1,4 +1,3 @@
-
 import Foundation
 
 extension Date {
@@ -7,7 +6,7 @@ extension Date {
         formatter.dateFormat = "MMM d, y"
         return formatter.string(from: self)
     }
-    
+
     public static func dateWith(day: Int, month: Int, year: Int) -> Date {
         var components = DateComponents()
         components.year = year

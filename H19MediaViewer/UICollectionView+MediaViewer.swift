@@ -1,4 +1,3 @@
-
 import UIKit
 
 extension UICollectionView: MediaViewerMultipleImageScrollViewDelegate {
@@ -10,7 +9,7 @@ extension UICollectionView: MediaViewerMultipleImageScrollViewDelegate {
         if index < numberOfItemsInCollectionView {
             var currentSection = 0
             var currentIndex = 0
-            while currentIndex + numberOfItems(inSection: currentSection) < index  {
+            while currentIndex + numberOfItems(inSection: currentSection) < index {
                 currentIndex += numberOfItems(inSection: currentSection)
                 currentSection += 1
             }

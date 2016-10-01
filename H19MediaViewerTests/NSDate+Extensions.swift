@@ -1,4 +1,3 @@
-
 import Foundation
 
 extension Date {
@@ -8,8 +7,8 @@ extension Date {
         components.day = day
         components.month = month
         components.year = year
-        
+
         return Calendar.current.date(from: components)!
     }
-    
+
 }

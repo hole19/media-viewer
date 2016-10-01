@@ -233,6 +233,7 @@
 			buildConfigurationList = A0C8353E1D22A4E200594C2A /* Build configuration list for PBXNativeTarget "H19MediaViewer" */;
 			buildPhases = (
 				6CEF08184E37E1A3C9280ACF /* [CP] Check Pods Manifest.lock */,
+				A00D3B061D9EE64800EA40A4 /* ShellScript */,
 				A0C835251D22A4E200594C2A /* Sources */,
 				A0C835261D22A4E200594C2A /* Frameworks */,
 				A0C835271D22A4E200594C2A /* Headers */,
@@ -370,6 +371,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A00D3B061D9EE64800EA40A4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		A8D6846285F9DB08E94C7C75 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

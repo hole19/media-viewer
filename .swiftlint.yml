@@ -1,0 +1,10 @@
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - H19MediaViewerTests
+line_length:
+  - 145
+  - 200
+variable_name:
+  max_length:
+    - 50
+    - 60

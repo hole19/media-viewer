@@ -1,4 +1,3 @@
-
 import UIKit
 
 @objc public protocol MediaViewerMultipleImageScrollViewDelegate {
@@ -10,13 +9,13 @@ import UIKit
 }
 
 public class MediaViewerMultipleImageScrollView: UIView {
-    
+
     // MARK: properties
 
     public var scrollView: UIScrollView!
 
     public var contentViews = [MediaViewerInteractiveImageView]()
-    
+
     public weak var mediaViewerDelegate: MediaViewerDelegate?
     public weak var scrollDelegate: MediaViewerMultipleImageScrollViewActionsDelegate?
 
@@ -30,7 +29,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
             setRecogniserRequiredToFailWithView(currentImageView())
         }
     }
-    
+
     public var images: [MediaViewerImageModel]? {
         didSet {
             guard let images = images else { return }
@@ -44,23 +43,23 @@ public class MediaViewerMultipleImageScrollView: UIView {
     public var selectedImage: MediaViewerImageModel?
     public var currentPage: Int = 0
     let inbetweenImagesMargin: CGFloat = 4.0
-    
+
     public var hiddenImageView: UIImageView?
-    
+
     // MARK: init
-    
+
     override public init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
-    
+
     // MARK: UIView
-    
+
     override public func layoutSubviews() {
         super.layoutSubviews()
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
@@ -73,14 +72,14 @@ public class MediaViewerMultipleImageScrollView: UIView {
     }
 
     // MARK: public
-    
+
     public func currentImageView() -> MediaViewerInteractiveImageView? {
         if currentPage < contentViews.count {
             return contentViews[currentPage]
         }
         return nil
     }
-    
+
     public func zoomOut() {
         if let currentTopView = currentImageView() {
             currentTopView.zoomOut()
@@ -92,7 +91,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
         self.selectedImage = selImage
         self.images = images
     }
-    
+
     public func setScrollViewImagesAlpha(_ alpha: CGFloat) {
         let current = currentImageView()
         for imageContentView in contentViews {
@@ -101,7 +100,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
             }
         }
     }
-    
+
     public func setAllImageViewsButCurrentHidden(_ hidden: Bool) {
         let current = currentImageView()
         for imageContentView in contentViews {
@@ -112,7 +111,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
     }
 
     // MARK: private
-    
+
     private func setupView() {
         setupScrollView()
         backgroundColor = UIColor.clear
@@ -155,7 +154,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
         setDelegateForAllViews(contentViews)
         setupInitialContentOffsetWithImages(newImages, selectedImage: selectedImage)
     }
-    
+
     private func setupInitialContentOffsetWithImages(_ images: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
         if let index = images.index(where: { (some) -> Bool in
             return some === selectedImage
@@ -168,7 +167,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
             setRecogniserRequiredToFailWithView(contentViews[index])
         }
     }
-    
+
     private func contentViewWithImageModel(_ imageModel: MediaViewerImageModel?, frame: CGRect) -> MediaViewerInteractiveImageView {
         let contentView = MediaViewerInteractiveImageView(frame: frame)
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -177,20 +176,20 @@ public class MediaViewerMultipleImageScrollView: UIView {
 
         return contentView
     }
-    
+
     func updateViewWithCurrentPage(_ currentPageIndex: Int) {
         let currentView = contentViews[currentPageIndex]
         setRecogniserRequiredToFailWithView(currentView)
     }
-    
+
     private func setRecogniserRequiredToFailWithView(_ imageView: MediaViewerInteractiveImageView?) {
         guard let imageView = imageView else { return }
-        
+
         if let rec = singleTapGestureRecogniserThatReqiresFailure {
             rec.require(toFail: imageView.zoomDoubleTapGestureRecogniser)
         }
     }
-    
+
     private func setDelegateForAllViews(_ allViews: [MediaViewerInteractiveImageView]) {
         if let imageViewActionsDelgate = imageViewActionsDelgate {
             for view in allViews {
@@ -198,24 +197,24 @@ public class MediaViewerMultipleImageScrollView: UIView {
             }
         }
     }
-    
+
     func scrollImageViewContainerToCorrespondingImage(_ index: Int) {
         if let mediaViewerDelegate = mediaViewerDelegate {
             mediaViewerDelegate.scrollImageviewsContainer().scrollToItemWithIndex(index)
         }
     }
-    
+
     func hideCorrespondingImage(_ index: Int) {
         hiddenImageView?.isHidden = false
         if let mediaViewerDelegate = mediaViewerDelegate,
-            let images = images , images.count > index {
+            let images = images, images.count > index {
             hiddenImageView = mediaViewerDelegate.imageViewForImage(images[index])
             hiddenImageView?.isHidden = true
         } else {
             hiddenImageView = nil
         }
     }
-    
+
     func zoomOutAllViewsButCurrentAtIndex(_ currentIndex: Int) {
         for (index, content) in contentViews.enumerated() {
             if index != currentIndex {
@@ -223,7 +222,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
             }
         }
     }
-    
+
     func askDelegateForMoreImages() {
         guard let images = images else { return }
 
@@ -237,7 +236,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
             var selectedImage = newCurrentImages.first
             if let currentImage = weakSelf.currentImageView()?.imageModel {
                 selectedImage = currentImage
-            } else if let currentCount = weakSelf.images?.count , newCurrentImages.count > currentCount {
+            } else if let currentCount = weakSelf.images?.count, newCurrentImages.count > currentCount {
                 selectedImage = newCurrentImages[currentCount]
             }
             if let selectedImage = selectedImage {
@@ -246,7 +245,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
             }
         })
     }
-    
+
     private func removeAllCurrentContents() {
         for view in contentViews {
             view.removeFromSuperview()
@@ -263,7 +262,7 @@ extension MediaViewerMultipleImageScrollView: UIScrollViewDelegate {
         updateViewWithCurrentPage(currentPage)
         scrollImageViewContainerToCorrespondingImage(currentPage)
         hideCorrespondingImage(currentPage)
-        if let images = images , images.count > currentPage {
+        if let images = images, images.count > currentPage {
             scrollDelegate?.scrollViewScrolledToImageModel(images[currentPage])
         } else {
             scrollDelegate?.scrollViewScrolledToImageModel(nil)

@@ -1,4 +1,3 @@
-
 import UIKit
 
 public protocol MediaViewerPanningViewModelDelegate: class {
@@ -6,28 +5,28 @@ public protocol MediaViewerPanningViewModelDelegate: class {
 }
 
 public class MediaViewerPanningViewModel: NSObject {
-    
+
     // MARK: properties
-    
+
     public var delegate: MediaViewerPanningViewModelDelegate?
-    
+
     public var minBackgroundAlpha: CGFloat = 0.3
-    
+
     // property to determine how far from view center user needs to pan to dismiss
     public var minYFactorToDismiss: CGFloat = 0.3
 
     public var backgroundView: UIView
     public var containerView: MediaViewerContentsView
-    
+
     // MARK: init
-    
+
     public init(backgroundView: UIView, containerView: MediaViewerContentsView) {
         self.backgroundView = backgroundView
         self.containerView = containerView
     }
-    
+
     // MARK: public - selectors
-    
+
     public func viewPanned(_ recognizer: UIPanGestureRecognizer) {
         if containerView.landscapeAsociatedInteractionsAllowed() {
             let translation = recognizer.translation(in: containerView)
@@ -52,7 +51,7 @@ public class MediaViewerPanningViewModel: NSObject {
     }
 
     // MARK: private
-    
+
     private func distanceFromContainerCenter() -> CGPoint {
         let containerCenterPoint = containerCenter()
         return CGPoint(x: pannedView().center.x - containerCenterPoint.x, y: pannedView().center.y - containerCenterPoint.y)
@@ -69,14 +68,14 @@ public class MediaViewerPanningViewModel: NSObject {
             self.containerView.scrollView.setScrollViewImagesAlpha(1.0)
         }
     }
-    
+
     private func needToDismissView(_ distance: CGPoint) -> Bool {
         let yDistance = abs(distance.y)
         let halfHeight = containerView.frame.size.height / 2.0
         let maxYDistance = halfHeight * minYFactorToDismiss
         return yDistance > maxYDistance
     }
-    
+
     private func updateBackgroundAlphaWithDistanceFomCenter(_ distance: CGPoint) {
         var yDistance = abs(distance.y)
         let halfHeight = containerView.frame.size.height / 2.0
@@ -92,15 +91,15 @@ public class MediaViewerPanningViewModel: NSObject {
         backgroundView.alpha = backgroundAlpha
         updateControlsAlphaWithBackgroundAlpha(backgroundAlpha)
     }
-    
+
     private func containerCenter() -> CGPoint {
         return CGPoint(x: containerView.bounds.size.width/2.0, y: containerView.bounds.size.height/2.0)
     }
-    
+
     private func pannedView() -> UIView {
         return containerView.scrollView
     }
-        
+
     private func updateControlsAlphaWithBackgroundAlpha(_ backgroundAlpha: CGFloat) {
         var controlsAlpha: CGFloat = 0.0
         if backgroundAlpha > 0.9 {

@@ -1,4 +1,3 @@
-
 import UIKit
 
 public protocol MediaViewerContentsViewActionsDelegate: class {
@@ -6,16 +5,16 @@ public protocol MediaViewerContentsViewActionsDelegate: class {
 }
 
 public class MediaViewerContentsView: UIView {
-    
+
     // MARK: properties
-    
+
     public var interfaceAlpha: CGFloat = 0.0 {
         didSet {
             backgroundView.alpha = interfaceAlpha
             controlsAlpha = interfaceAlpha
         }
     }
-    
+
     public var controlsAlpha: CGFloat = 0.0 {
         didSet {
             let closeButtonAlpha = landscapeAsociatedInteractionsAllowed() ? controlsAlpha : 0.0
@@ -40,25 +39,25 @@ public class MediaViewerContentsView: UIView {
     internal var controlsTapGestureRecogniser: UITapGestureRecognizer!
     internal var panGestureRecogniser: UIPanGestureRecognizer!
     internal var longPressGesture: UILongPressGestureRecognizer!
-    
+
     internal var allowLandscapeDismissal: Bool
 
     private var closeButtonTopMarginPortrait: CGFloat = 10.0
     private var closeButtonTopMarginLandscape: CGFloat = 8.0
 
     // MARK: init
-    
+
     public init(frame: CGRect, mediaViewerDelegate: MediaViewerDelegate? = nil, allowLandscapeDismissal: Bool = false) {
         self.allowLandscapeDismissal = allowLandscapeDismissal
         super.init(frame: frame)
         setupView(mediaViewerDelegate)
         setupGestureRecognisers()
     }
-   
+
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: public
 
     public func setupOverlayView(_ imageModel: MediaViewerImageModel) {
@@ -67,10 +66,18 @@ public class MediaViewerContentsView: UIView {
         overlayView!.model = imageModel.overlayInfoModel
         overlayView!.alpha = 0.0
         addSubview(overlayView!)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[overlayView]|", options: NSLayoutFormatOptions.alignAllLeft, metrics: nil, views: ["overlayView" : overlayView!]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[overlayView(height)]|", options: NSLayoutFormatOptions.alignAllLeft, metrics: ["height": overlayView!.defaultHeight()], views: ["overlayView" : overlayView!]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[overlayView]|",
+                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      metrics: nil,
+                                                      views: ["overlayView" : overlayView!])
+        )
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[overlayView(height)]|",
+                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      metrics: ["height": overlayView!.defaultHeight()],
+                                                      views: ["overlayView" : overlayView!])
+        )
     }
-    
+
     public func updateViewStateWithLandscape(_ landscape: Bool) {
         backgroundView.alpha = 1.0
         if landscape && !allowLandscapeDismissal {
@@ -80,7 +87,7 @@ public class MediaViewerContentsView: UIView {
         }
         closeButtonTopMarginConstraint?.constant = closeButtonHeight(isLandscape: landscape)
     }
-    
+
     public func landscapeAsociatedInteractionsAllowed() -> Bool {
         var allowed = true
         if frame.size.width > frame.size.height && !allowLandscapeDismissal {
@@ -88,27 +95,27 @@ public class MediaViewerContentsView: UIView {
         }
         return allowed
     }
-    
+
     // MARK: selectors
-    
+
     public func viewTapped(_ sender: UITapGestureRecognizer) {
         let newAlpha: CGFloat = controlsAlpha == 0.0 ? 1.0 : 0.0
         setControlsAlpha(newAlpha, animated: true)
         scrollView.zoomOut()
     }
-    
+
     public func viewLongPressed(_ sender: UILongPressGestureRecognizer) {
         delegate?.longPressActionDetectedInContentView(self)
     }
 
     // MARK: private
-    
+
     private func setupGestureRecognisers() {
         setupTapGestureRecogniser()
         setupPanGestureRecogniser()
         setupLongPressGestureRecogniser()
     }
-    
+
     private func setupView(_ mediaViewerDelegate: MediaViewerDelegate? = nil) {
         setupBackgroundView()
         setupScrollView(mediaViewerDelegate)
@@ -116,29 +123,29 @@ public class MediaViewerContentsView: UIView {
         backgroundColor = UIColor.clear
         interfaceAlpha = 0.0
     }
-    
+
     private func setupPanningModel() {
         pannedViewModel = MediaViewerPanningViewModel(backgroundView: backgroundView, containerView: self)
     }
-    
+
     private func setupTapGestureRecogniser() {
         controlsTapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(MediaViewerContentsView.viewTapped(_:)))
         scrollView.singleTapGestureRecogniserThatReqiresFailure = controlsTapGestureRecogniser
         addGestureRecognizer(controlsTapGestureRecogniser)
     }
-    
+
     private func setupLongPressGestureRecogniser() {
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(MediaViewerContentsView.viewLongPressed(_:)))
         addGestureRecognizer(longPressGesture)
     }
-    
+
     private func setupPanGestureRecogniser() {
         setupPanningModel()
 
         panGestureRecogniser = UIPanGestureRecognizer(target: pannedViewModel, action: #selector(MediaViewerPanningViewModel.viewPanned(_:)))
         scrollView.addGestureRecognizer(panGestureRecogniser)
     }
-    
+
     private func setupScrollView(_ mediaViewerDelegate: MediaViewerDelegate? = nil) {
         scrollView = MediaViewerMultipleImageScrollView(frame: bounds)
         scrollView.alpha = 0.0
@@ -148,13 +155,13 @@ public class MediaViewerContentsView: UIView {
         scrollView.mediaViewerDelegate = mediaViewerDelegate
         addSubviewWithFullScreenConstraints(scrollView)
     }
-    
+
     private func setupBackgroundView() {
         backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:1.00)
         addSubviewWithFullScreenConstraints(backgroundView)
     }
-    
+
     private func setupCloseButton() {
         closeButton = UIButton(type: UIButtonType.roundedRect)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -164,10 +171,17 @@ public class MediaViewerContentsView: UIView {
         closeButton.tintColor = UIColor.white
         closeButton.setImage(UIImage(named: "button-close-white"), for: UIControlState())
         addSubview(closeButton)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "[closeButton(36)]-9-|", options: NSLayoutFormatOptions.alignAllLeft, metrics: nil, views: ["closeButton" : closeButton]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "[closeButton(36)]-9-|",
+                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      metrics: nil,
+                                                      views: ["closeButton" : closeButton])
+        )
         let closeButtonMargin = closeButtonHeight(isLandscape: frame.size.width > frame.size.height)
         let closeButtonString = "V:|-\(closeButtonMargin)-[closeButton(36)]"
-        let constraints = NSLayoutConstraint.constraints(withVisualFormat: closeButtonString, options: NSLayoutFormatOptions.alignAllLeft, metrics: nil, views: ["closeButton" : closeButton])
+        let constraints = NSLayoutConstraint.constraints(withVisualFormat: closeButtonString,
+                                                         options: NSLayoutFormatOptions.alignAllLeft,
+                                                         metrics: nil,
+                                                         views: ["closeButton" : closeButton])
         for constr in constraints {
             if constr.constant == closeButtonMargin {
                 closeButtonTopMarginConstraint = constr
@@ -176,7 +190,7 @@ public class MediaViewerContentsView: UIView {
         }
         addConstraints(constraints)
     }
-    
+
     func setControlsAlpha(_ alpha: CGFloat, animated: Bool) {
         if alpha != controlsAlpha {
             if animated {
@@ -188,7 +202,7 @@ public class MediaViewerContentsView: UIView {
             }
         }
     }
-    
+
     private func setOverlayAlpha(_ alpha: CGFloat, animated: Bool) {
         if alpha != overlayView?.alpha {
             if animated {
@@ -200,14 +214,14 @@ public class MediaViewerContentsView: UIView {
             }
         }
     }
-    
+
     private func closeButtonHeight(isLandscape landscape: Bool) -> CGFloat {
         return landscape ? closeButtonTopMarginLandscape : closeButtonTopMarginPortrait
     }
 }
 
 extension MediaViewerContentsView: MediaViewerInteractiveImageViewDelegate {
-    
+
     public func hideControls() {
         setControlsAlpha(0.0, animated: true)
     }
