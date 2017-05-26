@@ -14,8 +14,12 @@ public class MediaViewerImageActionsHandler {
 
     // MARK: public
 
-    public func actionSheetWithAllTasksForImage(_ image: UIImage) -> UIAlertController {
+    public func actionSheetWithAllTasksForImage(_ image: UIImage, tintColor: UIColor? = nil) -> UIAlertController {
         let alert = UIAlertController()
+        if let tintColor = tintColor {
+            alert.view.tintColor = tintColor
+        }
+
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         for task in tasks {
             alert.addAction(UIAlertAction(title: task.title, style: UIAlertActionStyle.default, handler: { (action) in

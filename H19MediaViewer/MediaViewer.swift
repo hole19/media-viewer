@@ -11,6 +11,7 @@ public class MediaViewer: UIViewController {
 
     /// If you have view controller based status bar appereance, statusBarStyle value will be returned
     public var statusBarStyle = UIStatusBarStyle.lightContent
+    public var tintColor: UIColor? = nil
 
     internal var sourceImageView: UIImageView?
     internal var initialImage: MediaViewerImageModel?
@@ -169,7 +170,7 @@ extension MediaViewer: MediaViewerPanningViewModelDelegate {
 extension MediaViewer: MediaViewerContentsViewActionsDelegate {
     public func longPressActionDetectedInContentView(_ contentView: MediaViewerContentsView) {
         if let image = contentsView.scrollView.currentImageView()?.imageView.image {
-            let alert = imageTaskHandler.actionSheetWithAllTasksForImage(image)
+            let alert = imageTaskHandler.actionSheetWithAllTasksForImage(image, tintColor: tintColor)
             self.present(alert, animated: true, completion: nil)
         }
     }
