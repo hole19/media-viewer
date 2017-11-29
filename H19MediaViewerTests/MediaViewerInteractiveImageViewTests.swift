@@ -17,7 +17,7 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     }
 
     func testThatItHasImageView() {
-        expect(self.sut.imageView) != nil
+        expect(self.sut.imageView).toNot(beNil())
     }
 
     func testThatItHasMaximumZoomScaleWithCorrectDefaultValue() {
@@ -35,7 +35,7 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     }
 
     func testThatItHasScrollView() {
-        expect(self.sut.scrollView) != nil
+        expect(self.sut.scrollView).toNot(beNil())
     }
 
     func testThatScrollViewHasCorrectWidth() {
@@ -71,7 +71,7 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     }
 
     func testThatItHasDoubleTapGestureRecogniser() {
-        expect(self.sut.zoomDoubleTapGestureRecogniser) != nil
+        expect(self.sut.zoomDoubleTapGestureRecogniser).toNot(beNil())
     }
 
     func testThatItHasDoubleTapGestureRecogniserRequresTwoTaps() {

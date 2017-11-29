@@ -38,7 +38,7 @@ class MediaViewerTests: XCTestCase {
     func testThatItHasMediaViewerContentsView() {
         let _ = sut.view
 
-        expect(self.sut.contentsView) != nil
+        expect(self.sut.contentsView).toNot(beNil())
     }
 
     func testThatContentViewCoversTheWholeView() {
@@ -50,7 +50,7 @@ class MediaViewerTests: XCTestCase {
     func testThatItHasTransitionAnimatior() {
         let _ = sut.view
 
-        expect(self.sut.transitionAnimator) != nil
+        expect(self.sut.transitionAnimator).toNot(beNil())
     }
 
     func testThatItHasTransitionAnimatiorWithCorrectSourceImageView() {
@@ -165,7 +165,7 @@ class MediaViewerTests: XCTestCase {
 
         var numberOfTimesActionSheetWasCalled = 0
 
-        override func actionSheetWithAllTasksForImage(_ image: UIImage) -> UIAlertController {
+        override func actionSheetWithAllTasksForImage(_ image: UIImage, tintColor: UIColor? = nil) -> UIAlertController {
             numberOfTimesActionSheetWasCalled += 1
             return UIAlertController()
         }
@@ -237,7 +237,7 @@ class MediaViewerTests: XCTestCase {
     func testThatPresentWillCreateForegroundWindow() {
         sut.present()
 
-        expect(self.sut.foregroundWindow) != nil
+        expect(self.sut.foregroundWindow).toNot(beNil())
     }
 
     func testThatPresentWillCreateForegroundWindowWithStatusBarLevel() {

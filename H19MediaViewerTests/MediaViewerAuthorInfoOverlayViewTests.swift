@@ -21,7 +21,7 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     }
 
     func testThatItHasImageView() {
-        expect(self.sut.authorImageView) != nil
+        expect(self.sut.authorImageView).toNot(beNil())
     }
 
     func testThatImageViewHasCorrectWidth() {
@@ -35,11 +35,11 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     }
 
     func testThatItHasAuthorTitleLabel() {
-        expect(self.sut.authorTitleLablel) != nil
+        expect(self.sut.authorTitleLablel).toNot(beNil())
     }
 
     func testThatItHasTakenByLabel() {
-        expect(self.sut.takenByTitle) != nil
+        expect(self.sut.takenByTitle).toNot(beNil())
     }
 
     func testThatTakenByLabelHasCorrectText() {
@@ -47,11 +47,11 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     }
 
     func testThatItHasBlurBackgroundView() {
-        expect(self.sut.blurBackground) != nil
+        expect(self.sut.blurBackground).toNot(beNil())
     }
 
     func testThatBlurBackgroundViewHasVisualEffectBlur() {
-        expect(self.sut.blurBackground.effect as? UIBlurEffect) != nil
+        expect(self.sut.blurBackground.effect as? UIBlurEffect).toNot(beNil())
     }
 
     func testThatImageViewHasCorrectCornerRadius() {
@@ -59,7 +59,7 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     }
 
     func testThatItHasDateLabel() {
-        expect(self.sut.dateTakenLabel) != nil
+        expect(self.sut.dateTakenLabel).toNot(beNil())
     }
 
     func testThatItSetsCorrectDateLabelText() {

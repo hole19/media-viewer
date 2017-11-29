@@ -48,15 +48,15 @@ class MediaViewerContentsViewTests: XCTestCase {
     }
 
     func testThatItHasScrollView() {
-        expect(self.sut.scrollView) != nil
+        expect(self.sut.scrollView).toNot(beNil())
     }
 
     func testThatItHasBackgroundView() {
-        expect(self.sut.backgroundView) != nil
+        expect(self.sut.backgroundView).toNot(beNil())
     }
 
     func testThatItHasCloseButton() {
-        expect(self.sut.closeButton) != nil
+        expect(self.sut.closeButton).toNot(beNil())
     }
 
     func testThatCloseButtonSuperviewIsTheView() {
@@ -71,11 +71,11 @@ class MediaViewerContentsViewTests: XCTestCase {
     func testThatItHasOverlayView() {
         sut.setupOverlayView(MediaViewerImage(image: UIImage(), infoOverlayViewClass: MediaViewerInfoOverlayView.self))
 
-        expect(self.sut.overlayView) != nil
+        expect(self.sut.overlayView).toNot(beNil())
     }
 
     func testThatItHasLongPressGestureRecogniser() {
-        expect(self.sut.longPressGesture) != nil
+        expect(self.sut.longPressGesture).toNot(beNil())
     }
 
     func testThatLongPressGestureRecogniserIsConnectedToSUT() {
@@ -99,7 +99,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     }
 
     func testThatItHasSingleTapGestureRecogniser() {
-        expect(self.sut.controlsTapGestureRecogniser) != nil
+        expect(self.sut.controlsTapGestureRecogniser).toNot(beNil())
     }
 
     func testThatSingleTapGestureRecogniserIsConnectedToSUT() {
@@ -163,7 +163,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     }
 
     func testThatItHasPanGestureRecogniser() {
-        expect(self.sut.panGestureRecogniser) != nil
+        expect(self.sut.panGestureRecogniser).toNot(beNil())
     }
 
     func testThatPanGestureRecogniserIsConnectedToScrollView() {
@@ -199,7 +199,7 @@ class MediaViewerContentsViewTests: XCTestCase {
     }
 
     func testThatItHasCloseButtonTopMarginConstraint() {
-        expect(self.sut.closeButtonTopMarginConstraint) != nil
+        expect(self.sut.closeButtonTopMarginConstraint).toNot(beNil())
     }
 
 }

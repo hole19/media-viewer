@@ -17,7 +17,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     }
 
     func testThatItHasScrollView() {
-        expect(self.sut.scrollView) != nil
+        expect(self.sut.scrollView).toNot(beNil())
     }
 
     func testThatScrollViewHasCorrectWidth() {
@@ -54,13 +54,14 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     }
 
     func testThatSettingTheImagesWillSetupCorrectContentViewSize() {
-        setupSUTWithImages()
+        _ = setupSUTWithImages()
 
         expect(self.sut.scrollView.contentSize) == CGSize(width: 208.0 * 2, height: 200.0)
     }
 
     func testThatSettingTheImagesWillSetupCorrectNumberOfInnerContentViews() {
-        setupSUTWithImages()
+        _ = setupSUTWithImages()
+
         expect(self.sut.contentViews.count) == 2
     }
 
@@ -71,25 +72,25 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     }
 
     func testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewOrigin() {
-        setupSUTWithImages()
+        _ = setupSUTWithImages()
 
         expect(self.sut.contentViews[1].frame.origin.x) == 212.0
     }
 
     func testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewSuperview() {
-        setupSUTWithImages()
+        _ = setupSUTWithImages()
 
         expect(self.sut.contentViews[1].superview) == sut.scrollView
     }
 
     func testThatItHasCorrectCurrentImageView() {
-        setupSUTWithImages()
+        _ = setupSUTWithImages()
 
         expect(self.sut.currentImageView()) == sut.contentViews[0]
     }
 
     func testThatOnScrollViewDidEndDeceleratingCurrentPageIsUpdated() {
-        setupSUTWithImages()
+        _ = setupSUTWithImages()
 
         sut.scrollView.contentOffset = CGPoint(x: 208.0, y: 0.0)
 
@@ -99,7 +100,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     }
 
     func testThatOnScrollViewDidEndDeceleratingItSetsViewRecogniserToFail() {
-        setupSUTWithImages()
+        _ = setupSUTWithImages()
 
         let mockTap = TapGestureRecogniserMock()
         sut.singleTapGestureRecogniserThatReqiresFailure = mockTap
@@ -116,7 +117,8 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     }
 
     func testThatItSetsImageViewDelegateOnAllImageViews() {
-        setupSUTWithImages()
+        _ = setupSUTWithImages()
+
         let delegate = ImageDelegate()
 
         sut.imageViewActionsDelgate = delegate
