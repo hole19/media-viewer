@@ -43,7 +43,6 @@ public class MediaViewerInteractiveImageView: UIView {
         setupView()
     }
 
-
     // MARK: public
 
     public func zoomOut(animated: Bool = true) {
@@ -54,7 +53,7 @@ public class MediaViewerInteractiveImageView: UIView {
 
     // MARK: public - selectors
 
-    public func viewDoubleTapped(_ sender: UITapGestureRecognizer) {
+    @objc public func viewDoubleTapped(_ sender: UITapGestureRecognizer) {
         if scrollView.zoomScale <= 1.01 {
             let zoomPoint = sender.location(in: scrollView)
 
@@ -73,7 +72,6 @@ public class MediaViewerInteractiveImageView: UIView {
             scrollView.setZoomScale(1.0, animated: true)
         }
     }
-
 
     // MARK: private
 

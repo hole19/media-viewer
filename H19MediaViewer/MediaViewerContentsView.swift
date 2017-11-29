@@ -98,13 +98,13 @@ public class MediaViewerContentsView: UIView {
 
     // MARK: selectors
 
-    public func viewTapped(_ sender: UITapGestureRecognizer) {
+    @objc public func viewTapped(_ sender: UITapGestureRecognizer) {
         let newAlpha: CGFloat = controlsAlpha == 0.0 ? 1.0 : 0.0
         setControlsAlpha(newAlpha, animated: true)
         scrollView.zoomOut()
     }
 
-    public func viewLongPressed(_ sender: UILongPressGestureRecognizer) {
+    @objc public func viewLongPressed(_ sender: UILongPressGestureRecognizer) {
         delegate?.longPressActionDetectedInContentView(self)
     }
 
