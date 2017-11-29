@@ -27,7 +27,7 @@ public class MediaViewerPanningViewModel: NSObject {
 
     // MARK: public - selectors
 
-    public func viewPanned(_ recognizer: UIPanGestureRecognizer) {
+    @objc public func viewPanned(_ recognizer: UIPanGestureRecognizer) {
         if containerView.landscapeAsociatedInteractionsAllowed() {
             let translation = recognizer.translation(in: containerView)
             if let view = recognizer.view {

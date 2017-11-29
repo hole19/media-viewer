@@ -17,7 +17,6 @@ extension UIView {
         )
     }
 
-
     public func addLabelSubviewWithFont(_ font: UIFont, color: UIColor, translateAutoresizingMask: Bool = false) -> UILabel {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         label.translatesAutoresizingMaskIntoConstraints = translateAutoresizingMask

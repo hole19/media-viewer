@@ -125,7 +125,7 @@ public class MediaViewer: UIViewController {
 
     // MARK: public selectors
 
-    public func close(_ sender: UIButton) {
+    @objc public func close(_ sender: UIButton) {
         dismissViewAnimated()
     }
 
