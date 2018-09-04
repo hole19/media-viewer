@@ -15,7 +15,7 @@ extension UICollectionView: MediaViewerMultipleImageScrollViewDelegate {
             }
             let indexInSection = (index - currentIndex)
             let indexPath = IndexPath(row: indexInSection, section: currentSection)
-            scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredVertically, animated: false)
+            scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredVertically, animated: false)
         }
     }
 }

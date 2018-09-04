@@ -83,12 +83,12 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         authorImageView.layer.cornerRadius = 3.0
         addSubview(authorImageView)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-8-[authorImageView(26.0)]",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["authorImageView" : authorImageView])
         )
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-39-[authorImageView(26.0)]",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["authorImageView" : authorImageView])
         )
@@ -97,15 +97,15 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     private func setupBlurView() {
         blurBackground = UIVisualEffectView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         blurBackground.translatesAutoresizingMaskIntoConstraints = false
-        blurBackground.effect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        blurBackground.effect = UIBlurEffect(style: UIBlurEffect.Style.dark)
         addSubview(blurBackground)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[blurBackground]|",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["blurBackground" : blurBackground])
         )
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[blurBackground]|",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["blurBackground" : blurBackground])
         )
@@ -114,13 +114,13 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     private func setupAuthorTitleLabel() {
         authorTitleLablel = addLabelSubviewWithFont(UIFont.boldSystemFont(ofSize: 14.0), color: UIColor.white)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-44-[authorTitleLablel]-8-|",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["authorTitleLablel" :
                                                         authorTitleLablel])
         )
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-36-[authorTitleLablel]",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["authorTitleLablel" : authorTitleLablel])
         )
@@ -132,12 +132,12 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         //        takenByTitle.text = NSLocalizedString("klMediaViewer_TakenBy", comment: "")
         takenByTitle.text = "TAKEN BY"
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-8-[takenByTitle]-8-|",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["takenByTitle" : takenByTitle])
         )
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-13-[takenByTitle]",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["takenByTitle" : takenByTitle])
         )
@@ -145,13 +145,13 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
 
     private func setupDateTakenLabel() {
         dateTakenLabel = addLabelSubviewWithFont(UIFont.systemFont(ofSize: 12.0), color: UIColor(red:0.64, green:0.64, blue:0.64, alpha:1.00))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-44-[dateTakenLabel]-8-|", options: NSLayoutFormatOptions.alignAllLeft,
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-44-[dateTakenLabel]-8-|", options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["dateTakenLabel" :
                                                         dateTakenLabel])
         )
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-53-[dateTakenLabel]",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["dateTakenLabel" : dateTakenLabel])
         )

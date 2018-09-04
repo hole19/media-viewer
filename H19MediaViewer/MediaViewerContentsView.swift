@@ -67,12 +67,12 @@ public class MediaViewerContentsView: UIView {
         overlayView!.alpha = 0.0
         addSubview(overlayView!)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[overlayView]|",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["overlayView" : overlayView!])
         )
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[overlayView(height)]|",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: ["height": overlayView!.defaultHeight()],
                                                       views: ["overlayView" : overlayView!])
         )
@@ -163,23 +163,23 @@ public class MediaViewerContentsView: UIView {
     }
 
     private func setupCloseButton() {
-        closeButton = UIButton(type: UIButtonType.roundedRect)
+        closeButton = UIButton(type: UIButton.ButtonType.roundedRect)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
         closeButton.layer.borderColor = UIColor.white.cgColor
         closeButton.layer.cornerRadius = 6.0
         closeButton.tintColor = UIColor.white
-        closeButton.setImage(UIImage(named: "button-close-white"), for: UIControlState())
+        closeButton.setImage(UIImage(named: "button-close-white"), for: UIControl.State())
         addSubview(closeButton)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "[closeButton(36)]-9-|",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["closeButton" : closeButton])
         )
         let closeButtonMargin = closeButtonHeight(isLandscape: frame.size.width > frame.size.height)
         let closeButtonString = "V:|-\(closeButtonMargin)-[closeButton(36)]"
         let constraints = NSLayoutConstraint.constraints(withVisualFormat: closeButtonString,
-                                                         options: NSLayoutFormatOptions.alignAllLeft,
+                                                         options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                          metrics: nil,
                                                          views: ["closeButton" : closeButton])
         for constr in constraints {

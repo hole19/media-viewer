@@ -20,9 +20,9 @@ public class MediaViewerImageActionsHandler {
             alert.view.tintColor = tintColor
         }
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         for task in tasks {
-            alert.addAction(UIAlertAction(title: task.title, style: UIAlertActionStyle.default, handler: { (action) in
+            alert.addAction(UIAlertAction(title: task.title, style: UIAlertAction.Style.default, handler: { (action) in
                 task.taskHandler(image)
             }))
         }

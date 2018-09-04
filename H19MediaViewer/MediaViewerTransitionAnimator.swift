@@ -46,12 +46,12 @@ public class MediaViewerTransitionAnimator: NSObject {
         setupTransitionToDestinationImageView()
         let endImageFrame = frameToScaleAspectFitBoundToFrame(currentImageView.bounds, img: currentImageView.imageView)
         self.contentsView.scrollView.alpha = 1.0
-        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: { () -> Void in
             self.contentsView.interfaceAlpha = 1.0
             currentImageView.imageView.frame = endImageFrame
             currentImageView.imageView.center = center
             }) { (finished) -> Void in
-                currentImageView.imageView.contentMode = UIViewContentMode.scaleAspectFit
+                currentImageView.imageView.contentMode = UIView.ContentMode.scaleAspectFit
                 currentImageView.imageView.frame = CGRect(x: 0.0,
                                                           y: 0.0,
                                                           width: self.contentsView.bounds.size.width,
@@ -97,7 +97,7 @@ public class MediaViewerTransitionAnimator: NSObject {
         currentImageView.imageView.center = center
         currentImageView.imageView.contentMode = .scaleAspectFill
 
-        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: { () -> Void in
             self.contentsView.interfaceAlpha = 0.0
             currentImageView.imageView.frame = endImageFrame
             }) { (finished) -> Void in

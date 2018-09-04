@@ -6,12 +6,12 @@ extension UIView {
         subview.translatesAutoresizingMaskIntoConstraints = false
         addSubview(subview)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-margin-[subview]-margin-|",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: ["margin": sideMargins],
                                                       views: ["subview" : subview])
         )
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[subview]|",
-                                                      options: NSLayoutFormatOptions.alignAllLeft,
+                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["subview" : subview])
         )
