@@ -76,7 +76,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
 
         sut.setupTransitionToDestinationImageView()
 
-        expect(self.contentsView?.scrollView.currentImageView()!.imageView.contentMode) == UIViewContentMode.scaleAspectFill
+        expect(self.contentsView?.scrollView.currentImageView()!.imageView.contentMode) == UIView.ContentMode.scaleAspectFill
     }
 
     func testThatTransitionToDestinationInitialBackgroundAlphaIs0() {

@@ -165,6 +165,6 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     }
 
     func testThatImageViewHasContentModeAspectFit() {
-        expect(self.sut.imageView.contentMode) == UIViewContentMode.scaleAspectFit
+        expect(self.sut.imageView.contentMode) == UIView.ContentMode.scaleAspectFit
     }
 }

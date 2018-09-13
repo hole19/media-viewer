@@ -29,7 +29,7 @@ class MediaViewerImageActionsHandlerTests: XCTestCase {
 
         var cancelAction: UIAlertAction? = nil
         for action in alert.actions {
-            if action.style == UIAlertActionStyle.cancel {
+            if action.style == UIAlertAction.Style.cancel {
                 cancelAction = action
                 break
             }
@@ -47,7 +47,7 @@ class MediaViewerImageActionsHandlerTests: XCTestCase {
     func testThatItSetsUpAlertControllerWithTypeActionSheet() {
         let alert = sut.actionSheetWithAllTasksForImage(UIImage())
 
-        expect(alert.preferredStyle) == UIAlertControllerStyle.actionSheet
+        expect(alert.preferredStyle) == UIAlertController.Style.actionSheet
     }
 
 }
