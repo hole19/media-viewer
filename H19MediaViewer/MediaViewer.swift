@@ -119,7 +119,7 @@ public class MediaViewer: UIViewController {
 
         foregroundWindow.backgroundColor = UIColor.clear
         foregroundWindow.rootViewController = self
-        foregroundWindow.windowLevel = UIWindowLevelStatusBar
+        foregroundWindow.windowLevel = UIWindow.Level.statusBar
         foregroundWindow.isHidden = false
     }
 
@@ -149,7 +149,7 @@ public class MediaViewer: UIViewController {
     }
 
     private func setupCloseButton() {
-        contentsView.closeButton.addTarget(self, action: #selector(MediaViewer.close(_:)), for: UIControlEvents.touchUpInside)
+        contentsView.closeButton.addTarget(self, action: #selector(MediaViewer.close(_:)), for: UIControl.Event.touchUpInside)
     }
 
     func dismissViewAnimated() {

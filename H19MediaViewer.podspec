@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "H19MediaViewer"
-  s.version      = "0.8.0"
+  s.version      = "1.0.0"
   s.summary      = "A simple and customizable media viewer."
   s.description  = <<-DESC
   A simple and customizable media viewer with pagination.
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.authors            = { "Raphael Cruzeiro" => "raphaelcruzeiro@raphaelcruzeiro.com" }
+  s.authors            = { "H19 Team" => "dev.ios@hole19golf.com" }
 
 
   s.platform     = :ios, "8.0"

@@ -243,7 +243,7 @@ class MediaViewerTests: XCTestCase {
     func testThatPresentWillCreateForegroundWindowWithStatusBarLevel() {
         sut.present()
 
-        expect(self.sut.foregroundWindow!.windowLevel) == UIWindowLevelStatusBar
+        expect(self.sut.foregroundWindow!.windowLevel) == UIWindow.Level.statusBar
     }
 
     func testThatPresentWillCreateForegroundWindowWithSUTAsRoot() {

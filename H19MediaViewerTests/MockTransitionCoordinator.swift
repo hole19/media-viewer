@@ -10,7 +10,7 @@ import UIKit
     var transitionDuration: TimeInterval = 0.0
     var percentComplete: CGFloat = 0.0
     var completionVelocity: CGFloat = 0.0
-    var completionCurve = UIViewAnimationCurve.easeIn
+    var completionCurve = UIView.AnimationCurve.easeIn
     var targetTransform = CGAffineTransform.identity
     var containerView = UIView()
     var isInterruptible = false
