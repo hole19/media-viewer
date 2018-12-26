@@ -5,11 +5,13 @@ import Nimble
 class MediaViewerTests: XCTestCase {
 
     var sut: MediaViewer!
+    var retainedImageView: UIImageView?
 
     override func setUp() {
         super.setUp()
         let image = MediaViewerImage(image: UIImage(named: "minion8", in: Bundle(for: self.classForCoder), compatibleWith: nil)!)
-        image.sourceImageView = UIImageView()
+        retainedImageView = UIImageView()
+        image.sourceImageView = retainedImageView
         sut = MediaViewer(image: image, allImages: nil)
     }
 
@@ -25,7 +27,8 @@ class MediaViewerTests: XCTestCase {
     func setupSutWithImageView() -> UIImageView {
         let imageView = UIImageView()
         let image = MediaViewerImage(image: UIImage(named: "minion8", in: Bundle(for: self.classForCoder), compatibleWith: nil)!)
-        image.sourceImageView = imageView
+        retainedImageView = imageView
+        image.sourceImageView = retainedImageView
         sut = MediaViewer(image: image, allImages: nil)
         return imageView
     }
