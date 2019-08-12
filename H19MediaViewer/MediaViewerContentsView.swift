@@ -31,8 +31,8 @@ public class MediaViewerContentsView: UIView {
 
     internal var scrollView: MediaViewerMultipleImageScrollView!
 
-    internal var backgroundView: UIView!
-    internal var closeButton: UIButton!
+    internal var backgroundView = UIView()
+    internal let closeButton = UIButton(type: UIButton.ButtonType.roundedRect)
     internal var closeButtonTopMarginConstraint: NSLayoutConstraint?
     internal var overlayView: MediaViewerInfoOverlayView?
 
@@ -157,13 +157,11 @@ public class MediaViewerContentsView: UIView {
     }
 
     private func setupBackgroundView() {
-        backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:1.00)
         addSubviewWithFullScreenConstraints(backgroundView)
     }
 
     private func setupCloseButton() {
-        closeButton = UIButton(type: UIButton.ButtonType.roundedRect)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
         closeButton.layer.borderColor = UIColor.white.cgColor
