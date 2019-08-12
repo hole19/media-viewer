@@ -156,7 +156,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
     }
 
     private func setupInitialContentOffsetWithImages(_ images: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
-        if let index = images.index(where: { (some) -> Bool in
+        if let index = images.firstIndex(where: { (some) -> Bool in
             return some === selectedImage
         }) {
             scrollView.contentOffset = CGPoint(x:CGFloat(index)*scrollView.bounds.size.width, y:0.0)
