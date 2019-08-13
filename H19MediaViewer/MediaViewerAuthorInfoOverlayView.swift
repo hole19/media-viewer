@@ -20,13 +20,25 @@ public protocol MediaViewerAuthorInfoOverlayViewModelProtocol {
 
 public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
 
+    private struct Font {
+        static let title = UIFont.boldSystemFont(ofSize: 14.0)
+        static let author = UIFont.boldSystemFont(ofSize: 11.0)
+        static let date = UIFont.systemFont(ofSize: 12.0)
+    }
+
+    private struct Color {
+        static let title = UIColor.white
+        static let author = UIColor(red:155.0/255.0, green:155.0/255.0, blue:155.0/255.0, alpha:1.00)
+        static let date = UIColor(red:0.64, green:0.64, blue:0.64, alpha:1.00)
+    }
+
     // MARK: properties
 
-    public var authorImageView: UIImageView!
-    public var authorTitleLablel: UILabel!
-    public var takenByTitle: UILabel!
-    public var dateTakenLabel: UILabel!
-    public var blurBackground: UIVisualEffectView!
+    public let authorImageView = UIImageView()
+    public lazy var authorTitleLablel: UILabel = { return addLabelSubviewWithFont(Font.title, color: Color.title) }()
+    public lazy var takenByTitle: UILabel = { return addLabelSubviewWithFont(Font.author, color: Color.author) }()
+    public lazy var dateTakenLabel: UILabel = { return addLabelSubviewWithFont(Font.date, color: Color.date) }()
+    public var blurBackground = UIVisualEffectView()
 
     // MARK: init
 
@@ -76,7 +88,7 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     }
 
     private func setupImageView() {
-        authorImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        authorImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         authorImageView.contentMode = .scaleAspectFill
         authorImageView.clipsToBounds = true
         authorImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -95,7 +107,7 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     }
 
     private func setupBlurView() {
-        blurBackground = UIVisualEffectView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        blurBackground.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         blurBackground.translatesAutoresizingMaskIntoConstraints = false
         blurBackground.effect = UIBlurEffect(style: UIBlurEffect.Style.dark)
         addSubview(blurBackground)
@@ -112,7 +124,6 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     }
 
     private func setupAuthorTitleLabel() {
-        authorTitleLablel = addLabelSubviewWithFont(UIFont.boldSystemFont(ofSize: 14.0), color: UIColor.white)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-44-[authorTitleLablel]-8-|",
                                                       options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
@@ -127,9 +138,6 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     }
 
     private func setupTakenByLabel() {
-        takenByTitle = addLabelSubviewWithFont(UIFont.boldSystemFont(ofSize: 11.0),
-                                               color: UIColor(red:155.0/255.0, green:155.0/255.0, blue:155.0/255.0, alpha:1.00))
-        //        takenByTitle.text = NSLocalizedString("klMediaViewer_TakenBy", comment: "")
         takenByTitle.text = "TAKEN BY"
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-8-[takenByTitle]-8-|",
                                                       options: NSLayoutConstraint.FormatOptions.alignAllLeft,
@@ -144,7 +152,6 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     }
 
     private func setupDateTakenLabel() {
-        dateTakenLabel = addLabelSubviewWithFont(UIFont.systemFont(ofSize: 12.0), color: UIColor(red:0.64, green:0.64, blue:0.64, alpha:1.00))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-44-[dateTakenLabel]-8-|", options: NSLayoutConstraint.FormatOptions.alignAllLeft,
                                                       metrics: nil,
                                                       views: ["dateTakenLabel" :
