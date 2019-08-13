@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
 
 
   s.platform     = :ios, "11.0"
+  s.swift_version =  '5.0'
 
   s.source       = { :git => "https://github.com/hole19/media-viewer.git", :tag => "#{s.version}" }
   s.dependency "SDWebImage"
