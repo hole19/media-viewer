@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  H19MediaViewerSandbox
-//
-//  Created by João Costa on 19/09/2019.
-//  Copyright © 2019 Hole19Golf. All rights reserved.
-//
-
 import UIKit
 import H19MediaViewer
 
