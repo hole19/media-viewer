@@ -92,21 +92,7 @@ public class MediaViewerInteractiveImageView: UIView {
         imageView.frame = scrollView.bounds
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        scrollView.addSubviewWithFullScreenConstraints(imageView)
-        scrollView.addConstraint(NSLayoutConstraint(item: imageView,
-                                                    attribute: NSLayoutConstraint.Attribute.width,
-                                                    relatedBy: .equal,
-                                                    toItem: scrollView,
-                                                    attribute: .width,
-                                                    multiplier: 1.0, constant: 0.0)
-        )
-        scrollView.addConstraint(NSLayoutConstraint(item: imageView,
-                                                    attribute: NSLayoutConstraint.Attribute.height,
-                                                    relatedBy: .equal,
-                                                    toItem: scrollView,
-                                                    attribute: .height,
-                                                    multiplier: 1.0, constant: 0.0)
-        )
+        scrollView.addSubview(imageView)
         scrollView.contentSize = imageView.bounds.size
     }
 
