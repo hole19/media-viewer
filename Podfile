@@ -11,6 +11,9 @@ target 'H19MediaViewer' do
       pod 'Quick'
   end
 
+  target 'H19MediaViewerSandbox' do
+  end
+
 end
 
 # Hooks

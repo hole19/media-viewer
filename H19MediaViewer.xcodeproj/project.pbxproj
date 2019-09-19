@@ -44,10 +44,12 @@
 		A0C835811D22A7EC00594C2A /* MockTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835801D22A7EC00594C2A /* MockTransitionCoordinator.swift */; };
 		A0C835831D22A82D00594C2A /* TestAssetCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */; };
 		A0F61B0F1D41138000266B2B /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F61B0E1D41138000266B2B /* NSDate+Extensions.swift */; };
+		D86FE64F5E08FB22332B404E /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71061FB095198E29B237DD4A /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework */; };
 		EFBDDA1D2333B32700DEC354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDDA1C2333B32700DEC354 /* AppDelegate.swift */; };
 		EFBDDA1F2333B32700DEC354 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDDA1E2333B32700DEC354 /* ViewController.swift */; };
 		EFBDDA242333B32800DEC354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFBDDA232333B32800DEC354 /* Assets.xcassets */; };
 		EFBDDA272333B32800DEC354 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFBDDA252333B32800DEC354 /* LaunchScreen.storyboard */; };
+		EFBDDA2C2333B54E00DEC354 /* H19MediaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C8352A1D22A4E200594C2A /* H19MediaViewer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +64,11 @@
 
 /* Begin PBXFileReference section */
 		098668B282BBC24DF0CB3FE9 /* Pods_H19MediaViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H19MediaViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CF5B636AC44929445A04148 /* Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerSandbox/Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig"; sourceTree = "<group>"; };
 		1E2B71B7A16FFC45121B452E /* Pods_H19MediaViewer_H19MediaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H19MediaViewer_H19MediaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		517C78A0F3C1EE11FFB25A70 /* Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		71061FB095198E29B237DD4A /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H19MediaViewer_H19MediaViewerSandbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		923682E999A2DB04BE8E66D7 /* Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerSandbox/Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig"; sourceTree = "<group>"; };
 		A0C8352A1D22A4E200594C2A /* H19MediaViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = H19MediaViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C8352D1D22A4E200594C2A /* H19MediaViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = H19MediaViewer.h; sourceTree = "<group>"; };
 		A0C8352F1D22A4E200594C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +140,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFBDDA2C2333B54E00DEC354 /* H19MediaViewer.framework in Frameworks */,
+				D86FE64F5E08FB22332B404E /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +153,7 @@
 			children = (
 				098668B282BBC24DF0CB3FE9 /* Pods_H19MediaViewer.framework */,
 				1E2B71B7A16FFC45121B452E /* Pods_H19MediaViewer_H19MediaViewerTests.framework */,
+				71061FB095198E29B237DD4A /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,6 +165,8 @@
 				FFA8F6FEDF0BFF7EB33E3D2C /* Pods-H19MediaViewer.release.xcconfig */,
 				517C78A0F3C1EE11FFB25A70 /* Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig */,
 				AC509CE6A3613EEEB8BC3151 /* Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig */,
+				923682E999A2DB04BE8E66D7 /* Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig */,
+				0CF5B636AC44929445A04148 /* Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -302,9 +312,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFBDDA2B2333B32800DEC354 /* Build configuration list for PBXNativeTarget "H19MediaViewerSandbox" */;
 			buildPhases = (
+				8A916274E8441D7013C6CB6F /* [CP] Check Pods Manifest.lock */,
 				EFBDDA162333B32700DEC354 /* Sources */,
 				EFBDDA172333B32700DEC354 /* Frameworks */,
 				EFBDDA182333B32700DEC354 /* Resources */,
+				18779E1DE9B2BAF323D90F77 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -389,6 +401,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		18779E1DE9B2BAF323D90F77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-H19MediaViewer-H19MediaViewerSandbox/Pods-H19MediaViewer-H19MediaViewerSandbox-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-H19MediaViewer-H19MediaViewerSandbox/Pods-H19MediaViewer-H19MediaViewerSandbox-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6CEF08184E37E1A3C9280ACF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +431,28 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-H19MediaViewer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A916274E8441D7013C6CB6F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-H19MediaViewer-H19MediaViewerSandbox-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -712,6 +764,7 @@
 		};
 		EFBDDA292333B32800DEC354 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 923682E999A2DB04BE8E66D7 /* Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -738,6 +791,7 @@
 		};
 		EFBDDA2A2333B32800DEC354 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CF5B636AC44929445A04148 /* Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
