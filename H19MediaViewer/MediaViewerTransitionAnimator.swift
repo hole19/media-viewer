@@ -26,13 +26,15 @@ public class MediaViewerTransitionAnimator: NSObject {
         self.contentsView.interfaceAlpha = 0.0
         guard let currentImageView = contentsView.scrollView.currentImageView(),
               let destinationSuperview = currentImageView.imageView.superview else { return }
-        var sourceImageViewFrame = CGRect.zero
+
+        var sourceImageViewFrame: CGRect
         if let sourceImageView = sourceImageView, let sourceSuperview = sourceImageView.superview {
             sourceImageViewFrame = destinationSuperview.convert(sourceImageView.frame, from: sourceSuperview)
         } else {
             sourceImageViewFrame = currentImageView.frame
             sourceImageViewFrame.origin.y += currentImageView.frame.size.height
         }
+
         currentImageView.imageView.frame = sourceImageViewFrame
         currentImageView.imageView.alpha = 1.0
         sourceImageView?.isHidden = true
@@ -51,7 +53,7 @@ public class MediaViewerTransitionAnimator: NSObject {
             currentImageView.imageView.frame = endImageFrame
             currentImageView.imageView.center = center
             }) { (finished) -> Void in
-                currentImageView.imageView.contentMode = UIView.ContentMode.scaleAspectFit
+                currentImageView.imageView.contentMode = .scaleAspectFit
                 currentImageView.imageView.frame = CGRect(x: 0.0,
                                                           y: 0.0,
                                                           width: self.contentsView.bounds.size.width,

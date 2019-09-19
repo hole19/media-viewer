@@ -44,6 +44,12 @@
 		A0C835811D22A7EC00594C2A /* MockTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835801D22A7EC00594C2A /* MockTransitionCoordinator.swift */; };
 		A0C835831D22A82D00594C2A /* TestAssetCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */; };
 		A0F61B0F1D41138000266B2B /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F61B0E1D41138000266B2B /* NSDate+Extensions.swift */; };
+		D86FE64F5E08FB22332B404E /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71061FB095198E29B237DD4A /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework */; };
+		EFBDDA1D2333B32700DEC354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDDA1C2333B32700DEC354 /* AppDelegate.swift */; };
+		EFBDDA1F2333B32700DEC354 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDDA1E2333B32700DEC354 /* ViewController.swift */; };
+		EFBDDA242333B32800DEC354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFBDDA232333B32800DEC354 /* Assets.xcassets */; };
+		EFBDDA272333B32800DEC354 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFBDDA252333B32800DEC354 /* LaunchScreen.storyboard */; };
+		EFBDDA2C2333B54E00DEC354 /* H19MediaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C8352A1D22A4E200594C2A /* H19MediaViewer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +64,11 @@
 
 /* Begin PBXFileReference section */
 		098668B282BBC24DF0CB3FE9 /* Pods_H19MediaViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H19MediaViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CF5B636AC44929445A04148 /* Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerSandbox/Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig"; sourceTree = "<group>"; };
 		1E2B71B7A16FFC45121B452E /* Pods_H19MediaViewer_H19MediaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H19MediaViewer_H19MediaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		517C78A0F3C1EE11FFB25A70 /* Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		71061FB095198E29B237DD4A /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H19MediaViewer_H19MediaViewerSandbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		923682E999A2DB04BE8E66D7 /* Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerSandbox/Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig"; sourceTree = "<group>"; };
 		A0C8352A1D22A4E200594C2A /* H19MediaViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = H19MediaViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C8352D1D22A4E200594C2A /* H19MediaViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = H19MediaViewer.h; sourceTree = "<group>"; };
 		A0C8352F1D22A4E200594C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +108,12 @@
 		A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TestAssetCatalog.xcassets; sourceTree = "<group>"; };
 		A0F61B0E1D41138000266B2B /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		AC509CE6A3613EEEB8BC3151 /* Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig"; sourceTree = "<group>"; };
+		EFBDDA1A2333B32700DEC354 /* H19MediaViewerSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = H19MediaViewerSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBDDA1C2333B32700DEC354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EFBDDA1E2333B32700DEC354 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EFBDDA232333B32800DEC354 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFBDDA262333B32800DEC354 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EFBDDA282333B32800DEC354 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F496C0763511C14DC2A83234 /* Pods-H19MediaViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer/Pods-H19MediaViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		FFA8F6FEDF0BFF7EB33E3D2C /* Pods-H19MediaViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer/Pods-H19MediaViewer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +136,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EFBDDA172333B32700DEC354 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFBDDA2C2333B54E00DEC354 /* H19MediaViewer.framework in Frameworks */,
+				D86FE64F5E08FB22332B404E /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,6 +153,7 @@
 			children = (
 				098668B282BBC24DF0CB3FE9 /* Pods_H19MediaViewer.framework */,
 				1E2B71B7A16FFC45121B452E /* Pods_H19MediaViewer_H19MediaViewerTests.framework */,
+				71061FB095198E29B237DD4A /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,6 +165,8 @@
 				FFA8F6FEDF0BFF7EB33E3D2C /* Pods-H19MediaViewer.release.xcconfig */,
 				517C78A0F3C1EE11FFB25A70 /* Pods-H19MediaViewer-H19MediaViewerTests.debug.xcconfig */,
 				AC509CE6A3613EEEB8BC3151 /* Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig */,
+				923682E999A2DB04BE8E66D7 /* Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig */,
+				0CF5B636AC44929445A04148 /* Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -149,6 +176,7 @@
 			children = (
 				A0C8352C1D22A4E200594C2A /* H19MediaViewer */,
 				A0C835381D22A4E200594C2A /* H19MediaViewerTests */,
+				EFBDDA1B2333B32700DEC354 /* H19MediaViewerSandbox */,
 				A0C8352B1D22A4E200594C2A /* Products */,
 				998BC60FF149D5C1982A597E /* Pods */,
 				5F7D702E8AF6A0A7C361C5BE /* Frameworks */,
@@ -160,6 +188,7 @@
 			children = (
 				A0C8352A1D22A4E200594C2A /* H19MediaViewer.framework */,
 				A0C835341D22A4E200594C2A /* H19MediaViewerTests.xctest */,
+				EFBDDA1A2333B32700DEC354 /* H19MediaViewerSandbox.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +241,18 @@
 				A0F61B0E1D41138000266B2B /* NSDate+Extensions.swift */,
 			);
 			path = H19MediaViewerTests;
+			sourceTree = "<group>";
+		};
+		EFBDDA1B2333B32700DEC354 /* H19MediaViewerSandbox */ = {
+			isa = PBXGroup;
+			children = (
+				EFBDDA1C2333B32700DEC354 /* AppDelegate.swift */,
+				EFBDDA1E2333B32700DEC354 /* ViewController.swift */,
+				EFBDDA232333B32800DEC354 /* Assets.xcassets */,
+				EFBDDA252333B32800DEC354 /* LaunchScreen.storyboard */,
+				EFBDDA282333B32800DEC354 /* Info.plist */,
+			);
+			path = H19MediaViewerSandbox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,13 +308,32 @@
 			productReference = A0C835341D22A4E200594C2A /* H19MediaViewerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		EFBDDA192333B32700DEC354 /* H19MediaViewerSandbox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFBDDA2B2333B32800DEC354 /* Build configuration list for PBXNativeTarget "H19MediaViewerSandbox" */;
+			buildPhases = (
+				8A916274E8441D7013C6CB6F /* [CP] Check Pods Manifest.lock */,
+				EFBDDA162333B32700DEC354 /* Sources */,
+				EFBDDA172333B32700DEC354 /* Frameworks */,
+				EFBDDA182333B32700DEC354 /* Resources */,
+				18779E1DE9B2BAF323D90F77 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = H19MediaViewerSandbox;
+			productName = H19MediaViewerSandbox;
+			productReference = EFBDDA1A2333B32700DEC354 /* H19MediaViewerSandbox.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A0C835211D22A4E200594C2A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Hole19Golf;
 				TargetAttributes = {
@@ -285,6 +345,11 @@
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 1020;
 					};
+					EFBDDA192333B32700DEC354 = {
+						CreatedOnToolsVersion = 10.2.1;
+						DevelopmentTeam = X3WEPC2286;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = A0C835241D22A4E200594C2A /* Build configuration list for PBXProject "H19MediaViewer" */;
@@ -294,6 +359,7 @@
 			knownRegions = (
 				English,
 				en,
+				Base,
 			);
 			mainGroup = A0C835201D22A4E200594C2A;
 			productRefGroup = A0C8352B1D22A4E200594C2A /* Products */;
@@ -302,6 +368,7 @@
 			targets = (
 				A0C835291D22A4E200594C2A /* H19MediaViewer */,
 				A0C835331D22A4E200594C2A /* H19MediaViewerTests */,
+				EFBDDA192333B32700DEC354 /* H19MediaViewerSandbox */,
 			);
 		};
 /* End PBXProject section */
@@ -322,9 +389,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EFBDDA182333B32700DEC354 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFBDDA272333B32800DEC354 /* LaunchScreen.storyboard in Resources */,
+				EFBDDA242333B32800DEC354 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		18779E1DE9B2BAF323D90F77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-H19MediaViewer-H19MediaViewerSandbox/Pods-H19MediaViewer-H19MediaViewerSandbox-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-H19MediaViewer-H19MediaViewerSandbox/Pods-H19MediaViewer-H19MediaViewerSandbox-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6CEF08184E37E1A3C9280ACF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -337,6 +431,28 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-H19MediaViewer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A916274E8441D7013C6CB6F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-H19MediaViewer-H19MediaViewerSandbox-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -432,6 +548,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EFBDDA162333B32700DEC354 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFBDDA1F2333B32700DEC354 /* ViewController.swift in Sources */,
+				EFBDDA1D2333B32700DEC354 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -441,6 +566,17 @@
 			targetProxy = A0C835361D22A4E200594C2A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EFBDDA252333B32800DEC354 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFBDDA262333B32800DEC354 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A0C8353C1D22A4E200594C2A /* Debug */ = {
@@ -626,6 +762,59 @@
 			};
 			name = Release;
 		};
+		EFBDDA292333B32800DEC354 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 923682E999A2DB04BE8E66D7 /* Pods-H19MediaViewer-H19MediaViewerSandbox.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X3WEPC2286;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = H19MediaViewerSandbox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hole19golf.mediaviewer.sandbox.H19MediaViewerSandbox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EFBDDA2A2333B32800DEC354 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CF5B636AC44929445A04148 /* Pods-H19MediaViewer-H19MediaViewerSandbox.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X3WEPC2286;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = H19MediaViewerSandbox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hole19golf.mediaviewer.sandbox.H19MediaViewerSandbox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -652,6 +841,15 @@
 			buildConfigurations = (
 				A0C835421D22A4E200594C2A /* Debug */,
 				A0C835431D22A4E200594C2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFBDDA2B2333B32800DEC354 /* Build configuration list for PBXNativeTarget "H19MediaViewerSandbox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFBDDA292333B32800DEC354 /* Debug */,
+				EFBDDA2A2333B32800DEC354 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
