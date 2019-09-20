@@ -21,16 +21,11 @@ public class MediaViewerInteractiveImageView: UIView {
         }
     }
 
-    public var imageView = UIImageView()
-    public let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    public var imageView: UIImageView!
+    public var scrollView: UIScrollView!
+    public var activityIndicator: UIActivityIndicatorView!
 
-    public lazy var scrollView = { return UIScrollView(frame: bounds) }()
-
-    public var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer = {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewDoubleTapped(_:)))
-        gesture.numberOfTapsRequired = 2
-        return gesture
-    }()
+    public var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer!
 
     // MARK: private properties
 
@@ -89,7 +84,7 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupImageView() {
-        imageView.frame = scrollView.bounds
+        imageView = UIImageView(frame: scrollView.bounds)
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         scrollView.addSubview(imageView)
@@ -97,6 +92,7 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupScrollView() {
+        scrollView = UIScrollView(frame: bounds)
         scrollView.clipsToBounds = false
         scrollView.isUserInteractionEnabled = true
         scrollView.backgroundColor = UIColor.clear
@@ -110,6 +106,7 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupActivityIndicatorView() {
+        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator.isHidden = true
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         addSubview(activityIndicator)
@@ -130,6 +127,10 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupTapGestureRecogniser() {
+        zoomDoubleTapGestureRecogniser = UITapGestureRecognizer(target: self,
+                                                                action: #selector(MediaViewerInteractiveImageView.viewDoubleTapped(_:))
+        )
+        zoomDoubleTapGestureRecogniser.numberOfTapsRequired = 2
         addGestureRecognizer(zoomDoubleTapGestureRecogniser)
     }
 
