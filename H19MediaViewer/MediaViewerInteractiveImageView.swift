@@ -26,8 +26,7 @@ public class MediaViewerInteractiveImageView: UIView {
     public let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
 
     public lazy var zoomDoubleTapGestureRecogniser: UIGestureRecognizer = {
-        let gesture = UITapGestureRecognizer(target: self, action:
-            #selector(MediaViewerInteractiveImageView.viewDoubleTapped(_:)))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewDoubleTapped(_:)))
         gesture.numberOfTapsRequired = 2
         return gesture
     }()
