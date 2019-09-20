@@ -21,12 +21,11 @@ public class MediaViewerInteractiveImageView: UIView {
         }
     }
 
-    public var imageView = UIImageView()
+    public let imageView = UIImageView()
+    public let scrollView = UIScrollView()
     public let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
 
-    public lazy var scrollView = { return UIScrollView(frame: bounds) }()
-
-    public var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer = {
+    public lazy var zoomDoubleTapGestureRecogniser: UIGestureRecognizer = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(viewDoubleTapped(_:)))
         gesture.numberOfTapsRequired = 2
         return gesture
@@ -58,7 +57,7 @@ public class MediaViewerInteractiveImageView: UIView {
 
     // MARK: public - selectors
 
-    @objc public func viewDoubleTapped(_ sender: UITapGestureRecognizer) {
+    @objc func viewDoubleTapped(_ sender: UITapGestureRecognizer) {
         if scrollView.zoomScale <= 1.01 {
             let zoomPoint = sender.location(in: scrollView)
 
@@ -97,6 +96,7 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupScrollView() {
+        scrollView.frame = bounds
         scrollView.clipsToBounds = false
         scrollView.isUserInteractionEnabled = true
         scrollView.backgroundColor = UIColor.clear
