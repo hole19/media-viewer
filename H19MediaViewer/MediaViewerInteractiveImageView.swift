@@ -21,11 +21,16 @@ public class MediaViewerInteractiveImageView: UIView {
         }
     }
 
-    public var imageView: UIImageView!
-    public var scrollView: UIScrollView!
-    public var activityIndicator: UIActivityIndicatorView!
+    public let imageView = UIImageView()
+    public let scrollView = UIScrollView()
+    public let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
 
-    public var zoomDoubleTapGestureRecogniser: UITapGestureRecognizer!
+    public lazy var zoomDoubleTapGestureRecogniser: UIGestureRecognizer = {
+        let gesture = UITapGestureRecognizer(target: self, action:
+            #selector(MediaViewerInteractiveImageView.viewDoubleTapped(_:)))
+        gesture.numberOfTapsRequired = 2
+        return gesture
+    }()
 
     // MARK: private properties
 
@@ -53,7 +58,7 @@ public class MediaViewerInteractiveImageView: UIView {
 
     // MARK: public - selectors
 
-    @objc public func viewDoubleTapped(_ sender: UITapGestureRecognizer) {
+    @objc func viewDoubleTapped(_ sender: UITapGestureRecognizer) {
         if scrollView.zoomScale <= 1.01 {
             let zoomPoint = sender.location(in: scrollView)
 
@@ -84,7 +89,7 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupImageView() {
-        imageView = UIImageView(frame: scrollView.bounds)
+        imageView.frame = scrollView.bounds
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         scrollView.addSubview(imageView)
@@ -92,7 +97,7 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupScrollView() {
-        scrollView = UIScrollView(frame: bounds)
+        scrollView.frame = bounds
         scrollView.clipsToBounds = false
         scrollView.isUserInteractionEnabled = true
         scrollView.backgroundColor = UIColor.clear
@@ -106,7 +111,6 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupActivityIndicatorView() {
-        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator.isHidden = true
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         addSubview(activityIndicator)
@@ -127,10 +131,6 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupTapGestureRecogniser() {
-        zoomDoubleTapGestureRecogniser = UITapGestureRecognizer(target: self,
-                                                                action: #selector(MediaViewerInteractiveImageView.viewDoubleTapped(_:))
-        )
-        zoomDoubleTapGestureRecogniser.numberOfTapsRequired = 2
         addGestureRecognizer(zoomDoubleTapGestureRecogniser)
     }
 
