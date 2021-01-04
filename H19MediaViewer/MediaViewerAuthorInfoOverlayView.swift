@@ -93,74 +93,47 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
         authorImageView.clipsToBounds = true
         authorImageView.translatesAutoresizingMaskIntoConstraints = false
         authorImageView.layer.cornerRadius = 3.0
+        authorImageView.backgroundColor = .white
         addSubview(authorImageView)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-8-[authorImageView(26.0)]",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["authorImageView" : authorImageView])
-        )
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-39-[authorImageView(26.0)]",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["authorImageView" : authorImageView])
-        )
+
+        NSLayoutConstraint.activate([
+            authorImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            authorImageView.topAnchor.constraint(equalTo: topAnchor, constant: 39),
+            authorImageView.widthAnchor.constraint(equalToConstant: 26),
+            authorImageView.heightAnchor.constraint(equalTo: authorImageView.widthAnchor)
+        ])
     }
 
     private func setupBlurView() {
         blurBackground.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         blurBackground.translatesAutoresizingMaskIntoConstraints = false
         blurBackground.effect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        addSubview(blurBackground)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[blurBackground]|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["blurBackground" : blurBackground])
-        )
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[blurBackground]|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["blurBackground" : blurBackground])
-        )
+        addSubviewWithFullScreenConstraints(blurBackground)
     }
 
     private func setupAuthorTitleLabel() {
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-44-[authorTitleLablel]-8-|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["authorTitleLablel" :
-                                                        authorTitleLablel])
-        )
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-36-[authorTitleLablel]",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["authorTitleLablel" : authorTitleLablel])
-        )
+        NSLayoutConstraint.activate([
+            authorTitleLablel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 44),
+            authorTitleLablel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            authorTitleLablel.topAnchor.constraint(equalTo: topAnchor, constant: 36)
+        ])
     }
 
     private func setupTakenByLabel() {
         takenByTitle.text = "TAKEN BY"
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-8-[takenByTitle]-8-|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["takenByTitle" : takenByTitle])
-        )
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-13-[takenByTitle]",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["takenByTitle" : takenByTitle])
-        )
+
+        NSLayoutConstraint.activate([
+            takenByTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            takenByTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            takenByTitle.topAnchor.constraint(equalTo: topAnchor, constant: 13)
+        ])
     }
 
     private func setupDateTakenLabel() {
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-44-[dateTakenLabel]-8-|", options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["dateTakenLabel" :
-                                                        dateTakenLabel])
-        )
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-53-[dateTakenLabel]",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["dateTakenLabel" : dateTakenLabel])
-        )
+        NSLayoutConstraint.activate([
+            dateTakenLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 44),
+            dateTakenLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            dateTakenLabel.topAnchor.constraint(equalTo: topAnchor, constant: 53)
+        ])
     }
 }

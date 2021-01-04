@@ -60,8 +60,8 @@ class ViewController: UIViewController {
             let image = imageView.image
             else { return }
 
-        let model = MediaViewerImage(image: image, sourceImageView: imageView)
-        model.sourceImageView = imageView
+        let model = MediaViewerImage(image: image, sourceImageView: imageView, infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
+        model.overlayInfoModel = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: nil, authorTitle: "John Cena", datePictureWasTaken: Date())
 
         let viewer = MediaViewer(image: model)
         viewer.tintColor = .blue

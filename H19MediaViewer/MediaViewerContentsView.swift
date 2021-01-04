@@ -61,21 +61,20 @@ public class MediaViewerContentsView: UIView {
     // MARK: public
 
     public func setupOverlayView(_ imageModel: MediaViewerImageModel) {
-        overlayView = imageModel.infoOverlayViewClass.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        overlayView!.translatesAutoresizingMaskIntoConstraints = false
-        overlayView!.model = imageModel.overlayInfoModel
-        overlayView!.alpha = 0.0
-        addSubview(overlayView!)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[overlayView]|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["overlayView" : overlayView!])
-        )
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[overlayView(height)]|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: ["height": overlayView!.defaultHeight()],
-                                                      views: ["overlayView" : overlayView!])
-        )
+        let overlayView = imageModel.infoOverlayViewClass.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        self.overlayView = overlayView
+
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+        overlayView.model = imageModel.overlayInfoModel
+        overlayView.alpha = 0.0
+        addSubview(overlayView)
+
+        NSLayoutConstraint.activate([
+            overlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            overlayView.heightAnchor.constraint(equalToConstant: overlayView.defaultHeight()),
+            overlayView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 
     public func updateViewStateWithLandscape(_ landscape: Bool) {
@@ -174,24 +173,18 @@ public class MediaViewerContentsView: UIView {
             closeButton.backgroundColor = .white
         }
         addSubview(closeButton)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "[closeButton(36)]-9-|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["closeButton" : closeButton])
-        )
+
         let closeButtonMargin = closeButtonHeight(isLandscape: frame.size.width > frame.size.height)
-        let closeButtonString = "V:|-\(closeButtonMargin)-[closeButton(36)]"
-        let constraints = NSLayoutConstraint.constraints(withVisualFormat: closeButtonString,
-                                                         options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                         metrics: nil,
-                                                         views: ["closeButton" : closeButton])
-        for constr in constraints {
-            if constr.constant == closeButtonMargin {
-                closeButtonTopMarginConstraint = constr
-                break
-            }
-        }
-        addConstraints(constraints)
+        let closeButtonTopMarginConstraint = closeButton.topAnchor.constraint(equalTo: topAnchor, constant: closeButtonMargin)
+
+        NSLayoutConstraint.activate([
+            closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
+            closeButtonTopMarginConstraint,
+            closeButton.widthAnchor.constraint(equalToConstant: 36),
+            closeButton.heightAnchor.constraint(equalToConstant: 36)
+        ])
+
+        self.closeButtonTopMarginConstraint = closeButtonTopMarginConstraint
     }
 
     func setControlsAlpha(_ alpha: CGFloat, animated: Bool) {

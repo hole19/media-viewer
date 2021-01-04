@@ -1,20 +1,16 @@
 import UIKit
 
 extension UIView {
-
     public func addSubviewWithFullScreenConstraints(_ subview: UIView, sideMargins: CGFloat = 0.0) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         addSubview(subview)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-margin-[subview]-margin-|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: ["margin": sideMargins],
-                                                      views: ["subview" : subview])
-        )
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[subview]|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["subview" : subview])
-        )
+
+         NSLayoutConstraint.activate([
+             subview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideMargins),
+             subview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideMargins),
+             subview.topAnchor.constraint(equalTo: topAnchor),
+             subview.bottomAnchor.constraint(equalTo: bottomAnchor)
+         ])
     }
 
     public func addLabelSubviewWithFont(_ font: UIFont, color: UIColor, translateAutoresizingMask: Bool = false) -> UILabel {
@@ -25,5 +21,4 @@ extension UIView {
         addSubview(label)
         return label
     }
-
 }
