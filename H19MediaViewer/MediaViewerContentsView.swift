@@ -167,7 +167,12 @@ public class MediaViewerContentsView: UIView {
         closeButton.layer.borderColor = UIColor.white.cgColor
         closeButton.layer.cornerRadius = 6.0
         closeButton.tintColor = UIColor.white
-        closeButton.setImage(UIImage(named: "button-close-white"), for: UIControl.State())
+
+        if let image = UIImage(named: "button-close-white") {
+            closeButton.setImage(image, for: UIControl.State())
+        } else {
+            closeButton.backgroundColor = .white
+        }
         addSubview(closeButton)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "[closeButton(36)]-9-|",
                                                       options: NSLayoutConstraint.FormatOptions.alignAllLeft,
