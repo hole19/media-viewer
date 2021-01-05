@@ -2,26 +2,69 @@ import UIKit
 import H19MediaViewer
 
 class ViewController: UIViewController {
-    lazy var imageViewAspectFill: UIImageView = {
+    private struct Media {
+        let view: UIImageView
+        let model: MediaViewerImageModel
+    }
+
+    private lazy var imageViewAspectFill: Media = {
         let view = UIImageView(image: UIImage(named: "vampeta")!)
         view.contentMode = .scaleAspectFill
-        return view
+        let overlay = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: nil,
+                                                          authorTitle: "Hulk Hogan",
+                                                          datePictureWasTaken: Date())
+        let model = MediaViewerImage(image: view.image,
+                                     sourceImageView: view,
+                                     infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
+        model.overlayInfoModel = overlay
+        return Media(view: view, model: model)
     }()
 
-    lazy var imageViewAspectFit: UIImageView = {
+    private lazy var imageViewAspectFit: Media = {
         let view = UIImageView(image: UIImage(named: "vampeta")!)
         view.contentMode = .scaleAspectFit
-        return view
+        let overlay = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: nil,
+                                                          authorTitle: "The Undertaker",
+                                                          datePictureWasTaken: Date())
+        let model = MediaViewerImage(image: view.image,
+                                     sourceImageView: view,
+                                     infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
+        model.overlayInfoModel = overlay
+        return Media(view: view, model: model)
     }()
 
-    lazy var imageViewFill: UIImageView = {
+    private lazy var imageViewFill: Media = {
         let view = UIImageView(image: UIImage(named: "vampeta")!)
         view.contentMode = .scaleToFill
-        return view
+        let overlay = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: nil,
+                                                          authorTitle: "John Cena",
+                                                          datePictureWasTaken: Date())
+        let model = MediaViewerImage(image: view.image,
+                                     sourceImageView: view,
+                                     infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
+        model.overlayInfoModel = overlay
+        return Media(view: view, model: model)
+    }()
+
+    private lazy var imageViewMultiple: Media = {
+        let view = UIImageView(image: UIImage(named: "vampeta")!)
+        view.contentMode = .scaleAspectFill
+        let overlay = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: nil,
+                                                          authorTitle: "Triple H",
+                                                          datePictureWasTaken: Date())
+        let model = MediaViewerImage(image: view.image,
+                                     sourceImageView: view,
+                                     infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
+        model.overlayInfoModel = overlay
+        return Media(view: view, model: model)
+    }()
+
+    private lazy var allImages: [Media] = {
+        [imageViewAspectFill, imageViewAspectFit, imageViewFill, imageViewMultiple]
     }()
 
     private struct Constants {
-        static let margin: CGFloat = 20
+        static let margin: CGFloat = 40
         static let spacing: CGFloat = 16
     }
 
@@ -38,7 +81,7 @@ class ViewController: UIViewController {
                                height: view.bounds.size.height - Constants.margin * 2)
         view.addSubview(content)
 
-        let views: [UIView] = [imageViewAspectFill, imageViewAspectFit, imageViewFill]
+        let views: [UIView] = allImages.map { $0.view }
         let count = CGFloat(views.count)
         let height = (content.frame.height - Constants.spacing * (count - 1)) / count
 
@@ -55,15 +98,18 @@ class ViewController: UIViewController {
         }
     }
 
-    @objc func didTapImage(sender: UITapGestureRecognizer) {
+    @objc private func didTapImage(sender: UITapGestureRecognizer) {
         guard let imageView = sender.view as? UIImageView,
-            let image = imageView.image
+              let media = allImages.first(where: { $0.view == imageView })
             else { return }
 
-        let model = MediaViewerImage(image: image, sourceImageView: imageView, infoOverlayViewClass: MediaViewerAuthorInfoOverlayView.self)
-        model.overlayInfoModel = MediaViewerAuthorInfoOverlayViewModel(authorImageURL: nil, authorTitle: "John Cena", datePictureWasTaken: Date())
+        var allModels: [MediaViewerImageModel]?
 
-        let viewer = MediaViewer(image: model)
+        if imageView == imageViewMultiple.view {
+            allModels = allImages.map { $0.model }
+        }
+
+        let viewer = MediaViewer(image: media.model, allImages: allModels, delegate: nil)
         viewer.tintColor = .blue
         viewer.present()
     }
