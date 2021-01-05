@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "H19MediaViewer"
-  s.version      = "1.1.3"
+  s.version      = "2.0.0"
   s.summary      = "A simple and customizable media viewer."
   s.description  = <<-DESC
   A simple and customizable media viewer with pagination.
@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   s.authors = { "H19 Team" => "dev.ios@hole19golf.com" }
   s.source = { :git => "https://github.com/hole19/media-viewer.git", :tag => "#{s.version}" }
 
-  s.platform      = :ios, "8.0"
+  s.platform      = :ios, "12.0"
   s.swift_version =  '5.0'
   s.dependency "SDWebImage"
 
