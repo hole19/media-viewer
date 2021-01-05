@@ -49,6 +49,14 @@ public class MediaViewerInteractiveImageView: UIView {
 
     // MARK: public
 
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+
+        scrollView.frame = bounds
+        imageView.frame = bounds
+        scrollView.contentSize = bounds.size
+    }
+
     public func zoomOut(animated: Bool = true) {
         if scrollView.zoomScale > 1.0 {
             scrollView.setZoomScale(1.0, animated: animated)
@@ -106,7 +114,9 @@ public class MediaViewerInteractiveImageView: UIView {
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
-        addSubviewWithFullScreenConstraints(scrollView)
+        addSubview(scrollView)
+
+        scrollView.setFullScreenConstraints()
     }
 
     private func setupActivityIndicatorView() {

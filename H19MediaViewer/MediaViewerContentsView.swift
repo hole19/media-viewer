@@ -33,7 +33,6 @@ public class MediaViewerContentsView: UIView {
 
     internal var backgroundView = UIView()
     internal let closeButton = UIButton(type: UIButton.ButtonType.roundedRect)
-    internal var closeButtonTopMarginConstraint: NSLayoutConstraint?
     internal var overlayView: MediaViewerInfoOverlayView?
 
     internal var controlsTapGestureRecogniser: UITapGestureRecognizer!
@@ -41,9 +40,6 @@ public class MediaViewerContentsView: UIView {
     internal var longPressGesture: UILongPressGestureRecognizer!
 
     internal var allowLandscapeDismissal: Bool
-
-    private var closeButtonTopMarginPortrait: CGFloat = 10.0
-    private var closeButtonTopMarginLandscape: CGFloat = 8.0
 
     // MARK: init
 
@@ -61,31 +57,33 @@ public class MediaViewerContentsView: UIView {
     // MARK: public
 
     public func setupOverlayView(_ imageModel: MediaViewerImageModel) {
-        overlayView = imageModel.infoOverlayViewClass.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        overlayView!.translatesAutoresizingMaskIntoConstraints = false
-        overlayView!.model = imageModel.overlayInfoModel
-        overlayView!.alpha = 0.0
-        addSubview(overlayView!)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[overlayView]|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["overlayView" : overlayView!])
-        )
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[overlayView(height)]|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: ["height": overlayView!.defaultHeight()],
-                                                      views: ["overlayView" : overlayView!])
-        )
+        let overlayView = imageModel.infoOverlayViewClass.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        overlayView.model = imageModel.overlayInfoModel
+        overlayView.alpha = 0.0
+
+        addSubview(overlayView)
+        self.overlayView = overlayView
+
+
+        overlayView.safeAreaBottomAnchor = safeAreaLayoutGuide.bottomAnchor
+
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            overlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 
     public func updateViewStateWithLandscape(_ landscape: Bool) {
         backgroundView.alpha = 1.0
+
         if landscape && !allowLandscapeDismissal {
             controlsAlpha = 0.0
         } else {
             controlsAlpha = 1.0
         }
-        closeButtonTopMarginConstraint?.constant = closeButtonHeight(isLandscape: landscape)
     }
 
     public func landscapeAsociatedInteractionsAllowed() -> Bool {
@@ -153,12 +151,16 @@ public class MediaViewerContentsView: UIView {
         scrollView.clipsToBounds = false
         scrollView.scrollDelegate = self
         scrollView.mediaViewerDelegate = mediaViewerDelegate
-        addSubviewWithFullScreenConstraints(scrollView)
+        addSubview(scrollView)
+        
+        scrollView.setFullScreenConstraints()
     }
 
     private func setupBackgroundView() {
         backgroundView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:1.00)
-        addSubviewWithFullScreenConstraints(backgroundView)
+        addSubview(backgroundView)
+        
+        backgroundView.setFullScreenConstraints()
     }
 
     private func setupCloseButton() {
@@ -167,26 +169,20 @@ public class MediaViewerContentsView: UIView {
         closeButton.layer.borderColor = UIColor.white.cgColor
         closeButton.layer.cornerRadius = 6.0
         closeButton.tintColor = UIColor.white
-        closeButton.setImage(UIImage(named: "button-close-white"), for: UIControl.State())
-        addSubview(closeButton)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "[closeButton(36)]-9-|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["closeButton" : closeButton])
-        )
-        let closeButtonMargin = closeButtonHeight(isLandscape: frame.size.width > frame.size.height)
-        let closeButtonString = "V:|-\(closeButtonMargin)-[closeButton(36)]"
-        let constraints = NSLayoutConstraint.constraints(withVisualFormat: closeButtonString,
-                                                         options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                         metrics: nil,
-                                                         views: ["closeButton" : closeButton])
-        for constr in constraints {
-            if constr.constant == closeButtonMargin {
-                closeButtonTopMarginConstraint = constr
-                break
-            }
+
+        if let image = UIImage(named: "button-close-white") {
+            closeButton.setImage(image, for: UIControl.State())
+        } else {
+            closeButton.backgroundColor = .white
         }
-        addConstraints(constraints)
+        addSubview(closeButton)
+
+        NSLayoutConstraint.activate([
+            closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
+            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            closeButton.widthAnchor.constraint(equalToConstant: 36),
+            closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor)
+        ])
     }
 
     func setControlsAlpha(_ alpha: CGFloat, animated: Bool) {
@@ -211,10 +207,6 @@ public class MediaViewerContentsView: UIView {
                 overlayView?.alpha = alpha
             }
         }
-    }
-
-    private func closeButtonHeight(isLandscape landscape: Bool) -> CGFloat {
-        return landscape ? closeButtonTopMarginLandscape : closeButtonTopMarginPortrait
     }
 }
 

@@ -1,29 +1,18 @@
 import UIKit
 
 extension UIView {
+    public func setFullScreenConstraints(relativeTo superview: UIView? = nil, sideMargins: CGFloat = 0.0) {
+        guard let superview = superview ?? self.superview else {
+            preconditionFailure("Cannot set full screen constraints. There's no superview!")
+        }
 
-    public func addSubviewWithFullScreenConstraints(_ subview: UIView, sideMargins: CGFloat = 0.0) {
-        subview.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(subview)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-margin-[subview]-margin-|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: ["margin": sideMargins],
-                                                      views: ["subview" : subview])
-        )
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[subview]|",
-                                                      options: NSLayoutConstraint.FormatOptions.alignAllLeft,
-                                                      metrics: nil,
-                                                      views: ["subview" : subview])
-        )
+        translatesAutoresizingMaskIntoConstraints = false
+
+         NSLayoutConstraint.activate([
+            leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: sideMargins),
+            trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -sideMargins),
+            topAnchor.constraint(equalTo: superview.topAnchor),
+            bottomAnchor.constraint(equalTo: superview.bottomAnchor)
+         ])
     }
-
-    public func addLabelSubviewWithFont(_ font: UIFont, color: UIColor, translateAutoresizingMask: Bool = false) -> UILabel {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        label.translatesAutoresizingMaskIntoConstraints = translateAutoresizingMask
-        label.textColor = color
-        label.font = font
-        addSubview(label)
-        return label
-    }
-
 }
