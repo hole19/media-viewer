@@ -22,7 +22,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
 
     func testThatScrollViewHasCorrectWidth() {
         sut.layoutIfNeeded()
-        expect(self.sut.scrollView.frame.size.width) == 208
+        expect(self.sut.scrollView.frame.size.width) == 204
     }
 
     func testThatScrollViewHasCorrectHeight() {
@@ -56,7 +56,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     func testThatSettingTheImagesWillSetupCorrectContentViewSize() {
         _ = setupSUTWithImages()
 
-        expect(self.sut.scrollView.contentSize) == CGSize(width: 208.0 * 2, height: 200.0)
+        expect(self.sut.scrollView.contentSize) == CGSize(width: 204.0 * 2, height: 200.0)
     }
 
     func testThatSettingTheImagesWillSetupCorrectNumberOfInnerContentViews() {
@@ -74,7 +74,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
     func testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewOrigin() {
         _ = setupSUTWithImages()
 
-        expect(self.sut.contentViews[1].frame.origin.x) == 212.0
+        expect(self.sut.contentViews[1].frame.origin.x) == 206.0
     }
 
     func testThatSettingTheImagesWillSetupCorrectSecondInnerContentViewSuperview() {
@@ -109,7 +109,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         sut.scrollViewDidEndDecelerating(sut.scrollView)
 
         expect(mockTap.requireGestureRecognizerToFailCallCount) == 1
-        expect(mockTap.requireGestureRecognizerToFailRecogniser) == self.sut.currentImageView()!.zoomDoubleTapGestureRecogniser
+        expect(mockTap.requireGestureRecognizerToFailRecogniser) == self.sut.currentImageView()!.zoomDoubleTapGestureRecognizer
     }
 
     class ImageDelegate: MediaViewerInteractiveImageViewDelegate {
@@ -166,7 +166,7 @@ class MediaViewerMultipleImageScrollViewTests: XCTestCase {
         let images = [MediaViewerImage(image: UIImage()), image, MediaViewerImage(image: UIImage())]
         sut.setImages(images, withSelectedOne: image)
 
-        expect(self.sut.scrollView.contentOffset) == CGPoint(x: 208.0, y: 0.0)
+        expect(self.sut.scrollView.contentOffset) == CGPoint(x: 206.0, y: 0.0)
     }
 
     func testThatItWillSetCorrectCurrentPagesetOnSetImagesWithSelectedOne() {

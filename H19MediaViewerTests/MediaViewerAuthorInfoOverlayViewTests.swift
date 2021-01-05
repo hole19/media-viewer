@@ -16,10 +16,6 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
         sut = nil
     }
 
-    func testThatItHasCorrectDefaultHeight() {
-        expect(self.sut.defaultHeight()) == 80.0
-    }
-
     func testThatItHasImageView() {
         expect(self.sut.authorImageView).toNot(beNil())
     }
@@ -35,7 +31,7 @@ class MediaViewerAuthorInfoOverlayViewTests: XCTestCase {
     }
 
     func testThatItHasAuthorTitleLabel() {
-        expect(self.sut.authorTitleLablel).toNot(beNil())
+        expect(self.sut.authorTitleLabel).toNot(beNil())
     }
 
     func testThatItHasTakenByLabel() {

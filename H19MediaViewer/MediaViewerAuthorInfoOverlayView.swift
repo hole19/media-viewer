@@ -34,11 +34,11 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
     // MARK: properties
 
     private let contentView = UIView()
-    private let authorImageView = UIImageView()
-    private lazy var authorTitleLabel: UILabel = { return labelSubviewWithFont(Font.title, color: Color.title) }()
-    private lazy var takenByTitle: UILabel = { return labelSubviewWithFont(Font.author, color: Color.author) }()
-    private lazy var dateTakenLabel: UILabel = { return labelSubviewWithFont(Font.date, color: Color.date) }()
-    private var blurBackground = UIVisualEffectView()
+    let authorImageView = UIImageView()
+    lazy var authorTitleLabel: UILabel = { return labelSubviewWithFont(Font.title, color: Color.title) }()
+    lazy var takenByTitle: UILabel = { return labelSubviewWithFont(Font.author, color: Color.author) }()
+    lazy var dateTakenLabel: UILabel = { return labelSubviewWithFont(Font.date, color: Color.date) }()
+    var blurBackground = UIVisualEffectView()
 
     // MARK: init
 

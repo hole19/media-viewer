@@ -3,7 +3,6 @@ import XCTest
 import Nimble
 
 class MediaViewerInteractiveImageViewTests: XCTestCase {
-
     var sut: MediaViewerInteractiveImageView!
 
     override func setUp() {
@@ -71,22 +70,22 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
     }
 
     func testThatItHasDoubleTapGestureRecogniser() {
-        expect(self.sut.zoomDoubleTapGestureRecogniser).toNot(beNil())
+        expect(self.sut.zoomDoubleTap).toNot(beNil())
     }
 
     func testThatItHasDoubleTapGestureRecogniserRequresTwoTaps() {
-        expect(self.sut.zoomDoubleTapGestureRecogniser.numberOfTapsRequired) == 2
+        expect(self.sut.zoomDoubleTap.numberOfTapsRequired) == 2
     }
 
     func testThatDoubleTapGestureRecogniserIsConnectedToSUT() {
-        expect(self.sut.zoomDoubleTapGestureRecogniser.view) == sut
+        expect(self.sut.zoomDoubleTap.view) == sut
     }
 
     func testThatViewDoubleTappedWillToggleZoomFromMin() {
         sut.maximumZoomScale = 3.0
         sut.scrollView.zoomScale = 1.0
 
-        sut.viewDoubleTapped(sut.zoomDoubleTapGestureRecogniser)
+        sut.viewDoubleTapped(sut.zoomDoubleTap)
 
         expect(self.sut.scrollView.zoomScale) == 3.0
     }
@@ -95,7 +94,7 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
         sut.maximumZoomScale = 3.0
         sut.scrollView.zoomScale = 2.0
 
-        sut.viewDoubleTapped(sut.zoomDoubleTapGestureRecogniser)
+        sut.viewDoubleTapped(sut.zoomDoubleTap)
 
         expect(self.sut.scrollView.zoomScale) == 1.00
     }
@@ -104,7 +103,7 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
         let mockScroll = MockScrollView()
         sut.scrollView = mockScroll
 
-        sut.viewDoubleTapped(sut.zoomDoubleTapGestureRecogniser)
+        sut.viewDoubleTapped(sut.zoomDoubleTap)
 
         expect(mockScroll.numberOfTimesZoomToRectWasCalled) == 1
         expect(mockScroll.animatedValueOfSetZoomToRect) == true
@@ -166,5 +165,11 @@ class MediaViewerInteractiveImageViewTests: XCTestCase {
 
     func testThatImageViewHasContentModeAspectFit() {
         expect(self.sut.imageView.contentMode) == UIView.ContentMode.scaleAspectFit
+    }
+}
+
+private extension MediaViewerInteractiveImageView {
+    var zoomDoubleTap: UITapGestureRecognizer {
+        return zoomDoubleTapGestureRecognizer as! UITapGestureRecognizer
     }
 }

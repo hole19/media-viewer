@@ -195,26 +195,6 @@ class MediaViewerTests: XCTestCase {
         expect(mock.numberOfTimesActionSheetWasCalled) == 1
     }
 
-    class MockImageScroll: MediaViewerMultipleImageScrollView {
-
-        var numerOfTimesLayoutSubviewsWasCalled = 0
-
-        override func layoutSubviews() {
-            super.layoutSubviews()
-            numerOfTimesLayoutSubviewsWasCalled += 1
-        }
-    }
-
-    func testThatOnViewWillTransitionToSizeMediaViewerWillForceScrollViewLayout() {
-        let _ = sut.view
-        let mockScroll = MockImageScroll()
-        sut.contentsView.scrollView = mockScroll
-
-        sut.viewWillTransition(to: CGSize(width: 0, height: 0), with: MockTransitionCoordinator())
-
-        expect(mockScroll.numerOfTimesLayoutSubviewsWasCalled) == 1
-    }
-
     class MockContentsView: MediaViewerContentsView {
 
         var numerOfTimesUpdateWitLandscapeWasCalled = 0

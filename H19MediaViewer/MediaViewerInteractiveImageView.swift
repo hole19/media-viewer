@@ -21,11 +21,11 @@ public class MediaViewerInteractiveImageView: UIView {
         }
     }
 
-    public let imageView = UIImageView()
-    public let scrollView = UIScrollView()
+    public var imageView = UIImageView()
+    public var scrollView = UIScrollView()
     public let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
 
-    public lazy var zoomDoubleTapGestureRecogniser: UIGestureRecognizer = {
+    public lazy var zoomDoubleTapGestureRecognizer: UIGestureRecognizer = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(viewDoubleTapped(_:)))
         gesture.numberOfTapsRequired = 2
         return gesture
@@ -140,7 +140,7 @@ public class MediaViewerInteractiveImageView: UIView {
     }
 
     private func setupTapGestureRecogniser() {
-        addGestureRecognizer(zoomDoubleTapGestureRecogniser)
+        addGestureRecognizer(zoomDoubleTapGestureRecognizer)
     }
 
     private func updateViewWithModel(_ imageModel: MediaViewerImageModel?) {

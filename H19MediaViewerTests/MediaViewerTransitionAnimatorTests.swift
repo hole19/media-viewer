@@ -100,7 +100,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
 
         sut.setupTransitionToDestinationImageView()
 
-        expect(imageView2.frame.origin.x) == 60
+        expect(imageView2.frame.origin.x) == 62
     }
 
     func testThatTransitionToDestinationInitialValueYIsEqalToSourceImageView() {
@@ -191,7 +191,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
 
         sut.transitionBackToSourceImageView(false)
 
-        expect(imageView2.frame.origin.x) == 60
+        expect(imageView2.frame.origin.x) == 62
     }
 
     func testThatTransitionBackFinalValueYIsEqalToSourceImageView() {
@@ -255,7 +255,7 @@ class MediaViewerTransitionAnimatorTests: XCTestCase {
 
         sut.transitionBackToSourceImageView(false)
 
-        expect(imageView2.frame) == CGRect(x: 0, y: 0, width: 200, height: 400)
+        expect(imageView2.frame) == CGRect(x: 2.0, y: 0, width: 200, height: 400)
     }
 
 }

@@ -209,7 +209,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
         guard let imageView = imageView else { return }
 
         if let rec = singleTapGestureRecogniserThatReqiresFailure {
-            rec.require(toFail: imageView.zoomDoubleTapGestureRecogniser)
+            rec.require(toFail: imageView.zoomDoubleTapGestureRecognizer)
         }
     }
 
