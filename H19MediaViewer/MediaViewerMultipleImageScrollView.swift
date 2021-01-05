@@ -42,7 +42,11 @@ public class MediaViewerMultipleImageScrollView: UIView {
     }
     public var selectedImage: MediaViewerImageModel?
     public var currentPage: Int = 0
-    let inbetweenImagesMargin: CGFloat = 4.0
+
+    private struct Constants {
+        static let pageSpace: CGFloat = 4.0
+        static let leadingMargin: CGFloat = pageSpace / 2
+    }
 
     public var hiddenImageView: UIImageView?
 
@@ -63,13 +67,15 @@ public class MediaViewerMultipleImageScrollView: UIView {
     override public func layoutSubviews() {
         super.layoutSubviews()
 
-        scrollView.contentSize = CGSize(width: bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
+        scrollView.contentSize = contentSize()
 
         for (index, image) in contentViews.enumerated() {
             image.frame = contentViewFrame(index: index)
         }
 
-        scrollView.contentOffset = CGPoint(x:CGFloat(currentPage) * bounds.size.width, y:0.0)
+        if let currentImage = currentImageView() {
+            scrollView.contentOffset = CGPoint(x: currentImage.frame.origin.x - Constants.leadingMargin, y: 0.0)
+        }
     }
 
     // MARK: public
@@ -119,7 +125,11 @@ public class MediaViewerMultipleImageScrollView: UIView {
     }
 
     private func setupScrollView() {
-        scrollView = UIScrollView(frame: bounds)
+        var frame = bounds
+        frame.origin.x -= Constants.leadingMargin
+        frame.size.width += Constants.leadingMargin * 2
+
+        scrollView = UIScrollView(frame: frame)
         scrollView.clipsToBounds = false
         scrollView.isUserInteractionEnabled = true
         scrollView.isPagingEnabled = true
@@ -129,12 +139,12 @@ public class MediaViewerMultipleImageScrollView: UIView {
         scrollView.showsHorizontalScrollIndicator = false
         addSubview(scrollView)
 
-        scrollView.setFullScreenConstraints()
+        scrollView.setFullScreenConstraints(sideMargins: -Constants.leadingMargin)
     }
 
     private func updateViewWithImages(_ newImages: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
         for (index, image) in newImages.enumerated() {
-            let contentView = contentViewWithImageModel(image, frame: contentViewFrame(index: index))
+            let contentView = contentViewWithImageModel(image, index: index)
             contentViews.append(contentView)
         }
 
@@ -142,13 +152,13 @@ public class MediaViewerMultipleImageScrollView: UIView {
            let hasMoreToLoad = mediaViewerDelegate.hasMoreImagesToLoad?(newImages),
            hasMoreToLoad {
 
-            let contentView = contentViewWithImageModel(nil, frame: contentViewFrame(index: newImages.count))
+            let contentView = contentViewWithImageModel(nil, index: newImages.count)
             contentView.activityIndicator.startAnimating()
             contentView.activityIndicator.isHidden = false
             contentViews.append(contentView)
         }
 
-        scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
+        scrollView.contentSize = contentSize()
         setRecogniserRequiredToFailWithView(currentImageView())
         setDelegateForAllViews(contentViews)
         setupInitialContentOffsetWithImages(newImages, selectedImage: selectedImage)
@@ -158,7 +168,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
         if let index = images.firstIndex(where: { (some) -> Bool in
             return some === selectedImage
         }) {
-            scrollView.contentOffset = CGPoint(x:CGFloat(index)*scrollView.bounds.size.width, y:0.0)
+            scrollView.contentOffset = contentViewOffset(index: index)
             currentPage = index
             if let delegate = mediaViewerDelegate {
                 hiddenImageView = delegate.imageViewForImage(images[index])
@@ -167,18 +177,26 @@ public class MediaViewerMultipleImageScrollView: UIView {
         }
     }
 
-    private func contentViewFrame(index: Int) -> CGRect {
-        return CGRect(x: (bounds.size.width + inbetweenImagesMargin) * CGFloat(index),
-                      y: 0.0,
-                      width: bounds.size.width,
+    private func contentSize() -> CGSize {
+        let pages = CGFloat(contentViews.count)
+        return CGSize(width: Constants.leadingMargin * 2 + bounds.size.width * pages + Constants.pageSpace * (pages - 1),
                       height: bounds.size.height)
     }
 
-    private func contentViewWithImageModel(_ imageModel: MediaViewerImageModel?, frame: CGRect) -> MediaViewerInteractiveImageView {
-        let contentView = MediaViewerInteractiveImageView(frame: frame)
+    private func contentViewOffset(index: Int) -> CGPoint {
+        return CGPoint(x: Constants.leadingMargin + (bounds.size.width + Constants.pageSpace) * CGFloat(index),
+                       y: 0.0)
+    }
+
+    private func contentViewFrame(index: Int) -> CGRect {
+        return CGRect(origin: contentViewOffset(index: index),
+                      size: bounds.size)
+    }
+
+    private func contentViewWithImageModel(_ imageModel: MediaViewerImageModel?, index: Int) -> MediaViewerInteractiveImageView {
+        let contentView = MediaViewerInteractiveImageView(frame: contentViewFrame(index: index))
         contentView.imageModel = imageModel
         scrollView.addSubview(contentView)
-
         return contentView
     }
 
