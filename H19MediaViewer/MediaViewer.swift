@@ -144,7 +144,9 @@ public class MediaViewer: UIViewController {
         if let initialImage = initialImage {
             contentsView.setupOverlayView(initialImage)
         }
-        view.addSubviewWithFullScreenConstraints(contentsView)
+
+        view.addSubview(contentsView)
+        contentsView.setFullScreenConstraints()
         contentsView.delegate = self
     }
 

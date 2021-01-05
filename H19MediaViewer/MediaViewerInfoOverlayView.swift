@@ -10,6 +10,12 @@ public class MediaViewerInfoOverlayView: UIView {
         }
     }
 
+    public var safeAreaBottomAnchor: NSLayoutYAxisAnchor? {
+        didSet {
+            updateSafeAreaBottomAnchor(safeAreaBottomAnchor)
+        }
+    }
+
     // init
 
     required public override init(frame: CGRect) {
@@ -22,11 +28,11 @@ public class MediaViewerInfoOverlayView: UIView {
 
     // public
 
-    public func defaultHeight() -> CGFloat {
-        return 0.0
+    public func updateViewWithModel(_ model: Any?) {
+
     }
 
-    public func updateViewWithModel(_ model: Any?) {
+    public func updateSafeAreaBottomAnchor(_ anchor: NSLayoutYAxisAnchor?) {
 
     }
 }

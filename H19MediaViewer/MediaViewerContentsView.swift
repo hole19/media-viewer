@@ -62,17 +62,20 @@ public class MediaViewerContentsView: UIView {
 
     public func setupOverlayView(_ imageModel: MediaViewerImageModel) {
         let overlayView = imageModel.infoOverlayViewClass.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        self.overlayView = overlayView
-
-        overlayView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.model = imageModel.overlayInfoModel
         overlayView.alpha = 0.0
+
         addSubview(overlayView)
+        self.overlayView = overlayView
+
+
+        overlayView.safeAreaBottomAnchor = safeAreaLayoutGuide.bottomAnchor
+
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             overlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
             overlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            overlayView.heightAnchor.constraint(equalToConstant: overlayView.defaultHeight()),
             overlayView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
@@ -152,12 +155,16 @@ public class MediaViewerContentsView: UIView {
         scrollView.clipsToBounds = false
         scrollView.scrollDelegate = self
         scrollView.mediaViewerDelegate = mediaViewerDelegate
-        addSubviewWithFullScreenConstraints(scrollView)
+        addSubview(scrollView)
+        
+        scrollView.setFullScreenConstraints()
     }
 
     private func setupBackgroundView() {
         backgroundView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:1.00)
-        addSubviewWithFullScreenConstraints(backgroundView)
+        addSubview(backgroundView)
+        
+        backgroundView.setFullScreenConstraints()
     }
 
     private func setupCloseButton() {
@@ -175,13 +182,13 @@ public class MediaViewerContentsView: UIView {
         addSubview(closeButton)
 
         let closeButtonMargin = closeButtonHeight(isLandscape: frame.size.width > frame.size.height)
-        let closeButtonTopMarginConstraint = closeButton.topAnchor.constraint(equalTo: topAnchor, constant: closeButtonMargin)
+        let closeButtonTopMarginConstraint = closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: closeButtonMargin)
 
         NSLayoutConstraint.activate([
             closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
             closeButtonTopMarginConstraint,
             closeButton.widthAnchor.constraint(equalToConstant: 36),
-            closeButton.heightAnchor.constraint(equalToConstant: 36)
+            closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor)
         ])
 
         self.closeButtonTopMarginConstraint = closeButtonTopMarginConstraint

@@ -1,24 +1,18 @@
 import UIKit
 
 extension UIView {
-    public func addSubviewWithFullScreenConstraints(_ subview: UIView, sideMargins: CGFloat = 0.0) {
-        subview.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(subview)
+    public func setFullScreenConstraints(relativeTo superview: UIView? = nil, sideMargins: CGFloat = 0.0) {
+        guard let superview = superview ?? self.superview else {
+            preconditionFailure("Cannot set full screen constraints. There's no superview!")
+        }
+
+        translatesAutoresizingMaskIntoConstraints = false
 
          NSLayoutConstraint.activate([
-             subview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideMargins),
-             subview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideMargins),
-             subview.topAnchor.constraint(equalTo: topAnchor),
-             subview.bottomAnchor.constraint(equalTo: bottomAnchor)
+            leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: sideMargins),
+            trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -sideMargins),
+            topAnchor.constraint(equalTo: superview.topAnchor),
+            bottomAnchor.constraint(equalTo: superview.bottomAnchor)
          ])
-    }
-
-    public func addLabelSubviewWithFont(_ font: UIFont, color: UIColor, translateAutoresizingMask: Bool = false) -> UILabel {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        label.translatesAutoresizingMaskIntoConstraints = translateAutoresizingMask
-        label.textColor = color
-        label.font = font
-        addSubview(label)
-        return label
     }
 }

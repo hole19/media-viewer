@@ -106,7 +106,9 @@ public class MediaViewerInteractiveImageView: UIView {
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
-        addSubviewWithFullScreenConstraints(scrollView)
+        addSubview(scrollView)
+
+        scrollView.setFullScreenConstraints()
     }
 
     private func setupActivityIndicatorView() {

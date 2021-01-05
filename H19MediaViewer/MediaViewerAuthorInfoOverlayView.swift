@@ -19,7 +19,6 @@ public protocol MediaViewerAuthorInfoOverlayViewModelProtocol {
 }
 
 public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
-
     private struct Font {
         static let title = UIFont.boldSystemFont(ofSize: 14.0)
         static let author = UIFont.boldSystemFont(ofSize: 11.0)
@@ -34,33 +33,33 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
 
     // MARK: properties
 
-    public let authorImageView = UIImageView()
-    public lazy var authorTitleLablel: UILabel = { return addLabelSubviewWithFont(Font.title, color: Color.title) }()
-    public lazy var takenByTitle: UILabel = { return addLabelSubviewWithFont(Font.author, color: Color.author) }()
-    public lazy var dateTakenLabel: UILabel = { return addLabelSubviewWithFont(Font.date, color: Color.date) }()
-    public var blurBackground = UIVisualEffectView()
+    private let contentView = UIView()
+    private let authorImageView = UIImageView()
+    private lazy var authorTitleLabel: UILabel = { return labelSubviewWithFont(Font.title, color: Color.title) }()
+    private lazy var takenByTitle: UILabel = { return labelSubviewWithFont(Font.author, color: Color.author) }()
+    private lazy var dateTakenLabel: UILabel = { return labelSubviewWithFont(Font.date, color: Color.date) }()
+    private var blurBackground = UIVisualEffectView()
 
     // MARK: init
 
     required public init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+
+        setupLayout()
+        setupConstraints()
+
+        updateViewWithModel(model)
     }
 
     required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: MediaViewerInfoOverlayView
 
-    override public func defaultHeight() -> CGFloat {
-        return 80.0
-    }
-
     override public func updateViewWithModel(_ model: Any?) {
         if let model = model as? MediaViewerAuthorInfoOverlayViewModelProtocol {
-            authorTitleLablel.text = model.authorTitle
+            authorTitleLabel.text = model.authorTitle
             authorImageView.sd_setImage(with: model.authorImageURL)
             if let date = model.datePictureWasTaken {
                 dateTakenLabel.text = date.defaultString()
@@ -69,71 +68,94 @@ public class MediaViewerAuthorInfoOverlayView: MediaViewerInfoOverlayView {
             }
         } else {
             dateTakenLabel.text = ""
-            authorTitleLablel.text = ""
+            authorTitleLabel.text = ""
             authorImageView.image = nil
         }
     }
 
-    // MARK: public
+    public override func updateSafeAreaBottomAnchor(_ anchor: NSLayoutYAxisAnchor?) {
+        if let anchor = anchor {
+            NSLayoutConstraint.activate([
+                contentView.bottomAnchor.constraint(equalTo: anchor)
+            ])
+        }
+    }
 
     // MARK: private
 
-    private func setupView() {
-        setupBlurView()
-        setupImageView()
-        setupAuthorTitleLabel()
-        setupTakenByLabel()
-        setupDateTakenLabel()
-        updateViewWithModel(model)
-    }
-
-    private func setupImageView() {
-        authorImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        authorImageView.contentMode = .scaleAspectFill
-        authorImageView.clipsToBounds = true
-        authorImageView.translatesAutoresizingMaskIntoConstraints = false
-        authorImageView.layer.cornerRadius = 3.0
-        authorImageView.backgroundColor = .white
-        addSubview(authorImageView)
-
-        NSLayoutConstraint.activate([
-            authorImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            authorImageView.topAnchor.constraint(equalTo: topAnchor, constant: 39),
-            authorImageView.widthAnchor.constraint(equalToConstant: 26),
-            authorImageView.heightAnchor.constraint(equalTo: authorImageView.widthAnchor)
-        ])
-    }
-
-    private func setupBlurView() {
+    private func setupLayout() {
+        // Blur background
         blurBackground.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         blurBackground.translatesAutoresizingMaskIntoConstraints = false
         blurBackground.effect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        addSubviewWithFullScreenConstraints(blurBackground)
-    }
+        addSubview(blurBackground)
 
-    private func setupAuthorTitleLabel() {
-        NSLayoutConstraint.activate([
-            authorTitleLablel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 44),
-            authorTitleLablel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            authorTitleLablel.topAnchor.constraint(equalTo: topAnchor, constant: 36)
-        ])
-    }
+        // Actual content
+        addSubview(contentView)
 
-    private func setupTakenByLabel() {
+        authorImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        authorImageView.contentMode = .scaleAspectFill
+        authorImageView.clipsToBounds = true
+        authorImageView.layer.cornerRadius = 3.0
+        authorImageView.backgroundColor = .white
+        contentView.addSubview(authorImageView)
+
+        contentView.addSubview(authorTitleLabel)
+
         takenByTitle.text = "TAKEN BY"
+        contentView.addSubview(takenByTitle)
+
+        contentView.addSubview(dateTakenLabel)
+    }
+
+    private func setupConstraints() {
+        // Blur background
+        blurBackground.setFullScreenConstraints()
+
+        // Actual content
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
+         NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 80)
+         ])
+
+        authorImageView.translatesAutoresizingMaskIntoConstraints = false
+        authorTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        takenByTitle.translatesAutoresizingMaskIntoConstraints = false
+        dateTakenLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            takenByTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            takenByTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            takenByTitle.topAnchor.constraint(equalTo: topAnchor, constant: 13)
+            // avatar
+            authorImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            authorImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 39),
+            authorImageView.widthAnchor.constraint(equalToConstant: 26),
+            authorImageView.heightAnchor.constraint(equalTo: authorImageView.widthAnchor),
+
+            // name
+            authorTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 44),
+            authorTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            authorTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 36),
+
+            // taken by
+            takenByTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            takenByTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            takenByTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 13),
+
+            // date taken
+            dateTakenLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 44),
+            dateTakenLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            dateTakenLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 53)
         ])
     }
 
-    private func setupDateTakenLabel() {
-        NSLayoutConstraint.activate([
-            dateTakenLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 44),
-            dateTakenLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            dateTakenLabel.topAnchor.constraint(equalTo: topAnchor, constant: 53)
-        ])
+    private func labelSubviewWithFont(_ font: UIFont, color: UIColor) -> UILabel {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        label.textColor = color
+        label.font = font
+        return label
     }
 }
