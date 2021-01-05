@@ -62,13 +62,14 @@ public class MediaViewerMultipleImageScrollView: UIView {
 
     override public func layoutSubviews() {
         super.layoutSubviews()
-        scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
-        var currentViewFrame = CGRect(x: inbetweenImagesMargin, y: 0.0, width: bounds.size.width, height: scrollView.bounds.size.height)
-        for image in contentViews {
-            image.frame = currentViewFrame
-            currentViewFrame.origin.x += scrollView.bounds.size.width
+
+        scrollView.contentSize = CGSize(width: bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
+
+        for (index, image) in contentViews.enumerated() {
+            image.frame = contentViewFrame(index: index)
         }
-        scrollView.contentOffset = CGPoint(x:CGFloat(currentPage)*scrollView.bounds.size.width, y:0.0)
+
+        scrollView.contentOffset = CGPoint(x:CGFloat(currentPage) * bounds.size.width, y:0.0)
     }
 
     // MARK: public
@@ -118,10 +119,7 @@ public class MediaViewerMultipleImageScrollView: UIView {
     }
 
     private func setupScrollView() {
-        var frame = bounds
-        frame.origin.x -= inbetweenImagesMargin
-        frame.size.width += inbetweenImagesMargin*2.0
-        scrollView = UIScrollView(frame: frame)
+        scrollView = UIScrollView(frame: bounds)
         scrollView.clipsToBounds = false
         scrollView.isUserInteractionEnabled = true
         scrollView.isPagingEnabled = true
@@ -131,26 +129,25 @@ public class MediaViewerMultipleImageScrollView: UIView {
         scrollView.showsHorizontalScrollIndicator = false
         addSubview(scrollView)
 
-        scrollView.setFullScreenConstraints(sideMargins: -inbetweenImagesMargin)
+        scrollView.setFullScreenConstraints()
     }
 
     private func updateViewWithImages(_ newImages: [MediaViewerImageModel], selectedImage: MediaViewerImageModel) {
-        var currentViewFrame = scrollView.bounds
-        currentViewFrame.origin.x = inbetweenImagesMargin
-        currentViewFrame.size.width = bounds.width
-        for image in newImages {
-            let contentView = contentViewWithImageModel(image, frame: currentViewFrame)
+        for (index, image) in newImages.enumerated() {
+            let contentView = contentViewWithImageModel(image, frame: contentViewFrame(index: index))
             contentViews.append(contentView)
-            currentViewFrame.origin.x += scrollView.bounds.size.width
         }
-        if let mediaViewerDelegate = mediaViewerDelegate, let hasMoreToLoad = mediaViewerDelegate.hasMoreImagesToLoad?(newImages) {
-            if hasMoreToLoad {
-                let contentView = contentViewWithImageModel(nil, frame: currentViewFrame)
-                contentView.activityIndicator.startAnimating()
-                contentView.activityIndicator.isHidden = false
-                contentViews.append(contentView)
-            }
+
+        if let mediaViewerDelegate = mediaViewerDelegate,
+           let hasMoreToLoad = mediaViewerDelegate.hasMoreImagesToLoad?(newImages),
+           hasMoreToLoad {
+
+            let contentView = contentViewWithImageModel(nil, frame: contentViewFrame(index: newImages.count))
+            contentView.activityIndicator.startAnimating()
+            contentView.activityIndicator.isHidden = false
+            contentViews.append(contentView)
         }
+
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(contentViews.count), height: bounds.size.height)
         setRecogniserRequiredToFailWithView(currentImageView())
         setDelegateForAllViews(contentViews)
@@ -170,9 +167,15 @@ public class MediaViewerMultipleImageScrollView: UIView {
         }
     }
 
+    private func contentViewFrame(index: Int) -> CGRect {
+        return CGRect(x: (bounds.size.width + inbetweenImagesMargin) * CGFloat(index),
+                      y: 0.0,
+                      width: bounds.size.width,
+                      height: bounds.size.height)
+    }
+
     private func contentViewWithImageModel(_ imageModel: MediaViewerImageModel?, frame: CGRect) -> MediaViewerInteractiveImageView {
         let contentView = MediaViewerInteractiveImageView(frame: frame)
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView.imageModel = imageModel
         scrollView.addSubview(contentView)
 
