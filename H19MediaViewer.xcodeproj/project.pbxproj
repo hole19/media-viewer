@@ -43,6 +43,7 @@
 		A0C835811D22A7EC00594C2A /* MockTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C835801D22A7EC00594C2A /* MockTransitionCoordinator.swift */; };
 		A0C835831D22A82D00594C2A /* TestAssetCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */; };
 		A0F61B0F1D41138000266B2B /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F61B0E1D41138000266B2B /* NSDate+Extensions.swift */; };
+		C10B38892CF6070F00204DEA /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10B38882CF6070F00204DEA /* Package.swift */; };
 		D86FE64F5E08FB22332B404E /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71061FB095198E29B237DD4A /* Pods_H19MediaViewer_H19MediaViewerSandbox.framework */; };
 		EFBDDA1D2333B32700DEC354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDDA1C2333B32700DEC354 /* AppDelegate.swift */; };
 		EFBDDA1F2333B32700DEC354 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDDA1E2333B32700DEC354 /* ViewController.swift */; };
@@ -106,6 +107,7 @@
 		A0C835821D22A82D00594C2A /* TestAssetCatalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TestAssetCatalog.xcassets; sourceTree = "<group>"; };
 		A0F61B0E1D41138000266B2B /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		AC509CE6A3613EEEB8BC3151 /* Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-H19MediaViewer-H19MediaViewerTests/Pods-H19MediaViewer-H19MediaViewerTests.release.xcconfig"; sourceTree = "<group>"; };
+		C10B38882CF6070F00204DEA /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		EFBDDA1A2333B32700DEC354 /* H19MediaViewerSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = H19MediaViewerSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBDDA1C2333B32700DEC354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFBDDA1E2333B32700DEC354 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		A0C835201D22A4E200594C2A = {
 			isa = PBXGroup;
 			children = (
+				C10B38882CF6070F00204DEA /* Package.swift */,
 				A0C8352C1D22A4E200594C2A /* H19MediaViewer */,
 				A0C835381D22A4E200594C2A /* H19MediaViewerTests */,
 				EFBDDA1B2333B32700DEC354 /* H19MediaViewerSandbox */,
@@ -507,6 +510,7 @@
 				A0C835531D22A57F00594C2A /* MediaViewer.swift in Sources */,
 				A0C835591D22A57F00594C2A /* MediaViewerImageActionsHandler.swift in Sources */,
 				A0C8355D1D22A57F00594C2A /* MediaViewerPanningViewModel.swift in Sources */,
+				C10B38892CF6070F00204DEA /* Package.swift in Sources */,
 				A0C835561D22A57F00594C2A /* MediaViewerDelegate.swift in Sources */,
 				A0C835581D22A57F00594C2A /* MediaViewerImageAction.swift in Sources */,
 				A0C8355E1D22A57F00594C2A /* MediaViewerTransitionAnimator.swift in Sources */,
