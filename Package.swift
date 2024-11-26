@@ -12,9 +12,13 @@ let package = Package(
             targets: ["H19MediaViewer"]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.0.0")
+    ],
     targets: [
         .target(
             name: "H19MediaViewer",
+            dependencies: ["SDWebImage"],
             path: "H19MediaViewer",
             exclude: ["Tests"],
             resources: []
