@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.0.0"),
-        .package(url:  "https://github.com/Quick/Nimble.git", from: "13.0.0")
+        .package(url: "https://github.com/Quick/Nimble.git", from: "13.0.0")
     ],
     targets: [
         .target(
