@@ -13,20 +13,23 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.0.0")
+        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.0.0"),
+        .package(url: "https://github.com/Quick/Nimble.git", from: "13.0.0")
     ],
     targets: [
         .target(
             name: "H19MediaViewer",
             dependencies: ["SDWebImage"],
             path: "H19MediaViewer",
-            exclude: ["Tests"],
             resources: []
         ),
         .testTarget(
             name: "H19MediaViewerTests",
-            dependencies: ["H19MediaViewer"],
-            path: "Tests"
+            dependencies: [
+                "H19MediaViewer",
+                "Nimble"
+            ],
+            path: "H19MediaViewerTests"
         )
     ]
 )

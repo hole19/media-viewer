@@ -1,5 +1,4 @@
 import UIKit
-import AssetsLibrary
 import Photos
 
 public enum MediaViewerImageActionType {

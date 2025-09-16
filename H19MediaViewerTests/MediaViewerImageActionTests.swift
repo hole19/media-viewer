@@ -1,7 +1,6 @@
 import XCTest
 @testable import H19MediaViewer
 import Nimble
-import AssetsLibrary
 import Photos
 
 class MockPhotoLibrary: PHPhotoLibrary {
