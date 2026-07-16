@@ -108,7 +108,17 @@ public class MediaViewer: UIViewController {
      Use present to show MediaViewer. Do not use presentViewController.
      */
     public func present() {
-        foregroundWindow = UIWindow(frame: UIScreen.main.bounds)
+        // A window must be attached to an active UIWindowScene to render in a
+        // scene-based app (iOS 13+); a scene-less window stays invisible even
+        // with isHidden = false. Fall back to the legacy frame init only if no
+        // foreground scene can be found.
+        if let windowScene = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first(where: { $0.activationState == .foregroundActive }) {
+            foregroundWindow = UIWindow(windowScene: windowScene)
+        } else {
+            foregroundWindow = UIWindow(frame: UIScreen.main.bounds)
+        }
 
         guard let foregroundWindow = foregroundWindow else { return }
 
