@@ -1,8 +1,0 @@
-language: swift
-osx_image: xcode12.3
-install:
-- gem install bundler
-- bundle install
-- bundle exec pod repo update
-script:
-- bundle exec fastlane test
