@@ -57,7 +57,7 @@ struct MediaGalleryView: View {
     @ViewBuilder
     private var authorOverlay: some View {
         if model.state.isChromeVisible, let author = model.currentItem?.author {
-            MediaGalleryAuthorOverlay(author: author, loadImage: model.loadImage)
+            MediaGalleryAuthorOverlay(author: author)
                 .transition(.opacity)
         }
     }

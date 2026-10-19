@@ -1,11 +1,7 @@
 import SwiftUI
-import UIKit
 
 struct MediaGalleryAuthorOverlay: View {
     let author: MediaGalleryAuthor
-    let loadImage: @Sendable (URL) async -> UIImage?
-
-    @State private var avatar: UIImage?
 
     var body: some View {
         HStack(spacing: Constants.contentSpacing) {
@@ -29,17 +25,12 @@ struct MediaGalleryAuthorOverlay: View {
         .environment(\.colorScheme, .dark)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier(MediaGalleryAccessibilityID.authorOverlayView)
-        .task(id: author.avatarURL) {
-            guard let url = author.avatarURL
-            else { return }
-            avatar = await loadImage(url)
-        }
     }
 
     private var avatarView: some View {
-        Group {
-            if let avatar {
-                Image(uiImage: avatar)
+        AsyncImage(url: author.avatarURL) { phase in
+            if let image = phase.image {
+                image
                     .resizable()
                     .scaledToFill()
             } else {
@@ -68,16 +59,13 @@ struct MediaGalleryAuthorOverlay: View {
             .resizable()
             .scaledToFill()
             .ignoresSafeArea()
-        MediaGalleryAuthorOverlay(author: MediaGalleryPreviewSupport.author, loadImage: { _ in nil })
+        MediaGalleryAuthorOverlay(author: MediaGalleryPreviewSupport.author)
     }
 }
 
 #Preview("Author overlay, no date") {
     ZStack(alignment: .bottom) {
         Color.gray.ignoresSafeArea()
-        MediaGalleryAuthorOverlay(
-            author: MediaGalleryAuthor(avatarURL: nil, name: "Alex Fairway"),
-            loadImage: { _ in nil }
-        )
+        MediaGalleryAuthorOverlay(author: MediaGalleryAuthor(avatarURL: nil, name: "Alex Fairway"))
     }
 }
