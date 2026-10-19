@@ -14,7 +14,7 @@ final class MediaGalleryModel {
     @ObservationIgnored let loadImage: @Sendable (URL) async -> UIImage?
     @ObservationIgnored weak var delegate: (any MediaGalleryDelegate)?
     @ObservationIgnored var onShare: ((UIImage) -> Void)?
-    @ObservationIgnored private var loadedImages: [String: UIImage] = [:]
+    @ObservationIgnored private let loadedImages = NSCache<NSString, UIImage>()
     @ObservationIgnored private var isLoadingMore = false
 
     init(
@@ -46,7 +46,7 @@ final class MediaGalleryModel {
         if case .image(let image) = item.source {
             return image
         }
-        return loadedImages[item.id]
+        return loadedImages.object(forKey: item.id as NSString)
     }
 
     func placeholder(for item: MediaGalleryItem) -> UIImage? {
@@ -54,7 +54,7 @@ final class MediaGalleryModel {
     }
 
     func didLoad(_ image: UIImage, for item: MediaGalleryItem) {
-        loadedImages[item.id] = image
+        loadedImages.setObject(image, forKey: item.id as NSString)
     }
 
     func select(_ index: Int) {
@@ -79,8 +79,8 @@ final class MediaGalleryModel {
         else { return }
 
         isLoadingMore = true
-        Task { [weak self] in
-            let newItems = await delegate.mediaGalleryLoadMoreItems()
+        Task { [weak self, weak delegate] in
+            let newItems = await delegate?.mediaGalleryLoadMoreItems() ?? []
             self?.append(newItems)
         }
     }
