@@ -73,6 +73,26 @@ xcodebuild -scheme H19MediaViewer -destination 'platform=iOS Simulator,name=iPho
 
 SwiftUI previews live next to the views.
 
+### Sandbox app
+
+`Sandbox/` is a small app for trying the gallery by hand: a thumbnail grid with the hero transition, drag-to-dismiss, paginated loading and an author overlay toggle. It is not part of the package, so consumers and `xcodebuild -scheme H19MediaViewer` never build it.
+
+The repo stays SPM-only, so the Xcode project is generated with [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`) and git-ignored:
+
+```
+cd Sandbox
+xcodegen generate
+open Sandbox.xcodeproj
+```
+
+Run the `Sandbox` scheme on a simulator, or from the command line:
+
+```
+xcodebuild -project Sandbox.xcodeproj -scheme Sandbox -destination 'platform=iOS Simulator,name=iPhone 16' build
+```
+
+Re-run `xcodegen generate` after changing `Sandbox/project.yml` or adding files.
+
 ## License
 
 MIT, see [LICENSE](LICENSE).
