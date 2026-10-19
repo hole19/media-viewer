@@ -4,7 +4,7 @@ A SwiftUI, SPM-only full-screen photo gallery for iOS, consumed by the Hole19 iO
 
 ## Constraints
 
-- iOS 18, Swift 6.1. SPM only: do not add a Podfile, podspec, Xcode project, fastlane or Gemfile.
+- iOS 18, Swift 6.1. SPM only: do not add a Podfile, podspec, fastlane or Gemfile, and do not commit an Xcode project. The one exception is the generated, git-ignored `Sandbox/Sandbox.xcodeproj` (see Sandbox app).
 - No dependencies at all. This repo cannot import the app's packages (`DesignSystem`, `H19Localization`, `AccessibilityIdentifiers`), so use SwiftUI and SF Symbols directly and keep spacing and sizes in a private `Constants` enum.
 - The package ships no strings. Anything user-facing or localized is injected through `MediaGalleryConfiguration`.
 - Accessibility identifiers live in `MediaGalleryAccessibilityID`; the app and its UI tests read them from there.
@@ -18,6 +18,10 @@ xcodebuild -scheme H19MediaViewer -destination id=<UDID> test
 ```
 
 Pick a booted simulator with `xcrun simctl list devices available`. Tests use Swift Testing (`import Testing`, `@Suite`, `@Test`, `#expect`); do not add XCTest. Keep logic in small testable types (`MediaGalleryState`, `MediaGalleryDismissPolicy`, `MediaGalleryGeometry`, `MediaGalleryModel`) and keep views thin.
+
+## Sandbox app
+
+`Sandbox/` is a manual test app, not part of the package: SPM never builds it. Only `Sandbox/project.yml` and `Sandbox/Sources` are committed; generate the project with `cd Sandbox && xcodegen generate` and build the `Sandbox` scheme on a simulator. When you change public API or gallery behavior, keep the sandbox compiling and exercising it.
 
 ## Code style
 
