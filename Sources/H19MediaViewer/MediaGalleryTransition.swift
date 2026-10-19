@@ -72,11 +72,17 @@ final class MediaGalleryTransition: NSObject, UIViewControllerTransitioningDeleg
     fileprivate var currentSourceCornerRadius: CGFloat { cornerRadius(of: sourceImageViewForCurrentItem()) }
 }
 
-private let heroTransitionDuration: TimeInterval = 0.32
-private let springDamping: CGFloat = 0.9
+private enum Constants {
+    static let duration: TimeInterval = 0.32
+    static let springDamping: CGFloat = 0.9
+}
 
 @MainActor
-private func makeHeroImageView(image: UIImage, frame: CGRect, cornerRadius: CGFloat) -> UIImageView {
+private func makeHeroImageView(
+    image: UIImage,
+    frame: CGRect,
+    cornerRadius: CGFloat
+) -> UIImageView {
     let heroImageView = UIImageView(image: image)
     heroImageView.contentMode = .scaleAspectFill
     heroImageView.clipsToBounds = true
@@ -94,7 +100,7 @@ private final class PresentAnimator: NSObject, UIViewControllerAnimatedTransitio
     }
 
     func transitionDuration(using transitionContext: (any UIViewControllerContextTransitioning)?) -> TimeInterval {
-        heroTransitionDuration
+        Constants.duration
     }
 
     func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
@@ -132,14 +138,18 @@ private final class PresentAnimator: NSObject, UIViewControllerAnimatedTransitio
             return
         }
 
-        let heroImageView = makeHeroImageView(image: image, frame: sourceFrame, cornerRadius: transition.initialSourceCornerRadius)
+        let heroImageView = makeHeroImageView(
+            image: image,
+            frame: sourceFrame,
+            cornerRadius: transition.initialSourceCornerRadius
+        )
         container.addSubview(heroImageView)
         transition.hideInitialSourceImageView()
 
         UIView.animate(
             withDuration: duration,
             delay: .zero,
-            usingSpringWithDamping: springDamping,
+            usingSpringWithDamping: Constants.springDamping,
             initialSpringVelocity: .zero,
             animations: {
                 backdrop.alpha = 1
@@ -164,7 +174,7 @@ private final class DismissAnimator: NSObject, UIViewControllerAnimatedTransitio
     }
 
     func transitionDuration(using transitionContext: (any UIViewControllerContextTransitioning)?) -> TimeInterval {
-        heroTransitionDuration
+        Constants.duration
     }
 
     func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
@@ -202,7 +212,11 @@ private final class DismissAnimator: NSObject, UIViewControllerAnimatedTransitio
         let startFrame = MediaGalleryGeometry
             .aspectFitFrame(for: image.size, in: container.bounds)
             .offsetBy(dx: .zero, dy: dragOffset)
-        let heroImageView = makeHeroImageView(image: image, frame: startFrame, cornerRadius: .zero)
+        let heroImageView = makeHeroImageView(
+            image: image,
+            frame: startFrame,
+            cornerRadius: .zero
+        )
         container.addSubview(heroImageView)
         fromView.alpha = .zero
         fromView.transform = .identity
@@ -210,7 +224,7 @@ private final class DismissAnimator: NSObject, UIViewControllerAnimatedTransitio
         UIView.animate(
             withDuration: duration,
             delay: .zero,
-            usingSpringWithDamping: springDamping,
+            usingSpringWithDamping: Constants.springDamping,
             initialSpringVelocity: .zero,
             animations: {
                 backdrop.alpha = .zero

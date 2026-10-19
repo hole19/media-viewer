@@ -1,7 +1,9 @@
 import Foundation
 
 struct MediaGalleryState: Equatable {
-    private static let prefetchDistance = 1
+    private enum Constants {
+        static let prefetchDistance = 1
+    }
 
     private(set) var selectedIndex: Int
     private(set) var isChromeVisible = true
@@ -30,7 +32,7 @@ struct MediaGalleryState: Equatable {
     }
 
     func shouldLoadMore(hasMoreItems: Bool, isLoading: Bool) -> Bool {
-        hasMoreItems && isLoading == false && selectedIndex >= itemCount - 1 - Self.prefetchDistance
+        hasMoreItems && isLoading == false && selectedIndex >= itemCount - 1 - Constants.prefetchDistance
     }
 
     private static func clamped(_ index: Int, itemCount: Int) -> Int {

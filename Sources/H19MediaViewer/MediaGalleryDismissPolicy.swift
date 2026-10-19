@@ -1,20 +1,30 @@
 import CoreGraphics
 
 enum MediaGalleryDismissPolicy {
-    private static let distanceFraction: CGFloat = 0.15
-    private static let flickVelocity: CGFloat = 900
-    private static let fadeDistanceFraction: CGFloat = 0.6
-    private static let minimumBackdropAlpha: CGFloat = 0.3
+    private enum Constants {
+        static let distanceFraction: CGFloat = 0.15
+        static let flickVelocity: CGFloat = 900
+        static let fadeDistanceFraction: CGFloat = 0.6
+        static let minimumBackdropAlpha: CGFloat = 0.3
+        static let fullBackdropAlpha: CGFloat = 1
+    }
 
-    static func shouldDismiss(translation: CGFloat, velocity: CGFloat, height: CGFloat) -> Bool {
-        let isFlick = abs(velocity) > flickVelocity && translation * velocity >= .zero
-        return abs(translation) > height * distanceFraction || isFlick
+    static func shouldDismiss(
+        translation: CGFloat,
+        velocity: CGFloat,
+        height: CGFloat
+    ) -> Bool {
+        let isFlick = abs(velocity) > Constants.flickVelocity && translation * velocity >= .zero
+        return abs(translation) > height * Constants.distanceFraction || isFlick
     }
 
     static func backdropAlpha(translation: CGFloat, height: CGFloat) -> CGFloat {
         guard height > .zero
-        else { return 1 }
-        let progress = abs(translation) / (height * fadeDistanceFraction)
-        return min(1, max(minimumBackdropAlpha, 1 - progress))
+        else { return Constants.fullBackdropAlpha }
+        let progress = abs(translation) / (height * Constants.fadeDistanceFraction)
+        return min(
+            Constants.fullBackdropAlpha,
+            max(Constants.minimumBackdropAlpha, Constants.fullBackdropAlpha - progress)
+        )
     }
 }

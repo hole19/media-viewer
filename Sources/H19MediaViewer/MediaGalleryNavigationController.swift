@@ -3,12 +3,17 @@ import UIKit
 final class MediaGalleryNavigationController: UINavigationController, UIGestureRecognizerDelegate {
     private enum Constants {
         static let restoreDuration: TimeInterval = 0.3
+        static let restoreSpringDamping: CGFloat = 0.85
     }
 
     private let model: MediaGalleryModel
     private let transition: MediaGalleryTransition
 
-    init(rootViewController: UIViewController, model: MediaGalleryModel, transition: MediaGalleryTransition) {
+    init(
+        rootViewController: UIViewController,
+        model: MediaGalleryModel,
+        transition: MediaGalleryTransition
+    ) {
         self.model = model
         self.transition = transition
         super.init(rootViewController: rootViewController)
@@ -74,7 +79,7 @@ final class MediaGalleryNavigationController: UINavigationController, UIGestureR
         UIView.animate(
             withDuration: Constants.restoreDuration,
             delay: .zero,
-            usingSpringWithDamping: 0.85,
+            usingSpringWithDamping: Constants.restoreSpringDamping,
             initialSpringVelocity: .zero
         ) {
             self.view.transform = .identity
