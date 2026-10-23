@@ -1,0 +1,22 @@
+name: Sandbox
+options:
+  bundleIdPrefix: com.hole19
+  deploymentTarget:
+    iOS: "18.0"
+packages:
+  H19MediaViewer:
+    path: ..
+targets:
+  Sandbox:
+    type: application
+    platform: iOS
+    sources: [Sources]
+    dependencies:
+      - package: H19MediaViewer
+    settings:
+      SWIFT_VERSION: "6.0"
+      GENERATE_INFOPLIST_FILE: YES
+      INFOPLIST_KEY_UILaunchScreen_Generation: YES
+      INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+      INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+      PRODUCT_BUNDLE_IDENTIFIER: com.hole19.mediaviewer.sandbox
