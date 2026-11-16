@@ -19,6 +19,10 @@ struct MediaGalleryView: View {
                 .accessibilityLabel(model.configuration.closeAccessibilityLabel)
                 .accessibilityIdentifier(MediaGalleryAccessibilityID.closeButton)
             }
+
+            ToolbarItem(placement: .principal) {
+                pageCounter
+            }
         }
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
@@ -55,6 +59,17 @@ struct MediaGalleryView: View {
     }
 
     @ViewBuilder
+    private var pageCounter: some View {
+        if model.configuration.showsPageCounter, let counter = model.state.pageCounter {
+            Text(counter.text)
+                .font(.subheadline.weight(.semibold).monospacedDigit())
+                .foregroundStyle(.white)
+                .accessibilityLabel(model.configuration.pageCounterAccessibilityLabel?(counter.current, counter.total) ?? counter.text)
+                .accessibilityIdentifier(MediaGalleryAccessibilityID.pageCounterLabel)
+        }
+    }
+
+    @ViewBuilder
     private var authorOverlay: some View {
         if model.state.isChromeVisible, let author = model.currentItem?.author {
             MediaGalleryAuthorOverlay(author: author)
@@ -67,6 +82,20 @@ struct MediaGalleryView: View {
 #Preview("Gallery with author") {
     NavigationStack {
         MediaGalleryView(model: MediaGalleryPreviewSupport.model(), onClose: {})
+    }
+    .background(Color.black)
+}
+
+#Preview("Gallery with page counter") {
+    NavigationStack {
+        MediaGalleryView(
+            model: MediaGalleryPreviewSupport.model(
+                count: 3,
+                initialIndex: 1,
+                configuration: MediaGalleryConfiguration(showsPageCounter: true)
+            ),
+            onClose: {}
+        )
     }
     .background(Color.black)
 }

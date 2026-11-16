@@ -11,6 +11,23 @@ struct MediaGalleryStateTests {
     }
 
     @Test
+    func pageCounterIsHiddenForASingleItem() {
+        #expect(MediaGalleryState(itemCount: 1, initialIndex: .zero).pageCounter == nil)
+        #expect(MediaGalleryState(itemCount: .zero, initialIndex: .zero).pageCounter == nil)
+    }
+
+    @Test
+    func pageCounterFollowsSelectionAndItemCount() {
+        var state = MediaGalleryState(itemCount: 3, initialIndex: 1)
+        #expect(state.pageCounter == MediaGalleryPageCounter(current: 2, total: 3))
+        #expect(state.pageCounter?.text == "2/3")
+
+        state.updateItemCount(5)
+        state.select(4)
+        #expect(state.pageCounter == MediaGalleryPageCounter(current: 5, total: 5))
+    }
+
+    @Test
     func emptyGalleryAlwaysSelectsZero() {
         var state = MediaGalleryState(itemCount: .zero, initialIndex: 5)
         state.select(2)

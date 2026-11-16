@@ -22,12 +22,14 @@ enum MediaGalleryPreviewSupport {
     static func model(
         count: Int = 4,
         initialIndex: Int = .zero,
-        withAuthor: Bool = true
+        withAuthor: Bool = true,
+        configuration: MediaGalleryConfiguration = MediaGalleryConfiguration()
     ) -> MediaGalleryModel {
         MediaGalleryModel(
             items: items(count: count, withAuthor: withAuthor),
             initialIndex: initialIndex,
             delegate: nil,
+            configuration: configuration,
             loadImage: { _ in nil }
         )
     }

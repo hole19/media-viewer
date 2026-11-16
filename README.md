@@ -62,7 +62,7 @@ The gallery lays out from its container, not the screen, so it follows rotation,
 
 ### Localization and accessibility
 
-The package ships no strings. Pass the localized close label through `MediaGalleryConfiguration`. Accessibility identifiers are exposed as `MediaGalleryAccessibilityID` for UI tests.
+The package ships no strings. Pass the localized close label through `MediaGalleryConfiguration`. Set `showsPageCounter` to show a "2/3" counter in the navigation bar when there is more than one item, and `pageCounterAccessibilityLabel` to give VoiceOver a localized reading such as "Photo 2 of 3". Accessibility identifiers are exposed as `MediaGalleryAccessibilityID` for UI tests.
 
 ## Development
 
