@@ -1,5 +1,15 @@
 import Foundation
 
+/// A "2/3" position in the gallery; `current` is 1-based.
+struct MediaGalleryPageCounter: Equatable {
+    let current: Int
+    let total: Int
+
+    var text: String {
+        "\(current)/\(total)"
+    }
+}
+
 struct MediaGalleryState: Equatable {
     private enum Constants {
         static let prefetchDistance = 1
@@ -29,6 +39,13 @@ struct MediaGalleryState: Equatable {
 
     mutating func hideChrome() {
         isChromeVisible = false
+    }
+
+    /// The counter for the selected item, or `nil` when there's only one item to show.
+    var pageCounter: MediaGalleryPageCounter? {
+        guard itemCount > 1
+        else { return nil }
+        return MediaGalleryPageCounter(current: selectedIndex + 1, total: itemCount)
     }
 
     func shouldLoadMore(hasMoreItems: Bool, isLoading: Bool) -> Bool {

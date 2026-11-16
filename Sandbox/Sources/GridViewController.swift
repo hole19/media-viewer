@@ -117,7 +117,11 @@ extension GridViewController: UICollectionViewDelegateFlowLayout {
             items: items,
             initialIndex: indexPath.item,
             sourceImageView: sourceImageView,
-            delegate: self
+            delegate: self,
+            configuration: MediaGalleryConfiguration(
+                showsPageCounter: true,
+                pageCounterAccessibilityLabel: { current, total in "Photo \(current) of \(total)" }
+            )
         )
         present(gallery, animated: true)
     }
