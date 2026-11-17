@@ -41,6 +41,22 @@ present(gallery, animated: true)
 
 `compose` returns a `UINavigationController` configured for full-screen presentation with the custom transition. Present it from any view controller.
 
+### Transition source
+
+The gallery zooms out of the tapped thumbnail and back into it on dismiss. Pass `sourceImageView:` for a UIKit thumbnail, or `source:` with a `MediaGallerySource` when there is no image view to point at, as in a SwiftUI grid:
+
+```swift
+// frame is in window coordinates, e.g. from `onGeometryChange(for: CGRect.self) { $0.frame(in: .global) }`
+let gallery = MediaGalleryComposer.compose(
+    items: items,
+    initialIndex: tappedIndex,
+    source: .frame(thumbnailFrame, image: thumbnailImage, cornerRadius: 3),
+    delegate: self
+)
+```
+
+Without an image the gallery fades in and out instead of zooming.
+
 ### Items
 
 `MediaGalleryItem.source` is either `.url(URL)` (loaded with `MediaGalleryImageLoader`, or a loader you pass as `loadImage:`) or `.image(UIImage)`. `author` is optional; when set, a blurred bar with the name and date shows at the bottom.
@@ -51,7 +67,8 @@ Every method of `MediaGalleryDelegate` has a default implementation, so implemen
 
 | Method | Purpose |
 |---|---|
-| `mediaGallery(sourceImageViewFor:)` | The image view to animate to when dismissing, so the transition lands on the right thumbnail after the user paged |
+| `mediaGallery(sourceFor:)` | The `MediaGallerySource` to animate to when dismissing, so the transition lands on the right thumbnail after the user paged. Defaults to `mediaGallery(sourceImageViewFor:)` |
+| `mediaGallery(sourceImageViewFor:)` | The same, for UIKit screens that can return the thumbnail's image view |
 | `mediaGallery(didShowItemAt:)` | Called when the visible page changes, e.g. to scroll the screen underneath |
 | `mediaGalleryHasMoreItems` | Whether more items can be loaded |
 | `mediaGalleryLoadMoreItems()` | Returns the next batch; called when the user nears the last page |
