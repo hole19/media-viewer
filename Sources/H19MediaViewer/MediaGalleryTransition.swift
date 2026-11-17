@@ -4,11 +4,11 @@ import UIKit
 final class MediaGalleryTransition: NSObject, UIViewControllerTransitioningDelegate {
     let backdropView = UIView()
     private let model: MediaGalleryModel
-    private weak var initialSourceImageView: UIImageView?
+    private let initialSource: MediaGallerySource?
 
-    init(model: MediaGalleryModel, initialSourceImageView: UIImageView?) {
+    init(model: MediaGalleryModel, initialSource: MediaGallerySource?) {
         self.model = model
-        self.initialSourceImageView = initialSourceImageView
+        self.initialSource = initialSource
         super.init()
         backdropView.backgroundColor = .black
     }
@@ -26,50 +26,34 @@ final class MediaGalleryTransition: NSObject, UIViewControllerTransitioningDeleg
     }
 
     fileprivate var displayedImage: UIImage? {
-        model.currentImage ?? initialSourceImageView?.image
+        model.currentImage ?? initialSource?.image()
     }
 
-    fileprivate func sourceImageViewForCurrentItem() -> UIImageView? {
+    fileprivate func sourceForCurrentItem() -> MediaGallerySource? {
         guard let item = model.currentItem
         else { return nil }
-        if let view = model.delegate?.mediaGallery(sourceImageViewFor: item) {
-            return view
+        if let source = model.delegate?.mediaGallery(sourceFor: item) {
+            return source
         }
-        return item.id == model.initialItemID ? initialSourceImageView : nil
+        return item.id == model.initialItemID ? initialSource : nil
     }
 
-    fileprivate func restoreSourceImageViews() {
-        initialSourceImageView?.isHidden = false
-        sourceImageViewForCurrentItem()?.isHidden = false
+    fileprivate func restoreSources() {
+        initialSource?.setHidden(false)
+        sourceForCurrentItem()?.setHidden(false)
     }
 
-    fileprivate func hideInitialSourceImageView() {
-        initialSourceImageView?.isHidden = true
+    fileprivate func hideInitialSource() {
+        initialSource?.setHidden(true)
     }
 
-    fileprivate var hasInitialSourceImageView: Bool { initialSourceImageView != nil }
-    fileprivate var initialSourceImage: UIImage? { initialSourceImageView?.image }
+    fileprivate var initialSourceImage: UIImage? { initialSource?.image() }
 
     fileprivate func initialSourceFrame(in container: UIView) -> CGRect? {
-        frame(of: initialSourceImageView, in: container)
+        initialSource?.frame(container)
     }
 
-    fileprivate func currentSourceFrame(in container: UIView) -> CGRect? {
-        frame(of: sourceImageViewForCurrentItem(), in: container)
-    }
-
-    fileprivate func cornerRadius(of imageView: UIImageView?) -> CGFloat {
-        imageView?.layer.cornerRadius ?? .zero
-    }
-
-    private func frame(of imageView: UIImageView?, in container: UIView) -> CGRect? {
-        guard let imageView, let superview = imageView.superview, imageView.window != nil
-        else { return nil }
-        return superview.convert(imageView.frame, to: container)
-    }
-
-    fileprivate var initialSourceCornerRadius: CGFloat { cornerRadius(of: initialSourceImageView) }
-    fileprivate var currentSourceCornerRadius: CGFloat { cornerRadius(of: sourceImageViewForCurrentItem()) }
+    fileprivate var initialSourceCornerRadius: CGFloat { initialSource?.cornerRadius() ?? .zero }
 }
 
 private enum Constants {
@@ -144,7 +128,7 @@ private final class PresentAnimator: NSObject, UIViewControllerAnimatedTransitio
             cornerRadius: transition.initialSourceCornerRadius
         )
         container.addSubview(heroImageView)
-        transition.hideInitialSourceImageView()
+        transition.hideInitialSource()
 
         UIView.animate(
             withDuration: duration,
@@ -190,13 +174,15 @@ private final class DismissAnimator: NSObject, UIViewControllerAnimatedTransitio
         let duration = transitionDuration(using: transitionContext)
         let dragOffset = fromView.transform.ty
         let finish: (Bool) -> Void = { [transition] _ in
-            transition.restoreSourceImageViews()
+            transition.restoreSources()
             backdrop.removeFromSuperview()
             transitionContext.completeTransition(transitionContext.transitionWasCancelled == false)
         }
 
+        let targetSource = transition.sourceForCurrentItem()
         guard let image = transition.displayedImage,
-            let targetFrame = transition.currentSourceFrame(in: container)
+            let targetSource,
+            let targetFrame = targetSource.frame(container)
         else {
             UIView.animate(
                 withDuration: duration,
@@ -229,7 +215,7 @@ private final class DismissAnimator: NSObject, UIViewControllerAnimatedTransitio
             animations: {
                 backdrop.alpha = .zero
                 heroImageView.frame = targetFrame
-                heroImageView.layer.cornerRadius = self.transition.currentSourceCornerRadius
+                heroImageView.layer.cornerRadius = targetSource.cornerRadius()
             },
             completion: { completed in
                 heroImageView.removeFromSuperview()

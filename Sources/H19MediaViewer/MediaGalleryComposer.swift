@@ -6,7 +6,7 @@ public enum MediaGalleryComposer {
     public static func compose(
         items: [MediaGalleryItem],
         initialIndex: Int = .zero,
-        sourceImageView: UIImageView? = nil,
+        source: MediaGallerySource? = nil,
         delegate: (any MediaGalleryDelegate)? = nil,
         configuration: MediaGalleryConfiguration = MediaGalleryConfiguration(),
         loadImage: @escaping @Sendable (URL) async -> UIImage? = MediaGalleryImageLoader.load
@@ -15,11 +15,11 @@ public enum MediaGalleryComposer {
             items: items,
             initialIndex: initialIndex,
             delegate: delegate,
-            initialPlaceholder: sourceImageView?.image,
+            initialPlaceholder: source?.image(),
             configuration: configuration,
             loadImage: loadImage
         )
-        let transition = MediaGalleryTransition(model: model, initialSourceImageView: sourceImageView)
+        let transition = MediaGalleryTransition(model: model, initialSource: source)
         let presenterBox = PresenterBox()
 
         let hostingController = UIHostingController(
@@ -37,6 +37,25 @@ public enum MediaGalleryComposer {
         )
         presenterBox.presenter = navigationController
         return navigationController
+    }
+
+    @MainActor
+    public static func compose(
+        items: [MediaGalleryItem],
+        initialIndex: Int = .zero,
+        sourceImageView: UIImageView?,
+        delegate: (any MediaGalleryDelegate)? = nil,
+        configuration: MediaGalleryConfiguration = MediaGalleryConfiguration(),
+        loadImage: @escaping @Sendable (URL) async -> UIImage? = MediaGalleryImageLoader.load
+    ) -> UIViewController {
+        compose(
+            items: items,
+            initialIndex: initialIndex,
+            source: sourceImageView.map(MediaGallerySource.imageView),
+            delegate: delegate,
+            configuration: configuration,
+            loadImage: loadImage
+        )
     }
 
     @MainActor
